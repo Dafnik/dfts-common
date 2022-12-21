@@ -14,7 +14,28 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "dfts": ["libs/dfts/src/index.ts"],
+      "dfx-helper": ["libs/dfx-helper/src/index.ts"]
+    },
+    "esModuleInterop": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": true,
+    "strictFunctionTypes": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "downlevelIteration": true,
+    "types": ["node"],
+    "useDefineForClassFields": false
   },
   "exclude": ["node_modules", "tmp"]
 }

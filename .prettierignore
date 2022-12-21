@@ -2,3 +2,6 @@
 
 /dist
 /coverage
+package.json
+pnpm-lock.yaml
+.gitlab-ci.yml

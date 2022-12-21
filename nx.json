@@ -49,6 +49,5 @@
     "@nrwl/angular:component": {
       "style": "scss"
     }
-  },
-  "defaultProject": "dfts-app"
+  }
 }

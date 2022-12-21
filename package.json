@@ -7,7 +7,8 @@
     "postinstall": "node ./decorate-angular-cli.js",
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "pretty": "prettier --write ."
   },
   "private": true,
   "dependencies": {
@@ -33,15 +34,17 @@
     "@angular/compiler-cli": "~15.0.0",
     "@angular/language-service": "~15.0.0",
     "@nrwl/cypress": "15.3.3",
+    "@nrwl/esbuild": "15.3.3",
     "@nrwl/eslint-plugin-nx": "15.3.3",
     "@nrwl/jest": "15.3.3",
     "@nrwl/linter": "15.3.3",
     "@nrwl/workspace": "15.3.3",
     "@types/jest": "28.1.1",
-    "@types/node": "16.11.7",
+    "@types/node": "18.7.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "cypress": "^11.0.0",
+    "esbuild": "^0.15.7",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",

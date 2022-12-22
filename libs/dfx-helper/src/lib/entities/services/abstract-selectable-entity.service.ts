@@ -1,12 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {distinctUntilChanged, Observable, share, startWith, Subject, tap} from 'rxjs';
-
-import {StorageHelper} from '../../helper/storage';
+import {IEntity, StorageHelper, StringOrNumber, UndefinedOr} from 'dfts';
 
 import {AEntityService} from './abstract-entity.service';
-
-import {StringOrNumber, UndefinedOr} from '../../types';
-import {IEntity} from '../entity.interface';
 
 export abstract class ASelectableEntityService<idType extends StringOrNumber, EntityType extends IEntity<idType>> extends AEntityService<
   idType,

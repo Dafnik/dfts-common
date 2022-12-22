@@ -16,7 +16,7 @@ export class ImploderBuilder implements IBuilder<string> {
     return this;
   }
 
-  mappedSource<T>(source?: UndefinedOrNullOr<T[]>, mapFn?: IMap<T, T[], string>): this {
+  mappedSource<T>(source?: UndefinedOrNullOr<T[]>, mapFn?: IMap<T, string>): this {
     if (mapFn && source) {
       this._source = source.map(mapFn);
     }

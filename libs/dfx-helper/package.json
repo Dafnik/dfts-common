@@ -1,0 +1,42 @@
+{
+  "name": "dfx-helper",
+  "version": "5.0.0-beta",
+  "description": "Web-development / Typescript / Angular Library with tons of utility tools helping in all projects",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://datepoll.org",
+  "keywords": [
+    "angular2",
+    "angular",
+    "typescript",
+    "helper",
+    "tools"
+  ],
+  "author": {
+    "name": "Dafnik",
+    "email": "contact@dafnik.me",
+    "url": "https://dafnik.me"
+  },
+  "funding": {
+    "type": "liberapay",
+    "url": "https://liberapay.com/Dafnik"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/DatePoll/common/dfx-common/-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/DatePoll/common/dfx-common.git"
+  },
+  "peerDependencies": {
+    "@angular/common": "9 - 15",
+    "@angular/core": "9 - 15",
+    "@angular/cdk": "9 - 15",
+    "@angular/router": "9 - 15",
+    "@angular/platform-browser": "9 - 15",
+    "rxjs": "2 - 7"
+  },
+  "dependencies": {
+    "tslib": "^2"
+  }
+}

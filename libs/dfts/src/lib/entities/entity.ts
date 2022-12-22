@@ -3,37 +3,37 @@ import {AEntityWithName, AEntityWithNumberIDAndName, AEntityWithStringIDAndName}
 import {StringOrNumber} from '../types';
 
 export class Entity extends AEntity<StringOrNumber> {
-  constructor(id: StringOrNumber, originalJsonDto: any) {
+  constructor(id: StringOrNumber, originalJsonDto: unknown) {
     super(id, originalJsonDto);
   }
 }
 
 export class EntityWithNumberID extends AEntityWithNumberID {
-  constructor(id: number, originalJsonDto: any) {
+  constructor(id: number, originalJsonDto: unknown) {
     super(id, originalJsonDto);
   }
 }
 
 export class EntityWithStringID extends AEntityWithStringID {
-  constructor(id: string, originalJsonDto: any) {
+  constructor(id: string, originalJsonDto: unknown) {
     super(id, originalJsonDto);
   }
 }
 
 export class EntityWithName extends AEntityWithName<StringOrNumber> {
-  constructor(id: StringOrNumber, name: string, originalJsonDto: any) {
+  constructor(id: StringOrNumber, name: string, originalJsonDto: unknown) {
     super(id, name, originalJsonDto);
   }
 }
 
 export class EntityWithNumberIDAndName extends AEntityWithNumberIDAndName {
-  constructor(id: number, name: string, originalJsonDto: any) {
+  constructor(id: number, name: string, originalJsonDto: unknown) {
     super(id, name, originalJsonDto);
   }
 }
 
 export class EntityWithStringIDAndName extends AEntityWithStringIDAndName {
-  constructor(id: string, name: string, originalJsonDto: any) {
+  constructor(id: string, name: string, originalJsonDto: unknown) {
     super(id, name, originalJsonDto);
   }
 }

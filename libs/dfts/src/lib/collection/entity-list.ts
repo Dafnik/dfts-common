@@ -44,7 +44,7 @@ export class EntityList<T extends IEntity<StringOrNumber>> extends ACommonList<E
     return true;
   }
 
-  override indexOf(searchElement: T, fromIndex: number = 0): number {
+  override indexOf(searchElement: T, fromIndex = 0): number {
     for (let i = fromIndex; i < this.size(); i++) {
       if (this[i].hashCode() === searchElement.hashCode()) {
         return i;

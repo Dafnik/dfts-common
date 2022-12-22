@@ -4,7 +4,7 @@ import {IEntity, IEntityWithNumberID, IEntityWithStringID} from './entity.interf
 export abstract class AEntity<idType extends StringOrNumber> implements IEntity<idType> {
   // protected hidden: string[] = [];
 
-  protected constructor(public id: idType, public originalJsonDto?: any) {}
+  protected constructor(public id: idType, public originalJsonDto?: unknown) {}
 
   toString(): string {
     let text = '';
@@ -34,7 +34,7 @@ export abstract class AEntity<idType extends StringOrNumber> implements IEntity<
     return this.id;
   }
 
-  equals(object: any): boolean {
+  equals(object: unknown): boolean {
     if (object == null || typeof object !== 'object' || !(object instanceof AEntity) || this.constructor.name !== object.constructor.name)
       return false;
 
@@ -43,13 +43,13 @@ export abstract class AEntity<idType extends StringOrNumber> implements IEntity<
 }
 
 export abstract class AEntityWithNumberID extends AEntity<number> implements IEntityWithNumberID {
-  protected constructor(id: number, originalJsonDto?: any) {
+  protected constructor(id: number, originalJsonDto?: unknown) {
     super(id, originalJsonDto);
   }
 }
 
 export abstract class AEntityWithStringID extends AEntity<string> implements IEntityWithStringID {
-  protected constructor(id: string, originalJsonDto?: any) {
+  protected constructor(id: string, originalJsonDto?: unknown) {
     super(id, originalJsonDto);
   }
 }

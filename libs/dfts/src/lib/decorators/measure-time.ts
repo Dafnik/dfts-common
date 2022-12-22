@@ -8,10 +8,10 @@ import {toString} from '../helper/converter';
  */
 export function MeasureTime(
   unit: 'ms' | 's' | 'm' | 'h' = 'ms'
-): (target: Object, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
-  return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+): (target: object, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
+  return function (target: object, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const ogMethod = descriptor.value;
-    descriptor.value = function (...args: any[]) {
+    descriptor.value = function (...args: unknown[]) {
       const watch = Stopwatch.createStarted();
       const result = ogMethod.apply(this, args);
       watch.stop();

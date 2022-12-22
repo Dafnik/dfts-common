@@ -1,0 +1,26 @@
+{
+  "pinVersions": true,
+  "semanticCommits": "enabled",
+  "semanticCommitScope": "",
+  "semanticCommitType": "build",
+  "commitBody": "See associated pull request for more information.",
+  "schedule": ["after 11:00pm on monday", "before 11:00am on tuesday"],
+  "separateMajorMinor": false,
+  "labels": ["dependencies"],
+  "timezone": "Europe/Vienna",
+  "baseBranches": ["develop"],
+  "assignees": ["Dafnik"],
+  "ignoreDeps": ["typescript"],
+  "ignorePaths": ["**/projects/**"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "minor-updates"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": "major-risky-update"
+    }
+  ],
+  "extends": ["config:base", ":preserveSemverRanges", ":rebaseStalePrs"]
+}

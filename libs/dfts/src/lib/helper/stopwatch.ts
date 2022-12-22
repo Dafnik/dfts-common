@@ -16,7 +16,7 @@ export class Stopwatch {
   private endedAt: Date | undefined;
   private laps: Map<number, UndefinedOr<string>> = new Map<number, UndefinedOr<string>>();
 
-  constructor(start: boolean = false) {
+  constructor(start = false) {
     if (start) {
       this.start();
     }

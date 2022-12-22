@@ -7,7 +7,7 @@ import {UndefinedOrNullOr} from '../../types';
  * @param {string|null|undefined} suffix
  * @return string
  */
-export const truncate = (text: UndefinedOrNullOr<string>, maxWords: number = 10, suffix: UndefinedOrNullOr<string> = '...'): string => {
+export const truncate = (text: UndefinedOrNullOr<string>, maxWords = 10, suffix: UndefinedOrNullOr<string> = '...'): string => {
   if (!text) {
     return '';
   }

@@ -3,8 +3,23 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/dfx-helper/src",
-  "prefix": "dfts-common",
   "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/dfx-helper/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/dfx-helper/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/dfx-helper/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

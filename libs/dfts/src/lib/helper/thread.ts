@@ -20,6 +20,7 @@ export class Thread {
    */
   static block(milliseconds: number): void {
     const exit = new Date().getTime() + milliseconds;
+    // eslint-disable-next-line no-empty
     while (new Date().getTime() <= exit) {}
   }
 }

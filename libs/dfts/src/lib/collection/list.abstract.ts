@@ -1,5 +1,5 @@
 import {IList} from './list.interface';
-import {ICompute, IMap, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
+import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
 import {GenericHelper} from '../helper/generic';
 
 export abstract class ACommonList<listType extends IList<T>, T> extends Array<T> implements IList<T> {
@@ -116,7 +116,7 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
     return !this.includes(item);
   }
 
-  override map<mappedType>(callbackFn: IMap<T, listType, mappedType>): IList<mappedType> {
+  override map<mappedType>(callbackFn: IMapList<T, mappedType>): IList<mappedType> {
     const result = this.createSimpleList<mappedType>();
     for (let index = 0; index < this.length; index++) {
       result.add(callbackFn(this[index], index, this.thisAsT()));

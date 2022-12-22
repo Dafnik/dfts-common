@@ -61,20 +61,13 @@ Array.prototype.containsDuplicates = function (): boolean {
 };
 
 export class ArrayHelper {
-  static isIterable(obj: any): boolean {
-    if (obj == null) {
-      return false;
-    }
-    return typeof obj[Symbol.iterator] === 'function';
-  }
-
   /**
    * @deprecated
    * Returns <code>true</code> if the array contains duplicates, <code>false</code> if not
    * @param {any[]} array
    * @return boolean
    */
-  static containsDuplicates(array?: any[]): boolean {
+  static containsDuplicates(array?: unknown[]): boolean {
     return array?.length !== new Set(array).size;
   }
 

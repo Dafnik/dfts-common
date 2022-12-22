@@ -7,5 +7,5 @@ import {UndefinedOrNullOr} from '../../types';
  * @param {string|null|undefined} suffix Suffix to add if text length exceeds the <code>maxLength</code>, default <code>'...'</code>; Set to <code>null</code> to disable suffix.
  * @return string
  */
-export const cut = (text: UndefinedOrNullOr<string>, maxLength: number = 10, suffix: UndefinedOrNullOr<string> = '...'): string =>
+export const cut = (text: UndefinedOrNullOr<string>, maxLength = 10, suffix: UndefinedOrNullOr<string> = '...'): string =>
   text ? (text.length < maxLength ? text : `${text.slice(0, maxLength)}${suffix ?? ''}`) : '';

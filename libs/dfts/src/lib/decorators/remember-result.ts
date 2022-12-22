@@ -5,13 +5,13 @@
  */
 
 export function RememberResult(
-  hashFn?: (...args: any[]) => string
-): (target: Object, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
-  return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+  hashFn?: (...args: unknown[]) => string
+): (target: object, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
+  return function (target: object, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const cache = new Map<string, string>();
 
     const ogMethod = descriptor.value;
-    descriptor.value = function (...args: any[]) {
+    descriptor.value = function (...args: unknown[]) {
       const key = hashFn ? hashFn.apply(this, args) : JSON.stringify(args);
 
       const cacheEntry = cache.get(key);

@@ -1,7 +1,8 @@
 import {IHasID} from './entities/has-id.interface';
 import {IHasName} from './entities/has-name.interface';
+import {IList} from './collection/list.interface';
 
-export type AnyOr<T> = T | any;
+export type UnknownOr<T> = T | unknown;
 export type UndefinedOr<T> = T | undefined;
 export type NullOr<T> = T | null;
 export type UndefinedOrNullOr<T> = UndefinedOr<NullOr<T>>;
@@ -11,7 +12,6 @@ export type ManyOrUndefinedOr<T> = UndefinedOr<ManyOr<T>>;
 export type ManyOrNullOr<T> = NullOr<ManyOr<T>>;
 export type ManyOrUndefinedOrNullOr<T> = UndefinedOrNullOr<ManyOr<T>>;
 
-export type UndefinedOrAny = UndefinedOr<any>;
 export type StringOr<T> = string | T;
 export type StringOrNumber = StringOr<number>;
 export type StringOrNumberOr<T> = StringOrNumber | T;
@@ -40,6 +40,10 @@ export interface ICall {
   (): void;
 }
 
-export interface IMap<itemType, listType, mappedType> {
-  (item: itemType, index: number, list: listType): mappedType;
+export interface IMapList<itemType, mappedType> {
+  (item: itemType, index: number, list: IList<itemType>): mappedType;
+}
+
+export interface IMap<itemType, mappedType> {
+  (item: itemType, index: number, list: itemType[]): mappedType;
 }

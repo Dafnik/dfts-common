@@ -1,6 +1,6 @@
 import {isBoolean, isDate, isNumber, isObject} from './type';
 import {toBoolean, toNumber, toString} from './converter';
-import {UndefinedOr, UndefinedOrAny, UndefinedOrNullOr} from '../types';
+import {UndefinedOr, UndefinedOrNullOr} from '../types';
 import {Generator, RandomStringOptions} from './generator';
 
 export class StorageHelper {
@@ -37,7 +37,7 @@ export class StorageHelper {
    * @param {unknown} value
    * @param {number | undefined} ttl Time to live in seconds (no guarantee it is going to be deleted on time)
    */
-  static set(key: string, value: UndefinedOrNullOr<Object>, ttl?: number): void;
+  static set(key: string, value: UndefinedOrNullOr<object>, ttl?: number): void;
   /**
    * @param {string} key key for storage item
    * @param {unknown} value
@@ -105,7 +105,7 @@ export class StorageHelper {
     return val ? new Date(toNumber(val)) : undefined;
   }
 
-  static getObject(key: string): UndefinedOrAny {
+  static getObject<T>(key: string): UndefinedOr<T> {
     const val = this.getString(key);
     return val ? JSON.parse(val) : undefined;
   }
@@ -220,6 +220,7 @@ export class StorageHelper {
           for (k = 1; k <= 1000; k++) {
             localStorage.setItem('fill_up_test_3', new Array(k).join('a'));
           }
+          // eslint-disable-next-line no-empty
         } catch {}
       }
     }

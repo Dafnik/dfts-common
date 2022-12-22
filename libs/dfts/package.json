@@ -1,10 +1,10 @@
 {
   "name": "dfts",
   "version": "0.0.1",
-  "description": "Web-development / Typescript / Angular Library with tons of utility tools helping in all projects",
+  "description": "Web-development / Typescript Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",
-  "homepage": "https://gitlab.com/DatePoll/common/dfx-common/-/tree/develop/projects/dfts",
+  "homepage": "https://github.com/Dafnik/dfts-common",
   "keywords": [
     "typescript",
     "helper",
@@ -20,10 +20,10 @@
     "url": "https://liberapay.com/Dafnik"
   },
   "bugs": {
-    "url": "https://gitlab.com/DatePoll/common/dfx-common/-/issues"
+    "url": "https://github.com/Dafnik/dfts-common/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/DatePoll/common/dfx-common.git"
+    "url": "git+https://github.com/Dafnik/dfts-common.git"
   }
 }

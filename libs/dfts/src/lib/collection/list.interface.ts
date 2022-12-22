@@ -1,4 +1,4 @@
-import {ICompute, IMap, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
+import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
 import {IGenericImplTrait} from '../traits/generic-impl-trait';
 
 export interface IList<T> extends Array<T>, IGenericImplTrait<IList<T>> {
@@ -96,7 +96,7 @@ export interface IList<T> extends Array<T>, IGenericImplTrait<IList<T>> {
    * Calls callbackFn on each item
    * @return New list of callback result
    */
-  map<mappedType>(callbackFn: IMap<T, IList<T>, mappedType>): IList<mappedType>;
+  map<mappedType>(callbackFn: IMapList<T, mappedType>): IList<mappedType>;
 
   /**
    * Calls callbackFn on each item if filter fulfills

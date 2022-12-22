@@ -3,13 +3,13 @@ import {IHasID} from './has-id.interface';
 import {IHasName} from './has-name.interface';
 
 export interface IEntity<idType extends StringOrNumber> extends IHasID<idType> {
-  originalJsonDto?: any;
+  originalJsonDto?: unknown;
 
   toString(): string;
 
   hashCode(): idType;
 
-  equals(object: any): boolean;
+  equals(object: unknown): boolean;
 }
 
 export type IEntityWithNumberID = IEntity<number>;

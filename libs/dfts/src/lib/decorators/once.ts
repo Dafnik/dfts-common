@@ -1,12 +1,12 @@
 /**
  * Allows method to be called only once
  */
-export function Once(targetClass: Object, functionName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+export function Once(targetClass: object, functionName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
   let called = false;
   let returnValue: unknown;
 
   const ogMethod = descriptor.value;
-  descriptor.value = function (...args: any[]) {
+  descriptor.value = function (...args: unknown[]) {
     if (called) {
       return returnValue;
     }

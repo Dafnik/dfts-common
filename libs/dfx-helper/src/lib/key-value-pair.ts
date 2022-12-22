@@ -1,7 +1,5 @@
 import {HttpParams} from '@angular/common/http';
-import {toString} from './helper/converter';
-import {loggerOf} from './logger/logger';
-import {UndefinedOrNullOr} from './types';
+import {loggerOf, toString, UndefinedOrNullOr} from 'dfts';
 
 export class KeyValuePair {
   private static logger = loggerOf('KeyValuePair');

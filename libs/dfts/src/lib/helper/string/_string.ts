@@ -96,7 +96,7 @@ export class StringHelper {
    * @param {string|null|undefined} suffix Suffix to add if text length exceeds the <code>maxLength</code>, default <code>'...'</code>; Set to <code>null</code> to disable suffix.
    * @return string
    */
-  static cut(text: UndefinedOrNullOr<string>, maxLength: number = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
+  static cut(text: UndefinedOrNullOr<string>, maxLength = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
     return cut(text, maxLength, suffix);
   }
 
@@ -108,7 +108,7 @@ export class StringHelper {
    * @param {string|null|undefined} suffix
    * @return string
    */
-  static truncate(text: UndefinedOrNullOr<string>, maxWords: number = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
+  static truncate(text: UndefinedOrNullOr<string>, maxWords = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
     return truncate(text, maxWords, suffix);
   }
 

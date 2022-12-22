@@ -78,7 +78,7 @@ export class UIHelper {
   }
 
   /* istanbul ignore next */
-  static getReadTime(text: string, imageCounter: number = 0): string {
+  static getReadTime(text: string, imageCounter = 0): string {
     const imageTime = this.imageReadTime(imageCounter);
     const strippedString = stripWhitespace(text);
     const wordTime = this.wordsReadTime(strippedString);

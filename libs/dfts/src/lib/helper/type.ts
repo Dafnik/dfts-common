@@ -39,7 +39,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>object</code>, <code>false</code> if not
    */
-  static isObject = (obj: unknown): obj is Object => isObject(obj);
+  static isObject = (obj: unknown): obj is object => isObject(obj);
 
   /**
    * @deprecated
@@ -83,7 +83,7 @@ export const isNumber = (obj: unknown): obj is number => typeof obj === 'number'
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>object</code>, <code>false</code> if not
  */
-export const isObject = (obj: unknown): obj is Object =>
+export const isObject = (obj: unknown): obj is object =>
   typeof obj === 'object' && obj !== null && obj !== undefined && !Array.isArray(obj);
 
 /**

@@ -16,8 +16,6 @@ export * from './lib/decorators/remember-result';
 export * from './lib/decorators/run-outside-change-detection';
 export * from './lib/decorators/throttle';
 
-export * from './lib/entities/services/abstract-entity.service';
-export * from './lib/entities/services/abstract-selectable-entity.service';
 export * from './lib/entities/abstract-entity';
 export * from './lib/entities/abstract-entity-with-name';
 export * from './lib/entities/entity.interface';
@@ -54,5 +52,4 @@ export * from './lib/logger/loggerInfo';
 
 export * from './lib/traits/generic-impl-trait';
 
-export * from './lib/key-value-pair';
 export * from './lib/types';

@@ -2,7 +2,7 @@ export class ClipboardHelper {
   /**
    * @deprecated
    */
-  static copy = (value: string, legacyCopy: boolean = false): void => clipboardCopy(value);
+  static copy = (value: string): void => clipboardCopy(value);
 
   /**
    * @deprecated

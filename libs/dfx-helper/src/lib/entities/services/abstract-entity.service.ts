@@ -1,10 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, Subject, tap} from 'rxjs';
-
-import {IEntity} from '../entity.interface';
-
-import {EntityList, IEntityList} from '../../collection/entity-list';
-import {AnyOr, StringOrNumber, UndefinedOr} from '../../types';
+import {EntityList, IEntity, IEntityList, StringOrNumber, UndefinedOr, UnknownOr} from 'dfts';
 import {KeyValuePair} from '../../key-value-pair';
 
 export abstract class AEntityService<idType extends StringOrNumber, EntityType extends IEntity<idType>> {
@@ -114,9 +110,9 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
 
   fetchAll(urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): void {
     this.getAll$(urlKeyPairs, httpParams).subscribe({
-      next: (data: any) => {
+      next: (data: unknown) => {
         const entities = new EntityList<EntityType>();
-        for (const dto of data) {
+        for (const dto of data as []) {
           entities.push(this.convert(dto));
         }
         this.setAll(entities);
@@ -128,7 +124,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
     const url = KeyValuePair.parse(this.globalGetAllUrl, urlKeyPairs);
     const params = KeyValuePair.parseIntoHttpParams(httpParams ? httpParams : this.globalGetAllParams);
 
-    return this.httpClient.get<any[]>(url ?? this.globalGetAllUrl ?? this.url, {params}).pipe(
+    return this.httpClient.get<IEntityList<EntityType>>(url ?? this.globalGetAllUrl ?? this.url, {params}).pipe(
       map((data) => {
         const entities = new EntityList<EntityType>();
         for (const dto of data) {
@@ -154,7 +150,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
 
   fetchSingle(id: idType, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): void {
     this.getSingle$(id, urlKeyPairs, httpParams).subscribe({
-      next: (data: any) => {
+      next: (data: unknown) => {
         this.setSingle(this.convert(data));
       },
     });
@@ -168,13 +164,13 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
 
   //endregion
 
-  _create(entity: AnyOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
+  _create(entity: UnknownOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
     const url = KeyValuePair.parse(this.globalCreateUrl, urlKeyPairs);
     const params = KeyValuePair.parseIntoHttpParams(httpParams);
     return this.httpClient.post(url ?? this.globalCreateUrl ?? this.url, entity, {params});
   }
 
-  _update(entity: AnyOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
+  _update(entity: UnknownOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
     const url = KeyValuePair.parse(this.globalUpdateUrl, urlKeyPairs);
     const params = KeyValuePair.parseIntoHttpParams(httpParams);
     return this.httpClient.put(
@@ -190,7 +186,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
     return this.httpClient.delete(`${url ?? this.globalDeleteUrl ?? this.url}/${id}`, {params});
   }
 
-  create(entity: AnyOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
+  create(entity: UnknownOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
     return this._create(entity, urlKeyPairs, httpParams).pipe(
       tap(() => {
         this.fetchAll();
@@ -198,7 +194,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
     );
   }
 
-  update(entity: AnyOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
+  update(entity: UnknownOr<EntityType>, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): Observable<unknown> {
     return this._update(entity, urlKeyPairs, httpParams).pipe(
       tap(() => {
         this.fetchAll();
@@ -219,5 +215,5 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
    * @param {any} jsonData
    * @return Converted model
    */
-  protected abstract convert(jsonData: any): EntityType;
+  protected abstract convert(jsonData: unknown): EntityType;
 }

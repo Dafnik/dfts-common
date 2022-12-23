@@ -1,7 +1,7 @@
 {
   "name": "dfts",
   "version": "0.0.1",
-  "description": "Web-development / Typescript Library with tons of utility tools helping in all projects",
+  "description": "Typescript Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",
   "homepage": "https://github.com/Dafnik/dfts-common",

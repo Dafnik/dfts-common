@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {isEmail, UndefinedOrNullOr} from 'dfts';
+import {s_isEmail, UndefinedOrNullOr} from 'dfts';
 
 @Pipe({
   name: 'isEmail',
@@ -8,6 +8,6 @@ import {isEmail, UndefinedOrNullOr} from 'dfts';
 })
 export class DfxIsEmail implements PipeTransform {
   transform(text: UndefinedOrNullOr<string>): boolean {
-    return isEmail(text);
+    return s_isEmail(text);
   }
 }

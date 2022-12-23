@@ -1,7 +1,7 @@
 import {LogType, maxClassNameLength, maxMethodeNameLength} from './loggerInfo';
 import {formatDateWithHoursMinutesAndSeconds} from '../helper/date';
 
-export function getLogHeader(logType: LogType, className: string, methodeName: string, description: string): string {
+export function getLogMessage(logType: LogType, className: string, methodeName: string, description: string): string {
   const date = new Date();
   const milli = date.getMilliseconds();
   const milliS = milli > 99 ? milli : milli > 9 ? milli + ' ' : milli + '  ';

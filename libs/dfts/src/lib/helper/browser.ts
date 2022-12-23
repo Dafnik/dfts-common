@@ -10,6 +10,20 @@ export class BrowserHelper {
   static infos = (): BrowserInfo => browserInfos();
 }
 
+export const i_screenSize = `${screen.width ?? ''} x ${screen.height ?? ''}`;
+
+export const i_cookieEnabled = () => {
+  let cookieEnabled = navigator.cookieEnabled;
+
+  if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
+    document.cookie = 'testcookie';
+    cookieEnabled = document.cookie.indexOf('testcookie') != -1;
+  }
+  return cookieEnabled;
+};
+
+export const i_mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion);
+
 /**
  * @return {screenSize: string, name: string, version: string, majorVersion: number, mobile: boolean, os: string, osVersion: string, cookies: boolean, localStorage: boolean}
  */
@@ -25,9 +39,6 @@ export const browserInfos = (): {
   localStorage: boolean;
 } => {
   const unknown = '-';
-
-  // screen
-  const screenSize = `${screen.width ?? ''} x ${screen.height ?? ''}`;
 
   // browser
   const nAgt = navigator.userAgent;
@@ -106,17 +117,6 @@ export const browserInfos = (): {
     majorVersion = parseInt(navigator.appVersion, 10);
   }
 
-  // mobile version
-  const mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion);
-
-  // cookie
-  let cookieEnabled = navigator.cookieEnabled;
-
-  if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
-    document.cookie = 'testcookie';
-    cookieEnabled = document.cookie.indexOf('testcookie') != -1;
-  }
-
   // system
   let os = unknown;
   const clientStrings = [
@@ -185,14 +185,14 @@ export const browserInfos = (): {
   }
 
   return {
-    screenSize,
+    screenSize: i_screenSize,
     name: browser,
     version: version,
     majorVersion: majorVersion,
-    mobile: mobile,
+    mobile: i_mobile,
     os: os,
     osVersion: osVersion,
-    cookies: cookieEnabled,
+    cookies: i_cookieEnabled(),
     localStorage: StorageHelper.isAvailable(),
   };
 };

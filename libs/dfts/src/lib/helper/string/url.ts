@@ -15,6 +15,6 @@ export const isUrlRegEx = new RegExp(
  * @param {string} url
  * @return boolean
  */
-export const isUrl = (url?: UndefinedOrNullOr<string>): boolean => isUrlRegEx.test(url ?? '');
+export const s_isUrl = (url?: UndefinedOrNullOr<string>): boolean => isUrlRegEx.test(url ?? '');
 
-export const isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => !isUrlRegEx.test(url ?? '');
+export const s_isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => !isUrlRegEx.test(url ?? '');

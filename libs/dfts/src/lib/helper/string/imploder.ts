@@ -1,7 +1,7 @@
 import {IBuilder, IMap, UndefinedOrNullOr} from '../../types';
 
-export const imploderBuilder = (source?: UndefinedOrNullOr<string[]>): ImploderBuilder => {
-  return new ImploderBuilder().source(source);
+export const s_imploder = (source?: UndefinedOrNullOr<string[]>): ImploderBuilder => {
+  return ImploderBuilder.get(source);
 };
 
 export class ImploderBuilder implements IBuilder<string> {
@@ -10,6 +10,10 @@ export class ImploderBuilder implements IBuilder<string> {
   private _separator?: UndefinedOrNullOr<string>;
   private _suffix?: UndefinedOrNullOr<string>;
   private _source?: UndefinedOrNullOr<string[]>;
+
+  static get(source?: UndefinedOrNullOr<string[]>): ImploderBuilder {
+    return new ImploderBuilder().source(source);
+  }
 
   source(source?: UndefinedOrNullOr<string[]>): this {
     this._source = source;

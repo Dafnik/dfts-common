@@ -1,10 +1,11 @@
 import {UndefinedOrNullOr} from '../../types';
-import {isNoUrl, isUrl} from './url';
-import {isEmail, isNoEmail} from './email';
-import {lowerCaseExceptFirstLetters, upperCaseFirstLetter} from './transformers';
-import {cut} from './cut';
-import {truncate} from './truncate';
-import {stripWhitespace} from './strip-whitespace';
+import {s_isNoUrl, s_isUrl} from './url';
+import {s_isEmail, s_isNoEmail} from './email';
+import {s_lowerCaseAllExceptFirstLetter, s_upperCaseFirstLetter} from './transformers';
+import {s_cut} from './cut';
+import {s_truncate} from './truncate';
+import {s_stripWhitespace} from './strip-whitespace';
+import {s_chunks} from './chunk';
 
 export class StringHelper {
   private static hasNumbersInStringRegex = new RegExp(/\d/);
@@ -16,7 +17,7 @@ export class StringHelper {
    * @param {string} url
    * @return boolean
    */
-  static isUrl = (url?: UndefinedOrNullOr<string>): boolean => isUrl(url);
+  static isUrl = (url?: UndefinedOrNullOr<string>): boolean => s_isUrl(url);
 
   /**
    * @deprecated
@@ -24,7 +25,7 @@ export class StringHelper {
    * @param {string} url
    * @return boolean
    */
-  static isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => isNoUrl(url);
+  static isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => s_isNoUrl(url);
 
   /**
    * @deprecated
@@ -32,7 +33,7 @@ export class StringHelper {
    * @param {string} email
    * @return boolean
    */
-  static isEmail = (email: UndefinedOrNullOr<string>): boolean => isEmail(email);
+  static isEmail = (email: UndefinedOrNullOr<string>): boolean => s_isEmail(email);
 
   /**
    * @deprecated
@@ -40,7 +41,7 @@ export class StringHelper {
    * @param {string} email
    * @return boolean
    */
-  static isNoEmail = (email: UndefinedOrNullOr<string>): boolean => isNoEmail(email);
+  static isNoEmail = (email: UndefinedOrNullOr<string>): boolean => s_isNoEmail(email);
 
   /**
    * Returns <code>true</code> if the given text contains no numbers, <code>false</code> if not
@@ -74,19 +75,19 @@ export class StringHelper {
    * @deprecated
    * @param text
    */
-  static stripWhitespace = (text: UndefinedOrNullOr<string>): string => stripWhitespace(text);
+  static stripWhitespace = (text: UndefinedOrNullOr<string>): string => s_stripWhitespace(text);
 
   /**
    * @deprecated
    * @param text
    */
-  static upperCaseFirstLetter = (text: UndefinedOrNullOr<string>): string => upperCaseFirstLetter(text);
+  static upperCaseFirstLetter = (text: UndefinedOrNullOr<string>): string => s_upperCaseFirstLetter(text);
 
   /**
    * @deprecated
    * @param text
    */
-  static lowerCaseExceptFirstLetters = (text: UndefinedOrNullOr<string>): string => lowerCaseExceptFirstLetters(text);
+  static lowerCaseExceptFirstLetters = (text: UndefinedOrNullOr<string>): string => s_lowerCaseAllExceptFirstLetter(text);
 
   /**
    * @deprecated
@@ -97,7 +98,7 @@ export class StringHelper {
    * @return string
    */
   static cut(text: UndefinedOrNullOr<string>, maxLength = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
-    return cut(text, maxLength, suffix);
+    return s_cut(text, maxLength, suffix);
   }
 
   /**
@@ -109,7 +110,7 @@ export class StringHelper {
    * @return string
    */
   static truncate(text: UndefinedOrNullOr<string>, maxWords = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
-    return truncate(text, maxWords, suffix);
+    return s_truncate(text, maxWords, suffix);
   }
 
   /**
@@ -119,21 +120,6 @@ export class StringHelper {
    * @return string[]
    */
   static toChunks(text: string, chunkLength: number): string[] {
-    const input = text.trim().split(' ');
-    const output: string[] = [];
-    let currentChunk = '';
-    for (const word of input) {
-      const temp = `${currentChunk} ${word}`.trim();
-      if (temp.length <= chunkLength) {
-        currentChunk = temp;
-      } else {
-        output.push(currentChunk);
-        currentChunk = word;
-      }
-    }
-    if (currentChunk) {
-      output.push(currentChunk);
-    }
-    return output;
+    return s_chunks(text, chunkLength);
   }
 }

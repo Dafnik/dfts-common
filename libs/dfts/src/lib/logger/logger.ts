@@ -1,5 +1,5 @@
 import {LogType} from './loggerInfo';
-import {getLogHeader} from './log.header';
+import {getLogMessage} from './log.header';
 
 export class Logger {
   public readonly className: string;
@@ -13,7 +13,7 @@ export class Logger {
   }
 
   private _log(logType: LogType, methodeName: string, description: string, object?: unknown, group = false): Logger {
-    const header = getLogHeader(logType, this.className, methodeName, description);
+    const header = getLogMessage(logType, this.className, methodeName, description);
 
     if (object) {
       console.log(header, object);
@@ -85,25 +85,25 @@ export class Logger {
   }
 }
 
+export const loggers: Map<string, Logger> = new Map();
+export let genericLogger: Logger | undefined;
+
 export function loggerOf(className?: string): Logger {
   if (!className) {
-    if (!LogHelper.genericLogger) {
-      LogHelper.genericLogger = new Logger(undefined);
+    if (!genericLogger) {
+      genericLogger = new Logger(undefined);
     }
-    return LogHelper.genericLogger;
+    return genericLogger;
   }
-  let logger = LogHelper.loggers.get(className);
+  let logger = loggers.get(className);
   if (!logger) {
     logger = new Logger(className);
-    LogHelper.loggers.set(className, logger);
+    loggers.set(className, logger);
   }
   return logger;
 }
 
 export class LogHelper {
-  public static loggers: Map<string, Logger> = new Map();
-  public static genericLogger?: Logger;
-
   private static maximalLogSize = 5000;
   private static overflowRemoveCount = 200;
 

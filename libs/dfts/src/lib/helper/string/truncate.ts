@@ -1,13 +1,13 @@
 import {UndefinedOrNullOr} from '../../types';
 
 /**
- * Returns the whole text if the word count does not exceed <code>maxWords</code>, else the text will be truncated and a suffic will be added
+ * Returns the whole text if the word count does not exceed <code>maxWords</code>, else the text will be truncated and a suffix will be added
  * @param {string} text
  * @param {number} maxWords
  * @param {string|null|undefined} suffix
  * @return string
  */
-export const truncate = (text: UndefinedOrNullOr<string>, maxWords = 10, suffix: UndefinedOrNullOr<string> = '...'): string => {
+export const s_truncate = (text: UndefinedOrNullOr<string>, maxWords = 10, suffix: UndefinedOrNullOr<string> = '...'): string => {
   if (!text) {
     return '';
   }

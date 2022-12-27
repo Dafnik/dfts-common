@@ -1,64 +1,5 @@
 import {AEntity} from '../entities/abstract-entity';
-import {ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
-
-declare global {
-  interface Array<T> {
-    /**
-     * Removes item(s) from list
-     * @return Array<T>
-     */
-    remove(items: ManyOrUndefinedOrNullOr<T>): Array<T>;
-    /**
-     * Shuffles array
-     * @return Array<T>
-     */
-    shuffle(): Array<T>;
-
-    /**
-     * Returns <code>key</code> of objects in array
-     * @param key extends keyof T
-     * @return New array of keys
-     */
-    pluck(key: keyof T): Array<T[keyof T]>;
-
-    containsDuplicates(): boolean;
-  }
-}
-
-Array.prototype.remove = function <T>(items: ManyOrUndefinedOrNullOr<T>): Array<T> {
-  if (Array.isArray(items)) {
-    for (const item of items) {
-      if (item) {
-        const itemIndex = this.indexOf(item);
-        if (itemIndex !== -1) {
-          this.splice(itemIndex, 1);
-        }
-      }
-    }
-  } else if (items) {
-    const itemIndex = this.indexOf(items);
-    if (itemIndex !== -1) {
-      this.splice(itemIndex, 1);
-    }
-  }
-  return this;
-};
-
-Array.prototype.shuffle = function <T>(): Array<T> {
-  for (let i = this.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [(this as Array<T>)[i], (this as Array<T>)[j]] = [(this as Array<T>)[j], (this as Array<T>)[i]];
-  }
-  return this;
-};
-
-Array.prototype.pluck = function <T, keyType extends keyof T>(key: keyType): Array<T[keyType]> {
-  return (this as Array<T>).map((item) => item[key]);
-};
-
-Array.prototype.containsDuplicates = function (): boolean {
-  return this.length !== new Set(this).size;
-};
+import {UndefinedOrNullOr} from '../types';
 
 export class ArrayHelper {
   /**
@@ -71,6 +12,11 @@ export class ArrayHelper {
     return array?.length !== new Set(array).size;
   }
 
+  /**
+   * @deprecated
+   * @param array
+   * @param value
+   */
   static containsEntity<T extends AEntity<number | string>>(array: T[], value: UndefinedOrNullOr<T>): boolean {
     if (!value) {
       return false;
@@ -84,6 +30,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Adds object to array if the object is absent
    * @param {T[]} array
    * @param {T|undefined} value
@@ -97,6 +44,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Adds entity to array if the entity is absent
    * @param {T[]} array
    * @param {T|undefined} value
@@ -112,6 +60,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Adds object to array if the object is absent
    * @param {T[]} array
    * @param {T|undefined} value
@@ -125,6 +74,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Removes object from array if the object is present
    * @param {T[]} array
    * @param {T|undefined} value
@@ -138,6 +88,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Removes entity from array if the entity is present
    * @param {T[]} array
    * @param {T|undefined} value
@@ -151,6 +102,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Removes entities from array if the entities are present
    * @param {T[]} array
    * @param {T[]} values
@@ -172,6 +124,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Calls computeFunction with object if object is absent
    * @param {T[]} array
    * @param {T|undefined} toCheck
@@ -184,6 +137,7 @@ export class ArrayHelper {
   }
 
   /**
+   * @deprecated
    * Calls computeFunction with object if object is present
    * @param {T[]} array
    * @param {T|undefined} toCheck

@@ -1,8 +1,13 @@
-import {isBoolean, isDate, isNumber, isObject} from './type';
-import {toBoolean, toNumber, toString} from './converter';
+import {t_isBoolean, t_isDate, t_isNumber, t_isObject} from './type';
 import {UndefinedOr, UndefinedOrNullOr} from '../types';
 import {Generator, RandomStringOptions} from './generator';
+import {b_from} from './boolean/from';
+import {s_from} from './string/from';
+import {n_from} from './number/from';
 
+/**
+ * @deprecated
+ */
 export class StorageHelper {
   private static ttlSuffix = '_ttl';
 
@@ -53,11 +58,11 @@ export class StorageHelper {
     if (value == null) {
       this.remove(key);
       return;
-    } else if (isNumber(value) || isBoolean(value)) {
-      value = toString(value);
-    } else if (isDate(value)) {
-      value = toString(value.getTime());
-    } else if (isObject(value)) {
+    } else if (t_isNumber(value) || t_isBoolean(value)) {
+      value = s_from(value);
+    } else if (t_isDate(value)) {
+      value = s_from(value.getTime());
+    } else if (t_isObject(value)) {
       value = JSON.stringify(value);
     }
 
@@ -76,7 +81,7 @@ export class StorageHelper {
   static getString(key: string): string | undefined {
     const ttl = localStorage.getItem(key + this.ttlSuffix);
     if (ttl) {
-      if (new Date().getTime() > new Date(toNumber(ttl)).getTime()) {
+      if (new Date().getTime() > new Date(n_from(ttl)).getTime()) {
         localStorage.removeItem(key + this.ttlSuffix);
         localStorage.removeItem(key);
         return undefined;
@@ -92,17 +97,17 @@ export class StorageHelper {
 
   static getNumber(key: string): UndefinedOr<number> {
     const val = this.getString(key);
-    return val ? toNumber(val) : undefined;
+    return val ? n_from(val) : undefined;
   }
 
   static getBoolean(key: string): UndefinedOr<boolean> {
     const val = this.getString(key);
-    return val ? toBoolean(val) : undefined;
+    return val ? b_from(val) : undefined;
   }
 
   static getDate(key: string): UndefinedOr<Date> {
     const val = this.getString(key);
-    return val ? new Date(toNumber(val)) : undefined;
+    return val ? new Date(n_from(val)) : undefined;
   }
 
   static getObject<T>(key: string): UndefinedOr<T> {

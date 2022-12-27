@@ -47,3 +47,5 @@ export interface IMapList<itemType, mappedType> {
 export interface IMap<itemType, mappedType> {
   (item: itemType, index: number, list: itemType[]): mappedType;
 }
+
+export type DateInput = UndefinedOrNullOr<StringOrNumberOr<Date>>;

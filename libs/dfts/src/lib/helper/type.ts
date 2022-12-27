@@ -7,7 +7,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>Date</code>, <code>false</code> if not
    */
-  static isDate = (obj: unknown): obj is Date => isDate(obj);
+  static isDate = (obj: unknown): obj is Date => t_isDate(obj);
 
   /**
    * @deprecated
@@ -15,7 +15,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>boolean</code>, <code>false</code> if not
    */
-  static isBoolean = (obj: unknown): obj is boolean => isBoolean(obj);
+  static isBoolean = (obj: unknown): obj is boolean => t_isBoolean(obj);
 
   /**
    * @deprecated
@@ -23,7 +23,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>string</code>, <code>false</code> if not
    */
-  static isString = (obj: unknown): obj is string => isString(obj);
+  static isString = (obj: unknown): obj is string => t_isString(obj);
 
   /**
    * @deprecated
@@ -31,7 +31,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>number</code>, <code>false</code> if not
    */
-  static isNumber = (obj: unknown): obj is number => isNumber(obj);
+  static isNumber = (obj: unknown): obj is number => t_isNumber(obj);
 
   /**
    * @deprecated
@@ -39,7 +39,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>object</code>, <code>false</code> if not
    */
-  static isObject = (obj: unknown): obj is object => isObject(obj);
+  static isObject = (obj: unknown): obj is object => t_isObject(obj);
 
   /**
    * @deprecated
@@ -47,7 +47,7 @@ export class TypeHelper {
    * @param {unknown} obj
    * @return boolean Returns <code>true</code> if object is <code>numeric</code>, else <code>false</code>
    */
-  static isNumeric = (obj: unknown): obj is StringOrNumber => isNumeric(obj);
+  static isNumeric = (obj: unknown): obj is StringOrNumber => t_isNumeric(obj);
 }
 
 /**
@@ -55,35 +55,35 @@ export class TypeHelper {
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>Date</code>, <code>false</code> if not
  */
-export const isDate = (obj: unknown): obj is Date => Object.prototype.toString.call(obj) === '[object Date]';
+export const t_isDate = (obj: unknown): obj is Date => Object.prototype.toString.call(obj) === '[object Date]';
 
 /**
  * Checks if object is <code>boolean</code>
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>boolean</code>, <code>false</code> if not
  */
-export const isBoolean = (obj: unknown): obj is boolean => obj === true || obj === false || typeof obj == 'boolean';
+export const t_isBoolean = (obj: unknown): obj is boolean => obj === true || obj === false || typeof obj == 'boolean';
 
 /**
  * Checks if object is <code>string</code>
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>string</code>, <code>false</code> if not
  */
-export const isString = (obj: unknown): obj is string => typeof obj === 'string';
+export const t_isString = (obj: unknown): obj is string => typeof obj === 'string';
 
 /**
  * Checks if object is <code>number</code>
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>number</code>, <code>false</code> if not
  */
-export const isNumber = (obj: unknown): obj is number => typeof obj === 'number';
+export const t_isNumber = (obj: unknown): obj is number => typeof obj === 'number';
 
 /**
  * Checks if object is <code>object</code>
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>object</code>, <code>false</code> if not
  */
-export const isObject = (obj: unknown): obj is object =>
+export const t_isObject = (obj: unknown): obj is object =>
   typeof obj === 'object' && obj !== null && obj !== undefined && !Array.isArray(obj);
 
 /**
@@ -91,7 +91,7 @@ export const isObject = (obj: unknown): obj is object =>
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>numeric</code>, else <code>false</code>
  */
-export const isNumeric = (obj: unknown): obj is StringOrNumber => {
+export const t_isNumeric = (obj: unknown): obj is StringOrNumber => {
   if (typeof obj == 'number') {
     return true;
   }

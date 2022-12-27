@@ -1,6 +1,6 @@
 import {IList} from './list.interface';
 import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
-import {GenericHelper} from '../helper/generic';
+import {g_uncheckedCast} from '../helper/generic';
 
 export abstract class ACommonList<listType extends IList<T>, T> extends Array<T> implements IList<T> {
   protected constructor(items?: ManyOrUndefinedOrNullOr<T>) {
@@ -11,7 +11,7 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
   }
 
   thisAsT(): listType {
-    return GenericHelper.uncheckedCast(this);
+    return g_uncheckedCast(this);
   }
 
   abstract create(list?: listType): listType;

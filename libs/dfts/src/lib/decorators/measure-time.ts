@@ -1,5 +1,5 @@
 import {Stopwatch} from '../helper/stopwatch';
-import {toString} from '../helper/converter';
+import {s_from} from '../helper/string/from';
 
 /**
  * Measures execution time for method call
@@ -18,16 +18,16 @@ export function MeasureTime(
       let time;
       switch (unit) {
         case 'ms':
-          time = toString(watch.getTime()) + 'ms';
+          time = s_from(watch.getTime()) + 'ms';
           break;
         case 's':
-          time = toString(watch.getTimeInSeconds()) + 's';
+          time = s_from(watch.getTimeInSeconds()) + 's';
           break;
         case 'm':
-          time = toString(watch.getTimeInMinutes()) + 'm';
+          time = s_from(watch.getTimeInMinutes()) + 'm';
           break;
         case 'h':
-          time = toString(watch.getTimeInHours()) + 'h';
+          time = s_from(watch.getTimeInHours()) + 'h';
           break;
       }
       console.log('Time for method "' + propertyKey + '" execution: "' + time + '"');

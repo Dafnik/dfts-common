@@ -1,5 +1,5 @@
 import {HttpParams} from '@angular/common/http';
-import {loggerOf, toString, UndefinedOrNullOr} from 'dfts';
+import {loggerOf, s_from, UndefinedOrNullOr} from 'dfts';
 
 export class KeyValuePair {
   private static logger = loggerOf('KeyValuePair');
@@ -33,7 +33,7 @@ export class KeyValuePair {
           throw 'Url does not match all KeyValuePairs';
         }
         if (keyValuePair.value !== undefined && keyValuePair.value !== null) {
-          url = url.replace(key, toString(keyValuePair.value));
+          url = url.replace(key, s_from(keyValuePair.value));
         }
       }
     }

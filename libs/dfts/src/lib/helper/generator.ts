@@ -1,3 +1,6 @@
+import {s_generate} from './string/generator';
+import {n_generate_float, n_generate_int} from './number/generator';
+
 export enum RandomStringOptions {
   NUMBERS,
   SPECIAL_CHARACTERS,
@@ -7,12 +10,8 @@ export enum RandomStringOptions {
 }
 
 export class Generator {
-  static readonly lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-  static readonly upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  static readonly numberLetters = '0123456789';
-  static readonly specialCharacterLetters = '_-#+*~&?!=';
-
   /**
+   * @deprecated
    * Returns a random string containing a-z,A-Z
    * @param {number} length Length of the random string
    * @param {RandomStringOptions} options Possible options of RandomStringOptions enum
@@ -53,6 +52,7 @@ export class Generator {
   }
 
   /**
+   * @deprecated
    * Returns a random string containing a-z,A-Z
    * @param {number} length Length of the random string
    * @param {{containsNumbers?: boolean, containsSpecialCharacters?: boolean, specialCharactersSet?: string, containsLetters?: boolean, containsLowerCaseLetters?: boolean, containsUpperCaseLetters?: boolean}} options options object
@@ -75,47 +75,22 @@ export class Generator {
       containsUpperCaseLetters?: boolean;
     }
   ): string {
-    let characters = this.lowerCaseLetters + this.upperCaseLetters;
-    if (options?.containsLetters != undefined && !options.containsLetters) {
-      characters = '';
-    } else {
-      if (options?.containsLowerCaseLetters != undefined && !options.containsLowerCaseLetters) {
-        characters.replace(this.lowerCaseLetters, '');
-      }
-      if (options?.containsUpperCaseLetters != undefined && !options.containsUpperCaseLetters) {
-        characters.replace(this.upperCaseLetters, '');
-      }
-    }
-
-    if (options?.containsNumbers != undefined && options.containsNumbers) {
-      characters += this.numberLetters;
-    }
-    if (options?.containsSpecialCharacters != undefined && options.containsSpecialCharacters) {
-      if (options.specialCharactersSet != null) {
-        characters += options.specialCharactersSet;
-      } else {
-        characters += this.specialCharacterLetters;
-      }
-    }
-    const charactersLength = characters.length;
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+    return s_generate(length, options);
   }
 
   /**
+   * @deprecated
    * Returns a random integer number
    * @param {number} min Minimum number of random number
    * @param {number} max Maximum number of random number
    * @return number
    */
   static integer(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min)) + min;
+    return n_generate_int(min, max);
   }
 
   /**
+   * @deprecated
    * Returns a random float number
    * @param {number} min Minimum number of random number
    * @param {number} max Maximum number of random number
@@ -123,8 +98,6 @@ export class Generator {
    * @return number
    */
   static float(min: number, max: number, decimals: number): number {
-    const str = (Math.random() * (max - min) + min).toFixed(decimals);
-
-    return parseFloat(str);
+    return n_generate_float(min, max, decimals);
   }
 }

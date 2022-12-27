@@ -1,4 +1,4 @@
-import {StorageHelper} from './storage';
+import {st_isAvailable} from './storage/common';
 
 export type BrowserInfo = ReturnType<typeof browserInfos>;
 
@@ -193,6 +193,6 @@ export const browserInfos = (): {
     os: os,
     osVersion: osVersion,
     cookies: i_cookieEnabled(),
-    localStorage: StorageHelper.isAvailable(),
+    localStorage: st_isAvailable(),
   };
 };

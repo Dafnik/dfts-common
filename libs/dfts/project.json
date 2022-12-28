@@ -14,13 +14,6 @@
         "assets": ["libs/dfts/*.md"]
       }
     },
-    "publish": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "node tools/scripts/publish.mjs dfts {args.ver} {args.tag}"
-      },
-      "dependsOn": ["build"]
-    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -39,7 +32,15 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "preset": "angular"
+        "postTargets": ["dfts:publish"]
+      }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "buildTarget": "production",
+        "access": "public",
+        "dryRun": true
       }
     }
   },

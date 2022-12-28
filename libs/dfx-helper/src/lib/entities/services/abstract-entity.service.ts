@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, Subject, tap} from 'rxjs';
-import {EntityList, IEntity, IEntityList, StringOrNumber, UndefinedOr, UnknownOr} from 'dfts';
+import {EntityList, IEntity, IEntityList, StringOrNumber, UndefinedOr, UnknownOr} from '@dfts-common/dfts-helper';
 import {KeyValuePair} from '../../key-value-pair';
 
 export abstract class AEntityService<idType extends StringOrNumber, EntityType extends IEntity<idType>> {

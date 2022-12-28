@@ -2,7 +2,7 @@ import {HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpReque
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {inject} from '@angular/core';
 import {BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR} from './http-context-token';
-import {getLogMessage} from 'dfts';
+import {getLogMessage} from '@dfts-common/dfts-helper';
 import {HELPER_CONFIG, HelperConfig} from '../config';
 
 export function shouldIntercept(req: HttpRequest<unknown>, BY_PASS?: HttpContextToken<boolean>, ignorePaths?: string[]): boolean {

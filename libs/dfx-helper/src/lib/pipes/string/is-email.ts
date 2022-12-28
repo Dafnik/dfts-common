@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {s_isEmail, UndefinedOrNullOr} from 'dfts';
+import {s_isEmail, UndefinedOrNullOr} from '@dfts-common/dfts-helper';
 
 @Pipe({
   name: 'isEmail',

@@ -1,6 +1,6 @@
 import {Directive, inject, Input} from '@angular/core';
 import {NgFor, NgIf} from '@angular/common';
-import {UndefinedOrNullOr} from 'dfts';
+import {UndefinedOrNullOr} from '@dfts-common/dfts-helper';
 
 @Directive({
   selector: '[ngForOr]',

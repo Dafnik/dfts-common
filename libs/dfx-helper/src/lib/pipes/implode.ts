@@ -1,5 +1,5 @@
 import {NgModule, Pipe, PipeTransform} from '@angular/core';
-import {IMap, s_imploder, UndefinedOrNullOr} from 'dfts';
+import {IMap, s_imploder, UndefinedOrNullOr} from '@dfts-common/dfts-helper';
 
 @Pipe({
   name: 'implode',

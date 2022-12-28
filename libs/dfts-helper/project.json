@@ -1,46 +1,42 @@
 {
-  "name": "dfts",
+  "name": "dfts-helper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/dfts/src",
+  "sourceRoot": "libs/dfts-helper/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/dfts",
-        "main": "libs/dfts/src/index.ts",
-        "tsConfig": "libs/dfts/tsconfig.lib.json",
-        "assets": ["libs/dfts/*.md"]
+        "outputPath": "dist/libs/dfts-helper",
+        "main": "libs/dfts-helper/src/index.ts",
+        "tsConfig": "libs/dfts-helper/tsconfig.lib.json",
+        "assets": ["libs/dfts-helper/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/dfts/**/*.ts"]
+        "lintFilePatterns": ["libs/dfts-helper/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/dfts/jest.config.ts",
+        "jestConfig": "libs/dfts-helper/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "postTargets": ["dfts:publish"]
-      }
+      "executor": "@jscutlery/semver:version"
     },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "buildTarget": "production",
-        "access": "public",
-        "dryRun": true
+        "access": "public"
       }
     }
   },

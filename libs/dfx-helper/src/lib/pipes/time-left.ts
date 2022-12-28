@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {d_timeLeft, DateInput} from 'dfts';
+import {d_timeLeft, DateInput} from '@dfts-common/dfts-helper';
 
 @Pipe({
   name: 'timeleft',

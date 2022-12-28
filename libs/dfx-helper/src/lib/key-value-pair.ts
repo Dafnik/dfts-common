@@ -1,5 +1,5 @@
 import {HttpParams} from '@angular/common/http';
-import {a_containsDuplicates, loggerOf, s_from, UndefinedOrNullOr} from 'dfts';
+import {a_containsDuplicates, loggerOf, s_from, UndefinedOrNullOr} from '@dfts-common/dfts-helper';
 
 export class KeyValuePair {
   private static logger = loggerOf('KeyValuePair');

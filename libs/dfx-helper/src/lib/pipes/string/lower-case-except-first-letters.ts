@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {s_lowerCaseAllExceptFirstLetter, UndefinedOrNullOr} from 'dfts';
+import {s_lowerCaseAllExceptFirstLetter, UndefinedOrNullOr} from '@dfts-common/dfts-helper';
 
 @Pipe({
   name: 'lowerCaseExceptFirstLetters',

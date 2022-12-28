@@ -5,7 +5,7 @@ Licensed under MIT license
 
 import {Directive, HostListener, Input} from '@angular/core';
 import {BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
-import {loggerOf} from 'dfts';
+import {loggerOf} from '@dfts-common/dfts-helper';
 
 @Directive({
   selector: 'button[print]',

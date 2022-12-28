@@ -1,5 +1,15 @@
 # Changelog
 
+This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+
+## 5.0.0-beta.0 (2022-12-28)
+
+### Features
+
+- dfx-helper and dfts-helper splitting
+- add semver ([ca8fad8](https://github.com/Dafnik/dfts-common/commit/ca8fad8ea4e5893f618dc4bf56c65dbb3fb8139b))
+- **dfts:** move forward with the migration ([7e4010d](https://github.com/Dafnik/dfts-common/commit/7e4010db6937c0a1aecfef33ee9c6be993755c6e))
+
 ## 4.7.0 (2022-11-18)
 
 ### Features

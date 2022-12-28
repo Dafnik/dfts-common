@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {d_timespan, DateInput} from '@dfts-common/dfts-helper';
+import {d_timespan, DateInput} from 'dfts-helper';
 
 @Pipe({
   name: 'timespan',

@@ -1,7 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 
 import {HELPER_CONFIG, HelperConfig} from './config';
-import {getLogMessage} from '@dfts-common/dfts-helper';
+import {getLogMessage} from 'dfts-helper';
 
 @NgModule()
 export class DfxHelperModule {

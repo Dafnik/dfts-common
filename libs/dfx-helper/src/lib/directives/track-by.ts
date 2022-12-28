@@ -1,6 +1,6 @@
 import {Directive, Host, Input, NgIterable, NgModule} from '@angular/core';
 import {NgForOf} from '@angular/common';
-import {StringOrNumber} from '@dfts-common/dfts-helper';
+import {StringOrNumber} from 'dfts-helper';
 
 @Directive({
   selector: '[ngForTrackByProperty]',

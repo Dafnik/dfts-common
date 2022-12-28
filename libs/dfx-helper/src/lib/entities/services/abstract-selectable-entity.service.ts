@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {distinctUntilChanged, Observable, share, startWith, Subject, tap} from 'rxjs';
-import {IEntity, o_fromStorage, st_set, StringOrNumber, UndefinedOr} from '@dfts-common/dfts-helper';
+import {IEntity, o_fromStorage, st_set, StringOrNumber, UndefinedOr} from 'dfts-helper';
 
 import {AEntityService} from './abstract-entity.service';
 

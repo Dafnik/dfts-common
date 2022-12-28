@@ -1,7 +1,7 @@
 import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {loggerOf} from '@dfts-common/dfts-helper';
+import {loggerOf} from 'dfts-helper';
 
 import {HELPER_CONFIG, HelperConfig} from '../config';
 import {AbstractIgnoreableInterceptor} from './abstract-ignoreable';

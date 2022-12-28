@@ -1,7 +1,7 @@
 import {Directive, ElementRef, HostListener, Inject, Input} from '@angular/core';
 import {coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
 import {WINDOW} from '../windows-provider';
-import {s_from} from '@dfts-common/dfts-helper';
+import {s_from} from 'dfts-helper';
 
 @Directive({
   selector: '[countUp]',

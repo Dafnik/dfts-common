@@ -22,7 +22,7 @@
     "@angular/platform-browser": "~15.0.0",
     "@angular/platform-browser-dynamic": "~15.0.0",
     "@angular/router": "~15.0.0",
-    "@nrwl/angular": "15.3.3",
+    "@nrwl/angular": "15.4.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -38,12 +38,12 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-angular": "^17.3.0",
     "@jscutlery/semver": "^2.29.3",
-    "@nrwl/cypress": "15.3.3",
-    "@nrwl/esbuild": "15.3.3",
-    "@nrwl/eslint-plugin-nx": "15.3.3",
-    "@nrwl/jest": "15.3.3",
-    "@nrwl/linter": "15.3.3",
-    "@nrwl/workspace": "15.3.3",
+    "@nrwl/cypress": "15.4.2",
+    "@nrwl/esbuild": "15.4.2",
+    "@nrwl/eslint-plugin-nx": "15.4.2",
+    "@nrwl/jest": "15.4.2",
+    "@nrwl/linter": "15.4.2",
+    "@nrwl/workspace": "15.4.2",
     "@types/jest": "28.1.1",
     "@types/node": "18.7.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
@@ -60,7 +60,7 @@
     "lint-staged": "^13.1.0",
     "ng-packagr": "~15.0.0",
     "ngx-deploy-npm": "^4.3.10",
-    "nx": "15.3.3",
+    "nx": "15.4.2",
     "postcss": "^8.4.5",
     "postcss-import": "~14.1.0",
     "postcss-preset-env": "~7.5.0",
@@ -71,3 +71,4 @@
     "typescript": "~4.8.2"
   }
 }
+

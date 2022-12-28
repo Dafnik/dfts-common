@@ -63,6 +63,12 @@ export interface IList<T> extends Array<T>, IGenericImplTrait<IList<T>> {
   addIfAbsent(items: ManyOrUndefinedOrNullOr<T>): IList<T>;
 
   /**
+   * Removes item(s) from list
+   * @return IList<T> This list
+   */
+  remove(items: ManyOrUndefinedOrNullOr<T>): IList<T>;
+
+  /**
    * Removes item(s) from list if filter fulfills
    * @return IList<T> This list
    */
@@ -99,6 +105,13 @@ export interface IList<T> extends Array<T>, IGenericImplTrait<IList<T>> {
   map<mappedType>(callbackFn: IMapList<T, mappedType>): IList<mappedType>;
 
   /**
+   * Returns <code>key</code> of objects in array
+   * @param key extends keyof T
+   * @return New list of keys
+   */
+  pluck<keyType extends keyof T>(key: keyType): IList<T[keyType]>;
+
+  /**
    * Calls callbackFn on each item if filter fulfills
    * @return This list
    */
@@ -115,4 +128,10 @@ export interface IList<T> extends Array<T>, IGenericImplTrait<IList<T>> {
    * @return This list
    */
   computeIfAbsent(items: ManyOrUndefinedOrNullOr<T>, callbackFn: ICompute<T>): IList<T>;
+
+  /**
+   * Shuffles list
+   * @return This list
+   */
+  shuffle(): IList<T>;
 }

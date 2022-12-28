@@ -1,6 +1,6 @@
 import {UndefinedOrNullOr} from '../../types';
 
-export const isEmailRegEx = new RegExp(
+const isEmailRegEx = new RegExp(
   /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}])|(([a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/
 );
 

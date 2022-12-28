@@ -1,4 +1,4 @@
-import {n_from} from '../converter';
+import {n_from} from '../number/from';
 import {UndefinedOr} from '../../types';
 import {s_fromStorage} from '../string/from-storage';
 

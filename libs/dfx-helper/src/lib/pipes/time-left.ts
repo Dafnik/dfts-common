@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {DateInput, UIHelper} from 'dfts';
+import {d_timeLeft, DateInput} from 'dfts';
 
 @Pipe({
   name: 'timeleft',
@@ -8,6 +8,6 @@ import {DateInput, UIHelper} from 'dfts';
 })
 export class DfxTimeLeft implements PipeTransform {
   transform(date: DateInput, start: DateInput): string {
-    return UIHelper.getTimeLeft(date, start);
+    return d_timeLeft(date, start);
   }
 }

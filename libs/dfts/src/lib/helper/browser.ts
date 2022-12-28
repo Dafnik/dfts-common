@@ -1,14 +1,6 @@
 import {st_isAvailable} from './storage/common';
 
-export type BrowserInfo = ReturnType<typeof browserInfos>;
-
-export class BrowserHelper {
-  /**
-   * @deprecated
-   * @return {screenSize: string, name: string, version: string, majorVersion: number, mobile: boolean, os: string, osVersion: string, cookies: boolean, localStorage: boolean}
-   */
-  static infos = (): BrowserInfo => browserInfos();
-}
+export type BrowserInfo = ReturnType<typeof i_complete>;
 
 export const i_screenSize = `${screen.width ?? ''} x ${screen.height ?? ''}`;
 
@@ -27,7 +19,7 @@ export const i_mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigat
 /**
  * @return {screenSize: string, name: string, version: string, majorVersion: number, mobile: boolean, os: string, osVersion: string, cookies: boolean, localStorage: boolean}
  */
-export const browserInfos = (): {
+export const i_complete = (): {
   screenSize: string;
   name: string;
   version: string;

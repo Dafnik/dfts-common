@@ -1,8 +1,11 @@
 import {UndefinedOrNullOr} from '../../types';
-import {t_isBoolean, t_isDate, t_isNumber, t_isObject} from '../type';
 import {st_remove} from './remove';
 import {ttlSuffix} from './common';
 import {s_from} from '../string/from';
+import {d_is} from '../date/is';
+import {b_is} from '../boolean/is';
+import {n_is} from '../number/is';
+import {o_is} from '../object/is';
 
 /**
  * @param {string} key key for storage item
@@ -13,11 +16,11 @@ export function st_set(key: string, value: UndefinedOrNullOr<string | object | D
   if (value == null) {
     st_remove(key);
     return;
-  } else if (t_isNumber(value) || t_isBoolean(value)) {
+  } else if (n_is(value) || b_is(value)) {
     value = s_from(value);
-  } else if (t_isDate(value)) {
+  } else if (d_is(value)) {
     value = s_from(value.getTime());
-  } else if (t_isObject(value)) {
+  } else if (o_is(value)) {
     value = JSON.stringify(value);
   }
 

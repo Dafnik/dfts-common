@@ -1,5 +1,5 @@
 import {HttpParams} from '@angular/common/http';
-import {loggerOf, s_from, UndefinedOrNullOr} from 'dfts';
+import {a_containsDuplicates, loggerOf, s_from, UndefinedOrNullOr} from 'dfts';
 
 export class KeyValuePair {
   private static logger = loggerOf('KeyValuePair');
@@ -16,11 +16,11 @@ export class KeyValuePair {
     }
     if (keyValuePairs) {
       if (
-        keyValuePairs
-          .map((keyValuePair) => {
+        a_containsDuplicates(
+          keyValuePairs.map((keyValuePair) => {
             return keyValuePair.key;
           })
-          .containsDuplicates()
+        )
       ) {
         this.logger.error('parse', 'KeyValuePairs contains duplicates', keyValuePairs);
         throw 'KeyValuePairs contains duplicates';
@@ -52,11 +52,11 @@ export class KeyValuePair {
     }
 
     if (
-      keyValuePairs
-        .map((keyValuePair) => {
+      a_containsDuplicates(
+        keyValuePairs.map((keyValuePair) => {
           return keyValuePair.key;
         })
-        .containsDuplicates()
+      )
     ) {
       this.logger.error('parse', 'KeyValuePairs contains duplicates', keyValuePairs);
       throw 'KeyValuePairs contains duplicates';

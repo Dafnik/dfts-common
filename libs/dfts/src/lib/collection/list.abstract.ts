@@ -1,6 +1,6 @@
 import {IList} from './list.interface';
 import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
-import {g_uncheckedCast} from '../helper/generic';
+import {c_unchecked} from '../helper/converter';
 
 export abstract class ACommonList<listType extends IList<T>, T> extends Array<T> implements IList<T> {
   protected constructor(items?: ManyOrUndefinedOrNullOr<T>) {
@@ -11,7 +11,7 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
   }
 
   thisAsT(): listType {
-    return g_uncheckedCast(this);
+    return c_unchecked(this);
   }
 
   abstract create(list?: listType): listType;
@@ -77,6 +77,25 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
     return this.addIf(items, (item) => this.containsNone(item));
   }
 
+  remove(items: ManyOrUndefinedOrNullOr<T>): listType {
+    if (Array.isArray(items)) {
+      for (const item of items) {
+        if (item) {
+          const itemIndex = this.indexOf(item);
+          if (itemIndex !== -1) {
+            this.splice(itemIndex, 1);
+          }
+        }
+      }
+    } else if (items) {
+      const itemIndex = this.indexOf(items);
+      if (itemIndex !== -1) {
+        this.splice(itemIndex, 1);
+      }
+    }
+    return this.thisAsT();
+  }
+
   removeIf(items: ManyOrUndefinedOrNullOr<T>, filterFn: IPredicate<T>): listType {
     if (Array.isArray(items)) {
       for (const item of items) {
@@ -102,6 +121,10 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
     });
   }
 
+  containsDuplicates(): boolean {
+    return this.length !== new Set(this).size;
+  }
+
   containsAny(item: UndefinedOrNullOr<T>): boolean {
     if (!item) {
       return false;
@@ -122,6 +145,10 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
       result.add(callbackFn(this[index], index, this.thisAsT()));
     }
     return result;
+  }
+
+  pluck<keyType extends keyof T>(key: keyType): IList<T[keyType]> {
+    return this.map((item) => item[key]);
   }
 
   forEachIf(callbackFn: ICompute<T>, filterFn: IPredicate<T>): listType {
@@ -150,6 +177,14 @@ export abstract class ACommonList<listType extends IList<T>, T> extends Array<T>
       }
     } else if (items && filterFn(items)) {
       callbackFn(items);
+    }
+    return this.thisAsT();
+  }
+
+  shuffle(): listType {
+    for (let i = this.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this[i], this[j]] = [this[j], this[i]];
     }
     return this.thisAsT();
   }

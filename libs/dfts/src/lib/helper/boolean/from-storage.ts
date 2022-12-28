@@ -1,4 +1,4 @@
-import {b_from} from '../converter';
+import {b_from} from '../boolean/from';
 import {UndefinedOr} from '../../types';
 import {s_fromStorage} from '../string/from-storage';
 

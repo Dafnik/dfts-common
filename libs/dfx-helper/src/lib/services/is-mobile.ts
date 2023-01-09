@@ -20,9 +20,9 @@ export class IsMobileService implements OnDestroy {
     this.isMobileBreakpoint = config.isMobileBreakpoint ?? this.isMobileBreakpoint;
   }
 
-  isMobile$ = (): Observable<boolean> => this.isMobileChange.pipe(distinctUntilChanged(), share());
+  isMobile$: Observable<boolean> = this.isMobileChange.pipe(distinctUntilChanged(), share());
 
-  isMobile = (): boolean => this._isMobile;
+  isMobile = this._isMobile;
 
   private set(): void {
     this._isMobile = this.getIsMobile;

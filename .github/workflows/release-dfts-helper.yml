@@ -10,3 +10,4 @@ jobs:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfts-helper
+    secrets: inherit

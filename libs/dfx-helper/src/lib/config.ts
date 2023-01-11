@@ -8,4 +8,4 @@ export interface HelperConfig {
   postPutJsonContentTypeInterceptorIgnorePaths?: string[];
 }
 
-export const HELPER_CONFIG = new InjectionToken('HELPER_CONFIG');
+export const HELPER_CONFIG = new InjectionToken<string>('HELPER_CONFIG');

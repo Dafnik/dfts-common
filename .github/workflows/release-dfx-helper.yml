@@ -1,0 +1,13 @@
+name: release dfx-helper
+
+on:
+  push:
+    tags:
+      - 'dfx-helper*'
+
+jobs:
+  release-dfx-helper:
+    uses: dafnik/dfts-common/.github/workflows/release.yml@develop
+    with:
+      lib: dfx-helper
+    secrets: inherit

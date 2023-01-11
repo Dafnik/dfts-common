@@ -1,0 +1,89 @@
+name: on branch push
+
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+
+jobs:
+  test:
+    name: Test ${{ matrix.lib }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        lib: [ dfts-helper, dfx-helper ]
+    steps:
+      - uses: actions/checkout@master
+
+      - name: setup node and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: install dependencies
+        run: pnpm install
+
+      - name: test ${{ matrix.lib }}
+        run: pnpm exec nx test ${{ matrix.lib }} --codeCoverage --coverageReporters=cobertura
+
+      - name: setup coverage report
+        uses: ./.github/actions/setup-coverage-report
+        with:
+          path: coverage/libs/${{ matrix.lib }}/cobertura-coverage.xml
+
+  build:
+    name: Build ${{ matrix.lib }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        lib: [ dfts-helper, dfx-helper ]
+    steps:
+      - uses: actions/checkout@master
+
+      - name: setup node and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: install dependencies
+        run: pnpm install
+
+      - name: build ${{ matrix.lib }}
+        run: pnpm exec nx build ${{ matrix.lib }}
+
+      - uses: actions/upload-artifact@master
+        name: create ${{ matrix.lib }} artifact
+        with:
+          name: ${{ matrix.lib }}
+          path: ./dist/libs/${{ matrix.lib }}
+          retention-days: 1
+
+  deploy-dev:
+    name: Deploy ${{ matrix.lib }} dev
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    strategy:
+      matrix:
+        lib: [ dfts-helper, dfx-helper ]
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: actions/download-artifact@master
+      with:
+        name: ${{ matrix.lib }}
+        path: ./dist
+
+    - name: dist lookup
+      run: cd dist && ls -la && cd -
+
+    - name: zip ${{ matrix.lib }}.zip
+      run: zip -r "${{ matrix.lib }}.zip" ./dist >> /dev/null
+
+    - name: copy build to release server
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: ./${{ matrix.lib }}.zip
+        remote: /var/www/datepoll-share/common/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
+        host: ${{ secrets.RELEASES_SSH_HOST }}
+        port: ${{ secrets.RELEASES_SSH_PORT }}
+        username: ${{ secrets.RELEASES_SSH_USER }}
+        privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}

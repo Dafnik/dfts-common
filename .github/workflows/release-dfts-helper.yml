@@ -1,15 +1,12 @@
-name: release $LIB
-
-env:
-  LIB: dfts-helper
+name: release dfts-helper
 
 on:
   push:
     tags:
-      - '$LIB*'
+      - 'dfts-helper*'
 
 jobs:
   release-dfts-helper:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
-      lib: $LIB
+      lib: dfts-helper

@@ -1,5 +1,5 @@
 import {st_remove} from './remove';
-import {s_generate} from '../string/generator';
+import {s_generate} from '../string/generator/generator';
 
 export const ttlSuffix = '_ttl';
 
@@ -25,6 +25,9 @@ export function st_isAvailable(): boolean {
   const test = 'available_test_1';
   try {
     localStorage.setItem(test, test);
+    if (localStorage.getItem(test) !== test) {
+      return false;
+    }
     localStorage.removeItem(test);
     return true;
   } catch {

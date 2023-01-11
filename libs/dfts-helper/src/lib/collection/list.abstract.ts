@@ -1,6 +1,6 @@
 import {IList} from './list.interface';
 import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
-import {c_unchecked} from '../helper/converter';
+import {c_unchecked} from '../helper/converter/converter';
 
 export abstract class ACommonList<listType extends IList<T>, T> extends Array<T> implements IList<T> {
   protected constructor(items?: ManyOrUndefinedOrNullOr<T>) {

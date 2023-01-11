@@ -1,8 +1,8 @@
 import {ICompute, IPredicate} from '../../types';
 
-export function a_forEachIf<T>(array: T[], callbackFn: ICompute<T>, filterFn: IPredicate<T>): T[] {
+export function a_forEachIf<T>(array: T[], filterFn: IPredicate<T>, callbackFn: ICompute<T>): T[] {
   for (const item of array) {
-    if (item && filterFn(item)) {
+    if (filterFn(item)) {
       callbackFn(item);
     }
   }

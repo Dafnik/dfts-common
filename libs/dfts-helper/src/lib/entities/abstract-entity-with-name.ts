@@ -1,5 +1,5 @@
 import {StringOrNumber} from '../types';
-import {AEntity} from './abstract-entity';
+import {AEntity} from './abstract-entity/abstract-entity';
 import {IEntityWithName, IEntityWithNumberIDAndName, IEntityWithStringIDAndName} from './entity.interface';
 
 export abstract class AEntityWithName<idType extends StringOrNumber> extends AEntity<idType> implements IEntityWithName<idType> {

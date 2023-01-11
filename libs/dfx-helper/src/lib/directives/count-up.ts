@@ -1,7 +1,7 @@
 import {Directive, ElementRef, HostListener, Inject, Input} from '@angular/core';
 import {coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
 import {WINDOW} from '../windows-provider';
-import {toString} from 'dfts';
+import {s_from} from 'dfts-helper';
 
 @Directive({
   selector: '[countUp]',
@@ -66,7 +66,7 @@ export class DfxCountUp {
 
       // If the current count has changed, update the element
       if (parseInt(this.el.nativeElement.innerText, 10) !== currentCount) {
-        this.el.nativeElement.innerText = toString(currentCount);
+        this.el.nativeElement.innerText = s_from(currentCount);
       }
 
       // If we’ve reached our last frame, stop the animation

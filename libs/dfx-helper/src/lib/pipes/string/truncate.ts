@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {truncate, UndefinedOrNullOr} from 'dfts';
+import {s_truncate, UndefinedOrNullOr} from 'dfts-helper';
 
 @Pipe({
   name: 'truncate',
@@ -8,6 +8,6 @@ import {truncate, UndefinedOrNullOr} from 'dfts';
 })
 export class DfxTruncate implements PipeTransform {
   transform(text: UndefinedOrNullOr<string>, maxWords = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
-    return truncate(text, maxWords, suffix);
+    return s_truncate(text, maxWords, suffix);
   }
 }

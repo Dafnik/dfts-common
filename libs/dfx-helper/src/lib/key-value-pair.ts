@@ -1,5 +1,5 @@
 import {HttpParams} from '@angular/common/http';
-import {loggerOf, toString, UndefinedOrNullOr} from 'dfts';
+import {a_containsDuplicates, loggerOf, s_from, UndefinedOrNullOr} from 'dfts-helper';
 
 export class KeyValuePair {
   private static logger = loggerOf('KeyValuePair');
@@ -16,11 +16,11 @@ export class KeyValuePair {
     }
     if (keyValuePairs) {
       if (
-        keyValuePairs
-          .map((keyValuePair) => {
+        a_containsDuplicates(
+          keyValuePairs.map((keyValuePair) => {
             return keyValuePair.key;
           })
-          .containsDuplicates()
+        )
       ) {
         this.logger.error('parse', 'KeyValuePairs contains duplicates', keyValuePairs);
         throw 'KeyValuePairs contains duplicates';
@@ -33,7 +33,7 @@ export class KeyValuePair {
           throw 'Url does not match all KeyValuePairs';
         }
         if (keyValuePair.value !== undefined && keyValuePair.value !== null) {
-          url = url.replace(key, toString(keyValuePair.value));
+          url = url.replace(key, s_from(keyValuePair.value));
         }
       }
     }
@@ -52,11 +52,11 @@ export class KeyValuePair {
     }
 
     if (
-      keyValuePairs
-        .map((keyValuePair) => {
+      a_containsDuplicates(
+        keyValuePairs.map((keyValuePair) => {
           return keyValuePair.key;
         })
-        .containsDuplicates()
+      )
     ) {
       this.logger.error('parse', 'KeyValuePairs contains duplicates', keyValuePairs);
       throw 'KeyValuePairs contains duplicates';

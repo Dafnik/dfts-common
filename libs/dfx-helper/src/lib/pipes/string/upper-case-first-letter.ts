@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {UndefinedOrNullOr, upperCaseFirstLetter} from 'dfts';
+import {s_upperCaseFirstLetter, UndefinedOrNullOr} from 'dfts-helper';
 
 @Pipe({
   name: 'upperCaseFirstLetter',
@@ -8,6 +8,6 @@ import {UndefinedOrNullOr, upperCaseFirstLetter} from 'dfts';
 })
 export class DfxUpperCaseFirstLetter implements PipeTransform {
   transform(text: UndefinedOrNullOr<string>): string {
-    return upperCaseFirstLetter(text);
+    return s_upperCaseFirstLetter(text);
   }
 }

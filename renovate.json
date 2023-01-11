@@ -11,7 +11,7 @@
   "baseBranches": ["develop"],
   "assignees": ["Dafnik"],
   "ignoreDeps": ["typescript"],
-  "ignorePaths": ["**/projects/**"],
+  "ignorePaths": ["**/libs/**"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],

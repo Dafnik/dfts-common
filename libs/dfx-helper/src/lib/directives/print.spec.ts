@@ -3,7 +3,7 @@ Copyright belongs to https://github.com/selemxmn/ngx-print
 Licensed under MIT license
  */
 import {Component, DebugElement} from '@angular/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {DfxPrint} from './print';
@@ -47,8 +47,8 @@ class TestDfxPrintComponent {}
 
 describe('DfxPrintDirective', () => {
   let buttonEl: DebugElement;
-  let component: TestDfxPrintComponent;
   let de: DebugElement;
+  let component: TestDfxPrintComponent;
   let fixture: ComponentFixture<TestDfxPrintComponent>;
 
   const styleSheet: {[key: string]: {[key: string]: string}} = {
@@ -56,14 +56,17 @@ describe('DfxPrintDirective', () => {
     h1: {color: 'red', border: '1px solid'},
   };
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TestDfxPrintComponent],
       imports: [DfxPrint],
     }).compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(TestDfxPrintComponent);
     component = fixture.componentInstance;
+
     de = fixture.debugElement;
 
     // Get the button element (on which we tag the directive) to simulate clicks on it
@@ -91,9 +94,9 @@ describe('DfxPrintDirective', () => {
   });
 
   it('should popup a new window', () => {
-    spyOn(window, 'open');
+    const spy = jest.spyOn(window, 'open');
     // simulate click
     buttonEl.triggerEventHandler('click', {});
-    expect(window.open).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 });

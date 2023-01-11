@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {distinctUntilChanged, Observable, share, startWith, Subject, tap} from 'rxjs';
-import {IEntity, StorageHelper, StringOrNumber, UndefinedOr} from 'dfts';
+import {IEntity, o_fromStorage, st_set, StringOrNumber, UndefinedOr} from 'dfts-helper';
 
 import {AEntityService} from './abstract-entity.service';
 
@@ -29,16 +29,12 @@ export abstract class ASelectableEntityService<idType extends StringOrNumber, En
   }
 
   getSelected$(): Observable<UndefinedOr<EntityType>> {
-    return this.selectedChange.pipe(
-      distinctUntilChanged(),
-      startWith(StorageHelper.getObject(this.selectedStorageKey) as EntityType | undefined),
-      share()
-    );
+    return this.selectedChange.pipe(distinctUntilChanged(), startWith(o_fromStorage<EntityType>(this.selectedStorageKey)), share());
   }
 
   getSelected(): UndefinedOr<EntityType> {
     if (this.selected == undefined) {
-      const selected = StorageHelper.getObject(this.selectedStorageKey) as EntityType;
+      const selected = o_fromStorage<EntityType>(this.selectedStorageKey);
       if (selected) {
         this.selected = selected;
         this.selectedChange.next(this.selected);
@@ -49,7 +45,7 @@ export abstract class ASelectableEntityService<idType extends StringOrNumber, En
 
   setSelected(selected: UndefinedOr<EntityType>): void {
     this.selected = selected;
-    StorageHelper.set(this.selectedStorageKey, this.selected);
+    st_set(this.selectedStorageKey, this.selected);
     this.selectedChange.next(this.selected);
   }
 }

@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {cut, UndefinedOrNullOr} from 'dfts';
+import {s_cut, UndefinedOrNullOr} from 'dfts-helper';
 
 @Pipe({
   name: 'cut',
@@ -8,6 +8,6 @@ import {cut, UndefinedOrNullOr} from 'dfts';
 })
 export class DfxCut implements PipeTransform {
   transform(text: UndefinedOrNullOr<string>, maxLength = 10, suffix: UndefinedOrNullOr<string> = '...'): string {
-    return cut(text, maxLength, suffix);
+    return s_cut(text, maxLength, suffix);
   }
 }

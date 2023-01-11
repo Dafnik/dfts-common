@@ -1,15 +1,8 @@
-import {
-  HttpContextToken,
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandlerFn,
-  HttpRequest,
-  HttpResponse
-} from '@angular/common/http';
+import {HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse} from '@angular/common/http';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {inject} from '@angular/core';
 import {BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR} from './http-context-token';
-import {getLogHeader} from 'dfts';
+import {getLogMessage} from 'dfts-helper';
 import {HELPER_CONFIG, HelperConfig} from '../config';
 
 export function shouldIntercept(req: HttpRequest<unknown>, BY_PASS?: HttpContextToken<boolean>, ignorePaths?: string[]): boolean {
@@ -36,7 +29,7 @@ export function baseUrlInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
   }
 
   console.log(
-    getLogHeader(
+    getLogMessage(
       'ERROR',
       'httpClient',
       'baseUrlInterceptor',
@@ -62,12 +55,12 @@ export function loggingInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
         if (event instanceof HttpResponse) {
           const elapsedTime = Date.now() - startTime;
           text = `Status: Success | ${text} | Elapsed time: ${elapsedTime}ms`;
-          console.group(getLogHeader('LOG', 'httpClient', req.method, text));
+          console.group(getLogMessage('LOG', 'httpClient', req.method, text));
           if (req.body !== undefined && req.body != null) {
-            console.log(getLogHeader('LOG', 'httpClient', req.method, 'Request body'), req.body);
+            console.log(getLogMessage('LOG', 'httpClient', req.method, 'Request body'), req.body);
           }
           if (event) {
-            console.log(getLogHeader('LOG', 'httpClient', req.method, 'Request response'), event);
+            console.log(getLogMessage('LOG', 'httpClient', req.method, 'Request response'), event);
           }
           console.groupEnd();
         }
@@ -81,7 +74,7 @@ export function loggingInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
       }
       const elapsedTime = Date.now() - startTime;
       text = `Status: Error   | ${text} | Elapsed time: ${elapsedTime}ms`;
-      console.log(getLogHeader('ERROR', 'httpClient', req.method, text), error);
+      console.log(getLogMessage('ERROR', 'httpClient', req.method, text), error);
 
       return throwError(() => error);
     })

@@ -1,0 +1,29 @@
+{
+  "name": "dfts-helper",
+  "version": "0.0.2",
+  "description": "Typescript Library with tons of utility tools helping in all projects",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://github.com/Dafnik/dfts-common",
+  "keywords": [
+    "typescript",
+    "helper",
+    "tools"
+  ],
+  "author": {
+    "name": "Dafnik",
+    "email": "contact@dafnik.me",
+    "url": "https://dafnik.me"
+  },
+  "funding": {
+    "type": "liberapay",
+    "url": "https://liberapay.com/Dafnik"
+  },
+  "bugs": {
+    "url": "https://github.com/Dafnik/dfts-common/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dafnik/dfts-common.git"
+  }
+}

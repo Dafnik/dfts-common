@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {DateInput, timespan} from 'dfts';
+import {d_timespan, DateInput} from 'dfts-helper';
 
 @Pipe({
   name: 'timespan',
@@ -8,6 +8,6 @@ import {DateInput, timespan} from 'dfts';
 })
 export class DfxTimeSpan implements PipeTransform {
   transform(dateNow: DateInput, dateFuture: DateInput): string {
-    return timespan(dateNow, dateFuture);
+    return d_timespan(dateNow, dateFuture);
   }
 }

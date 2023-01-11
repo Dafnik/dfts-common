@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "dfts": ["libs/dfts/src/index.ts"],
+      "dfts-helper": ["libs/dfts-helper/src/index.ts"],
       "dfx-helper": ["libs/dfx-helper/src/index.ts"]
     },
     "esModuleInterop": true,

@@ -23,7 +23,8 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
 
       - name: install dependencies
-        run: pnpm install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --ignore-scripts
 
       - name: test ${{ matrix.lib }}
         run: pnpm exec nx test ${{ matrix.lib }} --codeCoverage --coverageReporters=cobertura

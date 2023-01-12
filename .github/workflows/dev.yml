@@ -3,9 +3,9 @@ name: on branch push
 on:
   push:
     branches:
-      - '*'         # matches every branch that doesn't contain a '/'
-      - '*/*'       # matches every branch containing a single '/'
-      - '**'        # matches every branch
+      - '*' # matches every branch that doesn't contain a '/'
+      - '*/*' # matches every branch containing a single '/'
+      - '**' # matches every branch
       - '!main'
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        lib: [ dfts-helper, dfx-helper ]
+        lib: [dfts-helper, dfx-helper, dfx-translate]
     steps:
       - uses: actions/checkout@master
 
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        lib: [ dfts-helper, dfx-helper ]
+        lib: [dfts-helper, dfx-helper, dfx-translate]
     steps:
       - uses: actions/checkout@master
 
@@ -65,27 +65,27 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     strategy:
       matrix:
-        lib: [ dfts-helper, dfx-helper ]
+        lib: [dfts-helper, dfx-helper, dfx-translate]
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@master
 
-    - uses: actions/download-artifact@master
-      with:
-        name: ${{ matrix.lib }}
-        path: ./dist
+      - uses: actions/download-artifact@master
+        with:
+          name: ${{ matrix.lib }}
+          path: ./dist
 
-    - name: dist lookup
-      run: cd dist && ls -la && cd -
+      - name: dist lookup
+        run: cd dist && ls -la && cd -
 
-    - name: zip ${{ matrix.lib }}.zip
-      run: zip -r "${{ matrix.lib }}.zip" ./dist >> /dev/null
+      - name: zip ${{ matrix.lib }}.zip
+        run: zip -r "${{ matrix.lib }}.zip" ./dist >> /dev/null
 
-    - name: copy build to release server
-      uses: garygrossgarten/github-action-scp@release
-      with:
-        local: ./${{ matrix.lib }}.zip
-        remote: /var/www/datepoll-share/common/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
-        host: ${{ secrets.RELEASES_SSH_HOST }}
-        port: ${{ secrets.RELEASES_SSH_PORT }}
-        username: ${{ secrets.RELEASES_SSH_USER }}
-        privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+      - name: copy build to release server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ./${{ matrix.lib }}.zip
+          remote: /var/www/datepoll-share/common/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
+          host: ${{ secrets.RELEASES_SSH_HOST }}
+          port: ${{ secrets.RELEASES_SSH_PORT }}
+          username: ${{ secrets.RELEASES_SSH_USER }}
+          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}

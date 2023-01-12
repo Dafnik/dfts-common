@@ -6,7 +6,7 @@ on:
       - 'dfts-helper*'
 
 jobs:
-  release-dfts-helper:
+  dfts-helper:
     uses: dafnik/dfts-common/.github/workflows/release.yml@develop
     with:
       lib: dfts-helper

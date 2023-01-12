@@ -57,7 +57,7 @@ describe('TranslateConfig', () => {
   });
 
   it('should change language via spy', async () => {
-    const spy = spyOn(translateService, 'use');
+    const spy = jest.spyOn(translateService, 'use');
     await translateService.use('de');
     expect(spy).toHaveBeenCalledWith('de');
   });
@@ -134,7 +134,7 @@ describe('TranslateConfigChanged', () => {
   });
 
   it('should change language via spy', async () => {
-    const spy = spyOn(translateService, 'use');
+    const spy = jest.spyOn(translateService, 'use');
     await translateService.use('en');
     expect(spy).toHaveBeenCalledWith('en');
   });

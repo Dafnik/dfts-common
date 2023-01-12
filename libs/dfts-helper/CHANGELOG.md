@@ -2,6 +2,8 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.7](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.6...dfts-helper-0.0.7) (2023-01-12)
+
 ## [0.0.6](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.5...dfts-helper-0.0.6) (2023-01-12)
 
 ## [0.0.5](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.4...dfts-helper-0.0.5) (2023-01-11)

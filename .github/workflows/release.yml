@@ -68,6 +68,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - name: setup node and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
       - uses: actions/download-artifact@master
         with:
           name: ${{ inputs.lib }}

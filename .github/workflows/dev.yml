@@ -23,7 +23,6 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
 
       - name: install dependencies
-        if: steps.pnpm-cache.outputs.cache-hit == 'false'
         run: pnpm install --ignore-scripts
 
       - name: test ${{ matrix.lib }}
@@ -47,7 +46,7 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
 
       - name: install dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: build ${{ matrix.lib }}
         run: pnpm exec nx build ${{ matrix.lib }}

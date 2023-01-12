@@ -20,7 +20,7 @@ on:
 
 jobs:
   test:
-    name: Test ${{ inputs.lib }}
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -40,7 +40,7 @@ jobs:
           path: coverage/libs/${{ inputs.lib }}/cobertura-coverage.xml
 
   build:
-    name: Build ${{ inputs.lib }}
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -62,7 +62,7 @@ jobs:
           retention-days: 1
 
   deploy-zip:
-    name: Deploy ${{ inputs.lib }} zip to release server
+    name: Deploy zip to release server
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:
@@ -76,43 +76,35 @@ jobs:
           name: ${{ inputs.lib }}
           path: ./dist
 
-      - name: dist lookup
-        run: |
-          cd dist
-          ls -la
-          cd -
-
-      - name: print version
+      - name: zip to ${{ inputs.lib }}-VERSION.zip
+        shell: bash
         run: |
           version=$(node -p "require('./dist/package.json').version")
           echo $version
+          mkdir releases
+          zip -r "${{ inputs.lib }}-latest.zip" ./dist >> /dev/null
+          zip -r "${{ inputs.lib }}-v${version}.zip" ./dist >> /dev/null
+          mv "${{ inputs.lib }}-latest.zip" ./releases
+          mv "${{ inputs.lib }}-v${version}.zip" ./releases
 
-      - name: zip ${{ inputs.lib }}.zip
-        shell: bash
-        run: zip -r "${{ inputs.lib }}.zip" ./dist >> /dev/null
+      - name: releases lookup
+        run: |
+          cd releases
+          ls -la
+          cd -
 
-      - name: copy ${{ inputs.lib }}-latest.zip to release server
+      - name: move zips to release server
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: ./${{ inputs.lib }}.zip
-          remote: /var/www/datepoll-share/common/${{ inputs.lib }}/${{ inputs.lib }}-latest.zip
-          host: ${{ secrets.RELEASES_SSH_HOST }}
-          port: ${{ secrets.RELEASES_SSH_PORT }}
-          username: ${{ secrets.RELEASES_SSH_USER }}
-          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
-
-      - name: copy ${{ inputs.lib }}-VERSION.zip to release server
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: ./${{ inputs.lib }}.zip
-          remote: "/var/www/datepoll-share/common/${{ inputs.lib }}/${{ inputs.lib }}-v${version}.zip"
+          local: ./releases
+          remote: /var/www/datepoll-share/common/${{ inputs.lib }}
           host: ${{ secrets.RELEASES_SSH_HOST }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
           username: ${{ secrets.RELEASES_SSH_USER }}
           privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
 
   deploy-npm:
-    name: Deploy ${{ inputs.lib }} to npm registry
+    name: Deploy to npm registry
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:

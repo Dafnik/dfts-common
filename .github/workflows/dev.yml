@@ -15,7 +15,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table]
+        lib: [dfts-helper, dfx-helper, dfx-translate]
     steps:
       - uses: actions/checkout@master
 

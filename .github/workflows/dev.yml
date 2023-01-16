@@ -85,7 +85,7 @@ jobs:
 
   deploy-bootstrap-table-demo:
     name: Deploy dfx-bootstrap-table-demo
-    needs: [build-lib, test]
+    needs: [build-app]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     steps:

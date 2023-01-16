@@ -1,0 +1,13 @@
+name: release dfx-translate
+
+on:
+  push:
+    tags:
+      - 'dfx-translate*'
+
+jobs:
+  dfx-helper:
+    uses: dafnik/dfts-common/.github/workflows/release.yml@develop
+    with:
+      lib: dfx-translate
+    secrets: inherit

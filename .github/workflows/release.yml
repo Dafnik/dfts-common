@@ -134,5 +134,4 @@ jobs:
         run: |
           cd dist/
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-#          npm publish
+          npm publish

@@ -1,7 +1,6 @@
 import {Component, DebugElement} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {DfxTranslateModule} from '../dfx-translate.module';
 import {TranslateService} from '../translate.service';
 import {serviceStub} from '../test-helper';
@@ -47,13 +46,13 @@ describe('TranslateAutoDirective', () => {
   });
 
   it('should return undefined', () => {
-    expect((de.query(By.css('div')).nativeElement as HTMLElement).innerText).toBe('');
+    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('');
   });
 
   it('should return other value after selecting other language', async () => {
     await translateService.use('de');
     component.translateKey = 'Hello';
     fixture.detectChanges();
-    expect((de.query(By.css('div')).nativeElement as HTMLElement).innerText).toBe('Hallo');
+    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('Hallo');
   });
 });

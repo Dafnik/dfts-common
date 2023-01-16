@@ -107,6 +107,7 @@ jobs:
         with:
           local: ./dist
           remote: /var/www/dfx-bootstrap-table-demo
+          rmRemote: true
           host: ${{ secrets.DEMO_SSH_HOST }}
           port: ${{ secrets.DEMO_SSH_PORT }}
           username: ${{ secrets.DEMO_SSH_USER }}

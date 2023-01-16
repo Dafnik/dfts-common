@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import fetch from 'node-fetch';
 
 type KeyValue = {key: string; value: string};
 type jsonType = {[key: string]: string};

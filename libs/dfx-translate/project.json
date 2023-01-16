@@ -6,6 +6,10 @@
   "prefix": "dfts-common",
   "targets": {
     "build": {
+      "dependsOn": ["build:lib", "build:cli"],
+      "command": "mkdir -p ./dist/libs/dfx-translate/cli && cp -r ./dist/libs/dfx-translate-cli/** ./dist/libs/dfx-translate/cli/"
+    },
+    "build:lib": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -20,6 +24,23 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build:cli": {
+      "executor": "@nrwl/webpack:webpack",
+      "options": {
+        "tsConfig": "libs/dfx-translate/cli/tsconfig.json",
+        "webpackConfig": "libs/dfx-translate/cli/webpack.config.js",
+        "main": "libs/dfx-translate/cli/translate.cli.ts",
+        "outputPath": "dist/libs/dfx-translate-cli",
+        "optimization": true,
+        "compiler": "tsc",
+        "target": "node",
+        "vendorChunk": false,
+        "commonChunk": false,
+        "namedChunks": false,
+        "runtimeChunk": false,
+        "sourceMap": false
+      }
     },
     "test": {
       "executor": "@nrwl/jest:jest",

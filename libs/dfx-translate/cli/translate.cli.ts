@@ -11,6 +11,7 @@ import {
   translateIntoLanguage,
   writeToFile,
 } from './lib';
+import {program} from 'commander';
 
 const translationKeysTypePath = './node_modules/dfx-translate/lib/translationKeys.d.ts';
 const defaultAssetsPath = './src/assets/i18n/';

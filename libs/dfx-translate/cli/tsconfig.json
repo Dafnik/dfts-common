@@ -2,6 +2,7 @@
   "compilerOptions": {
     /* Basic Options */
     "rootDir": "./",
+    "baseUrl": "./",
     "composite": false,
     "outDir": "dist",
     "forceConsistentCasingInFileNames": true,

@@ -76,16 +76,21 @@ jobs:
           name: ${{ inputs.lib }}
           path: ./dist
 
-      - name: zip to ${{ inputs.lib }}-VERSION.zip
+      - name: get {{ inputs.lib }} version
+        id: get-version
         shell: bash
         run: |
-          version=$(node -p "require('./dist/package.json').version")
-          echo $version
+          echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
+          echo "version: ${{ steps.get-version.outputs.VERSION }}"
+
+      - name: zip to ${{ inputs.lib }}-${{ steps.get-version.outputs.VERSION }}.zip
+        shell: bash
+        run: |
           mkdir releases
           zip -r "${{ inputs.lib }}-latest.zip" ./dist >> /dev/null
-          zip -r "${{ inputs.lib }}-v${version}.zip" ./dist >> /dev/null
+          zip -r "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./dist >> /dev/null
           mv "${{ inputs.lib }}-latest.zip" ./releases
-          mv "${{ inputs.lib }}-v${version}.zip" ./releases
+          mv "${{ inputs.lib }}-v$${{ steps.get-version.outputs.VERSION }}.zip" ./releases
 
       - name: releases lookup
         run: |

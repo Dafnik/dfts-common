@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
 
       - name: install dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: test ${{ matrix.lib }}
         run: pnpm exec nx test ${{ matrix.lib }} --codeCoverage --coverageReporters=cobertura
@@ -46,7 +46,7 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
 
       - name: install dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: build ${{ matrix.lib }}
         run: pnpm exec nx build ${{ matrix.lib }}

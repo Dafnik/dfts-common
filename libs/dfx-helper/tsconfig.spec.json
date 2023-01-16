@@ -6,7 +6,6 @@
     "declarationMap": false,
     "inlineSources": false,
     "module": "commonjs",
-    "allowJs": true,
     "types": ["jest", "node"]
   },
   "files": ["src/test-setup.ts"],

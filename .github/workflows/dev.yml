@@ -116,7 +116,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ./dfx-bootstrap-table-demo.zip
-          remote: /var/www/datepoll-share/common/dfx-bootstrap-table-demo/dfx-bootstrap-table-demo.zip
+          remote: /var/www/datepoll-share/common/dfx-bootstrap-table/dfx-bootstrap-table-demo.zip
           host: ${{ secrets.RELEASES_SSH_HOST }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
           username: ${{ secrets.RELEASES_SSH_USER }}

@@ -15,7 +15,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate]
+        lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table]
     steps:
       - uses: actions/checkout@master
 
@@ -33,12 +33,12 @@ jobs:
         with:
           path: coverage/libs/${{ matrix.lib }}/cobertura-coverage.xml
 
-  build:
+  build-lib:
     name: Build ${{ matrix.lib }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate]
+        lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table]
     steps:
       - uses: actions/checkout@master
 
@@ -58,14 +58,78 @@ jobs:
           path: ./dist/libs/${{ matrix.lib }}
           retention-days: 1
 
+  build-app:
+    name: Build ${{ matrix.app }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [ dfx-bootstrap-table-demo ]
+    steps:
+      - uses: actions/checkout@master
+
+      - name: setup node and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: install dependencies
+        run: pnpm install --ignore-scripts
+
+      - name: build ${{ matrix.app }}
+        run: pnpm exec nx build ${{ matrix.app }}
+
+      - uses: actions/upload-artifact@master
+        name: create ${{ matrix.app }} artifact
+        with:
+          name: ${{ matrix.app }}
+          path: ./dist/apps/${{ matrix.app }}
+          retention-days: 1
+
+  deploy-bootstrap-table-demo:
+    name: Deploy dfx-bootstrap-table-demo
+    needs: [build-lib, test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/download-artifact@master
+        with:
+          name: dfx-bootstrap-table-demo
+          path: ./dist
+
+      - name: dist lookup
+        run: cd dist && ls -la && cd -
+
+      - name: zip dfx-bootstrap-table-demo.zip
+        run: zip -r "dfx-bootstrap-table-demo.zip" ./dist >> /dev/null
+
+      - name: copy build files to demo server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ./dist
+          remote: /var/www/dfx-bootstrap-table-demo
+          host: ${{ secrets.DEMO_SSH_HOST }}
+          port: ${{ secrets.DEMO_SSH_PORT }}
+          username: ${{ secrets.DEMO_SSH_USER }}
+          privateKey: ${{ secrets.DEMO_SSH_PRIVATE_KEY }}
+
+      - name: copy build to release server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ./dfx-bootstrap-table-demo.zip
+          remote: /var/www/datepoll-share/common/dfx-bootstrap-table-demo/dfx-bootstrap-table-demo.zip
+          host: ${{ secrets.RELEASES_SSH_HOST }}
+          port: ${{ secrets.RELEASES_SSH_PORT }}
+          username: ${{ secrets.RELEASES_SSH_USER }}
+          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+
   deploy-dev:
     name: Deploy ${{ matrix.lib }} dev
-    needs: [build, test]
+    needs: [build-lib, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate]
+        lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table]
     steps:
       - uses: actions/checkout@master
 

@@ -38,7 +38,7 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
         throw new Error('Unable find the withDefaultLanguage() method');
       }
 
-      defaultLanguage = jsonMatch[1];
+      defaultLanguage = jsonMatch[2];
       if (!defaultLanguage) {
         console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of the function call');
         throw new Error('Unable to extract default language out of the function call');

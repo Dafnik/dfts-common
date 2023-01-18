@@ -5,7 +5,7 @@ type jsonType = {[key: string]: string};
 
 export const getDefaultLanguage = async (log: boolean): Promise<string> => {
   const appModulePath = './src/app/app.module.ts';
-  const appComponentPath = './src/app/app.component.ts';
+  const mainPath = './src/main.ts';
   let defaultLanguage: string | undefined;
 
   // Check if the app.module.ts file exists.
@@ -30,8 +30,8 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
 
     // If the app.module.ts file does not exist, check if the app.component.ts file exists.
     try {
-      await fs.promises.access(appComponentPath);
-      const jsonMatch = /withDefaultLanguage\("(.*?)"\)/.exec(await fs.promises.readFile(appComponentPath, 'utf-8'));
+      await fs.promises.access(mainPath);
+      const jsonMatch = /withDefaultLanguage\("(.*?)"\)/.exec(await fs.promises.readFile(mainPath, 'utf-8'));
 
       if (jsonMatch === null) {
         console.log('dfx-translate >> getDefaultLanguage: Unable find the withDefaultLanguage() method');

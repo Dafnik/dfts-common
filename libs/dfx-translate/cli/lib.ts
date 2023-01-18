@@ -15,7 +15,7 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
 
     if (jsonMatch === null) {
       console.log('dfx-translate >> getDefaultLanguage: Unable to find the config object in DfxTranslateModule.setup({...})');
-      throw new Error('Unable to extract JSON string from file');
+      throw new Error('Unable to find the config object in DfxTranslateModule.setup({...})');
     }
     const json = jsonMatch[1].replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ').replace(/'/g, '"');
 
@@ -23,7 +23,7 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
     defaultLanguage = (JSON.parse(json) as {defaultLanguage?: string}).defaultLanguage;
     if (!defaultLanguage) {
       console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of json');
-      throw new Error('Unable to extract JSON string from file');
+      throw new Error('Unable to extract default language out of json');
     }
   } catch {
     if (log) console.log('dfx-translate >> getDefaultLanguage: app.module.ts not found - trying app.component.ts');
@@ -31,17 +31,17 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
     // If the app.module.ts file does not exist, check if the app.component.ts file exists.
     try {
       await fs.promises.access(mainPath);
-      const jsonMatch = /withDefaultLanguage\("(.*?)"\)/.exec(await fs.promises.readFile(mainPath, 'utf-8'));
+      const jsonMatch = /withDefaultLanguage\((['"])(.*?)\1\)/.exec(await fs.promises.readFile(mainPath, 'utf-8'));
 
       if (jsonMatch === null) {
         console.log('dfx-translate >> getDefaultLanguage: Unable find the withDefaultLanguage() method');
-        throw new Error('Unable to extract JSON string from file');
+        throw new Error('Unable find the withDefaultLanguage() method');
       }
 
       defaultLanguage = jsonMatch[1];
       if (!defaultLanguage) {
         console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of the function call');
-        throw new Error('Unable to extract JSON string from file');
+        throw new Error('Unable to extract default language out of the function call');
       }
     } catch {
       console.log('dfx-translate >> getDefaultLanguage: Neither app.module.ts or app.component.ts found - cancelling');

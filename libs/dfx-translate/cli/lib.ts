@@ -4,39 +4,51 @@ type KeyValue = {key: string; value: string};
 type jsonType = {[key: string]: string};
 
 export const getDefaultLanguage = async (log: boolean): Promise<string> => {
-  let jsonMatch: RegExpMatchArray | null;
   const appModulePath = './src/app/app.module.ts';
   const appComponentPath = './src/app/app.component.ts';
+  let defaultLanguage: string | undefined;
 
   // Check if the app.module.ts file exists.
   try {
     await fs.promises.access(appModulePath);
-    jsonMatch = /DfxTranslateModule\.setup\((.+)\)\s*,/.exec(await fs.promises.readFile(appModulePath, 'utf-8'));
+    const jsonMatch = /DfxTranslateModule\.setup\((.+)\)\s*,/.exec(await fs.promises.readFile(appModulePath, 'utf-8'));
+
+    if (jsonMatch === null) {
+      console.log('dfx-translate >> getDefaultLanguage: Unable to find the config object in DfxTranslateModule.setup({...})');
+      throw new Error('Unable to extract JSON string from file');
+    }
+    const json = jsonMatch[1].replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ').replace(/'/g, '"');
+
+    // Parse the JSON string and return the defaultLanguage property.
+    defaultLanguage = (JSON.parse(json) as {defaultLanguage?: string}).defaultLanguage;
+    if (!defaultLanguage) {
+      console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of json');
+      throw new Error('Unable to extract JSON string from file');
+    }
   } catch {
     if (log) console.log('dfx-translate >> getDefaultLanguage: app.module.ts not found - trying app.component.ts');
 
     // If the app.module.ts file does not exist, check if the app.component.ts file exists.
     try {
       await fs.promises.access(appComponentPath);
-      jsonMatch = /provideDfxTranslate\((.+)\)\s*,/.exec(await fs.promises.readFile(appComponentPath, 'utf-8'));
+      const jsonMatch = /withDefaultLanguage\("(.*?)"\)/.exec(await fs.promises.readFile(appComponentPath, 'utf-8'));
+
+      if (jsonMatch === null) {
+        console.log('dfx-translate >> getDefaultLanguage: Unable find the withDefaultLanguage() method');
+        throw new Error('Unable to extract JSON string from file');
+      }
+
+      defaultLanguage = jsonMatch[1];
+      if (!defaultLanguage) {
+        console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of the function call');
+        throw new Error('Unable to extract JSON string from file');
+      }
     } catch {
       console.log('dfx-translate >> getDefaultLanguage: Neither app.module.ts or app.component.ts found - cancelling');
       throw Error('Neither app.module.ts or app.component.ts found');
     }
   }
 
-  if (!jsonMatch) {
-    console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of json');
-    throw new Error('Unable to extract JSON string from file');
-  }
-  const json = jsonMatch[1].replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ').replace(/'/g, '"');
-
-  // Parse the JSON string and return the defaultLanguage property.
-  const defaultLanguage = (JSON.parse(json) as {defaultLanguage?: string}).defaultLanguage;
-  if (!defaultLanguage) {
-    console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of json');
-    throw new Error('Unable to extract JSON string from file');
-  }
   return defaultLanguage;
 };
 

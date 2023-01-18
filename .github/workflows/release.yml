@@ -81,7 +81,7 @@ jobs:
         shell: bash
         run: |
           echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
-          echo "version: ${{ steps.get-version.outputs.VERSION }}"
+          echo "version: $VERSION"
 
       - name: zip to ${{ inputs.lib }}-${{ steps.get-version.outputs.VERSION }}.zip
         shell: bash

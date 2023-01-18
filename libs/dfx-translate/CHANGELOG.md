@@ -2,6 +2,12 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.6.1](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.0...dfx-translate-1.6.1) (2023-01-18)
+
+### Bug Fixes
+
+- **dfx-translate:** cli requiring commander to be installed ([8f829d4](https://github.com/Dafnik/dfts-common/commit/8f829d41652a6de3f38d7d3e662b1360acae8486))
+
 # 1.6.0 (2023-01-18)
 
 ### Bug Fixes

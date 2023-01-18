@@ -90,7 +90,7 @@ jobs:
           zip -r "${{ inputs.lib }}-latest.zip" ./dist >> /dev/null
           zip -r "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./dist >> /dev/null
           mv "${{ inputs.lib }}-latest.zip" ./releases
-          mv "${{ inputs.lib }}-v$${{ steps.get-version.outputs.VERSION }}.zip" ./releases
+          mv "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./releases
 
       - name: releases lookup
         run: |

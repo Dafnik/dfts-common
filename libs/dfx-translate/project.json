@@ -32,14 +32,15 @@
         "webpackConfig": "libs/dfx-translate/cli/webpack.config.js",
         "main": "libs/dfx-translate/cli/translate.cli.ts",
         "outputPath": "dist/libs/dfx-translate-cli",
-        "optimization": true,
         "compiler": "tsc",
-        "target": "node",
         "vendorChunk": false,
         "commonChunk": false,
         "namedChunks": false,
         "runtimeChunk": false,
-        "sourceMap": false
+        "sourceMap": false,
+        "optimization": {
+          "scripts": true
+        }
       }
     },
     "test": {

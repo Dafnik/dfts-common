@@ -53,6 +53,7 @@ specifiers:
   postcss-url: ~10.1.3
   prettier: ^2.6.2
   rxjs: ~7.8.0
+  terser-webpack-plugin: ^5.3.6
   ts-jest: 28.0.5
   ts-node: 10.9.1
   tslib: ^2.3.0
@@ -117,6 +118,7 @@ devDependencies:
   postcss-preset-env: 7.8.3_postcss@8.4.20
   postcss-url: 10.1.3_postcss@8.4.20
   prettier: 2.8.1
+  terser-webpack-plugin: 5.3.6_esbuild@0.17.0
   ts-jest: 28.0.5_6rv7pkqdcqtfcdgf4lmj4bfpvi
   ts-node: 10.9.1_vqcafhj4xvr2nzknlrdklk55zm
   typescript: 4.8.4
@@ -12094,6 +12096,30 @@ packages:
       terser: 5.16.1
       webpack: 5.75.0_esbuild@0.17.0
     dev: false
+
+  /terser-webpack-plugin/5.3.6_esbuild@0.17.0:
+    resolution: {integrity: sha512-kfLFk+PoLUQIbLmB1+PZDMRSZS99Mp+/MHqDNmMA6tOItzRt+Npe3E+fsMs5mfcM0wCtrrdU387UnV+vnSffXQ==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.17
+      esbuild: 0.17.0
+      jest-worker: 27.5.1
+      schema-utils: 3.1.1
+      serialize-javascript: 6.0.0
+      terser: 5.16.1
+    dev: true
 
   /terser-webpack-plugin/5.3.6_htvmhiqynazf46fjrszipnqp7a:
     resolution: {integrity: sha512-kfLFk+PoLUQIbLmB1+PZDMRSZS99Mp+/MHqDNmMA6tOItzRt+Npe3E+fsMs5mfcM0wCtrrdU387UnV+vnSffXQ==}

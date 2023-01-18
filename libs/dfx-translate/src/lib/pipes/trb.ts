@@ -1,7 +1,7 @@
 import {inject, Pipe, PipeTransform} from '@angular/core';
 
-import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../config/translate.config';
 import {TranslateService} from '../service/translate.service';
+import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../config/translate.config';
 
 @Pipe({
   name: 'trb',

@@ -6,7 +6,7 @@ on:
       - 'dfx-translate*'
 
 jobs:
-  dfx-helper:
+  dfx-translate:
     uses: dafnik/dfts-common/.github/workflows/release.yml@develop
     with:
       lib: dfx-translate

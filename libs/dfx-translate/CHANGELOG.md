@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.6.4](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.3...dfx-translate-1.6.4) (2023-01-18)
+
+### Bug Fixes
+
+- **dfx-translate:** extraction to work with single and double columns ([56f1d1b](https://github.com/Dafnik/dfts-common/commit/56f1d1b5c87774ad6cafd153316130426c44daaa))
+- **dfx-translate:** json match ([5e3e448](https://github.com/Dafnik/dfts-common/commit/5e3e44840630eabacf49591a4063674664301574))
+
 ## [1.6.3](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.2...dfx-translate-1.6.3) (2023-01-18)
 
 ### Bug Fixes

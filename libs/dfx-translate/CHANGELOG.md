@@ -2,6 +2,12 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.6.3](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.2...dfx-translate-1.6.3) (2023-01-18)
+
+### Bug Fixes
+
+- **dfx-translate:** main path ([4d5458c](https://github.com/Dafnik/dfts-common/commit/4d5458c921e1adb04bf202c04605268ffa09346b))
+
 ## [1.6.2](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.1...dfx-translate-1.6.2) (2023-01-18)
 
 ### Bug Fixes

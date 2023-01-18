@@ -1,7 +1,7 @@
-import {Inject, Pipe, PipeTransform} from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 
-import {TranslateService} from '../translate.service';
-import {TRANSLATE_CONFIG, TranslateConfig} from '../translate.config';
+import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../config/translate.config';
+import {TranslateService} from '../service/translate.service';
 
 @Pipe({
   name: 'trb',
@@ -9,11 +9,9 @@ import {TRANSLATE_CONFIG, TranslateConfig} from '../translate.config';
   pure: true,
 })
 export class DfxTrB implements PipeTransform {
-  defaultUndefinedOrNullBooleanTo: boolean | null = null;
+  defaultUndefinedOrNullBooleanTo = inject(TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO);
 
-  constructor(@Inject(TRANSLATE_CONFIG) config: TranslateConfig, private translator: TranslateService) {
-    this.defaultUndefinedOrNullBooleanTo = config.defaultUndefinedOrNullBooleanTo ?? this.defaultUndefinedOrNullBooleanTo;
-  }
+  constructor(private translator: TranslateService) {}
 
   transform(value?: boolean | null): string {
     if (value === undefined || value === null) {

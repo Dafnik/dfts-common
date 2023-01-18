@@ -1,7 +1,7 @@
 export * from './lib/dfx-translate.module';
 export * from './lib/translate.provider';
-export * from './lib/translate.config';
-export * from './lib/translate.service';
+export * from './lib/config/translate.config';
+export * from './lib/service/translate.service';
 export * from './lib/translationKeys';
 export * from './lib/types';
 

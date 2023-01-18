@@ -1,9 +1,8 @@
 import {Pipe, PipeTransform} from '@angular/core';
-
-import {TranslateService} from '../translate.service';
+import {Observable} from 'rxjs';
 
 import {translationKeys} from '../translationKeys';
-import {Observable} from 'rxjs';
+import {TranslateService} from '../service/translate.service';
 
 @Pipe({
   name: 'tra',

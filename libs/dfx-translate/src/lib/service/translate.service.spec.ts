@@ -2,9 +2,11 @@ import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
 
-import {DfxTranslateModule} from './dfx-translate.module';
+import {DfxTranslateModule} from '../dfx-translate.module';
 import {TranslateService} from './translate.service';
-import {serviceStub} from './test-helper';
+import {serviceStub} from '../test-helper';
+import {lastValueFrom} from 'rxjs';
+import {withAutoTranslatedLanguages} from '../translate.provider';
 
 @Component({
   template: ' <div>{{ translateKey | tr }}</div> ',
@@ -21,7 +23,7 @@ describe('TranslateService', () => {
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [DfxTranslateModule.setup({languagesWithAutoTranslation: ['de', 'es']})],
+      imports: [DfxTranslateModule.setup2(withAutoTranslatedLanguages(['de', 'es']))],
       providers: [{provide: HttpClient, useValue: serviceStub}],
     }).compileComponents();
 
@@ -31,8 +33,8 @@ describe('TranslateService', () => {
   it('should use default values', () => {
     expect(translateService.defaultLanguage).toBe('en');
     expect(translateService.getSelectedLanguage()).toBe('en');
-    expect(translateService.useLocalStorage).toBeTruthy();
-    expect(translateService.languagesWithAutoTranslation.length).toBe(2);
+    expect(translateService.rememberLanguage).toBeTruthy();
+    expect(translateService.autoTranslatedLanguages.length).toBe(2);
   });
 
   it('should language be defined', () => {
@@ -63,25 +65,25 @@ describe('TranslateService', () => {
   });
 
   it('should translate auto', async () => {
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(translateService.translate('testkey3')).toBe('testanswer3_DE_auto');
     expect(translateService.translate('testkey4')).toBe('testanswer4_DE_auto');
   });
 
   it('should translate changed language', async () => {
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(translateService.translate('testkey1')).toBe('testanswer1_DE');
     expect(translateService.translate('testkey2')).toBe('testanswer2_DE');
   });
 
-  it('change language to local storage one', async () => {
-    await translateService.use();
+  it('change language to local storage one', () => {
+    translateService.use();
     expect(translateService.defaultLanguage).toBe('en');
     expect(translateService.getSelectedLanguage()).toBe('en');
   });
 
-  it('set error language', async () => {
-    await translateService.use('es');
+  it('set error language', () => {
+    translateService.use('es');
     expect(translateService.getSelectedLanguage()).toBe('es');
     expect(localStorage.getItem('language')).toBe('es');
   });

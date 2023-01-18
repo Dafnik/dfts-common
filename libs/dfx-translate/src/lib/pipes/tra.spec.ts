@@ -1,9 +1,11 @@
-import {Component, DebugElement} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {DfxTranslateModule} from '../dfx-translate.module';
-import {TranslateService} from '../translate.service';
+import {TranslateService} from '../service/translate.service';
 import {serviceStub} from '../test-helper';
+import {lastValueFrom} from 'rxjs';
+import {withLibreTranslate, withRememberLanguage} from '../translate.provider';
 
 @Component({
   template: '<div>{{ translateKey | tra | async }}</div>',
@@ -15,7 +17,7 @@ class TestTranslateDirectiveComponent {
 describe('TranslateAutoDirective', () => {
   let component: TestTranslateDirectiveComponent;
   let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
-  let de: DebugElement;
+  let nativeElement: HTMLElement;
   let translateService: TranslateService;
 
   beforeEach(() => {
@@ -23,12 +25,7 @@ describe('TranslateAutoDirective', () => {
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [
-        DfxTranslateModule.setup({
-          libreTranslateInstanceUrl: 'https://test.i.activate.this.feature',
-          useLocalStorage: false,
-        }),
-      ],
+      imports: [DfxTranslateModule.setup2(withLibreTranslate('https://test.i.activate.this.feature'), withRememberLanguage(false))],
       providers: [{provide: HttpClient, useValue: serviceStub}],
     }).compileComponents();
 
@@ -36,7 +33,7 @@ describe('TranslateAutoDirective', () => {
 
     fixture = TestBed.createComponent(TestTranslateDirectiveComponent);
     component = fixture.componentInstance;
-    de = fixture.debugElement;
+    nativeElement = fixture.nativeElement as HTMLElement;
 
     fixture.detectChanges();
   });
@@ -46,13 +43,13 @@ describe('TranslateAutoDirective', () => {
   });
 
   it('should return undefined', () => {
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('');
   });
 
   it('should return other value after selecting other language', async () => {
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     component.translateKey = 'Hello';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('Hallo');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('Hallo');
   });
 });

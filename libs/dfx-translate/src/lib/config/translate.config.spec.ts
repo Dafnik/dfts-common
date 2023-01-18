@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
-import {DfxTranslateModule} from './dfx-translate.module';
-import {TranslateService} from './translate.service';
-import {serviceStub} from './test-helper';
+import {DfxTranslateModule} from '../dfx-translate.module';
+import {TranslateService} from '../service/translate.service';
+import {serviceStub} from '../test-helper';
+import {lastValueFrom} from 'rxjs';
+import {withAssetsPath, withAutoTranslatedLanguages, withDefaultLanguage} from '../translate.provider';
 
 @Component({
   template: ' <div>{{ translateKey | tr }}</div> ',
@@ -20,7 +22,7 @@ describe('TranslateConfig', () => {
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [DfxTranslateModule.setup()],
+      imports: [DfxTranslateModule.setup2()],
       providers: [{provide: HttpClient, useValue: serviceStub}],
     }).compileComponents();
 
@@ -30,8 +32,8 @@ describe('TranslateConfig', () => {
   it('should use default values', () => {
     expect(translateService.defaultLanguage).toBe('en');
     expect(translateService.getSelectedLanguage()).toBe('en');
-    expect(translateService.useLocalStorage).toBeTruthy();
-    expect(translateService.languagesWithAutoTranslation.length).toBe(0);
+    expect(translateService.rememberLanguage).toBeTruthy();
+    expect(translateService.autoTranslatedLanguages.length).toBe(0);
   });
 
   it('should language be defined', () => {
@@ -50,7 +52,7 @@ describe('TranslateConfig', () => {
   it('should store changed language as cookie', async () => {
     expect(translateService.getSelectedLanguage()).toBe('en');
     expect(localStorage.getItem('language')).toBeNull();
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(localStorage.getItem('language')).toBeDefined();
     expect(localStorage.getItem('language')).toBe('de');
     expect(translateService.getSelectedLanguage()).toBe('de');
@@ -58,12 +60,12 @@ describe('TranslateConfig', () => {
 
   it('should change language via spy', async () => {
     const spy = jest.spyOn(translateService, 'use');
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(spy).toHaveBeenCalledWith('de');
   });
 
   it('should change language', async () => {
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(translateService.getSelectedLanguage()).toBe('de');
   });
 });
@@ -74,7 +76,7 @@ describe('TranslateConfig2', () => {
   beforeEach(() => {
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [HttpClientModule, DfxTranslateModule.setup({languagesWithAutoTranslation: ['de'], assetsPath: 'assets/i18n/'})],
+      imports: [HttpClientModule, DfxTranslateModule.setup2(withAssetsPath('assets/i18n/'), withAutoTranslatedLanguages(['de']))],
     }).compileComponents();
 
     localStorage.setItem('language', 'en');
@@ -86,8 +88,8 @@ describe('TranslateConfig2', () => {
     expect(translateService.getSelectedLanguage()).toBe('en');
   });
 
-  it('should fail on loading language', async () => {
-    await translateService.use('de');
+  it('should fail on loading language', () => {
+    translateService.use('de');
     expect(translateService.translations).toEqual({});
   });
 });
@@ -100,11 +102,7 @@ describe('TranslateConfigChanged', () => {
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [
-        DfxTranslateModule.setup({
-          defaultLanguage: 'de',
-        }),
-      ],
+      imports: [DfxTranslateModule.setup2(withDefaultLanguage('de'))],
       providers: [{provide: HttpClient, useValue: serviceStub}],
     }).compileComponents();
 
@@ -114,8 +112,8 @@ describe('TranslateConfigChanged', () => {
   it('should use default values', () => {
     expect(translateService.defaultLanguage).toBe('de');
     expect(translateService.getSelectedLanguage()).toBe('de');
-    expect(translateService.useLocalStorage).toBeTruthy();
-    expect(translateService.languagesWithAutoTranslation.length).toBe(0);
+    expect(translateService.rememberLanguage).toBeTruthy();
+    expect(translateService.autoTranslatedLanguages.length).toBe(0);
   });
 
   it('should language be defined', () => {
@@ -129,18 +127,18 @@ describe('TranslateConfigChanged', () => {
 
   it('should store changed language as cookie', async () => {
     expect(localStorage.getItem('language')).toBeNull();
-    await translateService.use('en');
+    await lastValueFrom(translateService.use('en'));
     expect(localStorage.getItem('language')).toBe('en');
   });
 
   it('should change language via spy', async () => {
     const spy = jest.spyOn(translateService, 'use');
-    await translateService.use('en');
+    await lastValueFrom(translateService.use('en'));
     expect(spy).toHaveBeenCalledWith('en');
   });
 
   it('should change language', async () => {
-    await translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(translateService.getSelectedLanguage()).toBe('de');
   });
 });

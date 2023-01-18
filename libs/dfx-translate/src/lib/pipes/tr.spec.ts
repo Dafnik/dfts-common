@@ -1,9 +1,11 @@
-import {Component, DebugElement} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {DfxTranslateModule} from '../dfx-translate.module';
-import {TranslateService} from '../translate.service';
+import {TranslateService} from '../service/translate.service';
 import {serviceStub} from '../test-helper';
+import {lastValueFrom} from 'rxjs';
+import {withAutoTranslatedLanguages, withRememberLanguage} from '../translate.provider';
 
 @Component({
   template: '<div>{{ translateKey | tr }}</div>',
@@ -15,7 +17,7 @@ class TestTranslateDirectiveComponent {
 describe('TranslateDirective', () => {
   let component: TestTranslateDirectiveComponent;
   let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
-  let de: DebugElement;
+  let nativeElement: HTMLElement;
   let translateService: TranslateService;
 
   beforeEach(() => {
@@ -23,19 +25,15 @@ describe('TranslateDirective', () => {
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [
-        DfxTranslateModule.setup({
-          useLocalStorage: false,
-        }),
-      ],
+      imports: [DfxTranslateModule.setup2(withRememberLanguage(false))],
       providers: [{provide: HttpClient, useValue: serviceStub}],
     }).compileComponents();
 
     translateService = TestBed.inject(TranslateService);
 
-    fixture = TestBed.createComponent(TestTranslateDirectiveComponent);
+    fixture = TestBed.createComponent(TestTranslateDirectiveComponent) as typeof fixture;
     component = fixture.componentInstance;
-    de = fixture.debugElement;
+    nativeElement = fixture.nativeElement as HTMLElement;
 
     fixture.detectChanges();
   });
@@ -43,8 +41,8 @@ describe('TranslateDirective', () => {
   it('should use configured values', () => {
     expect(translateService.defaultLanguage).toBe('en');
     expect(translateService.getSelectedLanguage()).toBe('en');
-    expect(translateService.languagesWithAutoTranslation.length).toBe(0);
-    expect(translateService.useLocalStorage).toBeFalsy();
+    expect(translateService.autoTranslatedLanguages.length).toBe(0);
+    expect(translateService.rememberLanguage).toBeFalsy();
     expect(localStorage.getItem('language')).toBeNull();
   });
 
@@ -53,46 +51,46 @@ describe('TranslateDirective', () => {
   });
 
   it('should return undefined', () => {
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('undefined');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('undefined');
   });
 
   it('should return key', () => {
     component.translateKey = 'key';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('key');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('key');
   });
 
   it('should return value', () => {
     component.translateKey = 'testkey1';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer1');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer1');
   });
 
   it('should return other value', () => {
     component.translateKey = 'testkey2';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer2');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer2');
   });
 
-  it('should return value after selecting other language', () => {
+  it('should return value after selecting other language', async () => {
     component.translateKey = 'testkey1';
-    translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer1_DE');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer1_DE');
   });
 
-  it('should return other value after selecting other language', () => {
+  it('should return other value after selecting other language', async () => {
     component.translateKey = 'testkey2';
-    translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer2_DE');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer2_DE');
   });
 });
 
 describe('TranslateDirectiveWithAuto', () => {
   let component: TestTranslateDirectiveComponent;
   let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
-  let de: DebugElement;
+  let nativeElement: HTMLElement;
   let translateService: TranslateService;
 
   beforeEach(() => {
@@ -100,12 +98,7 @@ describe('TranslateDirectiveWithAuto', () => {
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [
-        DfxTranslateModule.setup({
-          useLocalStorage: false,
-          languagesWithAutoTranslation: ['de'],
-        }),
-      ],
+      imports: [DfxTranslateModule.setup2(withRememberLanguage(false), withAutoTranslatedLanguages(['de']))],
       providers: [{provide: HttpClient, useValue: serviceStub}],
     }).compileComponents();
 
@@ -113,7 +106,7 @@ describe('TranslateDirectiveWithAuto', () => {
 
     fixture = TestBed.createComponent(TestTranslateDirectiveComponent);
     component = fixture.componentInstance;
-    de = fixture.debugElement;
+    nativeElement = fixture.nativeElement as HTMLElement;
 
     fixture.detectChanges();
   });
@@ -121,63 +114,63 @@ describe('TranslateDirectiveWithAuto', () => {
   it('should use configured values', () => {
     expect(translateService.defaultLanguage).toBe('en');
     expect(translateService.getSelectedLanguage()).toBe('en');
-    expect(translateService.languagesWithAutoTranslation.length).toBe(1);
-    expect(translateService.useLocalStorage).toBeFalsy();
+    expect(translateService.autoTranslatedLanguages.length).toBe(1);
+    expect(translateService.rememberLanguage).toBeFalsy();
     expect(localStorage.getItem('language')).toBeNull();
   });
 
-  it('should autotranslated language be defined', () => {
+  it('should autotranslated language be defined', async () => {
     expect(translateService.autoGeneratedTranslations).toEqual({});
-    translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     expect(translateService.autoGeneratedTranslations).not.toEqual({});
   });
 
   it('should return undefined with auto generated', () => {
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('undefined');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('undefined');
   });
 
   it('should return key with auto generated', () => {
     component.translateKey = 'key';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('key');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('key');
   });
 
   it('should return value', () => {
     component.translateKey = 'testkey1';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer1');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer1');
   });
 
   it('should return other value', () => {
     component.translateKey = 'testkey2';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer2');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer2');
   });
 
   it('should return autogenerated value', () => {
     component.translateKey = 'testkey4';
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer4');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer4');
   });
 
-  it('should return value after selecting other language', () => {
+  it('should return value after selecting other language', async () => {
     component.translateKey = 'testkey1';
-    translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer1_DE');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer1_DE');
   });
 
-  it('should return autogenerated value after selecting other language', () => {
+  it('should return autogenerated value after selecting other language', async () => {
     component.translateKey = 'testkey4';
-    translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer4_DE_auto');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer4_DE_auto');
   });
 
-  it('should return other value after selecting other language', () => {
+  it('should return other value after selecting other language', async () => {
     component.translateKey = 'testkey2';
-    translateService.use('de');
+    await lastValueFrom(translateService.use('de'));
     fixture.detectChanges();
-    expect((fixture.nativeElement as HTMLElement).querySelector('div')?.textContent).toBe('testanswer2_DE');
+    expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer2_DE');
   });
 });

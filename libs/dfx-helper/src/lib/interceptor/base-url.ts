@@ -1,24 +1,23 @@
 import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {loggerOf} from 'dfts-helper';
 
-import {HELPER_CONFIG, HelperConfig} from '../config';
+import {HELPER_BASE_URL, HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS} from '../config';
 import {AbstractIgnoreableInterceptor} from './abstract-ignoreable';
 import {BASE_URL_INTERCEPTOR} from './http-context-token';
 
 @Injectable()
 export class BaseUrlInterceptor extends AbstractIgnoreableInterceptor {
   private lumber = loggerOf('httpClient');
-  baseUrl?: string;
+  baseUrl = inject(HELPER_BASE_URL);
 
-  constructor(@Inject(HELPER_CONFIG) config: HelperConfig) {
-    super(BASE_URL_INTERCEPTOR, config.baseUrlInterceptorIgnorePaths);
-    this.baseUrl = config.baseUrl;
+  constructor() {
+    super(BASE_URL_INTERCEPTOR, inject(HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS));
   }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (this.baseUrl && this.baseUrl.length > 0 && this.shouldIntercept(req)) {
+    if (this.baseUrl.length > 0 && this.shouldIntercept(req)) {
       return next.handle(req.clone({url: `${this.baseUrl + req.url}`}));
     }
 

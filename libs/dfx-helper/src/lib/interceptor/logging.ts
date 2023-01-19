@@ -1,18 +1,18 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest, HttpResponse} from '@angular/common/http';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {loggerOf} from 'dfts-helper';
 
 import {AbstractIgnoreableInterceptor} from './abstract-ignoreable';
-import {HELPER_CONFIG, HelperConfig} from '../config';
+import {HELPER_LOGGING_INTERCEPTOR_IGNORE_PATHS} from '../config';
 import {LOGGING_INTERCEPTOR} from './http-context-token';
 
 @Injectable()
 export class LoggingInterceptor extends AbstractIgnoreableInterceptor {
   private lumber = loggerOf('httpClient');
 
-  constructor(@Inject(HELPER_CONFIG) config: HelperConfig) {
-    super(LOGGING_INTERCEPTOR, config.loggingInterceptorIgnorePaths);
+  constructor() {
+    super(LOGGING_INTERCEPTOR, inject(HELPER_LOGGING_INTERCEPTOR_IGNORE_PATHS));
   }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

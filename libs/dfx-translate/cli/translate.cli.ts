@@ -16,7 +16,7 @@ import {program} from 'commander';
 const translationKeysTypePath = './node_modules/dfx-translate/lib/translationKeys.d.ts';
 const defaultAssetsPath = './src/assets/i18n/';
 
-program.name('translate-cli').description('dfx-translate development tools and helper scripts').version('0.0.2');
+program.name('translate-cli').description('dfx-translate development tools and helper scripts').version('1.0.0');
 
 program
   .command('generateTypes')

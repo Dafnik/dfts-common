@@ -16,6 +16,8 @@ export const TRANSLATIONS_EN = {
 export const TRANSLATIONS_DE = {
   testkey1: 'testanswer1_DE',
   testkey2: 'testanswer2_DE',
+  TRUE: 'Richtig',
+  FALSE: 'Falsch',
 };
 
 export const TRANSLATIONS_DE_AUTO = {

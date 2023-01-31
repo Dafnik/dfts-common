@@ -65,3 +65,39 @@ describe('TranslateAutoDirective', () => {
     expect(nativeElement.querySelector('div')?.textContent).toBe('Hallo');
   });
 });
+
+describe('TranslateAutoDirective disabled', () => {
+  let component: TestTranslateDirectiveComponent;
+  let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
+  let nativeElement: HTMLElement;
+
+  beforeEach(() => {
+    localStorage.clear();
+
+    void TestBed.configureTestingModule({
+      declarations: [TestTranslateDirectiveComponent],
+      imports: [DfxTrA],
+      providers: [{provide: HttpClient, useValue: serviceStub}, provideDfxTranslate(withRememberLanguage(false))],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TestTranslateDirectiveComponent) as typeof fixture;
+    component = fixture.componentInstance;
+    nativeElement = fixture.nativeElement as HTMLElement;
+
+    fixture.detectChanges();
+  });
+
+  it('should create an instance', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should return undefined', () => {
+    expect(nativeElement.querySelector('div')?.textContent).toBe('');
+  });
+
+  it('should be disabled', () => {
+    component.translateKey = 'Hello';
+    fixture.detectChanges();
+    expect(nativeElement.querySelector('div')?.textContent).toBe('Feature disabled');
+  });
+});

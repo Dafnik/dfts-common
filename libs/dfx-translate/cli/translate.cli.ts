@@ -25,7 +25,13 @@ program
   .option('--log', 'Log more information')
   .option('--dir <path>', 'Path to language files folder', defaultAssetsPath)
   .action(async (sourcePath: string | undefined, options: {log: boolean; dir: string}) => {
-    sourcePath = sourcePath ?? options.dir + (await getDefaultLanguage(options.log)) + '.json';
+    try {
+      sourcePath = sourcePath ?? options.dir + (await getDefaultLanguage(options.log)) + '.json';
+    } catch {
+      console.error('Default language could not be determined. Please provide the "sourceLanguagePath" in the command.');
+      console.log('Example: "translate-cli generateTypes [sourceLanguagePath]"');
+      return;
+    }
     if (options.log) console.log(`dfx-translate >> source path: "${sourcePath}"`);
     getJSON(sourcePath)
       .then((input_vars) => convertToArray(input_vars))
@@ -43,7 +49,7 @@ program
   .description('Resets type-definitions')
   .action(async () => {
     await writeToFile(translationKeysTypePath, 'export type translationKeys = string | undefined | null;');
-    console.log('dfx-translate >> Types resetted.');
+    console.log('dfx-translate >> Types reset.');
   });
 
 program
@@ -69,7 +75,15 @@ program
   .option('--source <path>', 'Path to source language file')
   .option('--dir <path>', 'Path to language files folder', defaultAssetsPath)
   .action(async (instanceUrl: string, targetLang: string, options: {log: boolean; disableCache: boolean; source: string; dir: string}) => {
-    const sourcePath = options.source ?? options.dir + (await getDefaultLanguage(options.log)) + '.json';
+    let sourcePath = '';
+
+    try {
+      sourcePath = options.source ?? options.dir + (await getDefaultLanguage(options.log)) + '.json';
+    } catch {
+      console.error('Default language could not be determined. Please provide the "sourceLanguagePath" in the command.');
+      console.log('Example: "translate-cli generateTypes [sourceLanguagePath]"');
+      return;
+    }
 
     const sourceLang = sourcePath.split('/').pop()?.split('.').at(0);
     if (!sourceLang) {

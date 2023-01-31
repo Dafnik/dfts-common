@@ -1,14 +1,17 @@
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {DfxTranslateModule} from '../dfx-translate.module';
-import {TranslateService} from '../service/translate.service';
-import {serviceStub} from '../test-helper';
-import {lastValueFrom} from 'rxjs';
-import {withLibreTranslate, withRememberLanguage} from '../translate.provider';
+import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
+import {provideDfxTranslate} from '../translate.provider';
+import {TranslateStore} from '../service/translate.store';
+import {dfxTranslateSetLanguageFn} from '../service/set-language-fn';
+import {DfxTrA} from './tra';
+import {dfxTranslateSetLanguage} from '../types';
+import {withLibreTranslate} from '../features/libre-translate/libre-translate';
+import {withRememberLanguage} from '../features/remember-language/remember-language';
 
 @Component({
-  template: '<div>{{ translateKey | tra | async }}</div>',
+  template: '<div>{{ translateKey | tra }}</div>',
 })
 class TestTranslateDirectiveComponent {
   translateKey?: string;
@@ -18,20 +21,29 @@ describe('TranslateAutoDirective', () => {
   let component: TestTranslateDirectiveComponent;
   let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
   let nativeElement: HTMLElement;
-  let translateService: TranslateService;
+  let translateStore: TranslateStore;
+  let setLanguage: dfxTranslateSetLanguage;
 
   beforeEach(() => {
     localStorage.clear();
 
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
-      imports: [DfxTranslateModule.setup2(withLibreTranslate('https://test.i.activate.this.feature'), withRememberLanguage(false))],
-      providers: [{provide: HttpClient, useValue: serviceStub}],
+      imports: [DfxTrA],
+      providers: [
+        {provide: HttpClient, useValue: serviceStub},
+        provideDfxTranslate(withRememberLanguage(false), withLibreTranslate('https://test.i.activate.this.feature')),
+        {
+          provide: TRANSLATE_SET_LANGUAGE_FN,
+          useFactory: () => dfxTranslateSetLanguageFn(),
+        },
+      ],
     }).compileComponents();
 
-    translateService = TestBed.inject(TranslateService);
+    translateStore = TestBed.inject(TranslateStore);
+    setLanguage = TestBed.inject(TRANSLATE_SET_LANGUAGE_FN);
 
-    fixture = TestBed.createComponent(TestTranslateDirectiveComponent);
+    fixture = TestBed.createComponent(TestTranslateDirectiveComponent) as typeof fixture;
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement as HTMLElement;
 
@@ -46,8 +58,8 @@ describe('TranslateAutoDirective', () => {
     expect(nativeElement.querySelector('div')?.textContent).toBe('');
   });
 
-  it('should return other value after selecting other language', async () => {
-    await lastValueFrom(translateService.use('de'));
+  it('should return other value after selecting other language', () => {
+    setLanguage('de');
     component.translateKey = 'Hello';
     fixture.detectChanges();
     expect(nativeElement.querySelector('div')?.textContent).toBe('Hallo');

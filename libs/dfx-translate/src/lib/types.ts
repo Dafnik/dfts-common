@@ -1,33 +1,12 @@
-import {Provider} from '@angular/core';
+import {dfxTranslateFn} from './service/translate-fn';
+import {dfxTranslateSetLanguageFn} from './service/set-language-fn';
+import {dfxAutoTranslateFn} from './service/auto-translate-fn';
 
-export type translationFile = {[key: string]: string};
+export type translationFile = {[key: string]: string | undefined};
 export type autoTranslationResponse = {translatedText: string};
 
-export enum TranslateFeatureKind {
-  DEFAULT_LANGUAGE,
-  DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO,
-  ASSETS_PATH,
-  REMEMBER_LANGUAGE,
-  AUTO_TRANSLATED_LANGUAGES,
-  LIBRE_TRANSLATE,
-}
+export const TRANSLATE_LOCALSTORAGE_KEY = 'language';
 
-export declare interface TranslateFeature<KindT extends TranslateFeatureKind> {
-  kind: KindT;
-  providers: Provider[];
-}
-
-export declare type DefaultLanguageFeature = TranslateFeature<TranslateFeatureKind.DEFAULT_LANGUAGE>;
-export declare type DefaultUndefinedOrNullBooleanToFeature = TranslateFeature<TranslateFeatureKind.DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO>;
-export declare type AssetsPathFeature = TranslateFeature<TranslateFeatureKind.ASSETS_PATH>;
-export declare type RememberLanguageFeature = TranslateFeature<TranslateFeatureKind.REMEMBER_LANGUAGE>;
-export declare type AutoTranslatedLanguagesFeature = TranslateFeature<TranslateFeatureKind.AUTO_TRANSLATED_LANGUAGES>;
-export declare type LibreTranslateFeature = TranslateFeature<TranslateFeatureKind.LIBRE_TRANSLATE>;
-
-export declare type TranslateFeatures =
-  | DefaultLanguageFeature
-  | DefaultUndefinedOrNullBooleanToFeature
-  | AssetsPathFeature
-  | RememberLanguageFeature
-  | AutoTranslatedLanguagesFeature
-  | LibreTranslateFeature;
+export type dfxTranslate = ReturnType<typeof dfxTranslateFn>;
+export type dfxTranslateSetLanguage = ReturnType<typeof dfxTranslateSetLanguageFn>;
+export type dfxAutoTranslate = ReturnType<typeof dfxAutoTranslateFn>;

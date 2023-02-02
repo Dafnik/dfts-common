@@ -59,7 +59,10 @@
       }
     },
     "version": {
-      "executor": "@jscutlery/semver:version"
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "changelogHeader": " "
+      }
     }
   },
   "tags": []

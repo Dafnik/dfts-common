@@ -36,7 +36,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Dafnik/dfts-common.git"
+    "url": "git@github.com:Dafnik/dfts-common.git",
+    "directory": "libs/dfx-translate"
   },
   "peerDependencies": {
     "@angular/common": "4 - 15",

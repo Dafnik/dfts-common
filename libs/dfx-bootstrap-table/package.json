@@ -39,7 +39,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/DatePoll/common/dfx-common.git"
+    "url": "git+https://gitlab.com/DatePoll/common/dfx-common.git",
+    "directory": "libs/dfx-bootstrap-table"
   },
   "peerDependencies": {
     "@angular/common": "4 - 15",

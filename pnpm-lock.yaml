@@ -47,7 +47,6 @@ specifiers:
   jest-preset-angular: ~12.2.3
   lint-staged: ^13.1.0
   ng-packagr: 15.1.1
-  ngx-deploy-npm: ^4.3.10
   nx: 15.6.3
   postcss: ^8.4.5
   postcss-import: ~14.1.0
@@ -115,7 +114,6 @@ devDependencies:
   jest-preset-angular: 12.2.3_7acwuml4r42nwylvwyhvrxloea
   lint-staged: 13.1.0
   ng-packagr: 15.1.1_2ef53p5svuzfb3ie5o3r6e7qee
-  ngx-deploy-npm: 4.3.10_nx@15.6.3+typescript@4.8.4
   nx: 15.6.3
   postcss: 8.4.20
   postcss-import: 14.1.0_postcss@8.4.20
@@ -3112,21 +3110,6 @@ packages:
       - nx
       - prettier
       - typescript
-
-  /@nrwl/devkit/15.2.3_nx@15.6.3+typescript@4.8.4:
-    resolution: {integrity: sha512-3IZVahO6vvEFxp0N7mEO34ZnYT+8FaObyYI/2XVYZ0eDCAMihn2IIUMj+M42vAXPOJpctdghSKXovQDuHO031w==}
-    peerDependencies:
-      nx: '>= 14 <= 16'
-    dependencies:
-      '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
-      ejs: 3.1.8
-      ignore: 5.2.4
-      nx: 15.6.3
-      semver: 7.3.4
-      tslib: 2.4.1
-    transitivePeerDependencies:
-      - typescript
-    dev: true
 
   /@nrwl/devkit/15.6.3_nx@15.6.3+typescript@4.8.4:
     resolution: {integrity: sha512-/JDvdzNxUM+C1PCZPCrvmFx+OfywqZdOq1GS9QR8C0VctTLG4D/SGSFD88O1SAdcbH/f1mMiBGfEYZYd23fghQ==}
@@ -9014,16 +8997,6 @@ packages:
     transitivePeerDependencies:
       - bluebird
       - supports-color
-    dev: true
-
-  /ngx-deploy-npm/4.3.10_nx@15.6.3+typescript@4.8.4:
-    resolution: {integrity: sha512-6cLM1z0h6VD5SYH9fJSeslvTSKTkaySsH63k2AouXnAXsHQe4eFrdkmfMAZoVwUZHyaNIBOKMUcTvotgMwQnug==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@nrwl/devkit': 15.2.3_nx@15.6.3+typescript@4.8.4
-    transitivePeerDependencies:
-      - nx
-      - typescript
     dev: true
 
   /nice-napi/1.0.2:

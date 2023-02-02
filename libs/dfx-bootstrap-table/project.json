@@ -37,13 +37,6 @@
     },
     "version": {
       "executor": "@jscutlery/semver:version"
-    },
-    "publish": {
-      "executor": "ngx-deploy-npm:deploy",
-      "options": {
-        "buildTarget": "production",
-        "access": "public"
-      }
     }
   },
   "tags": []

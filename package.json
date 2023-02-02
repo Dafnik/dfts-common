@@ -64,7 +64,6 @@
     "jest-preset-angular": "~12.2.3",
     "lint-staged": "^13.1.0",
     "ng-packagr": "15.1.1",
-    "ngx-deploy-npm": "^4.3.10",
     "nx": "15.6.3",
     "postcss": "^8.4.5",
     "postcss-import": "~14.1.0",

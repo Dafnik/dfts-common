@@ -61,15 +61,17 @@ jobs:
           path: ./dist/libs/${{ inputs.lib }}
           retention-days: 1
 
-  deploy-zip:
-    name: Deploy zip to release server
+  release-zip:
+    name: Release zip to release server
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
-      - name: setup node and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - name: setup Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - uses: actions/download-artifact@master
         with:
@@ -108,8 +110,51 @@ jobs:
           username: ${{ secrets.RELEASES_SSH_USER }}
           privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
 
-  deploy-npm:
-    name: Deploy to npm registry
+  release-github:
+    name: Release zip to github releases
+    needs: [ build, test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: setup Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: actions/download-artifact@master
+        with:
+          name: ${{ inputs.lib }}
+          path: ./dist
+
+      - name: get {{ inputs.lib }} version& github releases
+        id: get-version
+        shell: bash
+        run: |
+          echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
+          echo "version: $VERSION"
+
+      - name: zip to ${{ inputs.lib }}-${{ steps.get-version.outputs.VERSION }}.zip
+        shell: bash
+        run: |
+          mkdir releases
+          zip -r "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./dist >> /dev/null
+          mv "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./releases
+
+      - name: releases lookup
+        run: |
+          cd releases
+          ls -la
+          cd -
+
+      - name: create github release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: ./libs/${{ inputs.lib }}/CHANGELOG.md
+          files: ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
+
+  release-npm:
+    name: Release to npm registry
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:

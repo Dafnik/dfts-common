@@ -8,7 +8,7 @@ runs:
       with:
         version: 7
 
-    - name: use Node.js 16
+    - name: use Node.js 18
       uses: actions/setup-node@v3
       with:
         node-version: 18

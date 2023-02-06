@@ -1,3 +1,9 @@
+## [2.0.3](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.2...dfx-translate-2.0.3) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-translate:** pipes not updating ([b3a34bc](https://github.com/Dafnik/dfts-common/commit/b3a34bc912bd51ee764c32a7a93e5a5487f7ccb0))
+
 ## [2.0.2](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.1...dfx-translate-2.0.2) (2023-02-06)
 
 ### Bug Fixes

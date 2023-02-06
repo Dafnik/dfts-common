@@ -1,15 +1,15 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-import {HELPER_CONFIG, HelperConfig} from '../config';
+import {HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS} from '../config';
 import {AbstractIgnoreableInterceptor} from './abstract-ignoreable';
 import {POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR} from './http-context-token';
 
 @Injectable()
 export class PostPutJsonContentTypeInterceptor extends AbstractIgnoreableInterceptor {
-  constructor(@Inject(HELPER_CONFIG) config: HelperConfig) {
-    super(POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR, config.postPutJsonContentTypeInterceptorIgnorePaths);
+  constructor() {
+    super(POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR, inject(HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS));
   }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

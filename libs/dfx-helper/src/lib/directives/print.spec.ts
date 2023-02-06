@@ -94,9 +94,9 @@ describe('DfxPrintDirective', () => {
   });
 
   it('should popup a new window', () => {
-    const spy = jest.spyOn(window, 'open');
+    window.open = jest.fn();
     // simulate click
     buttonEl.triggerEventHandler('click', {});
-    expect(spy).toHaveBeenCalled();
+    expect(window.open).toHaveBeenCalled();
   });
 });

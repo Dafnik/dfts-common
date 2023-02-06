@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "dfts-helper": ["libs/dfts-helper/src/index.ts"],
-      "dfx-helper": ["libs/dfx-helper/src/index.ts"]
+      "dfx-bootstrap-table": ["libs/dfx-bootstrap-table/src/index.ts"],
+      "dfx-helper": ["libs/dfx-helper/src/index.ts"],
+      "dfx-translate": ["libs/dfx-translate/src/index.ts"]
     },
     "esModuleInterop": true,
     "noUnusedParameters": false,

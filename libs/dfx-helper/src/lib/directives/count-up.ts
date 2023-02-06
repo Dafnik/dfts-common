@@ -1,13 +1,17 @@
-import {Directive, ElementRef, HostListener, Inject, Input} from '@angular/core';
+import {Directive, ElementRef, HostListener, inject, Input} from '@angular/core';
 import {coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
-import {WINDOW} from '../windows-provider';
 import {s_from} from 'dfts-helper';
+import {WINDOW} from '../windows-provider';
 
 @Directive({
   selector: '[countUp]',
   standalone: true,
 })
 export class DfxCountUp {
+  el = inject(ElementRef<HTMLElement>);
+
+  window = inject(WINDOW);
+
   @Input() set countUp(it: NumberInput) {
     if (it) {
       this._count = coerceNumberProperty(it);
@@ -34,8 +38,6 @@ export class DfxCountUp {
   // Use that to calculate how many frames we need to complete the animation
   totalFrames = Math.round(this._animationDuration / this.frameDuration);
 
-  constructor(private el: ElementRef<HTMLElement>, @Inject(WINDOW) private window: Window) {}
-
   @HostListener('mousedown') onMouseDown(): void {
     this.animateCountUp();
   }
@@ -46,7 +48,7 @@ export class DfxCountUp {
   // The animation function, which takes an Element
   animateCountUp = (): void => {
     // exit early if the counter is already running
-    if (this.counterRunning) {
+    if (this.counterRunning || !this.window) {
       return;
     }
 
@@ -74,7 +76,7 @@ export class DfxCountUp {
         this.counterRunning = false;
       } else {
         // otherwise, continue the animation by calling animate again
-        this.window.requestIdleCallback(animate);
+        this.window?.requestIdleCallback(animate);
       }
     };
 

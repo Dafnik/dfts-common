@@ -1,0 +1,47 @@
+{
+  "name": "dfx-translate",
+  "version": "2.0.0",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://datepoll.org",
+  "keywords": [
+    "angular2",
+    "angular",
+    "translation",
+    "translate",
+    "translating",
+    "i18n",
+    "internationalization",
+    "json",
+    "simple",
+    "ngx",
+    "ng",
+    "ng-translate",
+    "ngx-translate",
+    "autotranslation",
+    "automation",
+    "typesafe",
+    "typed",
+    "type-safe"
+  ],
+  "author": "Dafnik",
+  "bugs": {
+    "url": "https://gitlab.com/DatePoll/common/dfx-common/-/issues"
+  },
+  "bin": {
+    "translate-cli": "cli/index.js"
+  },
+  "scripts": {
+    "postinstall": "translate-cli createDir"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Dafnik/dfts-common.git",
+    "directory": "libs/dfx-translate"
+  },
+  "peerDependencies": {
+    "@angular/common": "4 - 15",
+    "@angular/core": "4 - 15",
+    "rxjs": "2 - 7"
+  }
+}

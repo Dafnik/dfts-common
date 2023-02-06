@@ -2,11 +2,11 @@ import {NgModule, Pipe, PipeTransform} from '@angular/core';
 import {IMap, s_imploder, UndefinedOrNullOr} from 'dfts-helper';
 
 @Pipe({
-  name: 'implode',
+  name: 's_implode',
   standalone: true,
   pure: true,
 })
-export class DfxImplode implements PipeTransform {
+export class DfxImplodePipe implements PipeTransform {
   transform(
     strings: UndefinedOrNullOr<string[]>,
     separator?: UndefinedOrNullOr<string>,
@@ -18,10 +18,11 @@ export class DfxImplode implements PipeTransform {
 }
 
 @Pipe({
-  name: 'implodeMapped',
+  name: 's_implodeMapped',
   standalone: true,
+  pure: true,
 })
-export class DfxImplodeMapped implements PipeTransform {
+export class ImplodeMappedPipe implements PipeTransform {
   transform<T>(
     strings: UndefinedOrNullOr<T[]>,
     mapFn: IMap<T, string>,
@@ -33,7 +34,24 @@ export class DfxImplodeMapped implements PipeTransform {
   }
 }
 
-const PIPES = [DfxImplode, DfxImplodeMapped];
+@Pipe({
+  name: 's_implodePlucked',
+  standalone: true,
+  pure: true,
+})
+export class DfxImplodePluckedPipe implements PipeTransform {
+  transform<T>(
+    strings: UndefinedOrNullOr<T[]>,
+    key: UndefinedOrNullOr<keyof T>,
+    separator?: UndefinedOrNullOr<string>,
+    maxLength?: UndefinedOrNullOr<number>,
+    suffix?: UndefinedOrNullOr<string>
+  ): string {
+    return s_imploder().pluckedSource(strings, key).maxLength(maxLength).separator(separator).suffix(suffix).build();
+  }
+}
+
+const PIPES = [DfxImplodePipe, ImplodeMappedPipe, DfxImplodePluckedPipe];
 
 @NgModule({
   imports: PIPES,

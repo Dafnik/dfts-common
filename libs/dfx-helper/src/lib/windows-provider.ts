@@ -1,10 +1,13 @@
-import {FactoryProvider, InjectionToken} from '@angular/core';
+import {FactoryProvider, inject, InjectionToken, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 
-export const WINDOW = new InjectionToken<Window>('window');
+export const WINDOW = new InjectionToken<Window | undefined>('window');
 
 const windowProvider: FactoryProvider = {
   provide: WINDOW,
-  useFactory: () => window,
+  useFactory: () => {
+    return isPlatformBrowser(inject(PLATFORM_ID)) ? window : undefined;
+  },
 };
 
 export const WINDOW_PROVIDERS = [windowProvider];

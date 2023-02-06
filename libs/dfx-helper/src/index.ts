@@ -34,7 +34,9 @@ export * from './lib/pipes/string/string-pipes.module';
 export * from './lib/pipes/string/strip-whitespace';
 export * from './lib/pipes/string/truncate';
 export * from './lib/pipes/string/upper-case-first-letter';
+
 export * from './lib/pipes/implode';
+export * from './lib/pipes/name-map';
 export * from './lib/pipes/time-left';
 export * from './lib/pipes/time-span';
 
@@ -44,6 +46,7 @@ export * from './lib/strategies/abstract-title';
 export * from './lib/strategies/dfx-preload';
 
 export * from './lib/config';
+export * from './lib/features';
 export * from './lib/helper.provider';
 export * from './lib/helper.module';
 export * from './lib/key-value-pair';

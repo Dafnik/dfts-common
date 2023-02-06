@@ -1,6 +1,6 @@
 {
   "name": "dfts-helper",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "Typescript Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",
@@ -24,6 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dafnik/dfts-common.git"
+    "url": "git+https://github.com/Dafnik/dfts-common.git",
+    "directory": "libs/dfts-helper"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "dfx-helper",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0",
   "description": "Web-development / Typescript / Angular Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",
@@ -26,7 +26,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/DatePoll/common/dfx-common.git"
+    "url": "git+https://gitlab.com/DatePoll/common/dfx-common.git",
+    "directory": "libs/dfx-helper"
   },
   "peerDependencies": {
     "@angular/common": "9 - 15",

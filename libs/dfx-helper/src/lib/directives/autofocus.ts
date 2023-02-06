@@ -15,6 +15,7 @@ export class DfxAutofocus implements AfterViewInit {
   constructor(private elRef: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
+    // Just an optional extra null check
     this.elRef.nativeElement?.focus();
   }
 }

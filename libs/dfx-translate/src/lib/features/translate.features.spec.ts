@@ -4,8 +4,8 @@ import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
 import {provideDfxTranslate} from '../translate.provider';
 import {TranslateStore} from '../service/translate.store';
 import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {dfxTranslateSetLanguageFn} from '../service/set-language-fn';
-import {dfxTranslateSetLanguage} from '../types';
+import {dfxTranslateSetLanguage} from '../service/set-language';
+import {dfxTranslateSetLanguageFn} from '../types';
 import {TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage} from './default-language/default-language';
 import {withAssetsPath} from './assets-path/assets-path';
 import {TRANSLATE_REMEMBER_LANGUAGE} from './remember-language/remember-language';
@@ -13,7 +13,7 @@ import {TRANSLATE_AUTO_TRANSLATED_LANGUAGES, withAutoTranslatedLanguages} from '
 
 describe('TranslateConfig', () => {
   let translateStore: TranslateStore;
-  let setLanguage: dfxTranslateSetLanguage;
+  let setLanguage: dfxTranslateSetLanguageFn;
 
   beforeEach(() => {
     localStorage.clear();
@@ -24,7 +24,7 @@ describe('TranslateConfig', () => {
         provideDfxTranslate(),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
-          useFactory: () => dfxTranslateSetLanguageFn(),
+          useFactory: () => dfxTranslateSetLanguage(),
         },
       ],
     }).compileComponents();
@@ -77,7 +77,7 @@ describe('TranslateConfig', () => {
 
 describe('TranslateConfig2', () => {
   let translateStore: TranslateStore;
-  let setLanguage: dfxTranslateSetLanguage;
+  let setLanguage: dfxTranslateSetLanguageFn;
 
   beforeEach(() => {
     localStorage.clear();
@@ -88,7 +88,7 @@ describe('TranslateConfig2', () => {
         provideDfxTranslate(withAssetsPath('assets/i18n/'), withAutoTranslatedLanguages(['de'])),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
-          useFactory: () => dfxTranslateSetLanguageFn(),
+          useFactory: () => dfxTranslateSetLanguage(),
         },
       ],
     }).compileComponents();
@@ -106,7 +106,7 @@ describe('TranslateConfig2', () => {
 
 describe('TranslateConfigChanged', () => {
   let translateStore: TranslateStore;
-  let setLanguage: dfxTranslateSetLanguage;
+  let setLanguage: dfxTranslateSetLanguageFn;
 
   beforeEach(() => {
     localStorage.clear();
@@ -117,7 +117,7 @@ describe('TranslateConfigChanged', () => {
         provideDfxTranslate(withDefaultLanguage('de')),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
-          useFactory: () => dfxTranslateSetLanguageFn(),
+          useFactory: () => dfxTranslateSetLanguage(),
         },
       ],
     }).compileComponents();

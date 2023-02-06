@@ -1,7 +1,6 @@
 import {OnDestroy, Pipe, PipeTransform} from '@angular/core';
-import {translationKeys} from '../translationKeys';
 import {AsyncTranslatePipe} from './async.pipe';
-import {dfxAutoTranslateFn} from '../service/auto-translate-fn';
+import {dfxAutoTranslate$} from '../service/rx-auto-translate';
 
 @Pipe({
   name: 'tra',
@@ -9,9 +8,9 @@ import {dfxAutoTranslateFn} from '../service/auto-translate-fn';
   pure: true,
 })
 export class DfxTrA extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
-  autoTranslate = dfxAutoTranslateFn();
+  autoTranslate = dfxAutoTranslate$();
 
-  transform(key: translationKeys): string {
+  transform(key: string): string {
     if (!this.translation) {
       this.translationSubscription = this.autoTranslate(key).subscribe((translation) => {
         this.translation = translation;

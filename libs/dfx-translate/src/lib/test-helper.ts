@@ -1,10 +1,11 @@
 import {HttpClient} from '@angular/common/http';
 import {of} from 'rxjs';
 import {InjectionToken} from '@angular/core';
-import {dfxTranslate} from './types';
+import {dfxTranslateFn, dfxTranslateFn$} from './types';
 
-export const TRANSLATE_FN = new InjectionToken<dfxTranslate>('TRANSLATE_FN');
-export const TRANSLATE_SET_LANGUAGE_FN = new InjectionToken<dfxTranslate>('TRANSLATE_SET_LANG_FN');
+export const TRANSLATE$_FN = new InjectionToken<dfxTranslateFn$>('TRANSLATE_RX_FN');
+export const TRANSLATE_FN = new InjectionToken<dfxTranslateFn>('TRANSLATE_FN');
+export const TRANSLATE_SET_LANGUAGE_FN = new InjectionToken<dfxTranslateFn$>('TRANSLATE_SET_LANG_FN');
 
 export const TRANSLATIONS_EN = {
   testkey1: 'testanswer1',

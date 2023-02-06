@@ -4,9 +4,9 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
 import {provideDfxTranslate} from '../translate.provider';
 import {TranslateStore} from '../service/translate.store';
-import {dfxTranslateSetLanguageFn} from '../service/set-language-fn';
+import {dfxTranslateSetLanguage} from '../service/set-language';
 import {DfxTrA} from './tra';
-import {dfxTranslateSetLanguage} from '../types';
+import {dfxTranslateSetLanguageFn} from '../types';
 import {withLibreTranslate} from '../features/libre-translate/libre-translate';
 import {withRememberLanguage} from '../features/remember-language/remember-language';
 
@@ -22,7 +22,7 @@ describe('TranslateAutoDirective', () => {
   let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
   let nativeElement: HTMLElement;
   let translateStore: TranslateStore;
-  let setLanguage: dfxTranslateSetLanguage;
+  let setLanguage: dfxTranslateSetLanguageFn;
 
   beforeEach(() => {
     localStorage.clear();
@@ -35,7 +35,7 @@ describe('TranslateAutoDirective', () => {
         provideDfxTranslate(withRememberLanguage(false), withLibreTranslate('https://test.i.activate.this.feature')),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
-          useFactory: () => dfxTranslateSetLanguageFn(),
+          useFactory: () => dfxTranslateSetLanguage(),
         },
       ],
     }).compileComponents();

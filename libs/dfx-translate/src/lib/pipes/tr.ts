@@ -1,6 +1,6 @@
 import {OnDestroy, Pipe, PipeTransform} from '@angular/core';
 import {translationKeys} from '../translationKeys';
-import {dfxTranslateFn} from '../service/translate-fn';
+import {dfxTranslate$} from '../service/rx-translate';
 import {AsyncTranslatePipe} from './async.pipe';
 
 @Pipe({
@@ -9,7 +9,7 @@ import {AsyncTranslatePipe} from './async.pipe';
   pure: true,
 })
 export class DfxTr extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
-  translate = dfxTranslateFn();
+  translate = dfxTranslate$();
 
   transform(key: translationKeys): string {
     if (!this.translation) {

@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE_FN, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
+import {serviceStub, TRANSLATE$_FN, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
 import {provideDfxTranslate} from '../translate.provider';
 import {subscribeSpyTo} from '@hirez_io/observer-spy';
 import {TranslateStore} from './translate.store';
-import {dfxTranslateFn} from './translate-fn';
-import {dfxTranslateSetLanguageFn} from './set-language-fn';
-import {dfxTranslate, dfxTranslateSetLanguage, TRANSLATE_LOCALSTORAGE_KEY} from '../types';
+import {dfxTranslate$} from './rx-translate';
+import {dfxTranslateSetLanguage} from './set-language';
+import {dfxTranslateFn$, dfxTranslateSetLanguageFn, TRANSLATE_LOCALSTORAGE_KEY} from '../types';
 import {TRANSLATE_DEFAULT_LANGUAGE} from '../features/default-language/default-language';
 import {TRANSLATE_REMEMBER_LANGUAGE} from '../features/remember-language/remember-language';
 import {
@@ -14,10 +14,10 @@ import {
   withAutoTranslatedLanguages,
 } from '../features/auto-translated-languages/auto-translated-languages';
 
-describe('translate-fn', () => {
+describe('dfxTranslate$', () => {
   let translateStore: TranslateStore;
-  let translate: dfxTranslate;
-  let setLanguage: dfxTranslateSetLanguage;
+  let translate: dfxTranslateFn$;
+  let setLanguage: dfxTranslateSetLanguageFn;
 
   beforeEach(() => {
     localStorage.clear();
@@ -30,19 +30,19 @@ describe('translate-fn', () => {
         },
         provideDfxTranslate(withAutoTranslatedLanguages(['de', 'es'])),
         {
-          provide: TRANSLATE_FN,
-          useFactory: () => dfxTranslateFn(),
+          provide: TRANSLATE$_FN,
+          useFactory: () => dfxTranslate$(),
         },
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
-          useFactory: () => dfxTranslateSetLanguageFn(),
+          useFactory: () => dfxTranslateSetLanguage(),
         },
       ],
     }).compileComponents();
 
     translateStore = TestBed.inject(TranslateStore);
 
-    translate = TestBed.inject(TRANSLATE_FN);
+    translate = TestBed.inject(TRANSLATE$_FN);
     setLanguage = TestBed.inject(TRANSLATE_SET_LANGUAGE_FN);
   });
 

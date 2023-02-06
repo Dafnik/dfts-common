@@ -4,7 +4,7 @@ import {TranslateStore} from './translate.store';
 import {translationKeys} from '../translationKeys';
 import {TRANSLATE_DEFAULT_UNDEFINED_KEY_TO} from '../features/default-undefined-key-to/default-undefined-key-to';
 
-export function dfxTranslateFn(): (key: translationKeys) => Observable<string> {
+export function dfxTranslate$(): (key: translationKeys) => Observable<string> {
   const store = inject(TranslateStore);
   const defaultUndefinedKeyTo = inject(TRANSLATE_DEFAULT_UNDEFINED_KEY_TO);
 

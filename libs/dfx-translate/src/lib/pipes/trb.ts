@@ -1,5 +1,5 @@
 import {inject, OnDestroy, Pipe, PipeTransform} from '@angular/core';
-import {dfxTranslateFn} from '../service/translate-fn';
+import {dfxTranslate$} from '../service/rx-translate';
 import {AsyncTranslatePipe} from './async.pipe';
 import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../features/default-undefined-boolean-to/default-undefined-boolean-to';
 
@@ -11,7 +11,7 @@ import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../features/defaul
 export class DfxTrB extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
   defaultUndefinedOrNullBooleanTo = inject(TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO);
 
-  translate = dfxTranslateFn();
+  translate = dfxTranslate$();
 
   transform(value?: boolean | null): string {
     let key = '';

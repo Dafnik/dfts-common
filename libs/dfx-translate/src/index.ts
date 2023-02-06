@@ -18,12 +18,20 @@ export {DfxTr} from './lib/pipes/tr';
 export {DfxTrA} from './lib/pipes/tra';
 export {DfxTrB} from './lib/pipes/trb';
 
-export {dfxAutoTranslateFn} from './lib/service/auto-translate-fn';
-export {dfxTranslateSetLanguageFn} from './lib/service/set-language-fn';
-export {dfxTranslateFn} from './lib/service/translate-fn';
+export {dfxTranslate$} from './lib/service/rx-translate';
+export {dfxTranslate} from './lib/service/translate';
+export {dfxAutoTranslate$} from './lib/service/rx-auto-translate';
+export {dfxTranslateSetLanguage} from './lib/service/set-language';
 export {TranslateStore} from './lib/service/translate.store';
 
 export {DfxTranslateModule} from './lib/translate.module';
 export {provideDfxTranslate} from './lib/translate.provider';
 export {translationKeys} from './lib/translationKeys';
-export {translationFile, autoTranslationResponse, dfxAutoTranslate, dfxTranslate, dfxTranslateSetLanguage} from './lib/types';
+export {
+  translationFile,
+  autoTranslationResponse,
+  dfxAutoTranslateFn$,
+  dfxTranslateFn$,
+  dfxTranslateFn,
+  dfxTranslateSetLanguageFn,
+} from './lib/types';

@@ -4,7 +4,7 @@ import {TranslateStore} from './translate.store';
 import {TRANSLATE_LOCALSTORAGE_KEY} from '../types';
 import {TRANSLATE_REMEMBER_LANGUAGE} from '../features/remember-language/remember-language';
 
-export function dfxTranslateSetLanguageFn(): (language: string) => void {
+export function dfxTranslateSetLanguage(): (language: string) => void {
   const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   const rememberLanguage = inject(TRANSLATE_REMEMBER_LANGUAGE);
   const store = inject(TranslateStore);

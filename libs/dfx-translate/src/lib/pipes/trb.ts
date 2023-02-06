@@ -6,7 +6,7 @@ import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../features/defaul
 @Pipe({
   name: 'trb',
   standalone: true,
-  pure: true,
+  pure: false,
 })
 export class DfxTrB extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
   defaultUndefinedOrNullBooleanTo = inject(TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO);

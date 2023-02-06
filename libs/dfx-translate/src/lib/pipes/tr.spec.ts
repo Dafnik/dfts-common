@@ -96,6 +96,9 @@ describe('TranslateDirective', () => {
     setLanguage('de');
     fixture.detectChanges();
     expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer1_DE');
+    setLanguage('en');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('div')?.textContent).toBe('testanswer1');
   });
 
   it('should return other value after selecting other language', () => {

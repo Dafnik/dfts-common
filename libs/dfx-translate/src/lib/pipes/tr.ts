@@ -6,7 +6,7 @@ import {AsyncTranslatePipe} from './async.pipe';
 @Pipe({
   name: 'tr',
   standalone: true,
-  pure: true,
+  pure: false,
 })
 export class DfxTr extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
   translate = dfxTranslate$();

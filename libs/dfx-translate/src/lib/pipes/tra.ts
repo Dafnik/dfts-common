@@ -5,7 +5,7 @@ import {dfxAutoTranslate$} from '../service/rx-auto-translate';
 @Pipe({
   name: 'tra',
   standalone: true,
-  pure: true,
+  pure: false,
 })
 export class DfxTrA extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
   autoTranslate = dfxAutoTranslate$();

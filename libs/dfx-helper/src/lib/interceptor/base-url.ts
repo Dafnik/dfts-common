@@ -21,10 +21,13 @@ export class BaseUrlInterceptor extends AbstractIgnoreableInterceptor {
       return next.handle(req.clone({url: `${this.baseUrl + req.url}`}));
     }
 
-    this.lumber.warning(
-      'intercept',
-      'baseUrl undefined! It looks like you are using the BaseUrlInterceptor but forgot assigning a base url.'
-    );
+    if (this.baseUrl.length < 1) {
+      this.lumber.warning(
+        'intercept',
+        'baseUrl undefined! It looks like you are using the BaseUrlInterceptor but forgot assigning a base url.'
+      );
+    }
+
     return next.handle(req);
   }
 }

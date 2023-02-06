@@ -91,7 +91,7 @@ describe('TranslateDirective', () => {
     expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer2');
   });
 
-  it('should return value after selecting other language', () => {
+  it('should return other value after selecting other language', () => {
     component.translateKey = 'testkey1';
     setLanguage('de');
     fixture.detectChanges();

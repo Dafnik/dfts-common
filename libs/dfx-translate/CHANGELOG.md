@@ -1,3 +1,9 @@
+## [2.0.2](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.1...dfx-translate-2.0.2) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-translate:** do not complete on first ([78b310d](https://github.com/Dafnik/dfts-common/commit/78b310ddc0d4e9e650478115cc989bd8a7e41f05))
+
 ## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.0...dfx-translate-2.0.1) (2023-02-06)
 
 ### Bug Fixes

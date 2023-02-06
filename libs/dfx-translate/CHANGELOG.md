@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.0...dfx-translate-2.0.1) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-translate:** complete observable after first value ([a60d52d](https://github.com/Dafnik/dfts-common/commit/a60d52dfea1ea518fd3f1e3cf258917bfca76a70))
+
 # [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.4...dfx-translate-2.0.0) (2023-02-06)
 
 ### Bug Fixes

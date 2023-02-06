@@ -1,6 +1,15 @@
-# Changelog
+# [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.4...dfx-translate-2.0.0) (2023-02-06)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Bug Fixes
+
+- add directory to package.json ([6d1335d](https://github.com/Dafnik/dfts-common/commit/6d1335d91400416f6fec10394fc71b84d195ca7a))
+- **dfx-translate:** cli show more error infos ([8691e8f](https://github.com/Dafnik/dfts-common/commit/8691e8fded73990e65fbf407f380398a7e2b5281))
+- remove semver CHANGELOG shoutout ([9a49ab7](https://github.com/Dafnik/dfts-common/commit/9a49ab72b3881148f46902e6f7efbfb848dc4ce3))
+
+### Features
+
+- **dfx-translate:** add async dfxTranslate and observable dfxTranslate$ ([36ff175](https://github.com/Dafnik/dfts-common/commit/36ff1754721702de354f28daabc37e49a4732e60))
+- **dfx-translate:** make everything tree-shakable and reactive ([49ee511](https://github.com/Dafnik/dfts-common/commit/49ee511112a87eb5dea9b6d018bb558cfd8cd97c))
 
 ## [1.6.4](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.3...dfx-translate-1.6.4) (2023-01-18)
 

@@ -83,8 +83,8 @@ describe('dfxTranslate$', () => {
 
   it('should translate auto', () => {
     setLanguage('de');
-    expect(subscribeSpyTo(translate('testkey3')).getLastValue()).toBe('testanswer3_DE_auto');
-    expect(subscribeSpyTo(translate('testkey4')).getLastValue()).toBe('testanswer4_DE_auto');
+    expect(subscribeSpyTo(translate('testkey3')).getFirstValue()).toBe('testanswer3_DE_auto');
+    expect(subscribeSpyTo(translate('testkey4')).getFirstValue()).toBe('testanswer4_DE_auto');
   });
 
   it('should translate changed language', () => {

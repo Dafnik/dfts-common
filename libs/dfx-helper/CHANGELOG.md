@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.0...dfx-helper-5.0.1) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-helper:** log baseUrl notice only on error ([5344eb9](https://github.com/Dafnik/dfts-common/commit/5344eb9e5d149f7d1acd6101813843e5b2c780ef))
+- repository in package.json ([c532c08](https://github.com/Dafnik/dfts-common/commit/c532c08a4c80f1ddf8fe90e75dda49acc6f91119))
+
 # [5.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.0-beta.0...dfx-helper-5.0.0) (2023-02-06)
 
 ### Bug Fixes

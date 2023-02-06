@@ -2,11 +2,11 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {d_timeLeft, DateInput} from 'dfts-helper';
 
 @Pipe({
-  name: 'timeleft',
+  name: 'd_timeLeft',
   standalone: true,
   pure: true,
 })
-export class DfxTimeLeft implements PipeTransform {
+export class DfxTimeLeftPipe implements PipeTransform {
   transform(date: DateInput, start: DateInput): string {
     return d_timeLeft(date, start);
   }

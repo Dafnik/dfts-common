@@ -2,11 +2,11 @@ import {NgModule, Pipe, PipeTransform} from '@angular/core';
 import {IMap, s_imploder, UndefinedOrNullOr} from 'dfts-helper';
 
 @Pipe({
-  name: 'implode',
+  name: 's_implode',
   standalone: true,
   pure: true,
 })
-export class DfxImplode implements PipeTransform {
+export class DfxImplodePipe implements PipeTransform {
   transform(
     strings: UndefinedOrNullOr<string[]>,
     separator?: UndefinedOrNullOr<string>,
@@ -18,11 +18,11 @@ export class DfxImplode implements PipeTransform {
 }
 
 @Pipe({
-  name: 'implodeMapped',
+  name: 's_implodeMapped',
   standalone: true,
   pure: true,
 })
-export class DfxImplodeMapped implements PipeTransform {
+export class ImplodeMappedPipe implements PipeTransform {
   transform<T>(
     strings: UndefinedOrNullOr<T[]>,
     mapFn: IMap<T, string>,
@@ -35,11 +35,11 @@ export class DfxImplodeMapped implements PipeTransform {
 }
 
 @Pipe({
-  name: 'implodePluck',
+  name: 's_implodePlucked',
   standalone: true,
   pure: true,
 })
-export class DfxImplodePlucked implements PipeTransform {
+export class DfxImplodePluckedPipe implements PipeTransform {
   transform<T>(
     strings: UndefinedOrNullOr<T[]>,
     key: UndefinedOrNullOr<keyof T>,
@@ -51,7 +51,7 @@ export class DfxImplodePlucked implements PipeTransform {
   }
 }
 
-const PIPES = [DfxImplode, DfxImplodeMapped, DfxImplodePlucked];
+const PIPES = [DfxImplodePipe, ImplodeMappedPipe, DfxImplodePluckedPipe];
 
 @NgModule({
   imports: PIPES,

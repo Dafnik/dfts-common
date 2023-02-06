@@ -1,13 +1,21 @@
 import {NgModule} from '@angular/core';
-import {DfxCut} from './cut';
-import {DfxLowerCaseExceptFirstLetters} from './lower-case-except-first-letters';
-import {DfxTruncate} from './truncate';
-import {DfxUpperCaseFirstLetter} from './upper-case-first-letter';
-import {DfxIsEmail} from './is-email';
-import {DfxIsUrl} from './is-url';
-import {DfxStripWhitespace} from './strip-whitespace';
+import {DfxCutPipe} from './cut';
+import {DfxLowerCaseExceptFirstLettersPipe} from './lower-case-except-first-letters';
+import {DfxTruncatePipe} from './truncate';
+import {DfxUpperCaseFirstLetterPipe} from './upper-case-first-letter';
+import {DfxIsEmailPipe} from './is-email';
+import {DfxIsUrlPipe} from './is-url';
+import {DfxStripWhitespacePipe} from './strip-whitespace';
 
-const PIPES = [DfxCut, DfxIsEmail, DfxIsUrl, DfxLowerCaseExceptFirstLetters, DfxStripWhitespace, DfxTruncate, DfxUpperCaseFirstLetter];
+const PIPES = [
+  DfxCutPipe,
+  DfxIsEmailPipe,
+  DfxIsUrlPipe,
+  DfxLowerCaseExceptFirstLettersPipe,
+  DfxStripWhitespacePipe,
+  DfxTruncatePipe,
+  DfxUpperCaseFirstLetterPipe,
+];
 
 @NgModule({
   imports: PIPES,

@@ -78,13 +78,13 @@ jobs:
           name: ${{ inputs.lib }}
           path: ./dist
 
-      - name: get {{ inputs.lib }} version
+      - name: get ${{ inputs.lib }} version
         id: get-version
         shell: bash
         run: |
           echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: zip to ${{ inputs.lib }}-${{ steps.get-version.outputs.VERSION }}.zip
+      - name: zip to ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip and ${{ inputs.lib }}-latest.zip
         shell: bash
         run: |
           mkdir releases
@@ -126,14 +126,13 @@ jobs:
           name: ${{ inputs.lib }}
           path: ./dist
 
-      - name: get {{ inputs.lib }} version& github releases
+      - name: get ${{ inputs.lib }} version
         id: get-version
         shell: bash
         run: |
           echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
-          echo "version: $VERSION"
 
-      - name: zip to ${{ inputs.lib }}-${{ steps.get-version.outputs.VERSION }}.zip
+      - name: zip to ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
         shell: bash
         run: |
           mkdir releases
@@ -146,7 +145,7 @@ jobs:
           ls -la
           cd -
 
-      - name: create github release
+      - name: create ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }} release
         uses: softprops/action-gh-release@v1
         with:
           body_path: ./libs/${{ inputs.lib }}/CHANGELOG.md

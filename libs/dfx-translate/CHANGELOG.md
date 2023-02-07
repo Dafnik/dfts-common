@@ -1,3 +1,9 @@
+## [2.0.4](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.3...dfx-translate-2.0.4) (2023-02-07)
+
+### Bug Fixes
+
+- **dfx-translate:** try to load language only once ([ff39c1e](https://github.com/Dafnik/dfts-common/commit/ff39c1ed2f02cf256f193fa86923243f5a4b55f5))
+
 ## [2.0.3](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.2...dfx-translate-2.0.3) (2023-02-06)
 
 ### Bug Fixes

@@ -12,15 +12,29 @@ export class Logger {
     this.className = className;
   }
 
-  private _log(logType: LogType, methodeName: string, description: string, object?: unknown, group = false): Logger {
-    const header = getLogMessage(logType, this.className, methodeName, description);
+  private _log(props: {logType: LogType; methodeName: string; description: string; objects?: unknown[]; group?: boolean}): Logger {
+    const header = getLogMessage(props.logType, this.className, props.methodeName, props.description);
 
-    if (object) {
-      console.log(header, object);
-    } else if (group) {
+    if (props.group) {
       console.group(header);
     } else {
-      console.log(header);
+      switch (props.logType) {
+        case 'LOG':
+          console.log(header, ...(props.objects ?? []));
+          break;
+        case 'INFO':
+          console.info(header, ...(props.objects ?? []));
+          break;
+        case 'WARNING':
+          console.warn(header, ...(props.objects ?? []));
+          break;
+        case 'ERROR':
+          console.error(header, ...(props.objects ?? []));
+          break;
+        default:
+          throw Error('Not implemented switch case');
+          break;
+      }
     }
     LogHelper.add(header);
     return this;
@@ -32,7 +46,7 @@ export class Logger {
    * @param {string} description The log message or description
    */
   group(methodeName: string, description: string): Logger {
-    return this._log('LOG', methodeName, description, undefined, true);
+    return this._log({logType: 'LOG', methodeName, description, group: true});
   }
 
   groupEnd(): Logger {
@@ -44,44 +58,44 @@ export class Logger {
    * Logs to the console
    * @param {string} methodeName The methods where the logging takes place
    * @param {string} description The log message or description
-   * @param {unknown} object An optional objects which gets printed to the console
+   * @param {unknown[]} objects Optional objects which gets printed to the console
    * @return {Logger} Returns logger
    */
-  log(methodeName: string, description: string, object?: unknown): Logger {
-    return this._log('LOG', methodeName, description, object);
+  log(methodeName: string, description: string, ...objects: unknown[]): Logger {
+    return this._log({logType: 'LOG', methodeName, description, objects: objects});
   }
 
   /**
    * Log info to the console
    * @param {string} methodeName The methods where the logging takes place
    * @param {string} description The log message or description
-   * @param {unknown} object An optional objects which gets printed to the console
+   * @param {unknown[]} objects Optional objects which gets printed to the console
    * @return {Logger} Returns logger
    */
-  info(methodeName: string, description: string, object?: unknown): Logger {
-    return this._log('INFO', methodeName, description, object);
+  info(methodeName: string, description: string, ...objects: unknown[]): Logger {
+    return this._log({logType: 'INFO', methodeName, description, objects});
   }
 
   /**
    * Log warning to the console
    * @param {string} methodeName The methods where the logging takes place
    * @param {string} description The log message or description
-   * @param {unknown} object An optional objects which gets printed to the console
+   * @param {unknown[]} objects Optional objects which gets printed to the console
    * @return {Logger} Returns logger
    */
-  warning(methodeName: string, description: string, object?: unknown): Logger {
-    return this._log('WARNING', methodeName, description, object);
+  warning(methodeName: string, description: string, ...objects: unknown[]): Logger {
+    return this._log({logType: 'WARNING', methodeName, description, objects});
   }
 
   /**
    * Log error the console
    * @param {string} methodeName The methods where the logging takes place
    * @param {string} description The log message or description
-   * @param {unknown} object An optional objects which gets printed to the console
+   * @param {unknown[]} object Optional objects which gets printed to the console
    * @return {Logger} Returns logger
    */
-  error(methodeName: string, description: string, object?: unknown): Logger {
-    return this._log('ERROR', methodeName, description, object);
+  error(methodeName: string, description: string, ...objects: unknown[]): Logger {
+    return this._log({logType: 'ERROR', methodeName, description, objects});
   }
 }
 

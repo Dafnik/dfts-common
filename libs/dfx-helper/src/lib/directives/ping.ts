@@ -4,15 +4,15 @@ import {HttpClient} from '@angular/common/http';
 import {coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
 import {catchError, distinctUntilChanged, map, of, switchMap, timer} from 'rxjs';
 import {interceptorByPass} from '../interceptor/by-pass-interceptor.builder';
-import {AComponent} from '../components/abstract-component';
+import {ADirective} from '../components/abstract-directive';
 
 @Component({
   selector: '[hideIfPingSucceeds]',
   standalone: true,
-  template: '',
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DfxHideIfPingSucceeds extends AComponent {
+export class DfxHideIfPingSucceeds extends ADirective {
   @Input() url!: string;
 
   /**
@@ -37,9 +37,8 @@ export class DfxHideIfPingSucceeds extends AComponent {
     this.unsubscribe(
       timer(0, this._refreshTime * 1000)
         .pipe(
-          switchMap(() => httpClient.get(this.url, this.byPassLoggingInterceptor)),
-          map(() => true),
-          catchError(() => of(false)),
+          switchMap(() => httpClient.get(this.url, this.byPassLoggingInterceptor).pipe(catchError(() => of(true)))),
+          map((isOffline) => isOffline === true),
           distinctUntilChanged()
         )
         .subscribe((isOffline) => {
@@ -53,7 +52,7 @@ export class DfxHideIfPingSucceeds extends AComponent {
 @Component({
   selector: '[hideIfPingFails]',
   standalone: true,
-  template: '',
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DfxHideIfPingFails extends DfxHideIfPingSucceeds {

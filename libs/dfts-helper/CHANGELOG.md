@@ -1,6 +1,15 @@
-# Changelog
+## [0.0.8](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.7...dfts-helper-0.0.8) (2023-02-07)
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+### Bug Fixes
+
+- add directory to package.json ([6d1335d](https://github.com/Dafnik/dfts-common/commit/6d1335d91400416f6fec10394fc71b84d195ca7a))
+- remove semver CHANGELOG shoutout ([9a49ab7](https://github.com/Dafnik/dfts-common/commit/9a49ab72b3881148f46902e6f7efbfb848dc4ce3))
+
+### Features
+
+- **dfx-helper:** add console log types and objects to add ([b0e1dfb](https://github.com/Dafnik/dfts-common/commit/b0e1dfbc0c1ed8b4b6fee2d02a1c4278365c8a10))
+- **dfx-helper:** add new Angular v15 provide syntax ([17a68b7](https://github.com/Dafnik/dfts-common/commit/17a68b725b1ac7bba8d9b716d0edd75cef265049))
+- **dfx-helper:** add pluckedSource to imploder ([024c5b0](https://github.com/Dafnik/dfts-common/commit/024c5b067ec4d276575d2b20cbc18bb67b441a45))
 
 ## [0.0.7](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.6...dfts-helper-0.0.7) (2023-01-12)
 

@@ -1,3 +1,27 @@
+## [2.0.4](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.3...dfx-translate-2.0.4) (2023-02-07)
+
+### Bug Fixes
+
+- **dfx-translate:** try to load language only once ([ff39c1e](https://github.com/Dafnik/dfts-common/commit/ff39c1ed2f02cf256f193fa86923243f5a4b55f5))
+
+## [2.0.3](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.2...dfx-translate-2.0.3) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-translate:** pipes not updating ([b3a34bc](https://github.com/Dafnik/dfts-common/commit/b3a34bc912bd51ee764c32a7a93e5a5487f7ccb0))
+
+## [2.0.2](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.1...dfx-translate-2.0.2) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-translate:** do not complete on first ([78b310d](https://github.com/Dafnik/dfts-common/commit/78b310ddc0d4e9e650478115cc989bd8a7e41f05))
+
+## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.0...dfx-translate-2.0.1) (2023-02-06)
+
+### Bug Fixes
+
+- **dfx-translate:** complete observable after first value ([a60d52d](https://github.com/Dafnik/dfts-common/commit/a60d52dfea1ea518fd3f1e3cf258917bfca76a70))
+
 # [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-translate-1.6.4...dfx-translate-2.0.0) (2023-02-06)
 
 ### Bug Fixes

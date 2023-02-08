@@ -33,14 +33,17 @@ export function baseUrlInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
     return next(req.clone({url: `${baseUrl + req.url}`}));
   }
 
-  console.log(
-    getLogMessage(
-      'ERROR',
-      'httpClient',
-      'baseUrlInterceptor',
-      'baseUrl undefined! It looks like you are using baseUrlInterceptor() but forgot assigning a base url.'
-    )
-  );
+  if (baseUrl.length < 1) {
+    console.log(
+      getLogMessage(
+        'ERROR',
+        'httpClient',
+        'baseUrlInterceptor',
+        'baseUrl undefined! It looks like you are using baseUrlInterceptor() but forgot assigning a base url.'
+      )
+    );
+  }
+
   return next(req);
 }
 

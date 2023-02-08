@@ -1,6 +1,6 @@
 import {inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable, of, switchMap} from 'rxjs';
+import {first, map, Observable, of, switchMap} from 'rxjs';
 import {TranslateStore} from './translate.store';
 import {autoTranslationResponse} from '../types';
 import {TRANSLATE_DEFAULT_LANGUAGE} from '../features/default-language/default-language';
@@ -30,7 +30,8 @@ export function dfxAutoTranslate$(): (key: string) => Observable<string> {
               source: defaultLanguage,
             })
             .pipe(map((it) => it.translatedText))
-        )
+        ),
+        first()
       );
     }
     return of('Feature disabled');

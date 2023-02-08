@@ -99,7 +99,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
     return this.entities.clone();
   }
 
-  protected setAll(entities: EntityList<EntityType>): void {
+  protected setAll(entities: IEntityList<EntityType>): void {
     this.entities = entities;
     this.allChange.next(this.entities.clone());
   }
@@ -110,13 +110,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
 
   fetchAll(urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): void {
     this.getAll$(urlKeyPairs, httpParams).subscribe({
-      next: (data: unknown) => {
-        const entities = new EntityList<EntityType>();
-        for (const dto of data as []) {
-          entities.push(this.convert(dto));
-        }
-        this.setAll(entities);
-      },
+      next: (data) => this.setAll(data),
     });
   }
 
@@ -150,9 +144,7 @@ export abstract class AEntityService<idType extends StringOrNumber, EntityType e
 
   fetchSingle(id: idType, urlKeyPairs?: KeyValuePair[], httpParams?: KeyValuePair[]): void {
     this.getSingle$(id, urlKeyPairs, httpParams).subscribe({
-      next: (data: unknown) => {
-        this.setSingle(this.convert(data));
-      },
+      next: (data) => this.setSingle(data),
     });
   }
 

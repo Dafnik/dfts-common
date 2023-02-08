@@ -42,7 +42,6 @@ export * from './lib/pipes/time-span';
 
 export * from './lib/services/is-mobile';
 
-export * from './lib/strategies/abstract-title';
 export * from './lib/strategies/dfx-preload';
 
 export * from './lib/config';

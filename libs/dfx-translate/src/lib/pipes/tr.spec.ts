@@ -91,11 +91,14 @@ describe('TranslateDirective', () => {
     expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer2');
   });
 
-  it('should return value after selecting other language', () => {
+  it('should return other value after selecting other language', () => {
     component.translateKey = 'testkey1';
     setLanguage('de');
     fixture.detectChanges();
     expect(nativeElement.querySelector('div')?.textContent).toBe('testanswer1_DE');
+    setLanguage('en');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('div')?.textContent).toBe('testanswer1');
   });
 
   it('should return other value after selecting other language', () => {

@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {distinctUntilChanged, Observable, share, startWith, Subject, tap} from 'rxjs';
+import {BehaviorSubject, distinctUntilChanged, share, tap} from 'rxjs';
 import {IEntity, o_fromStorage, st_set, StringOrNumber, UndefinedOr} from 'dfts-helper';
 
 import {AEntityService} from './abstract-entity.service';
@@ -8,10 +8,12 @@ export abstract class ASelectableEntityService<idType extends StringOrNumber, En
   idType,
   EntityType
 > {
-  protected abstract selectedStorageKey: string;
+  protected selectedStorageKey = '';
 
   protected selected?: EntityType;
-  selectedChange: Subject<UndefinedOr<EntityType>> = new Subject<UndefinedOr<EntityType>>();
+  protected selectedChange: BehaviorSubject<UndefinedOr<EntityType>> = new BehaviorSubject<UndefinedOr<EntityType>>(
+    o_fromStorage<EntityType>(this.selectedStorageKey)
+  );
 
   protected constructor(httpClient: HttpClient) {
     super(httpClient);
@@ -28,9 +30,7 @@ export abstract class ASelectableEntityService<idType extends StringOrNumber, En
     );
   }
 
-  getSelected$(): Observable<UndefinedOr<EntityType>> {
-    return this.selectedChange.pipe(distinctUntilChanged(), startWith(o_fromStorage<EntityType>(this.selectedStorageKey)), share());
-  }
+  getSelected$ = this.selectedChange.pipe(distinctUntilChanged(), share());
 
   getSelected(): UndefinedOr<EntityType> {
     if (this.selected == undefined) {

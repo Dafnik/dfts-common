@@ -31,7 +31,7 @@ For more information on the interface and a detailed look at how the table is im
 - [Deployment notes](#deployment-notes)
 - [Project website](https://datepoll.org)
 - created with [Angular](https://angular.io),
-  [used libraries](https://gitlab.com/DatePoll/common/dfx-common/-/blob/develop/package.json)
+  [used libraries](https://github.com/Dafnik/dfts-common/blob/main/package.json)
 
 ### Credits
 
@@ -75,9 +75,9 @@ npm install @angular/cdk
 ### Getting started (table with filtering, sorting and pagination)
 
 This is the code for a table as you see it [above](#demo). Every code piece is located
-in [here](https://gitlab.com/DatePoll/common/dfx-common/-/tree/develop/projects/dfx-bootstrap-table-demo).
+in [here](https://github.com/Dafnik/dfts-common/tree/main/apps/dfx-bootstrap-table-demo).
 
-[all.component.html](https://gitlab.com/DatePoll/common/dfx-common/-/blob/develop/projects/dfx-bootstrap-table-demo/src/app/all/all.component.html)
+[all.component.html](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/all/all.component.html)
 
 ```angular2html
 <!-- Filtering stuff -->
@@ -131,7 +131,7 @@ in [here](https://gitlab.com/DatePoll/common/dfx-common/-/tree/develop/projects/
 | hover                | Determines if the table is hoverable | `false` |
 | striped              | Determines if the table is striped   | `false` |
 
-[all.component.ts](https://gitlab.com/DatePoll/common/dfx-common/-/blob/develop/projects/dfx-bootstrap-table-demo/src/app/all/all.component.ts)
+[all.component.ts](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/all/all.component.ts)
 
 ```typescript
 import {NgbPaginator, NgbSort, NgbTableDataSource} from 'dfx-bootstrap-table';
@@ -190,7 +190,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 }
 ```
 
-[app.module.ts](https://gitlab.com/DatePoll/common/dfx-common/-/blob/develop/projects/dfx-bootstrap-table-demo/src/app/app.module.ts)
+[app.module.ts](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/app.module.ts)
 
 ```typescript
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -418,18 +418,9 @@ npm run table:bs:test:coverage
 npm run table:bs:watch
 ```
 
-### Deployment notes
-
-dfx-bootstrap-table deployments are managed
-via [.gitlab-ci](https://gitlab.com/DatePoll/common/dfx-common/-/blob/development/.gitlab-ci.yml)
-
-All builds are uploaded
-to [releases.datepoll.org/common/dfx-bootstrap-table](https://releases.datepoll.org/common/dfx-bootstrap-table)
-
 #### Development builds
 
-Commits to the [development](https://gitlab.com/DatePoll/common/dfx-helper/-/tree/development) branch create a dev
-build downloadable via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-bootstrap-table-dev.zip).
+Development builds are downloadable via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-bootstrap-table-dev.zip).
 
 #### Production builds
 

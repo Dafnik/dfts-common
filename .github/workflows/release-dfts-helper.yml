@@ -7,7 +7,7 @@ on:
 
 jobs:
   dfts-helper:
-    uses: dafnik/dfts-common/.github/workflows/release.yml@develop
+    uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfts-helper
     secrets: inherit

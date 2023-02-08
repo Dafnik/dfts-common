@@ -124,18 +124,9 @@ npm run helper:test:coverage
 npm run helper:watch
 ```
 
-### Deployment notes
-
-dfx-helper deployments are managed
-via [.gitlab-ci](https://gitlab.com/DatePoll/common/dfx-common/-/blob/development/.gitlab-ci.yml)
-
-All builds are uploaded
-to [releases.datepoll.org/common/dfx-helper](https://releases.datepoll.org/common/dfx-helper)
-
 #### Development builds
 
-Commits to the [development](https://gitlab.com/DatePoll/common/dfx-helper/-/tree/development) branch create a dev
-build downloadable via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-helper-dev.zip).
+Development builds are downloadable via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-helper-dev.zip).
 
 #### Production builds
 

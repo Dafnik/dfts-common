@@ -8,7 +8,7 @@
   "separateMajorMinor": false,
   "labels": ["dependencies"],
   "timezone": "Europe/Vienna",
-  "baseBranches": ["develop"],
+  "baseBranches": ["main"],
   "assignees": ["Dafnik"],
   "ignoreDeps": ["typescript"],
   "ignorePaths": ["**/libs/**"],

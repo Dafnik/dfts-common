@@ -26,7 +26,7 @@
   ],
   "author": "Dafnik",
   "bugs": {
-    "url": "https://gitlab.com/DatePoll/common/dfx-common/-/issues"
+    "url": "https://github.com/Dafnik/dfts-common/issues"
   },
   "bin": {
     "translate-cli": "cli/index.js"

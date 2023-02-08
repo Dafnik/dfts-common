@@ -87,7 +87,7 @@ jobs:
     name: Deploy dfx-bootstrap-table-demo
     needs: [build-app]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@master
 
@@ -127,7 +127,7 @@ jobs:
     name: Deploy ${{ matrix.lib }} dev
     needs: [build-lib, test]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
         lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table]

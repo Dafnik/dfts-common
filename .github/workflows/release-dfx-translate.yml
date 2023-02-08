@@ -7,7 +7,7 @@ on:
 
 jobs:
   dfx-translate:
-    uses: dafnik/dfts-common/.github/workflows/release.yml@develop
+    uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-translate
     secrets: inherit

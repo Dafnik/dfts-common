@@ -37,8 +37,12 @@ export class DfxHideIfPingSucceeds extends ADirective {
     this.unsubscribe(
       timer(0, this._refreshTime * 1000)
         .pipe(
-          switchMap(() => httpClient.get(this.url, this.byPassLoggingInterceptor).pipe(catchError(() => of(true)))),
-          map((isOffline) => isOffline === true),
+          switchMap(() =>
+            httpClient.get(this.url, this.byPassLoggingInterceptor).pipe(
+              map(() => false),
+              catchError(() => of(true))
+            )
+          ),
           distinctUntilChanged()
         )
         .subscribe((isOffline) => {

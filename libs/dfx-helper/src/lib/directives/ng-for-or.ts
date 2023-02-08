@@ -3,7 +3,7 @@ import {NgFor, NgIf} from '@angular/common';
 import {UndefinedOrNullOr} from 'dfts-helper';
 
 @Directive({
-  selector: '[ngForOr]',
+  selector: '[ngFor]',
   standalone: true,
   hostDirectives: [
     {

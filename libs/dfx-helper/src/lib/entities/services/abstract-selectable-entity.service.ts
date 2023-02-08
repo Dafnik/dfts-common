@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, distinctUntilChanged, share, tap} from 'rxjs';
+import {BehaviorSubject, tap} from 'rxjs';
 import {IEntity, o_fromStorage, st_set, StringOrNumber, UndefinedOr} from 'dfts-helper';
 
 import {AEntityService} from './abstract-entity.service';
@@ -30,7 +30,7 @@ export abstract class ASelectableEntityService<idType extends StringOrNumber, En
     );
   }
 
-  getSelected$ = this.selectedChange.pipe(distinctUntilChanged(), share());
+  getSelected$ = this.selectedChange.asObservable();
 
   getSelected(): UndefinedOr<EntityType> {
     if (this.selected == undefined) {

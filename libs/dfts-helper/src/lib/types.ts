@@ -23,6 +23,7 @@ export type typeOfArrayElement<ArrayType extends readonly unknown[]> = ArrayType
 export type HasIDAndName<T> = IHasID<T> & IHasName;
 export type HasNumberIDAndName = HasIDAndName<number>;
 export type HasStringIDAndName = HasIDAndName<string>;
+export type HasStringOrNumberIDAndName = HasIDAndName<StringOrNumber>;
 
 export interface IBuilder<T> {
   build(): T;

@@ -1,3 +1,9 @@
+## [5.0.4](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.3...dfx-helper-5.0.4) (2023-02-08)
+
+### Bug Fixes
+
+- **dfx-helper:** getSelected$ ([26671d7](https://github.com/Dafnik/dfts-common/commit/26671d760daa0f2cdceca9caae63fdc7bab96b8b))
+
 ## [5.0.3](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.2...dfx-helper-5.0.3) (2023-02-08)
 
 ### Bug Fixes

@@ -34,24 +34,7 @@ export class ImplodeMappedPipe implements PipeTransform {
   }
 }
 
-@Pipe({
-  name: 's_implodePlucked',
-  standalone: true,
-  pure: true,
-})
-export class DfxImplodePluckedPipe implements PipeTransform {
-  transform<T>(
-    strings: UndefinedOrNullOr<T[]>,
-    key: UndefinedOrNullOr<keyof T>,
-    separator?: UndefinedOrNullOr<string>,
-    maxLength?: UndefinedOrNullOr<number>,
-    suffix?: UndefinedOrNullOr<string>
-  ): string {
-    return s_imploder().pluckedSource(strings, key).maxLength(maxLength).separator(separator).suffix(suffix).build();
-  }
-}
-
-const PIPES = [DfxImplodePipe, ImplodeMappedPipe, DfxImplodePluckedPipe];
+const PIPES = [DfxImplodePipe, ImplodeMappedPipe];
 
 @NgModule({
   imports: PIPES,

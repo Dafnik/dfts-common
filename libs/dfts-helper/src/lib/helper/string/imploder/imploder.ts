@@ -1,5 +1,4 @@
 import {IBuilder, IMap, UndefinedOrNullOr} from '../../../types';
-import {a_pluck} from '../../array/pluck';
 
 export const s_imploder = (source?: UndefinedOrNullOr<string[]>): ImploderBuilder => {
   return ImploderBuilder.get(source);
@@ -24,13 +23,6 @@ export class ImploderBuilder implements IBuilder<string> {
   mappedSource<T>(source?: UndefinedOrNullOr<T[]>, mapFn?: IMap<T, string>): this {
     if (mapFn && source) {
       this._source = source.map(mapFn);
-    }
-    return this;
-  }
-
-  pluckedSource<T, K extends keyof T>(source?: UndefinedOrNullOr<T[]>, key?: UndefinedOrNullOr<K>): this {
-    if (key && source) {
-      this._source = a_pluck(source, key) as string[];
     }
     return this;
   }

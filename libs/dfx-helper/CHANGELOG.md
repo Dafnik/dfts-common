@@ -1,3 +1,10 @@
+## [5.0.5](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.4...dfx-helper-5.0.5) (2023-02-14)
+
+### Bug Fixes
+
+- **dfx-helper:** ng-for-or pipe ([4ae867d](https://github.com/Dafnik/dfts-common/commit/4ae867d3a48c11c33dcc53e4d1c9e3115c780d78))
+- **dfx-helper:** set intervals, subscriptions and timeouts to undefined ([2d5af86](https://github.com/Dafnik/dfts-common/commit/2d5af86dcd6f98fd6b51f080f8725619c8355817))
+
 ## [5.0.4](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.3...dfx-helper-5.0.4) (2023-02-08)
 
 ### Bug Fixes

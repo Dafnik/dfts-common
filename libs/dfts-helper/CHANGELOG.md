@@ -1,3 +1,5 @@
+## [0.0.9](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.8...dfts-helper-0.0.9) (2023-02-14)
+
 ## [0.0.8](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.7...dfts-helper-0.0.8) (2023-02-07)
 
 ### Bug Fixes

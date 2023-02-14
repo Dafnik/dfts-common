@@ -37,17 +37,20 @@ export abstract class ABlock {
       for (const subscription of this.subscriptions) {
         subscription.unsubscribe();
       }
+      this.subscriptions = undefined;
     }
     if (this.timeouts) {
       for (const timeout of this.timeouts) {
         clearTimeout(timeout);
       }
+      this.timeouts = undefined;
     }
 
     if (this.intervals) {
       for (const interval of this.intervals) {
         clearInterval(interval);
       }
+      this.intervals = undefined;
     }
   }
 }

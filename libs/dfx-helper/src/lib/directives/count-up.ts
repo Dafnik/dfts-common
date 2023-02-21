@@ -1,5 +1,5 @@
 import {Directive, ElementRef, HostListener, inject, Input} from '@angular/core';
-import {coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
+import {BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
 import {s_from} from 'dfts-helper';
 import {WINDOW} from '../windows-provider';
 
@@ -31,6 +31,11 @@ export class DfxCountUp {
 
   _animationDuration = 4000;
 
+  @Input() set clickable(it: BooleanInput) {
+    this._clickable = coerceBooleanProperty(it);
+  }
+  _clickable = true;
+
   counterRunning = false;
 
   // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second 1000/60
@@ -39,7 +44,9 @@ export class DfxCountUp {
   totalFrames = Math.round(this._animationDuration / this.frameDuration);
 
   @HostListener('mousedown') onMouseDown(): void {
-    this.animateCountUp();
+    if (this._clickable) {
+      this.animateCountUp();
+    }
   }
 
   // An ease-out function that slows the count as it progresses

@@ -1,3 +1,13 @@
+## [5.0.6](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.5...dfx-helper-5.0.6) (2023-02-21)
+
+### Bug Fixes
+
+- **dfx-helper:** is mobile service migrate to shareReplace ([5a2e9a1](https://github.com/Dafnik/dfts-common/commit/5a2e9a1ab1600a2f4592f45ae19f652669747b84))
+
+### Features
+
+- **dfx-helper:** add new modular service interfaces ([1a780c9](https://github.com/Dafnik/dfts-common/commit/1a780c9c2dd98dbe15885a8618822c8877de3980))
+
 ## [5.0.5](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.4...dfx-helper-5.0.5) (2023-02-14)
 
 ### Bug Fixes

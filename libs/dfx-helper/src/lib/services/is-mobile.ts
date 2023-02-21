@@ -1,6 +1,6 @@
 import {inject, Injectable, NgZone, OnDestroy} from '@angular/core';
 import {ViewportRuler} from '@angular/cdk/overlay';
-import {BehaviorSubject, distinctUntilChanged, share} from 'rxjs';
+import {BehaviorSubject, distinctUntilChanged, shareReplay} from 'rxjs';
 import {HELPER_MOBILE_BREAKPOINT} from '../config';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class IsMobileService implements OnDestroy {
 
   constructor(private ngZone: NgZone, private viewportRuler: ViewportRuler) {}
 
-  public isMobile$ = this.isMobileChange.pipe(distinctUntilChanged(), share());
+  public isMobile$ = this.isMobileChange.pipe(distinctUntilChanged(), shareReplay(1));
 
   public isMobile = this._isMobile;
 

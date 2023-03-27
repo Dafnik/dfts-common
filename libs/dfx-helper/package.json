@@ -35,7 +35,8 @@
     "@angular/cdk": "9 - 15",
     "@angular/router": "9 - 15",
     "@angular/platform-browser": "9 - 15",
-    "rxjs": "2 - 7"
+    "rxjs": "2 - 7",
+    "dfts-helper": "0 - 1"
   },
   "dependencies": {
     "tslib": "^2"

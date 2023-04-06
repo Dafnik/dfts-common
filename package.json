@@ -23,7 +23,7 @@
     "@angular/platform-browser": "15.2.4",
     "@angular/platform-browser-dynamic": "15.2.4",
     "@angular/router": "15.2.4",
-    "@nrwl/angular": "15.8.9",
+    "@nrwl/angular": "15.9.2",
     "bootstrap": "^5.2.3",
     "commander": "^10.0.0",
     "rxjs": "~7.8.0",
@@ -44,13 +44,13 @@
     "@commitlint/config-angular": "^17.3.0",
     "@hirez_io/observer-spy": "^2.2.0",
     "@jscutlery/semver": "^2.29.3",
-    "@nrwl/cypress": "15.8.9",
-    "@nrwl/devkit": "15.8.9",
-    "@nrwl/esbuild": "15.8.9",
-    "@nrwl/eslint-plugin-nx": "15.8.9",
-    "@nrwl/jest": "15.8.9",
-    "@nrwl/linter": "15.8.9",
-    "@nrwl/workspace": "15.8.9",
+    "@nrwl/cypress": "15.9.2",
+    "@nrwl/devkit": "15.9.2",
+    "@nrwl/esbuild": "15.9.2",
+    "@nrwl/eslint-plugin-nx": "15.9.2",
+    "@nrwl/jest": "15.9.2",
+    "@nrwl/linter": "15.9.2",
+    "@nrwl/workspace": "15.9.2",
     "@schematics/angular": "15.2.4",
     "@types/jest": "29.5.0",
     "@types/node": "18.15.11",
@@ -67,7 +67,7 @@
     "jest-preset-angular": "13.0.1",
     "lint-staged": "^13.1.0",
     "ng-packagr": "15.2.2",
-    "nx": "15.8.9",
+    "nx": "15.9.2",
     "postcss": "^8.4.5",
     "postcss-import": "~15.1.0",
     "postcss-preset-env": "~8.2.0",
@@ -80,3 +80,4 @@
     "webpack-merge": "^5.8.0"
   }
 }
+

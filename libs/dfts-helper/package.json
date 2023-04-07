@@ -4,6 +4,7 @@
   "description": "Typescript Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",
+  "type": "module",
   "homepage": "https://github.com/Dafnik/dfts-common",
   "keywords": [
     "typescript",

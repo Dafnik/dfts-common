@@ -92,6 +92,7 @@ export {i_complete, i_cookieEnabled, i_screenSize, i_mobile, BrowserInfo} from '
 export {cl_copy, cl_read} from './lib/helper/clipboard';
 export {c_nullToUndefined, c_undefinedToNull, c_unchecked} from './lib/helper/converter/converter';
 export {Stopwatch} from './lib/helper/stopwatch/stopwatch';
+export {notNull, notNullAndUndefined} from './lib/helper/filter';
 export {thr_sleep, thr_block} from './lib/helper/thread';
 
 export {getLogMessage} from './lib/logger/log.header';

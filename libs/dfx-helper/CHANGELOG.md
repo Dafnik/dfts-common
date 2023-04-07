@@ -1,3 +1,14 @@
+## [5.0.7](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.6...dfx-helper-5.0.7) (2023-04-07)
+
+### Bug Fixes
+
+- add dfts-helper as peerDependency in dfx-helper ([bef3fc6](https://github.com/Dafnik/dfts-common/commit/bef3fc6ed799a60e89fbee59920154f5c2fe664d))
+- **dfx-helper:** add new service interfaces ([f3bb621](https://github.com/Dafnik/dfts-common/commit/f3bb62113e2d61630c31be36d729b9e0c5f0b4ee))
+
+### Features
+
+- **dfx-helper:** allow configuration of count-up to be non-clickable ([82fe5b9](https://github.com/Dafnik/dfts-common/commit/82fe5b9afc3495acfb6e392e4a38b435b497548d))
+
 ## [5.0.6](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.5...dfx-helper-5.0.6) (2023-02-21)
 
 ### Bug Fixes

@@ -15,6 +15,7 @@ export * from './lib/directives/ping';
 export * from './lib/directives/print';
 export * from './lib/directives/track-by';
 
+export * from './lib/entities/entities-service.interface';
 export * from './lib/entities/services/abstract-entity.service';
 export * from './lib/entities/services/abstract-selectable-entity.service';
 

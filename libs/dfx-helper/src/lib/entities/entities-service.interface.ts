@@ -13,6 +13,12 @@ export interface HasGetSingle<T extends IHasID<T['id']>> {
   getSingle$(id: T['id']): Observable<T>;
 }
 
+export interface HasGetSelected<SelectedDTOType extends IHasID<SelectedDTOType['id']>> {
+  setSelected(it: SelectedDTOType | undefined): void;
+
+  getSelected$: Observable<SelectedDTOType | undefined>;
+}
+
 export interface HasDelete<T extends IHasID<T['id']>> {
   delete$(id: T['id']): Observable<unknown>;
 }
@@ -24,5 +30,3 @@ export type HasCreate<CreateDTOType, ResponseType extends IHasID<ResponseType['i
 export interface HasUpdate<UpdateDTOType extends IHasID<UpdateDTOType['id']>, ResponseType extends IHasID<ResponseType['id']>> {
   update$(dto: UpdateDTOType): Observable<ResponseType>;
 }
-
-export type HasIdAndNumber<ID> = IHasID<ID> & {number: number};

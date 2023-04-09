@@ -1,7 +1,7 @@
-import {IList} from './list.interface.js';
-import {ACommonList} from './list.abstract.js';
-import {ManyOrUndefinedOrNullOr} from '../types.js';
-import {listOf} from './list.functions.js';
+import {IList} from './list.interface';
+import {ACommonList} from './list.abstract';
+import {ManyOrUndefinedOrNullOr} from '../types';
+import {listOf} from './list.functions';
 
 export type IArrayList<T> = IList<T>;
 

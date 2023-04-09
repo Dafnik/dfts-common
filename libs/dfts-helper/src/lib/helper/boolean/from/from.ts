@@ -1,4 +1,4 @@
-import {StringOrNumberOr, UndefinedOrNullOr} from '../../../types.js';
+import {StringOrNumberOr, UndefinedOrNullOr} from '../../../types';
 
 /**
  * Converts string or number to boolean

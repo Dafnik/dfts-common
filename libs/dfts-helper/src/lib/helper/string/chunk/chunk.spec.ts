@@ -1,4 +1,4 @@
-import {s_chunks} from './chunk.js';
+import {s_chunks} from './chunk';
 
 describe('chunk', () => {
   it('toChunks', () => {

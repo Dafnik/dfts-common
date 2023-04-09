@@ -1,4 +1,4 @@
-import {d_timeLeft} from './time-left.js';
+import {d_timeLeft} from './time-left';
 
 describe('timeLeft', () => {
   it('timeLeft', () => {

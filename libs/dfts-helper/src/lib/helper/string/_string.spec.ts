@@ -1,4 +1,4 @@
-import {StringHelper} from './_string.js';
+import {StringHelper} from './_string';
 
 describe('StringHelper', () => {
   it('hasNumbersInString', () => {

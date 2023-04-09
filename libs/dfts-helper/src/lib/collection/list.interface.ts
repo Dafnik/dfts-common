@@ -1,5 +1,5 @@
-import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types.js';
-import {IGenericImplTrait} from '../traits/generic-impl-trait.js';
+import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
+import {IGenericImplTrait} from '../traits/generic-impl-trait';
 
 export interface IList<T> extends Array<T>, IGenericImplTrait<IList<T>> {
   getItems(): T[];

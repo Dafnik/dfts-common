@@ -1,4 +1,4 @@
-import {b_from} from './from.js';
+import {b_from} from './from';
 
 describe('boolean from', () => {
   it('null, undefined and boolean', () => {

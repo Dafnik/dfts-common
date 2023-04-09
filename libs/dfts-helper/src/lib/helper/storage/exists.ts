@@ -1,4 +1,4 @@
-import {s_fromStorage} from '../string/from-storage/from-storage.js';
+import {s_fromStorage} from '../string/from-storage/from-storage';
 
 /**
  * Check if a specific entry exists

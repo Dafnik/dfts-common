@@ -1,4 +1,4 @@
-import {n_humanizeTime} from './humanize-time.js';
+import {n_humanizeTime} from './humanize-time';
 
 describe('humanizeTime', () => {
   it('should return "1m" for a time of 0.5 minutes or greater', () => {

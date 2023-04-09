@@ -1,4 +1,4 @@
-import {UndefinedOrNullOr} from '../../../types.js';
+import {UndefinedOrNullOr} from '../../../types';
 
 /**
  * Returns the whole text if the word count does not exceed <code>maxWords</code>, else the text will be truncated and a suffix will be added

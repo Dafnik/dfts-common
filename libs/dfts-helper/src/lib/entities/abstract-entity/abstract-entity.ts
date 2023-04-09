@@ -1,5 +1,5 @@
-import {StringOrNumber} from '../../types.js';
-import {IEntity, IEntityWithNumberID, IEntityWithStringID} from '../entity.interface.js';
+import {StringOrNumber} from '../../types';
+import {IEntity, IEntityWithNumberID, IEntityWithStringID} from '../entity.interface';
 
 export abstract class AEntity<idType extends StringOrNumber> implements IEntity<idType> {
   // protected hidden: string[] = [];

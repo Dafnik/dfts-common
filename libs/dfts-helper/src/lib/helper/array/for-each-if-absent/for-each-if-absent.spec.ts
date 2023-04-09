@@ -1,4 +1,4 @@
-import {a_forEachIfAbsent} from './for-each-if-absent.js';
+import {a_forEachIfAbsent} from './for-each-if-absent';
 
 describe('for-each-if-absent', () => {
   it('should execute', () => {

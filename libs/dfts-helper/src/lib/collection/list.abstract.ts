@@ -1,6 +1,6 @@
-import {IList} from './list.interface.js';
-import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types.js';
-import {c_unchecked} from '../helper/converter/converter.js';
+import {IList} from './list.interface';
+import {ICompute, IMapList, IPredicate, ManyOrUndefinedOrNullOr, UndefinedOrNullOr} from '../types';
+import {c_unchecked} from '../helper/converter/converter';
 
 export abstract class ACommonList<listType extends IList<T>, T> extends Array<T> implements IList<T> {
   protected constructor(items?: ManyOrUndefinedOrNullOr<T>) {

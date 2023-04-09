@@ -1,5 +1,5 @@
-import {st_remove} from './remove.js';
-import {s_generate} from '../string/generator/generator.js';
+import {st_remove} from './remove';
+import {s_generate} from '../string/generator/generator';
 
 export const ttlSuffix = '_ttl';
 

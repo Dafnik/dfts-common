@@ -1,4 +1,4 @@
-import {IBuilder, IMap, UndefinedOrNullOr} from '../../../types.js';
+import {IBuilder, IMap, UndefinedOrNullOr} from '../../../types';
 
 export const s_imploder = (source?: UndefinedOrNullOr<string[]>): ImploderBuilder => {
   return ImploderBuilder.get(source);

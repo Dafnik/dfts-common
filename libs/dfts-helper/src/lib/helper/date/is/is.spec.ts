@@ -1,4 +1,4 @@
-import {d_is} from './is.js';
+import {d_is} from './is';
 
 describe('TypeHelper', () => {
   it('d_is', () => {

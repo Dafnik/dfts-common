@@ -1,6 +1,6 @@
-import {StringOrNumber} from '../types.js';
-import {AEntity} from './abstract-entity/abstract-entity.js';
-import {IEntityWithName, IEntityWithNumberIDAndName, IEntityWithStringIDAndName} from './entity.interface.js';
+import {StringOrNumber} from '../types';
+import {AEntity} from './abstract-entity/abstract-entity';
+import {IEntityWithName, IEntityWithNumberIDAndName, IEntityWithStringIDAndName} from './entity.interface';
 
 export abstract class AEntityWithName<idType extends StringOrNumber> extends AEntity<idType> implements IEntityWithName<idType> {
   protected constructor(id: idType, public name: string, originalJsonDto?: unknown) {

@@ -1,4 +1,4 @@
-import {a_forEachIfPresent} from './for-each-if-present.js';
+import {a_forEachIfPresent} from './for-each-if-present';
 
 describe('for-each-if-present', () => {
   it('should execute', () => {

@@ -1,5 +1,5 @@
-import {DateInput} from '../../../types.js';
-import {d_from} from '../from.js';
+import {DateInput} from '../../../types';
+import {d_from} from '../from';
 
 /**
  * Returns a string with hours, days or months left until date

@@ -1,11 +1,11 @@
-import {UndefinedOrNullOr} from '../../types.js';
-import {st_remove} from './remove.js';
-import {ttlSuffix} from './common.js';
-import {s_from} from '../string/from/from.js';
-import {d_is} from '../date/is/is.js';
-import {b_is} from '../boolean/is/is.js';
-import {n_is} from '../number/is/is.js';
-import {o_is} from '../object/is/is.js';
+import {UndefinedOrNullOr} from '../../types';
+import {st_remove} from './remove';
+import {ttlSuffix} from './common';
+import {s_from} from '../string/from/from';
+import {d_is} from '../date/is/is';
+import {b_is} from '../boolean/is/is';
+import {n_is} from '../number/is/is';
+import {o_is} from '../object/is/is';
 
 /**
  * @param {string} key key for storage item

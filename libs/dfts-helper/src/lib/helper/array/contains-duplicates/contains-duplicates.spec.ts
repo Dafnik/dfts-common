@@ -1,4 +1,4 @@
-import {a_containsDuplicates} from './contains-duplicates.js';
+import {a_containsDuplicates} from './contains-duplicates';
 
 describe('containsDuplicates', () => {
   it('string to work', () => {

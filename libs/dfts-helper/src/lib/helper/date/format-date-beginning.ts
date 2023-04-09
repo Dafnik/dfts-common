@@ -1,5 +1,5 @@
-import {DateInput} from '../../types';
-import {d_from} from './from';
+import {DateInput} from '../../types.js';
+import {d_from} from './from.js';
 
 export function formatDateBeginning(date: DateInput): string {
   const d = d_from(date);

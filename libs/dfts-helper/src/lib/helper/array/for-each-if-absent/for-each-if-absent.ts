@@ -1,4 +1,4 @@
-import {a_forEachIf} from '../for-each-if';
+import {a_forEachIf} from '../for-each-if.js';
 
 /**
  * Applies a computation function to each element in the given `items` list that is not present in the array.

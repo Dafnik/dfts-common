@@ -1,6 +1,6 @@
-import {StringOrNumber} from '../types';
-import {IHasID} from './has-id.interface';
-import {IHasName} from './has-name.interface';
+import {StringOrNumber} from '../types.js';
+import {IHasID} from './has-id.interface.js';
+import {IHasName} from './has-name.interface.js';
 
 export interface IEntity<idType extends StringOrNumber> extends IHasID<idType> {
   originalJsonDto?: unknown;

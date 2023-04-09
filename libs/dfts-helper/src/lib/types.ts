@@ -1,6 +1,6 @@
-import {IHasID} from './entities/has-id.interface';
-import {IHasName} from './entities/has-name.interface';
-import {IList} from './collection/list.interface';
+import {IHasID} from './entities/has-id.interface.js';
+import {IHasName} from './entities/has-name.interface.js';
+import {IList} from './collection/list.interface.js';
 
 export type UnknownOr<T> = T | unknown;
 export type UndefinedOr<T> = T | undefined;

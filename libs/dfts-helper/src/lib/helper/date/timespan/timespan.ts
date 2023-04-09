@@ -1,5 +1,5 @@
-import {DateInput} from '../../../types';
-import {d_from} from '../from';
+import {DateInput} from '../../../types.js';
+import {d_from} from '../from.js';
 
 /**
  * Calculates the difference between two dates in terms of days, hours, minutes, and seconds.

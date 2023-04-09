@@ -1,4 +1,4 @@
-import {StringOrNumber} from '../../../types';
+import {StringOrNumber} from '../../../types.js';
 
 /**
  * Checks if object is <code>numeric</code>

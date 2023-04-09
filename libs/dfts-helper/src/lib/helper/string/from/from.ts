@@ -1,4 +1,4 @@
-import {StringOrNumberOr, UndefinedOrNullOr} from '../../../types';
+import {StringOrNumberOr, UndefinedOrNullOr} from '../../../types.js';
 
 /**
  * Converts nearly everything to string

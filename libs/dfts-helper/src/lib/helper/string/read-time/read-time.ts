@@ -1,6 +1,6 @@
-import {s_stripWhitespace} from '../strip-whitespace';
-import {n_humanizeTime} from '../../number/humanize-time';
-import {s_countWords} from '../count-words/count-words';
+import {s_stripWhitespace} from '../strip-whitespace.js';
+import {n_humanizeTime} from '../../number/humanize-time.js';
+import {s_countWords} from '../count-words/count-words.js';
 
 const WORDS_PER_MIN = 275; // wpm
 const IMAGE_READ_TIME = 12; // in seconds

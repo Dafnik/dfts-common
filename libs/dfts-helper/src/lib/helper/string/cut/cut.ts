@@ -1,4 +1,4 @@
-import {UndefinedOrNullOr} from '../../../types';
+import {UndefinedOrNullOr} from '../../../types.js';
 
 /**
  * Returns the whole text if the length does not exceed the maxLength, else the text will be sliced and a suffix will be added

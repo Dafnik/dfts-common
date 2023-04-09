@@ -1,9 +1,9 @@
-import {IList} from './list.interface';
-import {ACommonList} from './list.abstract';
-import {IEntity} from '../entities/entity.interface';
-import {ManyOrUndefinedOrNullOr, StringOrNumber, UndefinedOrNullOr} from '../types';
-import {List} from './list';
-import {listOf} from './list.functions';
+import {IList} from './list.interface.js';
+import {ACommonList} from './list.abstract.js';
+import {IEntity} from '../entities/entity.interface.js';
+import {ManyOrUndefinedOrNullOr, StringOrNumber, UndefinedOrNullOr} from '../types.js';
+import {List} from './list.js';
+import {listOf} from './list.functions.js';
 
 export type IEntityList<T extends IEntity<StringOrNumber>> = IList<T>;
 

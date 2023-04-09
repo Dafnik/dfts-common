@@ -1,6 +1,6 @@
-import {st_removeAll} from '../../storage/common';
-import {st_set} from '../../storage/set';
-import {d_fromStorage} from './from-storage';
+import {st_removeAll} from '../../storage/common.js';
+import {st_set} from '../../storage/set.js';
+import {d_fromStorage} from './from-storage.js';
 
 describe('StorageHelper', () => {
   beforeEach(() => {

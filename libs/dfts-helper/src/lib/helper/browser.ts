@@ -1,4 +1,4 @@
-import {st_isAvailable} from './storage/common';
+import {st_isAvailable} from './storage/common.js';
 
 export type BrowserInfo = ReturnType<typeof i_complete>;
 

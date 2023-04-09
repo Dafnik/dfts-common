@@ -1,4 +1,4 @@
-import {IPredicate} from '../../types';
+import {IPredicate} from '../../types.js';
 
 export function a_removeIf<T>(array: T[], filterFn: IPredicate<T>, ...items: T[]): T[] {
   for (const item of items) {

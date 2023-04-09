@@ -1,7 +1,7 @@
 /**
  * @since 3.2.5
  */
-import {StringOrNumber} from '../types';
+import {StringOrNumber} from '../types.js';
 
 export type IHasID<idType> = {
   id: idType;

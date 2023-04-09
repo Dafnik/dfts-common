@@ -1,4 +1,4 @@
-import {IPredicate} from '../../types';
+import {IPredicate} from '../../types.js';
 
 /**
  * Push items to an array if they meet a certain condition.

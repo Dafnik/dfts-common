@@ -1,4 +1,4 @@
-import {a_pushIfAbsent} from './push-if-absent';
+import {a_pushIfAbsent} from './push-if-absent.js';
 
 describe('push If absent', () => {
   it('string to work', () => {

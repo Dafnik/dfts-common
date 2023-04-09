@@ -1,3 +1,3 @@
-import {UndefinedOrNullOr} from '../../types';
+import {UndefinedOrNullOr} from '../../types.js';
 
 export const s_stripWhitespace = (text: UndefinedOrNullOr<string>): string => text?.trim().replace(/^\s+/, '').replace(/\s+$/, '') ?? '';

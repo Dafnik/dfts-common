@@ -1,6 +1,6 @@
-import {AEntity, AEntityWithNumberID, AEntityWithStringID} from './abstract-entity/abstract-entity';
-import {AEntityWithName, AEntityWithNumberIDAndName, AEntityWithStringIDAndName} from './abstract-entity-with-name';
-import {StringOrNumber} from '../types';
+import {AEntity, AEntityWithNumberID, AEntityWithStringID} from './abstract-entity/abstract-entity.js';
+import {AEntityWithName, AEntityWithNumberIDAndName, AEntityWithStringIDAndName} from './abstract-entity-with-name.js';
+import {StringOrNumber} from '../types.js';
 
 export class Entity extends AEntity<StringOrNumber> {
   constructor(id: StringOrNumber, originalJsonDto?: unknown) {

@@ -1,4 +1,4 @@
-import {s_truncate} from './truncate';
+import {s_truncate} from './truncate.js';
 
 describe('truncate', () => {
   it('truncate', () => {

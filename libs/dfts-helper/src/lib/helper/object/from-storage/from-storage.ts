@@ -1,5 +1,5 @@
-import {UndefinedOr} from '../../../types';
-import {s_fromStorage} from '../../string/from-storage/from-storage';
+import {UndefinedOr} from '../../../types.js';
+import {s_fromStorage} from '../../string/from-storage/from-storage.js';
 
 export function o_fromStorage<T>(key: string): UndefinedOr<T> {
   const val = s_fromStorage(key);

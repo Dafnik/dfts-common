@@ -1,4 +1,4 @@
-import {UndefinedOrNullOr} from '../../types';
+import {UndefinedOrNullOr} from '../../types.js';
 
 /**
  * Extracts the values of a specific property from an array of objects.

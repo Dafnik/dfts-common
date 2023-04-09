@@ -1,4 +1,4 @@
-import {UndefinedOrNullOr} from '../../types';
+import {UndefinedOrNullOr} from '../../types.js';
 
 export class StringHelper {
   private static hasNumbersInStringRegex = new RegExp(/\d/);

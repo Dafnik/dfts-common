@@ -1,4 +1,4 @@
-import {d_timespan} from './timespan';
+import {d_timespan} from './timespan.js';
 
 describe('timespan', () => {
   it('should return the correct time span between two dates', () => {

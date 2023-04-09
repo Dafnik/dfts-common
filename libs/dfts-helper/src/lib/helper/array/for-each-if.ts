@@ -1,4 +1,4 @@
-import {ICompute, IPredicate} from '../../types';
+import {ICompute, IPredicate} from '../../types.js';
 
 export function a_forEachIf<T>(array: T[], filterFn: IPredicate<T>, callbackFn: ICompute<T>): T[] {
   for (const item of array) {

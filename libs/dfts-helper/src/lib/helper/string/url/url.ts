@@ -1,4 +1,4 @@
-import {UndefinedOrNullOr} from '../../../types';
+import {UndefinedOrNullOr} from '../../../types.js';
 
 const isUrlRegEx = new RegExp(
   '^(https?:\\/\\/)?' + // protocol

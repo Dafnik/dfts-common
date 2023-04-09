@@ -1,7 +1,7 @@
-import {IEntity} from '../entities/entity.interface';
-import {EntityList} from './entity-list';
-import {List} from './list';
-import {StringOrNumber} from '../types';
+import {IEntity} from '../entities/entity.interface.js';
+import {EntityList} from './entity-list.js';
+import {List} from './list.js';
+import {StringOrNumber} from '../types.js';
 
 export function listOf<T>(...items: T[]): List<T> {
   return new List<T>(items);

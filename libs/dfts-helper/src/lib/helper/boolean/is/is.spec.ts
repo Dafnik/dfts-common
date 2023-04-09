@@ -1,4 +1,4 @@
-import {b_is} from './is';
+import {b_is} from './is.js';
 
 describe('TypeHelper', () => {
   it('boolean', () => {

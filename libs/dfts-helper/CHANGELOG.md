@@ -1,9 +1,3 @@
-## [0.0.11](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.10...dfts-helper-0.0.11) (2023-04-09)
-
-### Features
-
-- migrate to NodeNext module resolution ([3501d5a](https://github.com/Dafnik/dfts-common/commit/3501d5a2dcd01d0f564cffaaebc3601700bf759a))
-
 ## [0.0.10](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.9...dfts-helper-0.0.10) (2023-04-07)
 
 ### Bug Fixes

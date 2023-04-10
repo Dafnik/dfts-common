@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: setup node and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+        uses: dafnik/setup-node-pnpm@v1
 
       - name: install dependencies
         run: pnpm install
@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: setup node and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+        uses: dafnik/setup-node-pnpm@v1
 
       - name: install dependencies
         run: pnpm install
@@ -164,7 +164,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: setup node and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+        uses: dafnik/setup-node-pnpm@v1
 
       - uses: actions/download-artifact@master
         with:

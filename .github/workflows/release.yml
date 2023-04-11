@@ -27,9 +27,8 @@ jobs:
 
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v1
-
-      - name: install dependencies
-        run: pnpm install
+        with:
+          install: true
 
       - name: test ${{ inputs.lib }}
         run: pnpm exec nx test ${{ inputs.lib }} --codeCoverage --coverageReporters=cobertura
@@ -47,9 +46,8 @@ jobs:
 
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v1
-
-      - name: install dependencies
-        run: pnpm install
+        with:
+          install: true
 
       - name: build ${{ inputs.lib }}
         run: pnpm exec nx build ${{ inputs.lib }}

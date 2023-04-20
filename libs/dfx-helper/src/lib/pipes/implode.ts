@@ -1,5 +1,5 @@
 import {NgModule, Pipe, PipeTransform} from '@angular/core';
-import {IMap, s_imploder, UndefinedOrNullOr} from 'dfts-helper';
+import {s_imploder, UndefinedOrNullOr} from 'dfts-helper';
 
 @Pipe({
   name: 's_implode',
@@ -25,7 +25,7 @@ export class DfxImplodePipe implements PipeTransform {
 export class ImplodeMappedPipe implements PipeTransform {
   transform<T>(
     strings: UndefinedOrNullOr<T[]>,
-    mapFn: IMap<T, string>,
+    mapFn: (it: T) => string,
     separator?: UndefinedOrNullOr<string>,
     maxLength?: UndefinedOrNullOr<number>,
     suffix?: UndefinedOrNullOr<string>

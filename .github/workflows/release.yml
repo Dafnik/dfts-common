@@ -101,7 +101,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ./releases
-          remote: /var/www/datepoll-share/common/${{ inputs.lib }}
+          remote: /var/www/share/releases/${{ inputs.lib }}
           host: ${{ secrets.RELEASES_SSH_HOST }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
           username: ${{ secrets.RELEASES_SSH_USER }}

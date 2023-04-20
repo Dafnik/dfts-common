@@ -1,48 +1,46 @@
-import {IBuilder, IMap, UndefinedOrNullOr} from '../../../types';
-
-export const s_imploder = (source?: UndefinedOrNullOr<string[]>): ImploderBuilder => {
+export const s_imploder = (source?: string[] | null): ImploderBuilder => {
   return ImploderBuilder.get(source);
 };
 
-export class ImploderBuilder implements IBuilder<string> {
-  private _maxLength?: UndefinedOrNullOr<number>;
-  private _offset?: UndefinedOrNullOr<number>;
-  private _separator?: UndefinedOrNullOr<string>;
-  private _suffix?: UndefinedOrNullOr<string>;
-  private _source?: UndefinedOrNullOr<string[]>;
+export class ImploderBuilder {
+  private _maxLength?: number | null;
+  private _offset?: number | null;
+  private _separator?: string | null;
+  private _suffix?: string | null;
+  private _source?: string[] | null;
 
-  static get(source?: UndefinedOrNullOr<string[]>): ImploderBuilder {
+  static get(source?: string[] | null): ImploderBuilder {
     return new ImploderBuilder().source(source);
   }
 
-  source(source?: UndefinedOrNullOr<string[]>): this {
+  source(source?: string[] | null): this {
     this._source = source;
     return this;
   }
 
-  mappedSource<T>(source?: UndefinedOrNullOr<T[]>, mapFn?: IMap<T, string>): this {
+  mappedSource<T>(source?: T[] | null, mapFn?: (it: T) => string): this {
     if (mapFn && source) {
       this._source = source.map(mapFn);
     }
     return this;
   }
 
-  maxLength(maxLength?: UndefinedOrNullOr<number>): this {
+  maxLength(maxLength?: number | null): this {
     this._maxLength = maxLength;
     return this;
   }
 
-  offset(offset?: UndefinedOrNullOr<number>): this {
+  offset(offset?: number | null): this {
     this._offset = offset;
     return this;
   }
 
-  separator(separator?: UndefinedOrNullOr<string>): this {
+  separator(separator?: string | null): this {
     this._separator = separator;
     return this;
   }
 
-  suffix(suffix?: UndefinedOrNullOr<string>): this {
+  suffix(suffix?: string | null): this {
     this._suffix = suffix;
     return this;
   }

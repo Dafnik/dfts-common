@@ -7,7 +7,6 @@
     "hook:pre-commit": "lint-staged",
     "hook:commit-msg": "npx --no-install commitlint --edit \"$1\"",
     "start": "nx serve",
-    "build": "nx build",
     "test": "nx test",
     "prettify": "prettier --write ."
   },
@@ -46,7 +45,6 @@
     "@jscutlery/semver": "^2.29.3",
     "@nrwl/cypress": "15.9.2",
     "@nrwl/devkit": "15.9.2",
-    "@nrwl/esbuild": "15.9.2",
     "@nrwl/eslint-plugin-nx": "15.9.2",
     "@nrwl/jest": "15.9.2",
     "@nrwl/linter": "15.9.2",
@@ -57,7 +55,6 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "cypress": "^12.2.0",
-    "esbuild": "0.17.17",
     "eslint": "~8.38.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -80,4 +77,3 @@
     "webpack-merge": "^5.8.0"
   }
 }
-

@@ -3,6 +3,7 @@
 The collection of collections.
 
 ## Useful commands
+
 | Description  | Command                                                                                                                                |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | Prettify all | `pnpm prettify`                                                                                                                        |

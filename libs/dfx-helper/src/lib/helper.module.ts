@@ -7,8 +7,10 @@ import {
   withLoggingInterceptor,
   withMobileBreakpoint,
   withPostPutJsonContentTypeInterceptor,
+  withWindow,
 } from './helper.provider';
 import {HelperFeatures} from './features';
+import {provideIsMobileService} from './services/is-mobile';
 
 @NgModule()
 export class DfxHelperModule {
@@ -21,6 +23,8 @@ export class DfxHelperModule {
         withBaseUrlInterceptor(configuration.baseUrl ?? '', configuration.baseUrlInterceptorIgnorePaths).providers,
         withLoggingInterceptor(configuration.loggingInterceptorIgnorePaths).providers,
         withPostPutJsonContentTypeInterceptor(configuration.postPutJsonContentTypeInterceptorIgnorePaths).providers,
+        withWindow().providers,
+        provideIsMobileService(),
       ],
     };
   }

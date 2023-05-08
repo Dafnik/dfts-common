@@ -10,6 +10,4 @@ const windowProvider: FactoryProvider = {
   },
 };
 
-export const WINDOW_PROVIDERS = [windowProvider];
-
 export const provideWindow = (): FactoryProvider => windowProvider;

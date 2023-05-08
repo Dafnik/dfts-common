@@ -14,7 +14,10 @@ import {
   LoggingInterceptorFeature,
   MobileBreakpointFeature,
   PostPutJsonContentTypeInterceptorFeature,
+  WindowFeature,
 } from './features';
+import {provideIsMobileService} from './services/is-mobile';
+import {provideWindow} from './windows-provider';
 
 export function provideDfxHelper(...features: HelperFeatures[]): EnvironmentProviders {
   console.log(getLogMessage('INFO', 'provideDfxHelper', 'setup', 'Features'), features);
@@ -24,7 +27,7 @@ export function provideDfxHelper(...features: HelperFeatures[]): EnvironmentProv
 export function withMobileBreakpoint(mobileBreakpoint: number): MobileBreakpointFeature {
   return {
     kind: HelperFeatureKind.MOBILE_BREAKPOINT,
-    providers: [{provide: HELPER_MOBILE_BREAKPOINT, useValue: mobileBreakpoint}],
+    providers: [{provide: HELPER_MOBILE_BREAKPOINT, useValue: mobileBreakpoint}, provideIsMobileService()],
   };
 }
 
@@ -49,5 +52,11 @@ export function withPostPutJsonContentTypeInterceptor(paths: string[] = []): Pos
   return {
     kind: HelperFeatureKind.POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS,
     providers: [{provide: HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS, useValue: paths}],
+  };
+}
+export function withWindow(): WindowFeature {
+  return {
+    kind: HelperFeatureKind.WINDOW,
+    providers: [provideWindow()],
   };
 }

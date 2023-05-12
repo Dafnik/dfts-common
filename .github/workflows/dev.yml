@@ -23,6 +23,8 @@ jobs:
       # Expose matched filters as job 'packages' output variable
       libs: ${{ steps.filter.outputs.changes }}
     steps:
+      - uses: actions/checkout@master
+
       # For pull requests it's not necessary to checkout the code
       - uses: dorny/paths-filter@v2
         id: filter

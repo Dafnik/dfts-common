@@ -37,12 +37,12 @@ jobs:
             dfx-qrcode: libs/dfx-qrcode
             dfx-translate: libs/dfx-translate
   
-
   test:
     name: Test ${{ matrix.lib }}
     runs-on: ubuntu-latest
-    needs: changes
     continue-on-error: true
+    needs: changes
+    if: ${{ needs.changes.outputs.libs != '[]' && needs.changes.outputs.libs != '' }}
     strategy:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
@@ -64,8 +64,9 @@ jobs:
 
   build-lib:
     name: Build ${{ matrix.lib }}
-    needs: changes
     runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.libs != '[]' && needs.changes.outputs.libs != '' }}
     strategy:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
@@ -87,12 +88,34 @@ jobs:
           path: ./dist/libs/${{ matrix.lib }}
           retention-days: 1
 
+
+  # JOB to run change detection
+  app-changes:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      pull-requests: read
+    outputs:
+      # Expose matched filters as job 'packages' output variable
+      apps: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: actions/checkout@master
+
+      # For pull requests it's not necessary to checkout the code
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            dfx-bootstrap-table-demo: apps/dfx-bootstrap-table-demo
+
   build-app:
     name: Build ${{ matrix.app }}
     runs-on: ubuntu-latest
+    needs: app-changes
+    if: ${{ needs.app-changes.outputs.apps != '[]' && needs.app-changes.outputs.apps != '' }}
     strategy:
       matrix:
-        app: [ dfx-bootstrap-table-demo ]
+        app: ${{ fromJSON(needs.app-changes.outputs.apps) }}
     steps:
       - uses: actions/checkout@master
 
@@ -113,7 +136,7 @@ jobs:
 
   deploy-bootstrap-table-demo:
     name: Deploy dfx-bootstrap-table-demo
-    needs: [build-app]
+    needs: [ build-app ]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
@@ -153,7 +176,7 @@ jobs:
 
   deploy-dev:
     name: Deploy ${{ matrix.lib }} dev
-    needs: [build-lib, test]
+    needs: [ build-lib, test ]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     strategy:

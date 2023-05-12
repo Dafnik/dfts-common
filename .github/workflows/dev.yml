@@ -13,13 +13,37 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # JOB to run change detection
+  changes:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      pull-requests: read
+    outputs:
+      # Expose matched filters as job 'packages' output variable
+      libs: ${{ steps.filter.outputs.changes }}
+    steps:
+      # For pull requests it's not necessary to checkout the code
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            dfts-helper: libs/dfts-helper
+            dfts-qrcode: libs/dfts-qrcode
+            dfx-bootstrap-table: libs/dfx-bootstrap-table
+            dfx-helper: libs/dfx-helper
+            dfx-qrcode: libs/dfx-qrcode
+            dfx-translate: libs/dfx-translate
+  
+
   test:
     name: Test ${{ matrix.lib }}
     runs-on: ubuntu-latest
+    needs: changes
     continue-on-error: true
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate, dfts-qrcode]
+        lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
       - uses: actions/checkout@master
 
@@ -38,10 +62,11 @@ jobs:
 
   build-lib:
     name: Build ${{ matrix.lib }}
+    needs: changes
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table, dfts-qrcode]
+        lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
       - uses: actions/checkout@master
 
@@ -131,7 +156,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
-        lib: [dfts-helper, dfx-helper, dfx-translate, dfx-bootstrap-table, dfts-qrcode]
+        lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
       - uses: actions/checkout@master
 

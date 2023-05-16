@@ -157,10 +157,12 @@ jobs:
           filters: |
             dfx-bootstrap-table-demo: 
               - 'apps/dfx-bootstrap-table-demo/**'
+              - 'libs/dfx-boostrap-table/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
             dfx-qrcode-demo: 
               - 'apps/dfx-qrcode-demo/**'
+              - 'libs/dfx-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
 
@@ -192,7 +194,7 @@ jobs:
 
   deploy-app:
     name: Deploy ${{ matrix.app }}
-    needs: [ build-app ]
+    needs: [ app-changes, build-app ]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     strategy:

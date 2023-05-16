@@ -30,13 +30,31 @@ jobs:
         id: filter
         with:
           filters: |
-            dfts-helper: libs/dfts-helper
-            dfts-qrcode: libs/dfts-qrcode
-            dfx-bootstrap-table: libs/dfx-bootstrap-table
-            dfx-helper: libs/dfx-helper
-            dfx-qrcode: libs/dfx-qrcode
-            dfx-translate: libs/dfx-translate
-  
+            dfts-helper: 
+              - 'libs/dfts-helper/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+            dfts-qrcode: 
+              - 'libs/dfts-qrcode/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+            dfx-bootstrap-table: 
+              - 'libs/dfx-bootstrap-table/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+            dfx-helper: 
+              - 'libs/dfx-helper/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+            dfx-qrcode: 
+              - 'libs/dfx-qrcode/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+            dfx-translate: 
+              - 'libs/dfx-translate**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+
   test:
     name: Test ${{ matrix.lib }}
     runs-on: ubuntu-latest
@@ -106,7 +124,10 @@ jobs:
         id: filter
         with:
           filters: |
-            dfx-bootstrap-table-demo: apps/dfx-bootstrap-table-demo
+            dfx-bootstrap-table-demo: 
+              - 'apps/dfx-bootstrap-table-demo**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
 
   build-app:
     name: Build ${{ matrix.app }}

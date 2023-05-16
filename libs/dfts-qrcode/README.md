@@ -27,7 +27,7 @@ pnpm install dfts-qrcode@latest
 ```typescript
 import {generateQrCodeImage} from 'dfts-qrcode';
 
-const qrcode = generateQrCodeImage('data');
+const {image, dataUrl} = generateQrCodeImage('data');
 ```
 
 Options:
@@ -40,7 +40,7 @@ Options:
 ```typescript
 import { generateQrCodeImage$ } from 'dfts-qrcode';
 
-generateQrCodeImage$('data', {image: {src: './assets/logo.png'}}).then((qrCode) => {
+generateQrCodeImage$('data', {image: {src: './assets/logo.png'}}).then(({image, dataUrl}) => {
   ...
 })
 ```
@@ -80,30 +80,6 @@ Options:
 - `generateOptions`
 - `generateWithImageOptions`
 
-### SVGSVGElement
-
-```typescript
-import {generateQrCodeSVG} from 'dfts-qrcode';
-
-const qrcode = generateQrCodeSVG('data');
-```
-
-Options:
-
-- `generateOptions`
-
-### HTMLDivElement
-
-```typescript
-import {generateQrCodeHTML} from 'dfts-qrcode';
-
-const qrcode = generateQrCodeHTML('data');
-```
-
-Options:
-
-- `generateOptions`
-
 ### QR-Code Matrix
 
 ```typescript
@@ -119,6 +95,8 @@ Options:
 ## Options
 
 ```typescript
+import {ColorValueHex} from './types';
+
 export type QRCodeVersion =
   | -1
   | 0
@@ -165,6 +143,8 @@ export type QRCodeVersion =
 
 export type QRCodeErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H';
 
+export type ColorValueHex = `#${string}`;
+
 export type generateMatrixOptions = {
   // If undefined or -1, automatically calculated
   version?: QRCodeVersion;
@@ -188,10 +168,10 @@ export type generateOptions = generateMatrixOptions & {
 
   colors?: {
     // defaults to '#FFFFFF', hex color
-    colorLight?: string;
+    colorLight?: ColorValueHex;
 
     // defaults to '#00000', hex color
-    colorDark?: string;
+    colorDark?: ColorValueHex;
   };
 };
 
@@ -262,7 +242,7 @@ If no version is specified, the more suitable value will be used. Unless a speci
 ```typescript
 import {generateQrCodeMatrix} from 'dfts-qrcode';
 
-generateQrCodeMatrix('data', {errorCorrectionLevel: 'M'});
+generateQrCodeMatrix('data', {errorCorrectionLevel: 'M', mode: 'octet', version: 1});
 ```
 
 ## Encoding modes

@@ -903,61 +903,6 @@ export function generateQrCodeMatrix(data: string | number, options: generateMat
   return generate(newData, ver, mode, ecclevel, mask);
 }
 
-const generateQrCodeHTMLElement = () => document.createElement('div');
-
-export function generateQrCodeHTML(data: string | number, options: generateOptions = {}, e: HTMLDivElement = generateQrCodeHTMLElement()) {
-  const matrix = generateQrCodeMatrix(data, options);
-  const modsize = options.size ?? 5;
-  const margin = options.margin ?? 4;
-  const fgColor = options.colors?.colorLight ?? '#ffffff';
-  const bgColor = options.colors?.colorDark ?? '#000000';
-
-  const n = matrix.length;
-  const html = [`<table style="border:${modsize * margin}px solid ${fgColor};background:${fgColor}">`];
-  for (let i = 0; i < n; i++) {
-    html.push('<tr>');
-    for (let j = 0; j < n; j++) {
-      html.push(`<td style="width:${modsize}px;height:${modsize}px${matrix[i][j] ? `;background:${bgColor}` : ''}"></td>`);
-    }
-    html.push('</tr>');
-  }
-  e.className = 'qrcode';
-  e.innerHTML = html.join('') + '</table>';
-  return e;
-}
-
-const generateQrCodeSVGElement = () => document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-export function generateQrCodeSVG(data: string | number, options: generateOptions = {}, e: SVGSVGElement = generateQrCodeSVGElement()) {
-  const matrix = generateQrCodeMatrix(data, options);
-  const n = matrix.length;
-  const modsize = options.size ?? 5;
-  const margin = options.margin ?? 4;
-  const size = modsize * (n + 2 * margin);
-  const fgColor = options.colors?.colorLight ?? '#ffffff';
-  const bgColor = options.colors?.colorDark ?? '#000000';
-
-  e.setAttribute('viewBox', '0 0 ' + size + ' ' + size);
-  e.setAttribute('style', 'shape-rendering:crispEdges');
-
-  const svg = [
-    `<style scoped>.bg{fill:${fgColor}}.fg{fill:${bgColor}}</style>`,
-    `<rect class="bg" x="0" y="0" width="${size}" height="${size}"/>`,
-  ];
-
-  let yo = margin * modsize;
-  for (let y = 0; y < n; y++) {
-    let xo = margin * modsize;
-    for (let x = 0; x < n; x++) {
-      if (matrix[y][x]) svg.push(`<rect x="${xo}" y="${yo}" class="fg" width="${modsize}" height="${modsize}"/>`);
-      xo += modsize;
-    }
-    yo += modsize;
-  }
-  e.innerHTML = svg.join('');
-  return e;
-}
-
 const generateQrCodeCanvasElement = () => document.createElement('canvas');
 
 export function generateQrCodeCanvas(
@@ -999,13 +944,14 @@ export function generateQrCodeImage(
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
   image: HTMLImageElement = generateQrCodeImageElement()
 ) {
-  image.setAttribute('src', generateQrCodeCanvas(data, options, canvas).toDataURL());
+  const dataUrl = generateQrCodeCanvas(data, options, canvas).toDataURL();
+  image.setAttribute('src', dataUrl);
 
   image.setAttribute('alt', options.alt ?? '');
   image.setAttribute('aria-label', options.ariaLabel ?? '');
   image.setAttribute('title', options.title ?? '');
 
-  return image;
+  return {image, dataUrl};
 }
 
 export function generateQrCodeCanvas$(
@@ -1044,11 +990,12 @@ export async function generateQrCodeImage$(
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
   image: HTMLImageElement = generateQrCodeImageElement()
 ) {
-  image.setAttribute('src', (await generateQrCodeCanvas$(data, options, canvas)).toDataURL());
+  const dataUrl = (await generateQrCodeCanvas$(data, options, canvas)).toDataURL();
+  image.setAttribute('src', dataUrl);
 
   image.setAttribute('alt', options.alt ?? '');
   image.setAttribute('aria-label', options.ariaLabel ?? '');
   image.setAttribute('title', options.title ?? '');
 
-  return image;
+  return {image, dataUrl};
 }

@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/dfx-qrcode",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["dfts-qrcode"]
 }

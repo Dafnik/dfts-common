@@ -1,46 +1,23 @@
 {
-  "baseBranches": [
-    "main"
-  ],
-  "ignorePaths": [
-    "**/libs/**"
-  ],
-  "enabledManagers": [
-    "npm",
-    "github-actions"
-  ],
+  "baseBranches": ["main"],
+  "ignorePaths": ["**/libs/**"],
+  "enabledManagers": ["npm", "github-actions"],
   "semanticCommits": "enabled",
   "semanticCommitScope": "",
   "semanticCommitType": "build",
   "commitBody": "See associated pull request for more information.",
-  "schedule": [
-    "after 11:00pm on monday",
-    "before 11:00am on tuesday"
-  ],
-  "labels": [
-    "dependencies"
-  ],
+  "schedule": ["after 11:00pm on monday", "before 11:00am on tuesday"],
+  "labels": ["dependencies"],
   "timezone": "Europe/Vienna",
-  "assignees": [
-    "Dafnik"
-  ],
-  "ignoreDeps": [
-    "typescript"
-  ],
+  "assignees": ["Dafnik"],
+  "ignoreDeps": ["typescript"],
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minor-updates"
     },
     {
-      "matchUpdateTypes": [
-        "major"
-      ],
+      "matchUpdateTypes": ["major"],
       "groupName": "major-update"
     }
   ],

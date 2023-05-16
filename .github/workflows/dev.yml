@@ -25,7 +25,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      # For pull requests it's not necessary to checkout the code
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -51,7 +50,7 @@ jobs:
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
             dfx-translate: 
-              - 'libs/dfx-translate**'
+              - 'libs/dfx-translate/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
 
@@ -241,5 +240,3 @@ jobs:
           port: ${{ secrets.RELEASES_SSH_PORT }}
           username: ${{ secrets.RELEASES_SSH_USER }}
           privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
-
-

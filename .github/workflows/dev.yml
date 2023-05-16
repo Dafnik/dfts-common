@@ -157,11 +157,11 @@ jobs:
         with:
           filters: |
             dfx-bootstrap-table-demo: 
-              - 'apps/dfx-bootstrap-table-demo**'
+              - 'apps/dfx-bootstrap-table-demo/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
             dfx-qrcode-demo: 
-              - 'apps/dfx-qrcode-demo**'
+              - 'apps/dfx-qrcode-demo/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
 

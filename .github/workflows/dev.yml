@@ -108,7 +108,7 @@ jobs:
 
   deploy-lib:
     name: Deploy ${{ matrix.lib }} dev
-    needs: [ build-lib, test ]
+    needs: [ build-lib, test, changes ]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     strategy:

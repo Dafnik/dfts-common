@@ -33,26 +33,32 @@ jobs:
               - 'libs/dfts-helper/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
             dfts-qrcode: 
               - 'libs/dfts-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
             dfx-bootstrap-table: 
               - 'libs/dfx-bootstrap-table/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
             dfx-helper: 
               - 'libs/dfx-helper/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
             dfx-qrcode: 
               - 'libs/dfx-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
             dfx-translate: 
               - 'libs/dfx-translate/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
 
   test:
     name: Test ${{ matrix.lib }}
@@ -160,11 +166,13 @@ jobs:
               - 'libs/dfx-boostrap-table/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
             dfx-qrcode-demo: 
               - 'apps/dfx-qrcode-demo/**'
               - 'libs/dfx-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
+              - '.github/**'
 
   build-app:
     name: Build ${{ matrix.app }}

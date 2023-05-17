@@ -52,7 +52,7 @@
     },
     {
       "matchPackagePatterns": ["*"],
-      "excludePackageNames": ["typescript", "tslib"],
+      "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "cypress", "jest-preset-angular", "@schematics/angular"],
       "excludePackagePatterns": ["@angular/", "@angular-devkit", "@angular-eslint/", "@typescript-eslint/", "@nx/"],
       "matchUpdateTypes": [
         "minor",

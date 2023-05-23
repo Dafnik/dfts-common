@@ -15,7 +15,8 @@
   "commitBody": "See associated pull request for more information.",
   "schedule": [
     "after 11:00pm on monday",
-    "before 11:00am on tuesday"
+    "before 11:00am on tuesday",
+    "every 2 weeks"
   ],
   "labels": [
     "dependencies"
@@ -39,7 +40,7 @@
     {
       "matchPackageNames": ["eslint"],
       "matchPackagePrefixes": ["@angular-eslint/", "@typescript-eslint/"],
-      "groupName": "eslint dependencies"
+      "groupName": "eslint dependencies",
     },
     {
       "matchPackageNames": ["nx"],

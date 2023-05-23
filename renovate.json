@@ -16,7 +16,7 @@
   "schedule": [
     "after 11:00pm on monday",
     "before 11:00am on tuesday",
-    "every 2 weeks"
+    "every 1 months"
   ],
   "labels": [
     "dependencies"

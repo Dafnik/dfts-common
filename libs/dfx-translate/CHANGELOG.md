@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.4...dfx-translate-3.0.0) (2023-05-29)
+
+### Bug Fixes
+
+- **dfx-translate:** readme was not copied correctly ([0bc9fcb](https://github.com/Dafnik/dfts-common/commit/0bc9fcb29c5c0d78059c89b85c480c588802181c))
+
+### Features
+
+- angular 16 ([d31d984](https://github.com/Dafnik/dfts-common/commit/d31d984d0870f9847683f8406409c85c16e62156))
+
 ## [2.0.4](https://github.com/Dafnik/dfts-common/compare/dfx-translate-2.0.3...dfx-translate-2.0.4) (2023-02-07)
 
 ### Bug Fixes

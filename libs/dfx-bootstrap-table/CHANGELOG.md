@@ -1,4 +1,16 @@
-Changelog
+# 2.0.0 (2023-05-29)
+
+### Bug Fixes
+
+- add directory to package.json ([6d1335d](https://github.com/Dafnik/dfts-common/commit/6d1335d91400416f6fec10394fc71b84d195ca7a))
+- add unit tests ([0418844](https://github.com/Dafnik/dfts-common/commit/04188449d37fdb4c5201e8f2b572e7b4a7a6d6d9))
+- remove semver CHANGELOG shoutout ([9a49ab7](https://github.com/Dafnik/dfts-common/commit/9a49ab72b3881148f46902e6f7efbfb848dc4ce3))
+- repository in package.json ([c532c08](https://github.com/Dafnik/dfts-common/commit/c532c08a4c80f1ddf8fe90e75dda49acc6f91119))
+
+### Features
+
+- angular 16 ([d31d984](https://github.com/Dafnik/dfts-common/commit/d31d984d0870f9847683f8406409c85c16e62156))
+- **dfx-bootstrap-table:** add lib and application ([c2b7e40](https://github.com/Dafnik/dfts-common/commit/c2b7e40da04ccef1aece695816c63ee22854f44f))
 
 ## 1.3.0 (2022-09-05)
 

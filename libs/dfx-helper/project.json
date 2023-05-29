@@ -33,6 +33,12 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/dfx-helper/**/*.ts", "libs/dfx-helper/**/*.html"]
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
     "version": {

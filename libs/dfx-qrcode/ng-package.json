@@ -4,5 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
+  "assets": ["./*.md", "./LICENSE"],
   "allowedNonPeerDependencies": ["dfts-qrcode"]
 }

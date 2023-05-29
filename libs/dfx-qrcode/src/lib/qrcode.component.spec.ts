@@ -8,11 +8,6 @@ describe('dfx-qrcode', () => {
   let component: QRCodeComponent;
   let fixture: ComponentFixture<QRCodeComponent>;
 
-  const styleSheet: {[key: string]: {[key: string]: string}} = {
-    h2: {border: 'solid 1px'},
-    h1: {color: 'red', border: '1px solid'},
-  };
-
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [QRCodeComponent],

@@ -14,10 +14,6 @@
         "assets": ["libs/dfts-qrcode/*.md"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs dfts-qrcode {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -37,6 +33,13 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "push": true,
+        "changelogHeader": " "
       }
     }
   },

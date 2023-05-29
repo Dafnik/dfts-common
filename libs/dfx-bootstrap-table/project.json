@@ -33,6 +33,12 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/dfx-bootstrap-table/**/*.ts", "libs/dfx-bootstrap-table/**/*.html"]
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
     "version": {

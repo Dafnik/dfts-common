@@ -1,0 +1,13 @@
+name: release dfx-bootstrap-table
+
+on:
+  push:
+    tags:
+      - 'dfx-bootstrap-table*'
+
+jobs:
+  dfx-translate:
+    uses: dafnik/dfts-common/.github/workflows/release.yml@main
+    with:
+      lib: dfx-bootstrap-table
+    secrets: inherit

@@ -40,8 +40,8 @@
     "directory": "libs/dfx-translate"
   },
   "peerDependencies": {
-    "@angular/common": "4 - 15",
-    "@angular/core": "4 - 15",
-    "rxjs": "2 - 7"
+    "@angular/common": "16",
+    "@angular/core": "16",
+    "rxjs": "7"
   }
 }

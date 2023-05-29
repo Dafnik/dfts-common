@@ -43,11 +43,11 @@
     "directory": "libs/dfx-boostrap-table"
   },
   "peerDependencies": {
-    "@angular/common": "4 - 15",
-    "@angular/core": "4 - 15",
-    "@angular/cdk": "4 - 15",
-    "@angular/animations": "4 - 15",
-    "bootstrap": "4 - 5",
-    "rxjs": "2 - 7"
+    "@angular/common": "16",
+    "@angular/core": "16",
+    "@angular/cdk": "16",
+    "@angular/animations": "16",
+    "bootstrap": "5",
+    "rxjs": "7"
   }
 }

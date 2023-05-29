@@ -30,12 +30,12 @@
     "directory": "libs/dfx-helper"
   },
   "peerDependencies": {
-    "@angular/common": "9 - 15",
-    "@angular/core": "9 - 15",
-    "@angular/cdk": "9 - 15",
-    "@angular/router": "9 - 15",
-    "@angular/platform-browser": "9 - 15",
-    "rxjs": "2 - 7",
+    "@angular/common": "16",
+    "@angular/core": "16",
+    "@angular/cdk": "16",
+    "@angular/router": "16",
+    "@angular/platform-browser": "16",
+    "rxjs": "7",
     "dfts-helper": "0 - 1"
   },
   "dependencies": {

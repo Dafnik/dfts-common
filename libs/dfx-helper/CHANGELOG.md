@@ -1,3 +1,9 @@
+## [6.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-6.0.0...dfx-helper-6.0.1) (2023-05-29)
+
+### Features
+
+- angular 16 ([d31d984](https://github.com/Dafnik/dfts-common/commit/d31d984d0870f9847683f8406409c85c16e62156))
+
 # [6.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-5.0.7...dfx-helper-6.0.0) (2023-05-29)
 
 ### Bug Fixes

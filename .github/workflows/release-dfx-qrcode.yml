@@ -1,0 +1,13 @@
+name: release dfx-qrcode
+
+on:
+  push:
+    tags:
+      - 'dfx-qrcode*'
+
+jobs:
+  dfts-helper:
+    uses: dafnik/dfts-common/.github/workflows/release.yml@main
+    with:
+      lib: dfx-qrcode
+    secrets: inherit

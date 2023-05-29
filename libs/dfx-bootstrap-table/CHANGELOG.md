@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-2.0.0...dfx-bootstrap-table-2.0.1) (2023-05-29)
+
+### Bug Fixes
+
+- **dfx-bootstrap-table:** add missing dependency ([b554809](https://github.com/Dafnik/dfts-common/commit/b55480941bc6075f1c187de4ab692fd5c0a4712b))
+
 # 2.0.0 (2023-05-29)
 
 ### Bug Fixes

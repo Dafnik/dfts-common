@@ -47,6 +47,7 @@
     "@angular/core": "16",
     "@angular/cdk": "16",
     "@angular/animations": "16",
+    "@angular/forms": "16",
     "bootstrap": "5",
     "rxjs": "7"
   }

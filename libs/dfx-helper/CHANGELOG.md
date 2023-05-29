@@ -1,3 +1,9 @@
+## [6.0.2](https://github.com/Dafnik/dfts-common/compare/dfx-helper-6.0.1...dfx-helper-6.0.2) (2023-05-29)
+
+### Bug Fixes
+
+- **dfx-helper:** is mobile service not firing at start ([29695a7](https://github.com/Dafnik/dfts-common/commit/29695a7b4e0052d5edc0a4fcd02bfb262b67c4fc))
+
 ## [6.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-6.0.0...dfx-helper-6.0.1) (2023-05-29)
 
 ### Features

@@ -139,7 +139,7 @@ export class QRCodeComponent implements OnInit, OnChanges {
           break;
         }
         default:
-          throw new Error(`Unknown elementType ${this.elementType}`);
+          console.error(`[dfx-qrcode] Error: Unknown elementType "${this.elementType}"`);
       }
     } catch (e: unknown) {
       console.error('[dfx-qrcode] Error generating QR Code:', e);

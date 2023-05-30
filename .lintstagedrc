@@ -1,0 +1,6 @@
+{
+  "*.{js,ts,css,scss,html,json,md}": [
+    "prettier --write",
+    "nx affected --target lint --uncommitted --fix true"
+  ]
+}

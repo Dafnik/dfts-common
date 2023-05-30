@@ -22,6 +22,13 @@
       },
       "defaultConfiguration": "production"
     },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/dfx-qrcode/**/*.ts", "libs/dfx-qrcode/**/*.html"]
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -34,13 +41,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/dfx-qrcode/**/*.ts", "libs/dfx-qrcode/**/*.html"]
       }
     }
   }

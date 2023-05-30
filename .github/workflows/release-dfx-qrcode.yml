@@ -6,7 +6,7 @@ on:
       - 'dfx-qrcode*'
 
 jobs:
-  dfts-helper:
+  dfx-qrcode:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-qrcode

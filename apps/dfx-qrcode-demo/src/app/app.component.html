@@ -37,7 +37,7 @@
           [imageWidth]="formValues.imageEnabled ? formValues.imageWidth : undefined"
           [imageHeight]="formValues.imageEnabled ? formValues.imageHeight : undefined"
           (qrCodeDataUrl)="setDataURL($event)"
-        ></qrcode>
+        />
 
         <button class="btn btn-outline-info" (click)="download()">Download</button>
       </div>

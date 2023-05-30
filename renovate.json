@@ -1,45 +1,26 @@
 {
-  "baseBranches": [
-    "main"
-  ],
-  "ignorePaths": [
-    "**/libs/**"
-  ],
-  "enabledManagers": [
-    "npm",
-    "github-actions"
-  ],
+  "baseBranches": ["main"],
+  "ignorePaths": ["**/libs/**"],
+  "enabledManagers": ["npm", "github-actions"],
   "semanticCommits": "enabled",
   "semanticCommitScope": "",
   "semanticCommitType": "build",
   "commitBody": "See associated pull request for more information.",
-  "schedule": [
-    "after 11:00pm on monday",
-    "before 11:00am on tuesday"
-  ],
-  "labels": [
-    "dependencies"
-  ],
+  "schedule": ["after 11:00pm on monday", "before 11:00am on tuesday"],
+  "labels": ["dependencies"],
   "timezone": "Europe/Vienna",
-  "assignees": [
-    "Dafnik"
-  ],
+  "assignees": ["Dafnik"],
   "packageRules": [
     {
       "matchPackageNames": ["@schematics/angular"],
       "matchPackagePrefixes": ["@angular/", "@angular-devkit"],
       "groupName": "angular monorepo",
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ]
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
       "matchPackageNames": ["eslint"],
       "matchPackagePrefixes": ["@angular-eslint/", "@typescript-eslint/"],
-      "groupName": "eslint dependencies",
+      "groupName": "eslint dependencies"
     },
     {
       "matchPackageNames": ["nx"],
@@ -54,27 +35,13 @@
       "matchPackagePatterns": ["*"],
       "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "@schematics/angular"],
       "excludePackagePatterns": ["@angular/", "@angular-devkit", "@angular-eslint/", "@typescript-eslint/", "@nx/"],
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minor-updates"
     },
     {
-      "matchUpdateTypes": [
-        "major"
-      ],
+      "matchUpdateTypes": ["major"],
       "groupName": "major-update"
     }
   ],
-  "extends": [
-    "config:base",
-    ":pinVersions",
-    ":unpublishSafe",
-    ":prNotPending",
-    ":preserveSemverRanges",
-    ":rebaseStalePrs"
-  ]
+  "extends": ["config:base", ":pinVersions", ":unpublishSafe", ":prNotPending", ":preserveSemverRanges", ":rebaseStalePrs"]
 }

@@ -7,7 +7,7 @@
     "@angular/platform-browser": "16"
   },
   "dependencies": {
-    "dfts-qrcode": "1",
+    "dfts-qrcode": "0 - 1",
     "tslib": "^2"
   },
   "sideEffects": false

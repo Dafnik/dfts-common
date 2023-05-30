@@ -31,7 +31,7 @@ jobs:
           install: true
 
       - name: test ${{ inputs.lib }}
-        run: pnpm exec nx test ${{ inputs.lib }} --codeCoverage --coverageReporters=cobertura
+        run: pnpm exec nx test ${{ inputs.lib }} --configuration=ci --coverageReporters=cobertura --coverageDirectory="coverage/libs/${{ inputs.lib }}"
 
       - name: setup coverage report
         uses: ./.github/actions/setup-coverage-report

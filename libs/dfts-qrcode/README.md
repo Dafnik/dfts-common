@@ -1,8 +1,14 @@
 # dfts-qrcode
 
-Typescript esm qr code generating library.
+`dfts-qrcode` is a tiny, speedy and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.
 
-[![NPM](https://nodei.co/npm/dfts-qrcode.png)](https://npmjs.org/package/dfts-qrcode)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [HTMLImageElement](#htmlimageelement)
+  - [HTMLCanvasElemtn](#htmlcanvaselement)
+- [Error Correction Level](#error-correction-level)
+- [QR Code capacity](#qr-code-capacity)
+- [Encoding modes](#encoding-modes)
 
 ## Installation
 

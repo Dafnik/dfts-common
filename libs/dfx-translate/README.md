@@ -1,12 +1,12 @@
 # dfx-translate
 
-A simple translation package for Angular 4 - 12.
+A simple translation package for Angular 16.
 
 [![NPM](https://nodei.co/npm/dfx-translate.png)](https://npmjs.org/package/dfx-translate)
 
 ### Features
 
-- inline html translations via pipeline
+- inline html translations via pipe
 - opt-in type-safety without declaring your own pipes and services.
 - in-code translation with services
 - an easy-to-use json structure

@@ -7,11 +7,11 @@ export const QRCODE_ALLOW_EMPTY_STRING = new InjectionToken<boolean>('QRCODE_ALL
 });
 
 export const QRCODE_COLOR_DARK = new InjectionToken<ColorValueHex>('QRCODE_COLOR_DARK', {
-  factory: () => '#000000ff',
+  factory: () => '#000000',
 });
 
 export const QRCODE_COLOR_LIGHT = new InjectionToken<ColorValueHex>('QRCODE_COLOR_LIGHT', {
-  factory: () => '#ffffffff',
+  factory: () => '#ffffff',
 });
 
 export const QRCODE_CSS_CLASS = new InjectionToken<string>('QRCODE_CSS_CLASS', {
@@ -26,6 +26,10 @@ export const QRCODE_ERROR_CORRECTION_LEVEL = new InjectionToken<QRCodeErrorCorre
   factory: () => 'L',
 });
 
+export const QRCODE_MARGIN = new InjectionToken<number>('QRCODE_MARGIN', {
+  factory: () => 4,
+});
+
 export const QRCODE_IMAGE_SRC = new InjectionToken<string | undefined>('QRCODE_IMAGE_SRC', {
   factory: () => undefined,
 });
@@ -36,10 +40,6 @@ export const QRCODE_IMAGE_HEIGHT = new InjectionToken<number>('QRCODE_IMAGE_HEIG
 
 export const QRCODE_IMAGE_WIDTH = new InjectionToken<number>('QRCODE_IMAGE_WIDTH', {
   factory: () => 40,
-});
-
-export const QRCODE_MARGIN = new InjectionToken<number>('QRCODE_MARGIN', {
-  factory: () => 4,
 });
 
 export const QRCODE_VERSION = new InjectionToken<QRCodeVersion>('QRCODE_VERSION', {

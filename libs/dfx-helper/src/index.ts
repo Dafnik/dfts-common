@@ -38,6 +38,7 @@ export * from './lib/pipes/string/upper-case-first-letter';
 
 export * from './lib/pipes/implode';
 export * from './lib/pipes/name-map';
+export * from './lib/pipes/pluck';
 export * from './lib/pipes/time-left';
 export * from './lib/pipes/time-span';
 

@@ -1,16 +1,11 @@
-import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
-import {coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
+import {AfterViewInit, Directive, ElementRef, Input, numberAttribute} from '@angular/core';
 
 @Directive({
   selector: '[focus]',
   standalone: true,
 })
 export class DfxAutofocus implements AfterViewInit {
-  @Input() set focus(it: NumberInput) {
-    this.delay = coerceNumberProperty(it);
-  }
-
-  delay = 100;
+  @Input({transform: numberAttribute, alias: 'focus'}) delay = 100;
 
   constructor(private elRef: ElementRef<HTMLElement>) {}
 

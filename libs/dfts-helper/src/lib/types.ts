@@ -1,6 +1,5 @@
 import {IHasID} from './entities/has-id.interface';
 import {IHasName} from './entities/has-name.interface';
-import {IList} from './collection/list.interface';
 
 export type UnknownOr<T> = T | unknown;
 export type UndefinedOr<T> = T | undefined;
@@ -39,10 +38,6 @@ export interface ICompute<T> {
 
 export interface ICall {
   (): void;
-}
-
-export interface IMapList<itemType, mappedType> {
-  (item: itemType, index: number, list: IList<itemType>): mappedType;
 }
 
 export interface IMap<itemType, mappedType> {

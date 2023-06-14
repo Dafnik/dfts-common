@@ -1,5 +1,4 @@
-import {Directive, ElementRef, HostListener, inject, Input} from '@angular/core';
-import {BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
+import {booleanAttribute, Directive, ElementRef, HostListener, inject, Input, numberAttribute} from '@angular/core';
 import {s_from} from 'dfts-helper';
 import {WINDOW} from '../windows-provider';
 
@@ -12,39 +11,32 @@ export class DfxCountUp {
 
   window = inject(WINDOW);
 
-  @Input() set countUp(it: NumberInput) {
+  @Input({transform: numberAttribute, required: true}) set countUp(it: number) {
     if (it) {
-      this._count = coerceNumberProperty(it);
+      this.count = it;
       this.animateCountUp();
     }
   }
 
-  _count = 0;
+  count = 0;
 
   /**
    * How long you want the animation to take.
    * @param time time in ms; defaults to <code>4000</code>
    */
-  @Input() set animationDuration(time: NumberInput) {
-    this._animationDuration = coerceNumberProperty(time);
-  }
+  @Input({transform: numberAttribute}) animationDuration = 4000;
 
-  _animationDuration = 4000;
-
-  @Input() set clickable(it: BooleanInput) {
-    this._clickable = coerceBooleanProperty(it);
-  }
-  _clickable = true;
+  @Input({transform: booleanAttribute}) clickable = true;
 
   counterRunning = false;
 
   // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second 1000/60
   frameDuration = 16.6;
   // Use that to calculate how many frames we need to complete the animation
-  totalFrames = Math.round(this._animationDuration / this.frameDuration);
+  totalFrames = Math.round(this.animationDuration / this.frameDuration);
 
   @HostListener('mousedown') onMouseDown(): void {
-    if (this._clickable) {
+    if (this.clickable) {
       this.animateCountUp();
     }
   }
@@ -62,7 +54,7 @@ export class DfxCountUp {
     this.counterRunning = true;
 
     let frame = 0;
-    const countTo = this._count;
+    const countTo = this.count;
     // Start the animation running 60 times per second
     const animate = () => {
       frame++;

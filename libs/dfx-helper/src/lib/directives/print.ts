@@ -3,8 +3,7 @@ Copyright belongs to https://github.com/selemxmn/ngx-print
 Licensed under MIT license
  */
 
-import {Directive, HostListener, Input} from '@angular/core';
-import {BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput} from '@angular/cdk/coercion';
+import {booleanAttribute, Directive, HostListener, Input, numberAttribute} from '@angular/core';
 import {loggerOf} from 'dfts-helper';
 
 @Directive({
@@ -19,18 +18,12 @@ export class DfxPrint {
   @Input() printSectionId!: string;
   @Input() printTitle?: string;
 
-  @Input() set useExistingCss(value: BooleanInput) {
-    this._useExistingCss = coerceBooleanProperty(value);
-  }
-  private _useExistingCss = false;
+  @Input({transform: booleanAttribute}) useExistingCss = false;
 
   /**
    * A delay in milliseconds to force the print dialog to wait before opened. Default: 0
    */
-  @Input() set printDelay(value: NumberInput) {
-    this._printDelay = coerceNumberProperty(value, 0);
-  }
-  private _printDelay = 0;
+  @Input({transform: numberAttribute}) printDelay = 0;
 
   private _printStyle: string[] = [];
   @Input()
@@ -108,7 +101,7 @@ export class DfxPrint {
     // Base tag https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
     const baseTag = DfxPrint.getElementTag('base');
 
-    if (this._useExistingCss) {
+    if (this.useExistingCss) {
       styles = DfxPrint.getElementTag('style');
       links = DfxPrint.getElementTag('link');
     }
@@ -138,7 +131,7 @@ export class DfxPrint {
               setTimeout(function() {
                 window.print()
                 closeWindow();
-              }, ${this._printDelay});
+              }, ${this.printDelay});
             }
             function closeWindow(){
                 window.close();

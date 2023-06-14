@@ -23,6 +23,10 @@
       "groupName": "eslint dependencies"
     },
     {
+      "matchPackageNames": ["bootstrap"],
+      "groupName": "bootstrap dependency"
+    },
+    {
       "matchPackageNames": ["nx"],
       "matchPackagePrefixes": ["@nx/"],
       "groupName": "nx dependencies"
@@ -33,7 +37,7 @@
     },
     {
       "matchPackagePatterns": ["*"],
-      "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "@schematics/angular"],
+      "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "@schematics/angular", "bootstrap"],
       "excludePackagePatterns": ["@angular/", "@angular-devkit", "@angular-eslint/", "@typescript-eslint/", "@nx/"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minor-updates"

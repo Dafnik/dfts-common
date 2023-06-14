@@ -1,11 +1,45 @@
 {
   "name": "dfx-qrcode",
   "version": "0.0.1",
+  "description": "tiny and simple-to-use Angular QrCode generator library",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://dafnik.me",
+  "keywords": [
+    "angular2",
+    "angular",
+    "typescript",
+    "qrcode",
+    "qr",
+    "code",
+    "tiny",
+    "small",
+    "esm",
+    "modules"
+  ],
+  "author": {
+    "name": "Dafnik",
+    "email": "contact@dafnik.me",
+    "url": "https://dafnik.me"
+  },
+  "funding": {
+    "type": "liberapay",
+    "url": "https://liberapay.com/Dafnik"
+  },
+  "bugs": {
+    "url": "https://github.com/Dafnik/dfts-common/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Dafnik/dfts-common.git",
+    "directory": "libs/dfx-qrcode"
+  },
   "peerDependencies": {
     "@angular/common": "16",
     "@angular/core": "16",
     "@angular/platform-browser": "16"
   },
+
   "dependencies": {
     "dfts-qrcode": "0 - 1",
     "tslib": "^2"

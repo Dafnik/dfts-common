@@ -1,7 +1,8 @@
 # dfx-qrcode
 
-`dfx-qrcode` is a tiny, speedy and simple-to-use Angular QrCode generator library.
+`dfx-qrcode` is a tiny and simple-to-use Angular QrCode generator library.
 
+- [Demo](https://qrcode-demo.dafnik.me)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Standalone Components](#standalone-components)
@@ -16,6 +17,7 @@
 ## Features
 
 - Based on esm modules
+- Tiny
 - Accessible
 - Server Side Rendering
 - Standalone Component compatible
@@ -41,9 +43,7 @@ import {QrCodeComponent} from 'dfx-qrcode';
 @Component({
   standalone: true,
   selector: 'app-root',
-  template: `
-    <qrcode data='hello' />
-  `,
+  template: ` <qrcode data="hello" /> `,
   imports: [QRCodeComponent],
 })
 export class AppComponent {}
@@ -62,9 +62,7 @@ export class AppModule {}
 
 @Component({
   selector: 'app-root',
-  template: `
-    <qrcode data='hello' />
-  `,
+  template: ` <qrcode data="hello" /> `,
 })
 export class AppComponent {}
 ```
@@ -161,25 +159,24 @@ export class AppModule {}
   // ...
   selector: 'app-root',
   template: `
-        <qrcode
-          [data]="'hello'"
-          [allowEmptyString]="true"
-          [elementType]="'img'"
-          [errorCorrectionLevel]="'L'"
-          [ariaLabel]="'Description of QR-Code'"
-          [title]="'Description of QR-Code'"
-          [alt]="'Description of QR-Code'"
-          [cssClass]="'qrcode'"
-          [colorDark]="'#000000'"
-          [colorLight]="'#FFFFFF'"
-          [margin]="4"
-          [size]="5"
-          [version]="-1"
-          [imageSrc]="'assets/logo.png'"
-          [imageWidth]="40"
-          [imageHeight]="40"
-        />
-
+    <qrcode
+      [data]="'hello'"
+      [allowEmptyString]="true"
+      [elementType]="'img'"
+      [errorCorrectionLevel]="'L'"
+      [ariaLabel]="'Description of QR-Code'"
+      [title]="'Description of QR-Code'"
+      [alt]="'Description of QR-Code'"
+      [cssClass]="'qrcode'"
+      [colorDark]="'#000000'"
+      [colorLight]="'#FFFFFF'"
+      [margin]="4"
+      [size]="5"
+      [version]="-1"
+      [imageSrc]="'assets/logo.png'"
+      [imageWidth]="40"
+      [imageHeight]="40"
+    />
   `,
   // ...
 })
@@ -228,12 +225,6 @@ The percentage indicates the maximum amount of damaged surface after which the s
 
 Error level can be set through `options.errorCorrectionLevel` property.<br>
 If not specified, the default value is `L`.
-
-```typescript
-import {generateQrCodeMatrix} from 'dfts-qrcode';
-
-generateQrCodeMatrix('data', {errorCorrectionLevel: 'M'});
-```
 
 ## QR Code capacity
 

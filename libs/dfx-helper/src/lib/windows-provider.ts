@@ -11,3 +11,7 @@ const windowProvider: FactoryProvider = {
 };
 
 export const provideWindow = (): FactoryProvider => windowProvider;
+
+export function injectWindow() {
+  return inject(WINDOW);
+}

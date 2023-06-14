@@ -2,12 +2,6 @@
  * Public API Surface of dfts
  */
 
-export * from './lib/collection/entity-list';
-export * from './lib/collection/list.abstract';
-export * from './lib/collection/list.functions';
-export * from './lib/collection/list.interface';
-export * from './lib/collection/list';
-
 export * from './lib/decorators/confirmable/confirmable';
 export * from './lib/decorators/delay/delay';
 export * from './lib/decorators/measure-time/measure-time';
@@ -16,10 +10,6 @@ export * from './lib/decorators/remember-result/remember-result';
 export * from './lib/decorators/run-outside-change-detection';
 export * from './lib/decorators/throttle';
 
-export * from './lib/entities/abstract-entity/abstract-entity';
-export * from './lib/entities/abstract-entity-with-name';
-export * from './lib/entities/entity.interface';
-export * from './lib/entities/entity';
 export * from './lib/entities/has-id.interface';
 export * from './lib/entities/has-name.interface';
 

@@ -1,13 +1,5 @@
 import {InjectionToken} from '@angular/core';
 
-export interface HelperConfig {
-  isMobileBreakpoint?: number;
-  baseUrl?: string;
-  baseUrlInterceptorIgnorePaths?: string[];
-  loggingInterceptorIgnorePaths?: string[];
-  postPutJsonContentTypeInterceptorIgnorePaths?: string[];
-}
-
 export const HELPER_MOBILE_BREAKPOINT = new InjectionToken<number>('HELPER_MOBILE_BREAKPOINT', {
   factory: () => 992,
 });

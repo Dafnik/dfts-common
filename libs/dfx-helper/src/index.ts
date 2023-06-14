@@ -16,8 +16,6 @@ export * from './lib/directives/print';
 export * from './lib/directives/track-by';
 
 export * from './lib/entities/entities-service.interface';
-export * from './lib/entities/services/abstract-entity.service';
-export * from './lib/entities/services/abstract-selectable-entity.service';
 
 export * from './lib/interceptor/abstract-ignoreable';
 export * from './lib/interceptor/base-url';
@@ -50,5 +48,4 @@ export * from './lib/config';
 export * from './lib/features';
 export * from './lib/helper.provider';
 export * from './lib/helper.module';
-export * from './lib/key-value-pair';
 export * from './lib/windows-provider';

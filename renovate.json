@@ -1,15 +1,15 @@
 {
   "baseBranches": ["main"],
-  "ignorePaths": ["**/libs/**"],
   "enabledManagers": ["npm", "github-actions"],
   "semanticCommits": "enabled",
   "semanticCommitScope": "",
   "semanticCommitType": "build",
   "commitBody": "See associated pull request for more information.",
   "schedule": ["after 11:00pm on monday", "before 11:00am on tuesday"],
-  "labels": ["dependencies"],
   "timezone": "Europe/Vienna",
+  "labels": ["dependencies"],
   "assignees": ["Dafnik"],
+  "ignorePaths": ["**/libs/**"],
   "packageRules": [
     {
       "matchPackageNames": ["@schematics/angular"],

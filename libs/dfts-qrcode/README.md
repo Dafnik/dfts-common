@@ -1,6 +1,6 @@
 # dfts-qrcode
 
-`dfts-qrcode` is a tiny, speedy and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.
+`dfts-qrcode` is a tiny and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.
 
 - [Installation](#installation)
 - [Usage](#usage)

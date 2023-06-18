@@ -51,6 +51,11 @@ export class DfxCountUp {
       return;
     }
 
+    if (this.count === 0) {
+      this.el.nativeElement.innerText = '0';
+      return;
+    }
+
     this.counterRunning = true;
 
     let frame = 0;

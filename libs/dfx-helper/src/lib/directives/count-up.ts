@@ -32,8 +32,6 @@ export class DfxCountUp {
 
   // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second 1000/60
   frameDuration = 16.6;
-  // Use that to calculate how many frames we need to complete the animation
-  totalFrames = Math.round(this.animationDuration / this.frameDuration);
 
   @HostListener('mousedown') onMouseDown(): void {
     if (this.clickable) {
@@ -58,6 +56,9 @@ export class DfxCountUp {
 
     this.counterRunning = true;
 
+    // Use that to calculate how many frames we need to complete the animation
+    const totalFrames = Math.round(this.animationDuration / this.frameDuration);
+
     let frame = 0;
     const countTo = this.count;
     // Start the animation running 60 times per second
@@ -66,7 +67,7 @@ export class DfxCountUp {
       // Calculate our progress as a value between 0 and 1
       // Pass that value to our easing function to get our
       // progress on a curve
-      const progress = this.easeOutQuad(frame / this.totalFrames);
+      const progress = this.easeOutQuad(frame / totalFrames);
       // Use the progress value to calculate the current count
       const currentCount = Math.round(countTo * progress);
 
@@ -76,7 +77,7 @@ export class DfxCountUp {
       }
 
       // If we’ve reached our last frame, stop the animation
-      if (frame === this.totalFrames) {
+      if (frame === totalFrames) {
         this.counterRunning = false;
       } else {
         // otherwise, continue the animation by calling animate again

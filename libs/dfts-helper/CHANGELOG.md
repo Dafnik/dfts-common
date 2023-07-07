@@ -1,3 +1,5 @@
+## [1.1.1](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.1.0...dfts-helper-1.1.1) (2023-07-07)
+
 # [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.11...dfts-helper-1.0.0) (2023-05-29)
 
 ### Reverts

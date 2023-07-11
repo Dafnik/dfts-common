@@ -3,12 +3,12 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest, HttpResponse} fr
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {loggerOf} from 'dfts-helper';
 
-import {AbstractIgnoreableInterceptor} from './abstract-ignoreable';
+import {AbstractIgnorableInterceptor} from './abstract-ignoreable';
 import {HELPER_LOGGING_INTERCEPTOR_IGNORE_PATHS} from '../config';
 import {LOGGING_INTERCEPTOR} from './http-context-token';
 
 @Injectable()
-export class LoggingInterceptor extends AbstractIgnoreableInterceptor {
+export class LoggingInterceptor extends AbstractIgnorableInterceptor {
   private lumber = loggerOf('httpClient');
 
   constructor() {

@@ -4,11 +4,11 @@ import {Observable} from 'rxjs';
 import {loggerOf} from 'dfts-helper';
 
 import {HELPER_BASE_URL, HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS} from '../config';
-import {AbstractIgnoreableInterceptor} from './abstract-ignoreable';
+import {AbstractIgnorableInterceptor} from './abstract-ignoreable';
 import {BASE_URL_INTERCEPTOR} from './http-context-token';
 
 @Injectable()
-export class BaseUrlInterceptor extends AbstractIgnoreableInterceptor {
+export class BaseUrlInterceptor extends AbstractIgnorableInterceptor {
   private lumber = loggerOf('httpClient');
   baseUrl = inject(HELPER_BASE_URL);
 

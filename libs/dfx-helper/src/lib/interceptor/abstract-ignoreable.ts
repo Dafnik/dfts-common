@@ -2,7 +2,7 @@ import {HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} 
 import {Observable} from 'rxjs';
 import {shouldIntercept} from './interceptor';
 
-export abstract class AbstractIgnoreableInterceptor implements HttpInterceptor {
+export abstract class AbstractIgnorableInterceptor implements HttpInterceptor {
   protected constructor(protected BY_PASS?: HttpContextToken<boolean>, protected ignorePaths?: string[]) {}
 
   abstract intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>>;

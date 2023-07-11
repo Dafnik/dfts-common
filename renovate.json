@@ -5,7 +5,12 @@
   "semanticCommitScope": "",
   "semanticCommitType": "build",
   "commitBody": "See associated pull request for more information.",
-  "schedule": ["after 11:00pm on monday", "before 11:00am on tuesday"],
+  "schedule": [
+    "after 11:00pm on the 1 day of the month",
+    "before 4am on the 2 day of the month",
+    "after 11:00pm on the 15 day of the month",
+    "before 4am on the 16 day of the month"
+  ],
   "timezone": "Europe/Vienna",
   "labels": ["dependencies"],
   "assignees": ["Dafnik"],

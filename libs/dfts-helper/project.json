@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/dfts-helper",
         "main": "libs/dfts-helper/src/index.ts",
         "tsConfig": "libs/dfts-helper/tsconfig.lib.json",
-        "assets": ["libs/dfts-helper/*.md", "libs/dfts-helper/LICENSE"]
+        "assets": ["libs/dfts-helper/*.md", "libs/dfts-helper/LICENSE"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {

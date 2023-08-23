@@ -18,7 +18,7 @@ export class NgSubs<T> extends ADirective implements OnInit {
   constructor(
     private viewContainer: ViewContainerRef,
     private templateRef: TemplateRef<NgSubsContext<T>>,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
   ) {
     super();
 
@@ -35,7 +35,7 @@ export class NgSubs<T> extends ADirective implements OnInit {
         this.context.$implicit = values;
         this.context.ngSub = values;
         this.changeDetector.markForCheck();
-      })
+      }),
     );
   }
 
@@ -60,7 +60,7 @@ export class NgSub<T> extends ADirective implements OnInit {
   constructor(
     private viewContainer: ViewContainerRef,
     private templateRef: TemplateRef<NgSubContext<T>>,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
   ) {
     super();
 
@@ -77,7 +77,7 @@ export class NgSub<T> extends ADirective implements OnInit {
         this.context.$implicit = value;
         this.context.ngSub = value;
         this.changeDetector.markForCheck();
-      })
+      }),
     );
   }
 

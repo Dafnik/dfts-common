@@ -68,7 +68,10 @@ export class QRCodeComponent implements OnInit, OnChanges {
 
   public context: CanvasRenderingContext2D | null = null;
 
-  constructor(private renderer: Renderer2, private sanitizer: DomSanitizer) {}
+  constructor(
+    private renderer: Renderer2,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   public ngOnInit() {
     this.createQRCode();
@@ -133,7 +136,7 @@ export class QRCodeComponent implements OnInit, OnChanges {
             ({image, dataUrl}) => {
               this.renderElement(image);
               this.qrCodeDataUrl.emit(dataUrl);
-            }
+            },
           );
 
           break;

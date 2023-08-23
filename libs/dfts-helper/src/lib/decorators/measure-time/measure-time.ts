@@ -7,7 +7,7 @@ import {s_from} from '../../helper/string/from/from';
  * @since 4.0.0
  */
 export function MeasureTime(
-  unit: 'ms' | 's' | 'm' | 'h' = 'ms'
+  unit: 'ms' | 's' | 'm' | 'h' = 'ms',
 ): (target: object, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
   return function (target: object, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const ogMethod = descriptor.value;

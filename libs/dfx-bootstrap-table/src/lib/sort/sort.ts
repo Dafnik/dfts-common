@@ -8,7 +8,18 @@
  */
 
 import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
-import {Directive, EventEmitter, Inject, InjectionToken, Input, OnChanges, OnDestroy, OnInit, Optional, Output} from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output
+} from '@angular/core';
 import {Subject} from 'rxjs';
 import {SortDirection} from './sort-direction';
 import {HasInitialized, mixinInitialized} from '../core/initialized';
@@ -110,7 +121,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   constructor(
     @Optional()
     @Inject(NGB_SORT_DEFAULT_OPTIONS)
-    private _defaultOptions?: NgbSortDefaultOptions
+    private _defaultOptions?: NgbSortDefaultOptions,
   ) {
     super();
   }

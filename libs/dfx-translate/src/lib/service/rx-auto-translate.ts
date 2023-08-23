@@ -29,9 +29,9 @@ export function dfxAutoTranslate$(): (key: string) => Observable<string> {
               target: selectedLanguage,
               source: defaultLanguage,
             })
-            .pipe(map((it) => it.translatedText))
+            .pipe(map((it) => it.translatedText)),
         ),
-        first()
+        first(),
       );
     }
     return of('Feature disabled');

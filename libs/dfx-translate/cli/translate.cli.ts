@@ -97,7 +97,7 @@ program
     getJSON(sourcePath)
       .then((input_vars) => convertToArray(input_vars))
       .then((input_arr) =>
-        translateIntoLanguage(instanceUrl, sourceLang, targetLang, input_arr, options.dir, options.disableCache, options.log)
+        translateIntoLanguage(instanceUrl, sourceLang, targetLang, input_arr, options.dir, options.disableCache, options.log),
       )
       .then((transl_arr) => convertToObject(transl_arr))
       .then((output_vars) => writeToFile(`${options.dir}${targetLang}_auto.json`, JSON.stringify(output_vars)))

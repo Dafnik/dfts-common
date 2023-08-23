@@ -114,7 +114,7 @@ export const translateIntoLanguage = async (
   arr: KeyValue[],
   dir: string,
   cacheEnabled: boolean,
-  log: boolean
+  log: boolean,
 ): Promise<KeyValue[]> => {
   const manualTranslationPath = `${dir}${targetLang}.json`;
   const manualTranslation: jsonType | undefined = exists(manualTranslationPath) ? await getJSON(manualTranslationPath) : undefined;

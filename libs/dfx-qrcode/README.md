@@ -103,7 +103,7 @@ import {
       withMargin(4),
       withImage(withImageSrc('assets/logo.png'), withImageWidth(40), withImageHeight(40)),
       withVersion(-1),
-      withSize(5)
+      withSize(5),
     ),
   ],
   // ...
@@ -145,7 +145,7 @@ import {
       withMargin(4),
       withImage(withImageSrc('assets/logo.png'), withImageWidth(40), withImageHeight(40)),
       withVersion(-1),
-      withSize(5)
+      withSize(5),
     ),
   ],
 })

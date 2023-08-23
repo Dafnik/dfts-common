@@ -6,7 +6,17 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import {animate, animateChild, AnimationTriggerMetadata, keyframes, query, state, style, transition, trigger} from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  AnimationTriggerMetadata,
+  keyframes,
+  query,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 import {AnimationCurves, AnimationDurations} from './animation';
 
 const SORT_ANIMATION_TRANSITION = AnimationDurations.ENTERING + ' ' + AnimationCurves.STANDARD_CURVE;
@@ -66,22 +76,22 @@ export const ngbSortAnimations: {
     // Hidden Above => Hint Center
     transition(
       '* => desc-to-hint, * => desc-to-active',
-      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(-25%)'}), style({transform: 'translateY(0)'})]))
+      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(-25%)'}), style({transform: 'translateY(0)'})])),
     ),
     // Hint Center => Hidden Below
     transition(
       '* => hint-to-desc, * => active-to-desc',
-      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(0)'}), style({transform: 'translateY(25%)'})]))
+      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(0)'}), style({transform: 'translateY(25%)'})])),
     ),
     // Hidden Below => Hint Center
     transition(
       '* => asc-to-hint, * => asc-to-active',
-      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(25%)'}), style({transform: 'translateY(0)'})]))
+      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(25%)'}), style({transform: 'translateY(0)'})])),
     ),
     // Hint Center => Hidden Above
     transition(
       '* => hint-to-asc, * => active-to-asc',
-      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(0)'}), style({transform: 'translateY(-25%)'})]))
+      animate(SORT_ANIMATION_TRANSITION, keyframes([style({transform: 'translateY(0)'}), style({transform: 'translateY(-25%)'})])),
     ),
     state('desc-to-hint, asc-to-hint, hint, desc-to-active, asc-to-active, active', style({transform: 'translateY(0)'})),
     state('hint-to-desc, active-to-desc, desc', style({transform: 'translateY(-25%)'})),

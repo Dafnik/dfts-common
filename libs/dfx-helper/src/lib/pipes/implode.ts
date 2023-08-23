@@ -11,7 +11,7 @@ export class DfxImplodePipe implements PipeTransform {
     strings: UndefinedOrNullOr<string[]>,
     separator?: UndefinedOrNullOr<string>,
     maxLength?: UndefinedOrNullOr<number>,
-    suffix?: UndefinedOrNullOr<string>
+    suffix?: UndefinedOrNullOr<string>,
   ): string {
     return s_imploder(strings).maxLength(maxLength).separator(separator).suffix(suffix).build();
   }
@@ -28,7 +28,7 @@ export class ImplodeMappedPipe implements PipeTransform {
     mapFn: (it: T) => string,
     separator?: UndefinedOrNullOr<string>,
     maxLength?: UndefinedOrNullOr<number>,
-    suffix?: UndefinedOrNullOr<string>
+    suffix?: UndefinedOrNullOr<string>,
   ): string {
     return s_imploder().mappedSource(strings, mapFn).maxLength(maxLength).separator(separator).suffix(suffix).build();
   }

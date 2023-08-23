@@ -67,9 +67,9 @@ export class AppComponent {
         [imageWidth]="${form.imageWidth}"
         [imageHeight]="${form.imageHeight}"`
             : ''
-        } />`
-      )
-    )
+        } />`,
+      ),
+    ),
   );
 
   destroy = inject(DestroyRef);

@@ -5,7 +5,7 @@
  */
 
 export function RememberResult(
-  hashFn?: (...args: unknown[]) => string
+  hashFn?: (...args: unknown[]) => string,
 ): (target: object, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
   return function (target: object, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const cache = new Map<string, string>();

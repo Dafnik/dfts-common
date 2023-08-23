@@ -7,7 +7,10 @@ import {CurrencyPipe} from '@angular/common';
   pure: true,
 })
 export class DfxCurrencyCentPipe extends CurrencyPipe implements PipeTransform {
-  constructor(@Inject(LOCALE_ID) _locale: string, @Inject(DEFAULT_CURRENCY_CODE) private __defaultCurrencyCode: string = 'USD') {
+  constructor(
+    @Inject(LOCALE_ID) _locale: string,
+    @Inject(DEFAULT_CURRENCY_CODE) private __defaultCurrencyCode: string = 'USD',
+  ) {
     super(_locale, __defaultCurrencyCode);
   }
 
@@ -16,21 +19,21 @@ export class DfxCurrencyCentPipe extends CurrencyPipe implements PipeTransform {
     currencyCode?: string,
     display?: 'code' | 'symbol' | 'symbol-narrow' | string | boolean,
     digitsInfo?: string,
-    locale?: string
+    locale?: string,
   ): string | null;
   override transform(
     value: null | undefined,
     currencyCode?: string,
     display?: 'code' | 'symbol' | 'symbol-narrow' | string | boolean,
     digitsInfo?: string,
-    locale?: string
+    locale?: string,
   ): null;
   override transform(
     value: number | string | null | undefined,
     currencyCode?: string,
     display?: 'code' | 'symbol' | 'symbol-narrow' | string | boolean,
     digitsInfo?: string,
-    locale?: string
+    locale?: string,
   ): string | null;
   /**
    *
@@ -70,7 +73,7 @@ export class DfxCurrencyCentPipe extends CurrencyPipe implements PipeTransform {
     currencyCode: string = this.__defaultCurrencyCode,
     display: 'code' | 'symbol' | 'symbol-narrow' | string | boolean = 'symbol',
     digitsInfo?: string,
-    locale?: string
+    locale?: string,
   ): string | null {
     if (!isValue(value)) return null;
 

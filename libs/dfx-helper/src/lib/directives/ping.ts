@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgModule, numberAttribute} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostBinding,
+  Input,
+  NgModule,
+  numberAttribute
+} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {catchError, distinctUntilChanged, map, of, switchMap, timer} from 'rxjs';
@@ -35,15 +43,15 @@ export class DfxHideIfPingSucceeds extends ADirective {
           switchMap(() =>
             httpClient.get(this.url, this.byPassLoggingInterceptor).pipe(
               map(() => false),
-              catchError(() => of(true))
-            )
+              catchError(() => of(true)),
+            ),
           ),
-          distinctUntilChanged()
+          distinctUntilChanged(),
         )
         .subscribe((isOffline) => {
           this.isOffline = isOffline;
           changeDetectorRef.markForCheck();
-        })
+        }),
     );
   }
 }

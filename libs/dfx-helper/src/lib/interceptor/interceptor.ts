@@ -1,4 +1,11 @@
-import {HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse} from '@angular/common/http';
+import {
+  HttpContextToken,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {inject} from '@angular/core';
 import {BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR} from './http-context-token';
@@ -39,8 +46,8 @@ export function baseUrlInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
         'ERROR',
         'httpClient',
         'baseUrlInterceptor',
-        'baseUrl undefined! It looks like you are using baseUrlInterceptor() but forgot assigning a base url.'
-      )
+        'baseUrl undefined! It looks like you are using baseUrlInterceptor() but forgot assigning a base url.',
+      ),
     );
   }
 
@@ -83,7 +90,7 @@ export function loggingInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
       console.log(getLogMessage('ERROR', 'httpClient', req.method, text), error);
 
       return throwError(() => error);
-    })
+    }),
   );
 }
 

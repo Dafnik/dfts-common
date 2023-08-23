@@ -51,7 +51,7 @@ export class LoggingInterceptor extends AbstractIgnorableInterceptor {
         this.lumber.error(req.method, text, error);
 
         return throwError(() => error);
-      })
+      }),
     );
   }
 }

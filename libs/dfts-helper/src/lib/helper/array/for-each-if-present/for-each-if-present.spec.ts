@@ -7,7 +7,7 @@ describe('for-each-if-present', () => {
       (value) => {
         expect(value).toEqual('xyz');
       },
-      'xyz'
+      'xyz',
     );
   });
   it('should not execute', () => {
@@ -17,7 +17,7 @@ describe('for-each-if-present', () => {
         // Should never be executed
         expect(value).toEqual('asdfasdfasdfasdf');
       },
-      'hjk'
+      'hjk',
     );
   });
 });

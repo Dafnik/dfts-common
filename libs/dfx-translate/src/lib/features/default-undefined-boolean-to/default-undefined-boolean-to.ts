@@ -7,11 +7,11 @@ export const TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO = new InjectionToken
   'TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO',
   {
     factory: () => null,
-  }
+  },
 );
 
 export function withDefaultUndefinedOrNullBooleanTo(
-  defaultUndefinedOrNullBooleanTo: boolean | null
+  defaultUndefinedOrNullBooleanTo: boolean | null,
 ): DefaultUndefinedOrNullBooleanToFeature {
   return {
     kind: TranslateFeatureKind.DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO,

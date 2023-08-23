@@ -24,7 +24,7 @@ export class BaseUrlInterceptor extends AbstractIgnorableInterceptor {
     if (this.baseUrl.length < 1) {
       this.lumber.warning(
         'intercept',
-        'baseUrl undefined! It looks like you are using the BaseUrlInterceptor but forgot assigning a base url.'
+        'baseUrl undefined! It looks like you are using the BaseUrlInterceptor but forgot assigning a base url.',
       );
     }
 

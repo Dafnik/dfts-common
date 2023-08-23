@@ -24,7 +24,7 @@ export function s_generate(
     containsLetters?: boolean;
     containsLowerCaseLetters?: boolean;
     containsUpperCaseLetters?: boolean;
-  }
+  },
 ): string {
   let characters = lowerCaseLetters + upperCaseLetters;
   if (options?.containsLetters != undefined && !options.containsLetters) {

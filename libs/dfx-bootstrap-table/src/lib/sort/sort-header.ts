@@ -185,7 +185,7 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
     @Optional() private _ariaDescriber?: AriaDescriber | null,
     @Optional()
     @Inject(NGB_SORT_DEFAULT_OPTIONS)
-    defaultOptions?: NgbSortDefaultOptions
+    defaultOptions?: NgbSortDefaultOptions,
   ) {
     // Note that we use a string token for the `_columnDef`, because the value is provided both by
     // `bootstrap/table` and `cdk/table` and we can't have the CDK depending on Material,

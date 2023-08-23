@@ -908,7 +908,7 @@ const generateQrCodeCanvasElement = () => document.createElement('canvas');
 export function generateQrCodeCanvas(
   data: string | number,
   options: generateOptions = {},
-  canvasElement: HTMLCanvasElement = generateQrCodeCanvasElement()
+  canvasElement: HTMLCanvasElement = generateQrCodeCanvasElement(),
 ) {
   const matrix = generateQrCodeMatrix(data, options);
   const modsize = options.size ?? 5;
@@ -942,7 +942,7 @@ export function generateQrCodeImage(
   data: string | number,
   options: generateOptions & generateWithAccessibleOptions = {},
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
-  image: HTMLImageElement = generateQrCodeImageElement()
+  image: HTMLImageElement = generateQrCodeImageElement(),
 ) {
   const dataUrl = generateQrCodeCanvas(data, options, canvas).toDataURL();
   image.setAttribute('src', dataUrl);
@@ -957,7 +957,7 @@ export function generateQrCodeImage(
 export function generateQrCodeCanvas$(
   data: string | number,
   options: generateOptions & generateWithImageOptions = {},
-  canvasElement: HTMLCanvasElement = generateQrCodeCanvasElement()
+  canvasElement: HTMLCanvasElement = generateQrCodeCanvasElement(),
 ): Promise<HTMLCanvasElement> {
   canvasElement = generateQrCodeCanvas(data, options, canvasElement);
   const context = canvasElement.getContext('2d')!;
@@ -974,7 +974,7 @@ export function generateQrCodeCanvas$(
           canvasElement.width / 2 - centerImageWidth / 2,
           canvasElement.height / 2 - centerImageHeight / 2,
           centerImageWidth,
-          centerImageHeight
+          centerImageHeight,
         );
         resolve(canvasElement);
       };
@@ -988,7 +988,7 @@ export async function generateQrCodeImage$(
   data: string | number,
   options: generateOptions & generateWithAccessibleOptions & generateWithImageOptions = {},
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
-  image: HTMLImageElement = generateQrCodeImageElement()
+  image: HTMLImageElement = generateQrCodeImageElement(),
 ) {
   const dataUrl = (await generateQrCodeCanvas$(data, options, canvas)).toDataURL();
   image.setAttribute('src', dataUrl);

@@ -5,7 +5,7 @@ describe('StringHelper', () => {
     expect(StringHelper.hasNumbersInString('true')).toBeFalsy();
     expect(StringHelper.hasNumbersInString('false')).toBeFalsy();
     expect(
-      StringHelper.hasNumbersInString('lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$')
+      StringHelper.hasNumbersInString('lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$'),
     ).toBeFalsy();
     expect(StringHelper.hasNumbersInString('asdf0000')).toBeTruthy();
     expect(StringHelper.hasNumbersInString('001212asdfasd2342')).toBeTruthy();
@@ -19,7 +19,7 @@ describe('StringHelper', () => {
     expect(StringHelper.hasNoNumbersInString('true')).toBeTruthy();
     expect(StringHelper.hasNoNumbersInString('false')).toBeTruthy();
     expect(
-      StringHelper.hasNoNumbersInString('lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$')
+      StringHelper.hasNoNumbersInString('lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$'),
     ).toBeTruthy();
     expect(StringHelper.hasNoNumbersInString('asdf0000')).toBeFalsy();
     expect(StringHelper.hasNoNumbersInString('001212asdfasd2342')).toBeFalsy();
@@ -37,7 +37,7 @@ describe('StringHelper', () => {
     expect(StringHelper.hasOnlyLettersInString('false+')).toBeFalsy();
     expect(StringHelper.hasOnlyLettersInString('false#')).toBeFalsy();
     expect(
-      StringHelper.hasOnlyLettersInString('lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$--..')
+      StringHelper.hasOnlyLettersInString('lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$--..'),
     ).toBeFalsy();
     expect(StringHelper.hasOnlyLettersInString('asdf0000')).toBeFalsy();
     expect(StringHelper.hasOnlyLettersInString('001212asdfasd2342')).toBeFalsy();
@@ -56,8 +56,8 @@ describe('StringHelper', () => {
     expect(StringHelper.hasNotOnlyLettersInString('false#')).toBeTruthy();
     expect(
       StringHelper.hasNotOnlyLettersInString(
-        'lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$--..'
-      )
+        'lajhsdlkfqwejröqjkafkjöaskdjfvövjaölwekjörqqwer!"§$!"§$%§$%&"$§"§!"§$&/%&/$(&/(=&/(%$&/§$--..',
+      ),
     ).toBeTruthy();
     expect(StringHelper.hasNotOnlyLettersInString('asdf0000')).toBeTruthy();
     expect(StringHelper.hasNotOnlyLettersInString('001212asdfasd2342')).toBeTruthy();

@@ -39,8 +39,8 @@ dependencies:
     specifier: 16.7.3
     version: 16.7.3(@angular-devkit/build-angular@16.2.1)(@angular-devkit/core@16.2.1)(@angular-devkit/schematics@16.2.1)(@schematics/angular@16.2.1)(@types/node@18.17.3)(esbuild@0.17.19)(eslint@8.48.0)(nx@16.7.3)(rxjs@7.8.1)(ts-node@10.9.1)(typescript@5.1.6)
   bootstrap:
-    specifier: 5.2.3
-    version: 5.2.3(@popperjs/core@2.11.7)
+    specifier: 5.3.2
+    version: 5.3.2(@popperjs/core@2.11.8)
   commander:
     specifier: 11.0.0
     version: 11.0.0
@@ -4103,8 +4103,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@popperjs/core@2.11.7:
-    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
   /@rollup/plugin-json@6.0.0(rollup@3.21.5):
@@ -5204,12 +5204,12 @@ packages:
   /boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  /bootstrap@5.2.3(@popperjs/core@2.11.7):
-    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
+  /bootstrap@5.3.2(@popperjs/core@2.11.8):
+    resolution: {integrity: sha512-D32nmNWiQHo94BKHLmOrdjlL05q1c8oxbtBphQFb9Z5to6eGRDCm0QgeaZ4zFBHzfg2++rqa2JkqCcxDy0sH0g==}
     peerDependencies:
-      '@popperjs/core': ^2.11.6
+      '@popperjs/core': ^2.11.8
     dependencies:
-      '@popperjs/core': 2.11.7
+      '@popperjs/core': 2.11.8
     dev: false
 
   /brace-expansion@1.1.11:

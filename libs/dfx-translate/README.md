@@ -2,7 +2,9 @@
 
 A simple translation package for Angular 16.
 
-[![NPM](https://nodei.co/npm/dfx-translate.png)](https://npmjs.org/package/dfx-translate)
+[![npm version](https://badge.fury.io/js/dfx-translate.svg)](https://npmjs.org/package/dfx-translate)
+[![NPM](https://img.shields.io/npm/dw/dfx-translate?logo=npm)](https://npmjs.org/package/dfx-translate)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-translate?cacheSeconds=86400)](https://npmjs.org/package/dfx-translate)
 
 ### Features
 

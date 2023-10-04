@@ -5,7 +5,9 @@ Angular table CDK implementation for Bootstrap with filtering, sorting and pagin
 Working with [@ng-bootstrap/ng-bootstrap](https://npmjs.org/package/@ng-bootstrap/ng-bootstrap) and
 [@ngx-bootstrap](https://npmjs.org/package/ngx-bootstrap).
 
-[![NPM](https://nodei.co/npm/dfx-bootstrap-table.png)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm version](https://badge.fury.io/js/dfx-bootstrap-table.svg)](https://npmjs.org/package/dfx-bootstrap-table)
+[![NPM](https://img.shields.io/npm/dw/dfx-bootstrap-table?logo=npm)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-table?cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-table)
 
 ### Demo
 

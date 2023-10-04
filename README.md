@@ -17,34 +17,46 @@ The collection of collections.
 
 TypeScript Library with tons of utility tools helping in all projects.
 
-[![NPM](https://nodei.co/npm/dfts-helper.png)](https://npmjs.org/package/dfts-helper)
+[![npm version](https://badge.fury.io/js/dfts-helper.svg)](https://npmjs.org/package/dfts-helper)
+[![NPM](https://img.shields.io/npm/dw/dfts-helper?logo=npm)](https://npmjs.org/package/dfts-helper)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-helper?cacheSeconds=86400)](https://npmjs.org/package/dfts-helper)
 
 ### dfts-qrcode
 
 `dfts-qrcode` is a tiny and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.
 
-[![NPM](https://nodei.co/npm/dfts-qrcode.png)](https://npmjs.org/package/dfts-qrcode)
+[![npm version](https://badge.fury.io/js/dfts-qrcode.svg)](https://npmjs.org/package/dfts-qrcode)
+[![NPM](https://img.shields.io/npm/dw/dfts-qrcode?logo=npm)](https://npmjs.org/package/dfts-qrcode)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
 
 ### dfx-helper
 
 Angular Library with tons of utility tools helping in all projects.
 
-[![NPM](https://nodei.co/npm/dfx-helper.png)](https://npmjs.org/package/dfx-helper)
+[![npm version](https://badge.fury.io/js/dfx-helper.svg)](https://npmjs.org/package/dfx-helper)
+[![NPM](https://img.shields.io/npm/dw/dfx-helper?logo=npm)](https://npmjs.org/package/dfx-helper)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
 
 ### dfx-translate
 
 A simple translation package for Angular 4 - 12.
 
-[![NPM](https://nodei.co/npm/dfx-translate.png)](https://npmjs.org/package/dfx-translate)
+[![npm version](https://badge.fury.io/js/dfx-translate.svg)](https://npmjs.org/package/dfx-translate)
+[![NPM](https://img.shields.io/npm/dw/dfx-translate?logo=npm)](https://npmjs.org/package/dfx-translate)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-translate?cacheSeconds=86400)](https://npmjs.org/package/dfx-translate)
 
 ### dfx-bootstrap-table
 
 Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.
 
-[![NPM](https://nodei.co/npm/dfx-bootstrap-table.png)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm version](https://badge.fury.io/js/dfx-bootstrap-table.svg)](https://npmjs.org/package/dfx-bootstrap-table)
+[![NPM](https://img.shields.io/npm/dw/dfx-bootstrap-table?logo=npm)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-table?cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-table)
 
 ### dfx-qrcode
 
 `dfx-qrcode` is a tiny and simple-to-use Angular QrCode generator library.
 
-[![NPM](https://nodei.co/npm/dfx-qrcode.png)](https://npmjs.org/package/dfx-qrcode)
+[![npm version](https://badge.fury.io/js/dfx-qrcode.svg)](https://npmjs.org/package/dfx-qrcode)
+[![NPM](https://img.shields.io/npm/dw/dfx-qrcode?logo=npm)](https://npmjs.org/package/dfx-qrcode)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfx-qrcode)

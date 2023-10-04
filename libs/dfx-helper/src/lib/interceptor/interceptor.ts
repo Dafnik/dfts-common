@@ -1,11 +1,4 @@
-import {
-  HttpContextToken,
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandlerFn,
-  HttpRequest,
-  HttpResponse
-} from '@angular/common/http';
+import {HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse} from '@angular/common/http';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {inject} from '@angular/core';
 import {BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR} from './http-context-token';

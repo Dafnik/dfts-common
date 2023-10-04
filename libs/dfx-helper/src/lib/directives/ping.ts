@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  HostBinding,
-  Input,
-  NgModule,
-  numberAttribute
-} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgModule, numberAttribute} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {catchError, distinctUntilChanged, map, of, switchMap, timer} from 'rxjs';

@@ -19,6 +19,12 @@ TypeScript Library with tons of utility tools helping in all projects.
 
 [![NPM](https://nodei.co/npm/dfts-helper.png)](https://npmjs.org/package/dfts-helper)
 
+### dfts-qrcode
+
+`dfts-qrcode` is a tiny and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.
+
+[![NPM](https://nodei.co/npm/dfts-qrcode.png)](https://npmjs.org/package/dfts-qrcode)
+
 ### dfx-helper
 
 Angular Library with tons of utility tools helping in all projects.
@@ -36,3 +42,9 @@ A simple translation package for Angular 4 - 12.
 Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.
 
 [![NPM](https://nodei.co/npm/dfx-bootstrap-table.png)](https://npmjs.org/package/dfx-bootstrap-table)
+
+### dfx-qrcode
+
+`dfx-qrcode` is a tiny and simple-to-use Angular QrCode generator library.
+
+[![NPM](https://nodei.co/npm/dfx-qrcode.png)](https://npmjs.org/package/dfx-qrcode)

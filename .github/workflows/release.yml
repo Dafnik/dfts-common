@@ -23,10 +23,10 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v1
+        uses: dafnik/setup-node-pnpm@v2
         with:
           install: true
 
@@ -42,17 +42,17 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v1
+        uses: dafnik/setup-node-pnpm@v2
         with:
           install: true
 
       - name: build ${{ inputs.lib }}
         run: pnpm exec nx build ${{ inputs.lib }}
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         name: create ${{ inputs.lib }} artifact
         with:
           name: ${{ inputs.lib }}
@@ -64,14 +64,12 @@ jobs:
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
-      - name: setup Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+      - name: setup Node.js
+        uses: actions/setup-node@v4
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.lib }}
           path: ./dist
@@ -116,12 +114,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: setup Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+      - name: setup Node.js
+        uses: actions/setup-node@v4
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.lib }}
           path: ./dist
@@ -161,12 +157,12 @@ jobs:
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v1
+        uses: dafnik/setup-node-pnpm@v2
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.lib }}
           path: ./dist

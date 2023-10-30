@@ -23,38 +23,38 @@ jobs:
       # Expose matched filters as job 'packages' output variable
       libs: ${{ steps.filter.outputs.changes }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: |
-            dfts-helper: 
+            dfts-helper:
               - 'libs/dfts-helper/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfts-qrcode: 
+            dfts-qrcode:
               - 'libs/dfts-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfx-bootstrap-table: 
+            dfx-bootstrap-table:
               - 'libs/dfx-bootstrap-table/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfx-helper: 
+            dfx-helper:
               - 'libs/dfx-helper/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfx-qrcode: 
+            dfx-qrcode:
               - 'libs/dfx-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfx-translate: 
+            dfx-translate:
               - 'libs/dfx-translate/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
@@ -70,10 +70,10 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v1
+        uses: dafnik/setup-node-pnpm@v2
         with:
           install-ignore-scripts: true
 
@@ -94,17 +94,17 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v1
+        uses: dafnik/setup-node-pnpm@v2
         with:
           install-ignore-scripts: true
 
       - name: build ${{ matrix.lib }}
         run: pnpm exec nx build ${{ matrix.lib }}
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         name: create ${{ matrix.lib }} artifact
         with:
           name: ${{ matrix.lib }}
@@ -121,9 +121,9 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ matrix.lib }}
           path: ./dist
@@ -154,20 +154,20 @@ jobs:
       # Expose matched filters as job 'packages' output variable
       apps: ${{ steps.filter.outputs.changes }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       # For pull requests it's not necessary to checkout the code
       - uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: |
-            dfx-bootstrap-table-demo: 
+            dfx-bootstrap-table-demo:
               - 'apps/dfx-bootstrap-table-demo/**'
               - 'libs/dfx-boostrap-table/**'
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfx-qrcode-demo: 
+            dfx-qrcode-demo:
               - 'apps/dfx-qrcode-demo/**'
               - 'libs/dfx-qrcode/**'
               - '{package,nx,migrations,tsconfig.base}.json'
@@ -183,17 +183,17 @@ jobs:
       matrix:
         app: ${{ fromJSON(needs.app-changes.outputs.apps) }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v1
+        uses: dafnik/setup-node-pnpm@v2
         with:
           install-ignore-scripts: true
 
       - name: build ${{ matrix.app }}
         run: pnpm exec nx build ${{ matrix.app }}
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         name: create ${{ matrix.app }} artifact
         with:
           name: ${{ matrix.app }}
@@ -209,9 +209,9 @@ jobs:
       matrix:
         app: ${{ fromJSON(needs.app-changes.outputs.apps) }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ matrix.app }}
           path: ./dist

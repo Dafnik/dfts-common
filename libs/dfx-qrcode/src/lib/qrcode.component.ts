@@ -11,7 +11,6 @@ import {
   Renderer2,
   ViewChild
 } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
 import {
   QRCODE_ALLOW_EMPTY_STRING,
   QRCODE_COLOR_DARK,
@@ -70,7 +69,6 @@ export class QRCodeComponent implements OnInit, OnChanges {
 
   constructor(
     private renderer: Renderer2,
-    private sanitizer: DomSanitizer,
   ) {}
 
   public ngOnInit() {

@@ -1,0 +1,1 @@
+export const BOOTSTRAP_ICONS_VERSION = "1.11.1"

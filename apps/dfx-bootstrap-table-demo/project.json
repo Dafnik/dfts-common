@@ -32,7 +32,8 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "baseHref": "/bootstrap-table/"
         },
         "development": {
           "buildOptimizer": false,

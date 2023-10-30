@@ -59,6 +59,11 @@ jobs:
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
+            dfx-bootstrap-icons:
+              - 'libs/dfx-bootstrap-icons/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+              - '.github/**'
 
   test:
     name: Test ${{ matrix.lib }}
@@ -144,44 +149,12 @@ jobs:
           username: ${{ secrets.RELEASES_SSH_USER }}
           privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
 
-  # JOB to run change detection
-  app-changes:
-    runs-on: ubuntu-latest
-    # Required permissions
-    permissions:
-      pull-requests: read
-    outputs:
-      # Expose matched filters as job 'packages' output variable
-      apps: ${{ steps.filter.outputs.changes }}
-    steps:
-      - uses: actions/checkout@v4
-
-      # For pull requests it's not necessary to checkout the code
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            dfx-bootstrap-table-demo:
-              - 'apps/dfx-bootstrap-table-demo/**'
-              - 'libs/dfx-boostrap-table/**'
-              - '{package,nx,migrations,tsconfig.base}.json'
-              - 'pnpm-lock.yaml'
-              - '.github/**'
-            dfx-qrcode-demo:
-              - 'apps/dfx-qrcode-demo/**'
-              - 'libs/dfx-qrcode/**'
-              - '{package,nx,migrations,tsconfig.base}.json'
-              - 'pnpm-lock.yaml'
-              - '.github/**'
-
-  build-app:
+  build-apps:
     name: Build ${{ matrix.app }}
     runs-on: ubuntu-latest
-    needs: app-changes
-    if: ${{ needs.app-changes.outputs.apps != '[]' && needs.app-changes.outputs.apps != '' }}
     strategy:
       matrix:
-        app: ${{ fromJSON(needs.app-changes.outputs.apps) }}
+        app: ['dfx-bootstrap-table-demo', 'dfx-bootstrap-icons-demo', 'dfx-qrcode-demo', 'playground']
     steps:
       - uses: actions/checkout@v4
 
@@ -200,53 +173,62 @@ jobs:
           path: ./dist/apps/${{ matrix.app }}
           retention-days: 1
 
-  deploy-app:
-    name: Deploy ${{ matrix.app }}
-    needs: [ app-changes, build-app ]
+  bundle-apps:
+    # if: github.ref == 'refs/heads/main'
+    name: Bundle app artifacts into one
+    needs: [ build-apps ]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    strategy:
-      matrix:
-        app: ${{ fromJSON(needs.app-changes.outputs.apps) }}
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/download-artifact@v3
+        name: Download table-demo
         with:
-          name: ${{ matrix.app }}
-          path: ./dist
+          name: dfx-bootstrap-table-demo
+          path: ./dist/bootstrap-table
+
+      - uses: actions/download-artifact@v3
+        name: Download icons-demo
+        with:
+          name: dfx-bootstrap-icons-demo
+          path: ./dist/bootstrap-icons
+
+      - uses: actions/download-artifact@v3
+        name: Download qrcode-demo
+        with:
+          name: dfx-qrcode-demo
+          path: ./dist/qrcode
+
+      - uses: actions/download-artifact@v3
+        name: Download playground
+        with:
+          name: playground
+          path: ./playground
+
+      - name: move playground in place
+        run: mv playground/* dist/
 
       - name: dist lookup
-        run: cd dist && ls -la && cd -
+        run: cd dist && ls -la && du -hs && cd -
 
-      - name: zip ${{ matrix.app }}.zip
-        run: zip -r "${{ matrix.app }}.zip" ./dist >> /dev/null
-
-      - name: copy build files to demo server
-        uses: garygrossgarten/github-action-scp@release
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          local: ./dist
-          remote: /var/www/${{ matrix.app }}
-          rmRemote: true
-          host: ${{ secrets.DEMO_SSH_HOST }}
-          port: ${{ secrets.DEMO_SSH_PORT }}
-          username: ${{ secrets.DEMO_SSH_USER }}
-          privateKey: ${{ secrets.DEMO_SSH_PRIVATE_KEY }}
+          path: ./dist/
+          retention-days: 1
 
-      - name: get library release server directory path
-        id: remove-demo-in-path
-        uses: frabert/replace-string-action@v2
-        with:
-          string: ${{ matrix.app }}
-          pattern: '(-demo)'
-          replace-with: ''
-
-      - name: copy build to release server
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: ./${{ matrix.app }}.zip
-          remote: /var/www/share/releases/${{ steps.remove-demo-in-path.outputs.replaced }}/${{ matrix.app }}.zip
-          host: ${{ secrets.RELEASES_SSH_HOST }}
-          port: ${{ secrets.RELEASES_SSH_PORT }}
-          username: ${{ secrets.RELEASES_SSH_USER }}
-          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+  deploy-apps:
+    # if: github.ref == 'refs/heads/main'
+    name: Deploy apps
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: bundle-apps
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

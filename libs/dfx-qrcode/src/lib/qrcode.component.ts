@@ -1,10 +1,12 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
   inject,
   Input,
+  numberAttribute,
   OnChanges,
   OnInit,
   Output,
@@ -38,22 +40,22 @@ import {
   selector: 'qrcode',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  template: ` <div #qrcElement [class]="cssClass"></div>`,
+  template: `<div #qrcElement [class]="cssClass"></div>`,
 })
 export class QRCodeComponent implements OnInit, OnChanges {
-  @Input() public allowEmptyString = inject(QRCODE_ALLOW_EMPTY_STRING);
+  @Input({transform: booleanAttribute}) public allowEmptyString = inject(QRCODE_ALLOW_EMPTY_STRING);
   @Input() public colorDark = inject(QRCODE_COLOR_DARK);
   @Input() public colorLight = inject(QRCODE_COLOR_LIGHT);
   @Input() public cssClass = inject(QRCODE_CSS_CLASS);
   @Input() public elementType = inject(QRCODE_ELEMENT_TYPE);
   @Input() public errorCorrectionLevel = inject(QRCODE_ERROR_CORRECTION_LEVEL);
-  @Input() public version = inject(QRCODE_VERSION);
-  @Input() public size = inject(QRCODE_SIZE);
-  @Input() public margin = inject(QRCODE_MARGIN);
+  @Input({transform: numberAttribute}) public version = inject(QRCODE_VERSION);
+  @Input({transform: numberAttribute}) public size = inject(QRCODE_SIZE);
+  @Input({transform: numberAttribute}) public margin = inject(QRCODE_MARGIN);
 
   @Input() public imageSrc = inject(QRCODE_IMAGE_SRC);
-  @Input() public imageHeight? = inject(QRCODE_IMAGE_HEIGHT);
-  @Input() public imageWidth? = inject(QRCODE_IMAGE_WIDTH);
+  @Input({transform: numberAttribute}) public imageHeight? = inject(QRCODE_IMAGE_HEIGHT);
+  @Input({transform: numberAttribute}) public imageWidth? = inject(QRCODE_IMAGE_WIDTH);
 
   @Input() public alt?: string;
   @Input() public ariaLabel?: string;
@@ -65,13 +67,9 @@ export class QRCodeComponent implements OnInit, OnChanges {
 
   @ViewChild('qrcElement', {static: true}) public qrcElement!: ElementRef;
 
-  public context: CanvasRenderingContext2D | null = null;
+  private renderer = inject(Renderer2);
 
-  constructor(
-    private renderer: Renderer2,
-  ) {}
-
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.createQRCode();
   }
 

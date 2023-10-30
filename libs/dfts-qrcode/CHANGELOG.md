@@ -1,3 +1,11 @@
+# [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfts-qrcode-0.0.1...dfts-qrcode-1.0.0) (2023-10-30)
+
+### Features
+
+- update package.json ([a65d182](https://github.com/Dafnik/dfts-common/commit/a65d18296bd73abebdddec04e1e6eb2b39faee28))
+- update README.md ([d87ca6c](https://github.com/Dafnik/dfts-common/commit/d87ca6c5f7bc9ee3bcbb8d65e8e0b44f0d2d7806))
+- update README.md's ([ba21cbb](https://github.com/Dafnik/dfts-common/commit/ba21cbb6c9baa00accc1c17f7211dc2d0deed9e4))
+
 ## 0.0.1 (2023-05-30)
 
 ### Bug Fixes

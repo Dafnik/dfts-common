@@ -1,16 +1,18 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from "@angular/core";
 import { AsyncPipe, NgIf, NgOptimizedImage } from "@angular/common";
-import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
-import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
-import { debounceTime, of, startWith, switchMap } from "rxjs";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+
+import { debounceTime, of, startWith, switchMap } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+
+import { cl_copy } from "dfts-helper";
+import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
+import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
 
 @Component({
   standalone: true,
   selector: 'dfx-qrcode-demo-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule],
 })
@@ -41,7 +43,8 @@ export class AppComponent {
   public previewHTML$ = this.formValues.pipe(
     switchMap((form) =>
       of(
-        `<qrcode [data]="'${form.data}'"
+        `
+<qrcode [data]="'${form.data}'"
         [allowEmptyString]="${form.allowEmptyString}"
         [elementType]="'${form.elementType}'"
         [errorCorrectionLevel]="'${form.errorCorrectionLevel}'"${
@@ -67,7 +70,32 @@ export class AppComponent {
         [imageWidth]="${form.imageWidth}"
         [imageHeight]="${form.imageHeight}"`
             : ''
-        } />`,
+        } />`
+      ),
+    ),
+  );
+
+  public previewConfig$ = this.formValues.pipe(
+    switchMap((form) =>
+      of(
+        `
+provideQRCode(
+      withAllowEmptyString(${form.allowEmptyString}),
+      withElementType('${form.elementType}'),
+      withErrorCorrectionLevel('${form.errorCorrectionLevel}'),${
+          form.stylingEnabled
+            ? `
+      withCssClass('${form.cssClass}'),
+      withColorDark('${form.colorDark}'),
+      withColorLight('${form.colorLight}'),
+      withMargin(${form.margin}),
+      withSize(${form.size}),` : ''}${form.imageEnabled ? `
+      withImage(
+        withImageSrc('${form.imageSrc}'),
+        withImageWidth(${form.imageWidth}),
+        withImageHeight(${form.imageHeight})
+      )` : ''}
+)`,
       ),
     ),
   );
@@ -126,5 +154,9 @@ export class AppComponent {
       return;
     }
     downloadQRCode(this.dataURL);
+  }
+
+  copy(it: string): void {
+    cl_copy(it)
   }
 }

@@ -18,7 +18,7 @@
 <div class="container-md">
   <div class="d-flex flex-column flex-md-row mt-4 gap-3 justify-content-around">
     <div class="col-12 col-md-5">
-      <h5>QR-Code Preview</h5>
+      <h4 class="mb-4">QR-Code Preview</h4>
       <div class="d-flex flex-column align-items-center mb-5 gap-3" *ngIf="formValues | async as formValues">
         <qrcode
           [data]="formValues!.data!"
@@ -46,10 +46,48 @@
 
       <pre *ngIf="previewHTML$ | async as preview" class="bg-dark p-3 rounded">{{ preview }}</pre>
 
-      <h6>Installation</h6>
+      <h6>Config</h6>
+
+      <pre *ngIf="previewConfig$ | async as preview" class="bg-dark p-3 rounded">{{ preview }}</pre>
+
+      <h5 style="margin-top: 5vh; margin-bottom: 2vh">Installation</h5>
+
+      <ol>
+        <li>
+          <h6>NPM</h6>
+          <div class="d-flex align-items-center gap-4">
+            <code>npm install dfx-qrcode</code>
+            <button class="btn btn-primary btn-sm d-flex gap-1 align-items-center" (click)="copy('npm install dfx-qrcode')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: #ffffff; width: 18px">
+                <title>content-copy</title>
+                <path
+                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                />
+              </svg>
+              Copy
+            </button>
+          </div>
+        </li>
+
+        <li class="mt-3">
+          <h6>PNPM</h6>
+          <div class="d-flex align-items-center gap-4">
+            <code>pnpm install dfx-qrcode</code>
+            <button class="btn btn-primary btn-sm d-flex gap-1 align-items-center" (click)="copy('pnpm install dfx-qrcode')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: #ffffff; width: 18px">
+                <title>content-copy</title>
+                <path
+                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                />
+              </svg>
+              Copy
+            </button>
+          </div>
+        </li>
+      </ol>
     </div>
     <div class="col-12 col-md-5">
-      <h5>Options</h5>
+      <h4>Options</h4>
       <form [formGroup]="form" class="d-flex flex-column gap-5">
         <div class="d-flex flex-column gap-2">
           <h6>General</h6>

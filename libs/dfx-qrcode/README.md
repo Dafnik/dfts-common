@@ -1,6 +1,6 @@
 # dfx-qrcode
 
-`dfx-qrcode` is a tiny and simple-to-use Angular QrCode generator library.
+`dfx-qrcode` is a tiny and simple-to-use Angular QR-Code generator library.
 
 [![npm version](https://badge.fury.io/js/dfx-qrcode.svg)](https://npmjs.org/package/dfx-qrcode)
 [![NPM](https://img.shields.io/npm/dw/dfx-qrcode?logo=npm)](https://npmjs.org/package/dfx-qrcode)
@@ -20,11 +20,11 @@
 
 ## Features
 
-- Based on esm modules
-- Tiny
+- ESM Module based
+- Tiny (~ 5.9kB minified + gzipped)
 - Accessible
-- Server Side Rendering
-- Standalone Component compatible
+- Server Side Rendering (Angular Universal)
+- Standalone Component
 
 ## Installation
 
@@ -193,7 +193,7 @@ export class AppComponent {}
 | -------------------- | -------------------------- | ----------------- | ----------------------------------------------------------------------------------------------- |
 | allowEmptyString     | `boolean`                  | `false`           | Define if empty or undefined strings should be converted to a space \(" "\) or throw an error\. |
 | elementType          | `'img' \| 'canvas'`        | `img`             | Define if the QR\-Code should be rendered as HTMLImageElement or HTMLCanvasElement              |
-| errorCorrectionLevel | `'L' \| 'M' \| 'Q' \| 'H'` | `M`               | Define the error correction level                                                               |
+| errorCorrectionLevel | `'L' \| 'M' \| 'Q' \| 'H'` | `L`               | Define the error correction level                                                               |
 | cssClass             | `string`                   | `qrcode`          | Define a css class for the wrapper element of the QR\-Code                                      |
 | colorDark            | `Hex color`                | `#000000`         | Define the color of the dark elements                                                           |
 | colorLight           | `Hex color`                | `#FFFFFF`         | Defined the color of the light elements                                                         |
@@ -227,7 +227,6 @@ Possible levels are shown below:
 
 The percentage indicates the maximum amount of damaged surface after which the symbol becomes unreadable.
 
-Error level can be set through `options.errorCorrectionLevel` property.<br>
 If not specified, the default value is `L`.
 
 ## QR Code capacity
@@ -247,5 +246,4 @@ The table below shows the maximum number of storable characters in each encoding
 | Alphanumeric | 4296 | 3391 | 2420 | 1852 |
 | Byte         | 2953 | 2331 | 1663 | 1273 |
 
-QR Code version can be set through `options.version` property.<br>
 If no version is specified, the more suitable value will be used. Unless a specific version is required, this option is not needed.

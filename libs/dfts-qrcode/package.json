@@ -1,7 +1,7 @@
 {
   "name": "dfts-qrcode",
   "version": "0.0.1",
-  "description": "tiny and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.",
+  "description": "tiny and simple-to-use Javascript / TypeScript QR-Code generator library. Fully type-safe and esm module compatible",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -14,7 +14,8 @@
     "tiny",
     "small",
     "esm",
-    "modules"
+    "modules",
+    "esm-modules"
   ],
   "author": {
     "name": "Dafnik",

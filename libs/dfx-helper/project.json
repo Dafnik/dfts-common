@@ -8,8 +8,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/dfx-helper/ng-package.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "project": "libs/dfx-helper/ng-package.json"
       },
       "configurations": {
         "production": {

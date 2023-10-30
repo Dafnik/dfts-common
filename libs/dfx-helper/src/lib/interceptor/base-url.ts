@@ -1,11 +1,11 @@
-import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
-import {inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {loggerOf} from 'dfts-helper';
+import { HttpEvent, HttpHandler, HttpRequest } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { loggerOf } from "dfts-helper";
 
-import {HELPER_BASE_URL, HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS} from '../config';
-import {AbstractIgnorableInterceptor} from './abstract-ignoreable';
-import {BASE_URL_INTERCEPTOR} from './http-context-token';
+import { HELPER_BASE_URL, HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS } from "../config";
+import { AbstractIgnorableInterceptor } from "./abstract-ignoreable";
+import { BASE_URL_INTERCEPTOR } from "./http-context-token";
 
 @Injectable()
 export class BaseUrlInterceptor extends AbstractIgnorableInterceptor {

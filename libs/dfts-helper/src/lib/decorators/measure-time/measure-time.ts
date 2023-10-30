@@ -1,5 +1,5 @@
-import {Stopwatch} from '../../helper/stopwatch/stopwatch';
-import {s_from} from '../../helper/string/from/from';
+import { Stopwatch } from "../../helper/stopwatch/stopwatch";
+import { s_from } from "../../helper/string/from/from";
 
 /**
  * Measures execution time for method call

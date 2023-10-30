@@ -1,4 +1,4 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from "@angular/core";
 
 export const HELPER_MOBILE_BREAKPOINT = new InjectionToken<number>('HELPER_MOBILE_BREAKPOINT', {
   factory: () => 992,

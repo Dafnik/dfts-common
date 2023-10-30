@@ -1,5 +1,5 @@
-import {InjectionToken} from '@angular/core';
-import {TranslateFeature, TranslateFeatureKind} from '../translate.features';
+import { InjectionToken } from "@angular/core";
+import { TranslateFeature, TranslateFeatureKind } from "../translate.features";
 
 export declare type DefaultUndefinedOrNullBooleanToFeature = TranslateFeature<TranslateFeatureKind.DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO>;
 

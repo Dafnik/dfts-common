@@ -27,5 +27,8 @@
     "type": "git",
     "url": "git+https://github.com/Dafnik/dfts-common.git",
     "directory": "libs/dfts-helper"
+  },
+  "dependencies": {
+    "tslib": "1 - 2"
   }
 }

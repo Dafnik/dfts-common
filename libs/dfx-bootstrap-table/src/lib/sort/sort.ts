@@ -7,12 +7,23 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
-import {Directive, EventEmitter, Inject, InjectionToken, Input, OnChanges, OnDestroy, OnInit, Optional, Output} from '@angular/core';
-import {Subject} from 'rxjs';
-import {SortDirection} from './sort-direction';
-import {HasInitialized, mixinInitialized} from '../core/initialized';
-import {CanDisable, mixinDisabled} from '../core/disabled';
+import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
+import {
+  Directive,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output
+} from "@angular/core";
+import { Subject } from "rxjs";
+import { SortDirection } from "./sort-direction";
+import { HasInitialized, mixinInitialized } from "../core/initialized";
+import { CanDisable, mixinDisabled } from "../core/disabled";
 
 /** Position of the arrow that displays when sorted. */
 export type SortHeaderArrowPosition = 'before' | 'after';

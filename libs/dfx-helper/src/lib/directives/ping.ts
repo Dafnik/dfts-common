@@ -1,9 +1,17 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgModule, numberAttribute} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostBinding,
+  Input,
+  NgModule,
+  numberAttribute
+} from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import {catchError, distinctUntilChanged, map, of, switchMap, timer} from 'rxjs';
-import {interceptorByPass} from '../interceptor/by-pass-interceptor.builder';
-import {ADirective} from '../components/abstract-directive';
+import { catchError, distinctUntilChanged, map, of, switchMap, timer } from "rxjs";
+import { interceptorByPass } from "../interceptor/by-pass-interceptor.builder";
+import { ADirective } from "../components/abstract-directive";
 
 @Component({
   selector: '[hideIfPingSucceeds]',

@@ -6,8 +6,18 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import {animate, animateChild, AnimationTriggerMetadata, keyframes, query, state, style, transition, trigger} from '@angular/animations';
-import {AnimationCurves, AnimationDurations} from './animation';
+import {
+  animate,
+  animateChild,
+  AnimationTriggerMetadata,
+  keyframes,
+  query,
+  state,
+  style,
+  transition,
+  trigger
+} from "@angular/animations";
+import { AnimationCurves, AnimationDurations } from "./animation";
 
 const SORT_ANIMATION_TRANSITION = AnimationDurations.ENTERING + ' ' + AnimationCurves.STANDARD_CURVE;
 

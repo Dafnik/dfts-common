@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, Component, DestroyRef, inject} from '@angular/core';
-import {AsyncPipe, NgIf, NgOptimizedImage} from '@angular/common';
-import {downloadQRCode, QRCodeComponent, QRCodeElementType} from 'dfx-qrcode';
-import {ColorValueHex, QRCodeErrorCorrectionLevel} from 'dfts-qrcode';
-import {debounceTime, of, startWith, switchMap} from 'rxjs';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from "@angular/core";
+import { AsyncPipe, NgIf, NgOptimizedImage } from "@angular/common";
+import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
+import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
+import { debounceTime, of, startWith, switchMap } from "rxjs";
+import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
   standalone: true,

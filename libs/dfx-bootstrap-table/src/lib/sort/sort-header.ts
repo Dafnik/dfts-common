@@ -7,9 +7,9 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {AriaDescriber, FocusMonitor} from '@angular/cdk/a11y';
-import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
-import {ENTER, SPACE} from '@angular/cdk/keycodes';
+import { AriaDescriber, FocusMonitor } from "@angular/cdk/a11y";
+import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
+import { ENTER, SPACE } from "@angular/cdk/keycodes";
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -21,14 +21,14 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  ViewEncapsulation,
-} from '@angular/core';
-import {merge, Subscription} from 'rxjs';
-import {NGB_SORT_DEFAULT_OPTIONS, NgbSort, NgbSortable, NgbSortDefaultOptions, SortHeaderArrowPosition} from './sort';
-import {ngbSortAnimations} from './sort-animations';
-import {SortDirection} from './sort-direction';
-import {NgbSortHeaderIntl} from './sort-header-intl';
-import {CanDisable, mixinDisabled} from '../core/disabled';
+  ViewEncapsulation
+} from "@angular/core";
+import { merge, Subscription } from "rxjs";
+import { NGB_SORT_DEFAULT_OPTIONS, NgbSort, NgbSortable, NgbSortDefaultOptions, SortHeaderArrowPosition } from "./sort";
+import { ngbSortAnimations } from "./sort-animations";
+import { SortDirection } from "./sort-direction";
+import { NgbSortHeaderIntl } from "./sort-header-intl";
+import { CanDisable, mixinDisabled } from "../core/disabled";
 
 // Boilerplate for applying mixins to the sort header.
 /** @docs-private */

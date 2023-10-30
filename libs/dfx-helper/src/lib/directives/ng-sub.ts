@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable, of, Subject} from 'rxjs';
-import {ADirective} from '../components/abstract-directive';
+import { ChangeDetectorRef, Directive, Input, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
+import { BehaviorSubject, combineLatest, Observable, of, Subject } from "rxjs";
+import { ADirective } from "../components/abstract-directive";
 
 export class NgSubsContext<T> {
   public $implicit!: T[];

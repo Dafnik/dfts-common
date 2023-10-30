@@ -9,9 +9,9 @@ import {
   OnInit,
   Output,
   Renderer2,
-  ViewChild,
-} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+  ViewChild
+} from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 import {
   QRCODE_ALLOW_EMPTY_STRING,
   QRCODE_COLOR_DARK,
@@ -24,16 +24,16 @@ import {
   QRCODE_IMAGE_WIDTH,
   QRCODE_MARGIN,
   QRCODE_SIZE,
-  QRCODE_VERSION,
-} from './qrcode.config';
+  QRCODE_VERSION
+} from "./qrcode.config";
 import {
   generateMatrixOptions,
   generateOptions,
   generateQrCodeCanvas$,
   generateQrCodeImage$,
   generateWithAccessibleOptions,
-  generateWithImageOptions,
-} from 'dfts-qrcode';
+  generateWithImageOptions
+} from "dfts-qrcode";
 
 @Component({
   selector: 'qrcode',

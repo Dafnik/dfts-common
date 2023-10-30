@@ -32,7 +32,12 @@
 //
 // the number in this table (in particular, [0]) does not exactly match with
 // the numbers in the specficiation. see augumenteccs below for the reason.
-import {generateMatrixOptions, generateOptions, generateWithAccessibleOptions, generateWithImageOptions} from './types';
+import {
+  generateMatrixOptions,
+  generateOptions,
+  generateWithAccessibleOptions,
+  generateWithImageOptions
+} from "./types";
 
 const VERSIONS = [
   null,

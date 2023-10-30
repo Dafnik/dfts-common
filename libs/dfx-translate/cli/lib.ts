@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from "fs";
 
 type KeyValue = {key: string; value: string};
 type jsonType = {[key: string]: string};

@@ -1,12 +1,12 @@
-import {inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {isPlatformBrowser} from '@angular/common';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, catchError, distinctUntilChanged, Observable, of, shareReplay, switchMap} from 'rxjs';
-import {TRANSLATE_LOCALSTORAGE_KEY, translationFile} from '../types';
-import {TRANSLATE_DEFAULT_LANGUAGE} from '../features/default-language/default-language';
-import {TRANSLATE_ASSETS_PATH} from '../features/assets-path/assets-path';
-import {TRANSLATE_REMEMBER_LANGUAGE} from '../features/remember-language/remember-language';
-import {TRANSLATE_AUTO_TRANSLATED_LANGUAGES} from '../features/auto-translated-languages/auto-translated-languages';
+import { inject, Injectable, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, catchError, distinctUntilChanged, Observable, of, shareReplay, switchMap } from "rxjs";
+import { TRANSLATE_LOCALSTORAGE_KEY, translationFile } from "../types";
+import { TRANSLATE_DEFAULT_LANGUAGE } from "../features/default-language/default-language";
+import { TRANSLATE_ASSETS_PATH } from "../features/assets-path/assets-path";
+import { TRANSLATE_REMEMBER_LANGUAGE } from "../features/remember-language/remember-language";
+import { TRANSLATE_AUTO_TRANSLATED_LANGUAGES } from "../features/auto-translated-languages/auto-translated-languages";
 
 @Injectable({
   providedIn: 'root',

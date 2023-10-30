@@ -1,3 +1,5 @@
+import { s_from } from "../from/from";
+
 export const s_imploder = (source?: string[] | null): ImploderBuilder => {
   return ImploderBuilder.get(source);
 };
@@ -7,6 +9,7 @@ export class ImploderBuilder {
   private _offset?: number | null;
   private _separator?: string | null;
   private _suffix?: string | null;
+  private _alwaysShowSuffix?: boolean | null;
   private _source?: string[] | null;
 
   static get(source?: string[] | null): ImploderBuilder {
@@ -21,6 +24,8 @@ export class ImploderBuilder {
   mappedSource<T>(source?: T[] | null, mapFn?: (it: T) => string): this {
     if (mapFn && source) {
       this._source = source.map(mapFn);
+    } else if (source && source.every((it: T) => typeof it === 'string' || typeof it === 'boolean' || typeof it === 'number')) {
+      this._source = source.map((it) => s_from(it as string | boolean | number));
     }
     return this;
   }
@@ -45,6 +50,11 @@ export class ImploderBuilder {
     return this;
   }
 
+  alwaysShowSuffix(alwaysShowSuffix?: boolean | null): this {
+    this._alwaysShowSuffix = alwaysShowSuffix;
+    return this;
+  }
+
   build(): string {
     if (!this._source) {
       return '';
@@ -60,6 +70,6 @@ export class ImploderBuilder {
     if (this._maxLength && toReturn.length > this._maxLength) {
       return `${toReturn.slice(0, this._maxLength)}${this._suffix ?? ''}`;
     }
-    return toReturn;
+    return `${toReturn}${this._alwaysShowSuffix ? this._suffix ?? '' : ''}`;
   }
 }

@@ -1,3 +1,13 @@
+# [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-0.0.1...dfx-qrcode-1.0.0) (2023-10-30)
+
+### Bug Fixes
+
+- remove unused dom sanitizer ([9127e2b](https://github.com/Dafnik/dfts-common/commit/9127e2baa12e9d0daabd7768431c73869844d715))
+
+### Features
+
+- update README.md's ([ba21cbb](https://github.com/Dafnik/dfts-common/commit/ba21cbb6c9baa00accc1c17f7211dc2d0deed9e4))
+
 ## 0.0.1 (2023-05-30)
 
 ### Bug Fixes

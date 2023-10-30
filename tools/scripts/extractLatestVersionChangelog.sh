@@ -4,4 +4,4 @@ source_file=$1
 diff --changed-group-format='%>' --unchanged-group-format='' <( git show HEAD~1:"$source_file" ) "$source_file" > RELEASE_CHANGELOG.md || true
 
 echo "Success"
-exit 1;
+exit 0;

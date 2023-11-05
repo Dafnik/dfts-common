@@ -174,7 +174,6 @@ jobs:
           retention-days: 1
 
   bundle-apps:
-    # if: github.ref == 'refs/heads/main'
     name: Bundle app artifacts into one
     needs: [ build-apps ]
     runs-on: ubuntu-latest
@@ -218,7 +217,7 @@ jobs:
           retention-days: 1
 
   deploy-apps:
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     name: Deploy apps
     environment:
       name: github-pages

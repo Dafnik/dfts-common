@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../../../node_modules/bootstrap/scss/functions';
+@import '../../../node_modules/bootstrap/scss/variables';
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  background-color: $cyan-400 !important;
+}
+
+main {
+  background-color: #212529;
+  min-height: 100vh !important;
+  color: #fff !important;
+}
+
+.navbar {
+  background-color: $cyan-400;
+  box-shadow:
+    0 0.5rem 1rem rgba(0, 0, 0, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+}
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+.name {
+  font-size: 0.8125rem;
+}
+
+.highlight {
+  background-color: $gray-800;
+  .code:before {
+    content: '$';
+    color: $gray-500;
+    margin-right: 15px;
+  }
+  button {
+    color: #ffffff;
+  }
+}
+
+.f0 {
+  font-size: 2rem;
+}
+
+@media (min-width: 520px) {
+  .f0 {
+    font-size: 3rem;
+  }
+}

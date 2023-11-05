@@ -5,7 +5,7 @@
   "sourceRoot": "apps/dfx-bootstrap-table-demo/src",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dfx-bootstrap-table-demo",
@@ -32,7 +32,8 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "baseHref": "/bootstrap-table/"
         },
         "development": {
           "buildOptimizer": false,

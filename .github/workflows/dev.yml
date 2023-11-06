@@ -213,8 +213,8 @@ jobs:
           mkdir dist/qrcode
           mv playground/* dist/
           mv dfx-bootstrap-table-demo/* dist/bootstrap-table/
-          mv dfx-bootstrap-icons-demo dist/bootstrap-icons/
-          mv dfx-qrcode-demo dist/qrcode/
+          mv dfx-bootstrap-icons-demo/* dist/bootstrap-icons/
+          mv dfx-qrcode-demo/* dist/qrcode/
 
       - name: dist lookup
         run: cd dist && ls -la && du -hs && cd -

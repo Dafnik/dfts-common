@@ -109,13 +109,15 @@ jobs:
       - name: build ${{ matrix.lib }}
         run: pnpm exec nx build ${{ matrix.lib }}
 
+      - name: zip ${{ matrix.lib }}
+        run: cd ./dist/libs/ && zip -r "${{ matrix.lib }}.zip" ./${{ matrix.lib }} && cd -
+
       - uses: actions/upload-artifact@v3
         name: create ${{ matrix.lib }} artifact
         with:
           name: ${{ matrix.lib }}
-          path: ./dist/libs/${{ matrix.lib }}
+          path: ./dist/libs/${{ matrix.lib }}.zip
           retention-days: 1
-
 
   deploy-lib:
     name: Deploy ${{ matrix.lib }} dev
@@ -126,8 +128,6 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@v4
-
       - uses: actions/download-artifact@v3
         with:
           name: ${{ matrix.lib }}
@@ -136,13 +136,10 @@ jobs:
       - name: dist lookup
         run: cd dist && ls -la && cd -
 
-      - name: zip ${{ matrix.lib }}.zip
-        run: zip -r "${{ matrix.lib }}.zip" ./dist >> /dev/null
-
       - name: copy build to release server
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: ./${{ matrix.lib }}.zip
+          local: ./dist/${{ matrix.lib }}.zip
           remote: /var/www/share/releases/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
           host: ${{ secrets.RELEASES_SSH_HOST }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
@@ -166,11 +163,14 @@ jobs:
       - name: build ${{ matrix.app }}
         run: pnpm exec nx build ${{ matrix.app }}
 
+      - name: zip ${{ matrix.app }}
+        run: cd ./dist/apps/ && zip -r "${{ matrix.app }}.zip" ./${{ matrix.app }} && cd -
+
       - uses: actions/upload-artifact@v3
         name: create ${{ matrix.app }} artifact
         with:
           name: ${{ matrix.app }}
-          path: ./dist/apps/${{ matrix.app }}
+          path: ./dist/apps/${{ matrix.app }}.zip
           retention-days: 1
 
   bundle-apps:
@@ -178,34 +178,40 @@ jobs:
     needs: [ build-apps ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - uses: actions/download-artifact@v3
         name: Download table-demo
         with:
           name: dfx-bootstrap-table-demo
-          path: ./dist/bootstrap-table
 
       - uses: actions/download-artifact@v3
         name: Download icons-demo
         with:
           name: dfx-bootstrap-icons-demo
-          path: ./dist/bootstrap-icons
 
       - uses: actions/download-artifact@v3
         name: Download qrcode-demo
         with:
           name: dfx-qrcode-demo
-          path: ./dist/qrcode
 
       - uses: actions/download-artifact@v3
         name: Download playground
         with:
           name: playground
-          path: ./playground
 
-      - name: move playground in place
-        run: mv playground/* dist/
+      - name: unzip all
+        run: |
+          unzip dfx-bootstrap-table-demo.zip
+          unzip dfx-bootstrap-icons-demo.zip
+          unzip dfx-qrcode-demo.zip
+          unzip playground.zip
+
+      - name: move files in place
+        run: |
+          mkdir dist
+          mv playground/* dist/
+          mv dfx-bootstrap-table-demo dist
+          mv dfx-bootstrap-icons-demo dist
+          mv dfx-qrcode-demo dist
 
       - name: dist lookup
         run: cd dist && ls -la && du -hs && cd -

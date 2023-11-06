@@ -52,11 +52,14 @@ jobs:
       - name: build ${{ inputs.lib }}
         run: pnpm exec nx build ${{ inputs.lib }}
 
+      - name: zip ${{ inputs.lib }}
+        run: cd ./dist/libs/ && zip -r "${{ inputs.lib }}.zip" ./${{ inputs.lib }} && cd -
+
       - uses: actions/upload-artifact@v3
         name: create ${{ inputs.lib }} artifact
         with:
           name: ${{ inputs.lib }}
-          path: ./dist/libs/${{ inputs.lib }}
+          path: ./dist/libs/${{ inputs.lib }}.zip
           retention-days: 1
 
   release-zip:
@@ -77,23 +80,17 @@ jobs:
       - name: get ${{ inputs.lib }} version
         id: get-version
         shell: bash
-        run: |
-          echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: zip to ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip and ${{ inputs.lib }}-latest.zip
+      - name: set to versioned zip ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip and ${{ inputs.lib }}-latest.zip
         shell: bash
         run: |
           mkdir releases
-          zip -r "${{ inputs.lib }}-latest.zip" ./dist >> /dev/null
-          zip -r "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./dist >> /dev/null
-          mv "${{ inputs.lib }}-latest.zip" ./releases
-          mv "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./releases
+          copy ./dist/${{ inputs.lib }}.zip ./releases/${{ inputs.lib }}-latest.zip
+          copy ./dist/${{ inputs.lib }}.zip ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
 
       - name: releases lookup
-        run: |
-          cd releases
-          ls -la
-          cd -
+        run: cd releases && ls -la && du -hs && cd -
 
       - name: move zips to release server
         uses: garygrossgarten/github-action-scp@release
@@ -125,21 +122,16 @@ jobs:
       - name: get ${{ inputs.lib }} version
         id: get-version
         shell: bash
-        run: |
-          echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(node -p "require('./dist/package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: zip to ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
+      - name: set to versioned zip ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
         shell: bash
         run: |
           mkdir releases
-          zip -r "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./dist >> /dev/null
-          mv "${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip" ./releases
+          copy ./dist/${{ inputs.lib }}.zip ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
 
       - name: releases lookup
-        run: |
-          cd releases
-          ls -la
-          cd -
+        run: cd releases && ls -la && du -hs && cd -
 
       - name: get only latest changelog
         run: |
@@ -167,15 +159,16 @@ jobs:
           name: ${{ inputs.lib }}
           path: ./dist
 
+      - name: unzip
+        shell: bash
+        run: cd dist && unzip ${{ inputs.lib }}.zip && cd -
+
       - name: dist lookup
         shell: bash
-        run: |
-          cd dist
-          ls -la
-          cd -
+        run: cd dist/${{ inputs.lib }} && ls -la && du -hs && cd -
 
       - name: publish to npm registry
         run: |
-          cd dist/
+          cd dist/${{ inputs.lib }}/
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_PUBLISH_TOKEN }}
           npm publish

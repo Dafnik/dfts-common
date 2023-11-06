@@ -33,7 +33,7 @@ export class AppComponent {
     title: ['Qr-Code Image', [Validators.required]],
     alt: ['Qr-Code Image', [Validators.required]],
     imageEnabled: [true, [Validators.required]],
-    imageSrc: ['/assets/angular-logo.png', [Validators.required]],
+    imageSrc: ['/qrcode/assets/angular-logo.png', [Validators.required]],
     imageWidth: [80, [Validators.required]],
     imageHeight: [80, [Validators.required]],
   });

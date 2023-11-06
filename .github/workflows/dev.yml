@@ -208,8 +208,8 @@ jobs:
       - name: move files in place
         run: |
           mkdir dist
-          mkdir dist/boostrap-table
-          mkdir dist/boostrap-icons
+          mkdir dist/bootstrap-table
+          mkdir dist/bootstrap-icons
           mkdir dist/qrcode
           mv playground/* dist/
           mv dfx-bootstrap-table-demo/* dist/bootstrap-table/

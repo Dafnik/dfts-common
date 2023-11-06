@@ -208,10 +208,13 @@ jobs:
       - name: move files in place
         run: |
           mkdir dist
+          mkdir dist/boostrap-table
+          mkdir dist/boostrap-icons
+          mkdir dist/qrcode
           mv playground/* dist/
-          mv dfx-bootstrap-table-demo dist
-          mv dfx-bootstrap-icons-demo dist
-          mv dfx-qrcode-demo dist
+          mv dfx-bootstrap-table-demo/* dist/bootstrap-table
+          mv dfx-bootstrap-icons-demo dist/bootstrap-icons
+          mv dfx-qrcode-demo dist/qrcode
 
       - name: dist lookup
         run: cd dist && ls -la && du -hs && cd -

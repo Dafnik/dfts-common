@@ -86,8 +86,8 @@ jobs:
         shell: bash
         run: |
           mkdir releases
-          copy ./dist/${{ inputs.lib }}.zip ./releases/${{ inputs.lib }}-latest.zip
-          copy ./dist/${{ inputs.lib }}.zip ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
+          cp "./dist/${{ inputs.lib }}.zip" "./releases/${{ inputs.lib }}-latest.zip"
+          cp "./dist/${{ inputs.lib }}.zip" "./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip"
 
       - name: releases lookup
         run: cd releases && ls -la && du -hs && cd -
@@ -128,7 +128,7 @@ jobs:
         shell: bash
         run: |
           mkdir releases
-          copy ./dist/${{ inputs.lib }}.zip ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip
+          cp "./dist/${{ inputs.lib }}.zip" "./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip"
 
       - name: releases lookup
         run: cd releases && ls -la && du -hs && cd -

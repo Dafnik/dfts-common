@@ -1,3 +1,11 @@
+# [3.0.0-beta.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-2.0.1...dfx-bootstrap-table-3.0.0-beta.0) (2023-11-09)
+
+### Features
+
+- raise peerDependencies to angular v17 ([e4f479e](https://github.com/Dafnik/dfts-common/commit/e4f479e25115e07c3ab9c02178e9ef424daa5c0c))
+- update README.md's ([ba21cbb](https://github.com/Dafnik/dfts-common/commit/ba21cbb6c9baa00accc1c17f7211dc2d0deed9e4))
+- update to angular 17 ([05f67d3](https://github.com/Dafnik/dfts-common/commit/05f67d3dd9e2798357c6e429fa3a84b99abed42a))
+
 ## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-2.0.0...dfx-bootstrap-table-2.0.1) (2023-05-29)
 
 ### Bug Fixes

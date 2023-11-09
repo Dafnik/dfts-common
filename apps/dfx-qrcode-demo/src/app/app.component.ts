@@ -8,13 +8,21 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { cl_copy } from "dfts-helper";
 import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
 import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
+import { ThemePickerComponent } from "./theme.component";
+import { copy, IconComponent, provideIcons } from "dfx-bootstrap-icons";
 
 @Component({
   standalone: true,
   selector: 'dfx-qrcode-demo-root',
   templateUrl: './app.component.html',
+  styles: [`
+    .codebox {
+      background-color: var(--bs-secondary-bg);
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule],
+  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePickerComponent, IconComponent],
+  providers: [provideIcons({copy})]
 })
 export class AppComponent {
   form = inject(FormBuilder).nonNullable.group({
@@ -24,8 +32,8 @@ export class AppComponent {
     errorCorrectionLevel: ['M' as QRCodeErrorCorrectionLevel, [Validators.required]],
     stylingEnabled: [true, [Validators.required]],
     cssClass: ['qrcode', [Validators.required]],
-    colorDark: ['#FFF' as ColorValueHex, [Validators.required]],
-    colorLight: ['#263238' as ColorValueHex, [Validators.required]],
+    colorDark: ['#000000' as ColorValueHex, [Validators.required]],
+    colorLight: ['#FFFFFF' as ColorValueHex, [Validators.required]],
     margin: [0, [Validators.required]],
     size: [9, [Validators.required]],
     accessibilityEnabled: [true, [Validators.required]],
@@ -43,8 +51,7 @@ export class AppComponent {
   public previewHTML$ = this.formValues.pipe(
     switchMap((form) =>
       of(
-        `
-<qrcode [data]="'${form.data}'"
+        `<qrcode [data]="'${form.data}'"
         [allowEmptyString]="${form.allowEmptyString}"
         [elementType]="'${form.elementType}'"
         [errorCorrectionLevel]="'${form.errorCorrectionLevel}'"${
@@ -78,8 +85,7 @@ export class AppComponent {
   public previewConfig$ = this.formValues.pipe(
     switchMap((form) =>
       of(
-        `
-provideQRCode(
+        `provideQRCode(
       withAllowEmptyString(${form.allowEmptyString}),
       withElementType('${form.elementType}'),
       withErrorCorrectionLevel('${form.errorCorrectionLevel}'),${

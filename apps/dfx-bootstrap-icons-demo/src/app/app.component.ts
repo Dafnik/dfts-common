@@ -12,7 +12,7 @@ import { ThemePickerComponent } from "./theme.component";
   template: `
     <nav class="navbar navbar-expand-lg sticky-top">
       <div class="container-xxl flex-row justify-content-between justify-content-sm-start">
-          <a class="navbar-brand d-flex align-items-center gap-1" routerLink="/">
+          <a class="navbar-brand d-flex align-items-center gap-1 text-dark" routerLink="/">
             <span>dfx</span>
             <img ngSrc="assets/bootstrap-logo.png" alt="Bootstrap" height="24" width="30"
                  style="transform: rotate(-20deg)" />
@@ -20,13 +20,13 @@ import { ThemePickerComponent } from "./theme.component";
           </a>
           <ul class="navbar-nav flex-row gap-2 me-auto">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/usage">Usage</a>
+              <a class="nav-link text-dark" routerLink="/usage">Usage</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://npmjs.com/dfx-bootstrap-icons" target="_blank" rel="noopener">NPM</a>
+              <a class="nav-link text-dark" href="https://npmjs.com/dfx-bootstrap-icons" target="_blank" rel="noopener">NPM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/Dafnik/dfts-common" target="_blank" rel="noopener">GitHub</a>
+              <a class="nav-link text-dark" href="https://github.com/Dafnik/dfts-common" target="_blank" rel="noopener">GitHub</a>
             </li>
           </ul>
           <div class="d-flex">

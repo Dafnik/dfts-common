@@ -1,5 +1,5 @@
-import {Observable} from 'rxjs';
-import {IHasID} from 'dfts-helper';
+import { Observable } from 'rxjs';
+import { IHasID } from 'dfts-helper';
 
 export interface HasGetAll<T> {
   getAll$(): Observable<T[]>;

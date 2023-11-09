@@ -49,7 +49,7 @@
 ### Standalone Components
 
 ```typescript
-import {QrCodeComponent} from 'dfx-qrcode';
+import { QrCodeComponent } from 'dfx-qrcode';
 
 @Component({
   standalone: true,
@@ -63,7 +63,7 @@ export class AppComponent {}
 ### Module
 
 ```typescript
-import {QRCodeModule} from 'dfx-qrcode';
+import { QRCodeModule } from 'dfx-qrcode';
 
 @NgModule({
   declaration: [AppComponent],

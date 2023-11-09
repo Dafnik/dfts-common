@@ -1,11 +1,11 @@
-import {Provider} from '@angular/core';
-import {DefaultLanguageFeature} from './default-language/default-language';
-import {DefaultUndefinedOrNullBooleanToFeature} from './default-undefined-boolean-to/default-undefined-boolean-to';
-import {DefaultUndefinedKeyToFeature} from './default-undefined-key-to/default-undefined-key-to';
-import {AssetsPathFeature} from './assets-path/assets-path';
-import {RememberLanguageFeature} from './remember-language/remember-language';
-import {AutoTranslatedLanguagesFeature} from './auto-translated-languages/auto-translated-languages';
-import {LibreTranslateFeature} from './libre-translate/libre-translate';
+import { Provider } from '@angular/core';
+import { DefaultLanguageFeature } from './default-language/default-language';
+import { DefaultUndefinedOrNullBooleanToFeature } from './default-undefined-boolean-to/default-undefined-boolean-to';
+import { DefaultUndefinedKeyToFeature } from './default-undefined-key-to/default-undefined-key-to';
+import { AssetsPathFeature } from './assets-path/assets-path';
+import { RememberLanguageFeature } from './remember-language/remember-language';
+import { AutoTranslatedLanguagesFeature } from './auto-translated-languages/auto-translated-languages';
+import { LibreTranslateFeature } from './libre-translate/libre-translate';
 
 export enum TranslateFeatureKind {
   DEFAULT_LANGUAGE,

@@ -1,4 +1,4 @@
-import {a_forEachIf} from '../for-each-if';
+import { a_forEachIf } from '../for-each-if';
 
 /**
  * Applies a computation function to each element in the given array that is present in the `items` list.

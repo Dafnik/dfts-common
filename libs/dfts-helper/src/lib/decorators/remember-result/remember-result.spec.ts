@@ -1,4 +1,4 @@
-import {RememberResult} from './remember-result';
+import { RememberResult } from './remember-result';
 
 describe('RememberResult', () => {
   beforeEach(() => {

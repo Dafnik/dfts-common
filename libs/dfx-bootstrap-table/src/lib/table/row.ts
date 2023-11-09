@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation } from '@angular/core';
 import {
   CDK_ROW_TEMPLATE,
   CdkFooterRow,
@@ -26,7 +26,7 @@ import {
  */
 @Directive({
   selector: '[ngbHeaderRowDef]',
-  providers: [{provide: CdkHeaderRowDef, useExisting: NgbHeaderRowDef}],
+  providers: [{ provide: CdkHeaderRowDef, useExisting: NgbHeaderRowDef }],
   inputs: ['columns: ngbHeaderRowDef'],
 })
 export class NgbHeaderRowDef extends CdkHeaderRowDef {}
@@ -37,7 +37,7 @@ export class NgbHeaderRowDef extends CdkHeaderRowDef {}
  */
 @Directive({
   selector: '[ngbFooterRowDef]',
-  providers: [{provide: CdkFooterRowDef, useExisting: NgbFooterRowDef}],
+  providers: [{ provide: CdkFooterRowDef, useExisting: NgbFooterRowDef }],
   inputs: ['columns: ngbFooterRowDef'],
 })
 export class NgbFooterRowDef extends CdkFooterRowDef {}
@@ -49,13 +49,13 @@ export class NgbFooterRowDef extends CdkFooterRowDef {}
  */
 @Directive({
   selector: '[ngbRowDef]',
-  providers: [{provide: CdkRowDef, useExisting: NgbRowDef}],
+  providers: [{ provide: CdkRowDef, useExisting: NgbRowDef }],
   inputs: ['columns: ngbRowDefColumns', 'when: ngbRowDefWhen'],
 })
 export class NgbRowDef<T> extends CdkRowDef<T> {
   @Input() ngbRowDefTable?: CdkTable<T>;
 
-  static ngTemplateContextGuard<T>(dir: NgbRowDef<T>, ctx: unknown): ctx is {$implicit: T; index: number} {
+  static ngTemplateContextGuard<T>(dir: NgbRowDef<T>, ctx: unknown): ctx is { $implicit: T; index: number } {
     return true;
   }
 }
@@ -69,7 +69,7 @@ export class NgbRowDef<T> extends CdkRowDef<T> {
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbHeaderRow',
-  providers: [{provide: CdkHeaderRow, useExisting: NgbHeaderRow}],
+  providers: [{ provide: CdkHeaderRow, useExisting: NgbHeaderRow }],
 })
 export class NgbHeaderRow extends CdkHeaderRow {}
 
@@ -82,7 +82,7 @@ export class NgbHeaderRow extends CdkHeaderRow {}
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbFooterRow',
-  providers: [{provide: CdkFooterRow, useExisting: NgbFooterRow}],
+  providers: [{ provide: CdkFooterRow, useExisting: NgbFooterRow }],
 })
 export class NgbFooterRow extends CdkFooterRow {}
 
@@ -95,14 +95,14 @@ export class NgbFooterRow extends CdkFooterRow {}
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbRow',
-  providers: [{provide: CdkRow, useExisting: NgbRow}],
+  providers: [{ provide: CdkRow, useExisting: NgbRow }],
 })
 export class NgbRow extends CdkRow {}
 
 /** Row that can be used to display a message when no data is shown in the table. */
 @Directive({
   selector: 'ng-template[ngbNoDataRow]',
-  providers: [{provide: CdkNoDataRow, useExisting: NgbNoDataRow}],
+  providers: [{ provide: CdkNoDataRow, useExisting: NgbNoDataRow }],
 })
 export class NgbNoDataRow extends CdkNoDataRow {
   override _contentClassName = 'ngb-no-data-row';

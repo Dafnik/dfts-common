@@ -7,8 +7,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {CdkTextColumn} from '@angular/cdk/table';
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import { CdkTextColumn } from '@angular/cdk/table';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 /**
  * Column that simply shows text content for the header and row cells. Assumes that the table

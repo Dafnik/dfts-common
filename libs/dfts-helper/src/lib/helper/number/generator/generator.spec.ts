@@ -1,5 +1,5 @@
-import {n_generate_int, n_generate_float} from './generator';
-import {a_containsDuplicates} from '../../array/contains-duplicates/contains-duplicates';
+import { n_generate_int, n_generate_float } from './generator';
+import { a_containsDuplicates } from '../../array/contains-duplicates/contains-duplicates';
 
 describe('number generator', () => {
   it('randomness number', () => {

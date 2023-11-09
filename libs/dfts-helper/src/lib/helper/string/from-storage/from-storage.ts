@@ -1,5 +1,5 @@
-import {ttlSuffix} from '../../storage/common';
-import {n_from} from '../../number/from/from';
+import { ttlSuffix } from '../../storage/common';
+import { n_from } from '../../number/from/from';
 
 export function s_fromStorage(key: string): string | undefined {
   const ttl = localStorage.getItem(key + ttlSuffix);

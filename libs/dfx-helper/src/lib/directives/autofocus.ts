@@ -1,11 +1,11 @@
-import {AfterViewInit, Directive, ElementRef, Input, numberAttribute} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, numberAttribute } from '@angular/core';
 
 @Directive({
   selector: '[focus]',
   standalone: true,
 })
 export class DfxAutofocus implements AfterViewInit {
-  @Input({transform: numberAttribute, alias: 'focus'}) delay = 100;
+  @Input({ transform: numberAttribute, alias: 'focus' }) delay = 100;
 
   constructor(private elRef: ElementRef<HTMLElement>) {}
 

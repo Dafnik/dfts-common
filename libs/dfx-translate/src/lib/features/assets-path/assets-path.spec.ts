@@ -1,13 +1,13 @@
-import {TestBed} from '@angular/core/testing';
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {provideDfxTranslate} from '../../translate.provider';
-import {TRANSLATE_ASSETS_PATH, withAssetsPath} from './assets-path';
-import {withRememberLanguage} from '../remember-language/remember-language';
-import {of} from 'rxjs';
-import {TranslateStore} from '../../service/translate.store';
-import {withDefaultLanguage} from '../default-language/default-language';
+import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { provideDfxTranslate } from '../../translate.provider';
+import { TRANSLATE_ASSETS_PATH, withAssetsPath } from './assets-path';
+import { withRememberLanguage } from '../remember-language/remember-language';
+import { of } from 'rxjs';
+import { TranslateStore } from '../../service/translate.store';
+import { withDefaultLanguage } from '../default-language/default-language';
 
 describe('assets-path feature', () => {
   beforeAll(() => localStorage.clear());

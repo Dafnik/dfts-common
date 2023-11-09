@@ -36,9 +36,9 @@ pnpm install dfts-qrcode@latest
 #### Without center image
 
 ```typescript
-import {generateQrCodeImage} from 'dfts-qrcode';
+import { generateQrCodeImage } from 'dfts-qrcode';
 
-const {image, dataUrl} = generateQrCodeImage('data');
+const { image, dataUrl } = generateQrCodeImage('data');
 ```
 
 Options:
@@ -67,7 +67,7 @@ Options:
 #### Without center image
 
 ```typescript
-import {generateQrCodeCanvas} from 'dfts-qrcode';
+import { generateQrCodeCanvas } from 'dfts-qrcode';
 
 const qrcode = generateQrCodeCanvas('data');
 ```
@@ -94,7 +94,7 @@ Options:
 ### QR-Code Matrix
 
 ```typescript
-import {generateQrCodeMatrix} from 'dfts-qrcode';
+import { generateQrCodeMatrix } from 'dfts-qrcode';
 
 const qrcodeMatrix = generateQrCodeMatrix('data');
 ```
@@ -106,7 +106,7 @@ Options:
 ## Options
 
 ```typescript
-import {ColorValueHex} from './types';
+import { ColorValueHex } from './types';
 
 export type QRCodeVersion =
   | -1
@@ -225,9 +225,9 @@ Error level can be set through `options.errorCorrectionLevel` property.<br>
 If not specified, the default value is `L`.
 
 ```typescript
-import {generateQrCodeMatrix} from 'dfts-qrcode';
+import { generateQrCodeMatrix } from 'dfts-qrcode';
 
-generateQrCodeMatrix('data', {errorCorrectionLevel: 'M'});
+generateQrCodeMatrix('data', { errorCorrectionLevel: 'M' });
 ```
 
 ## QR Code capacity
@@ -251,9 +251,9 @@ QR Code version can be set through `options.version` property.<br>
 If no version is specified, the more suitable value will be used. Unless a specific version is required, this option is not needed.
 
 ```typescript
-import {generateQrCodeMatrix} from 'dfts-qrcode';
+import { generateQrCodeMatrix } from 'dfts-qrcode';
 
-generateQrCodeMatrix('data', {errorCorrectionLevel: 'M', mode: 'octet', version: 1});
+generateQrCodeMatrix('data', { errorCorrectionLevel: 'M', mode: 'octet', version: 1 });
 ```
 
 ## Encoding modes

@@ -1,15 +1,15 @@
-import {HttpClient} from '@angular/common/http';
-import {TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
-import {provideDfxTranslate} from '../translate.provider';
-import {TranslateStore} from '../service/translate.store';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {dfxTranslateSetLanguage} from '../service/set-language';
-import {dfxTranslateSetLanguageFn} from '../types';
-import {TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage} from './default-language/default-language';
-import {withAssetsPath} from './assets-path/assets-path';
-import {TRANSLATE_REMEMBER_LANGUAGE} from './remember-language/remember-language';
-import {TRANSLATE_AUTO_TRANSLATED_LANGUAGES, withAutoTranslatedLanguages} from './auto-translated-languages/auto-translated-languages';
+import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { serviceStub, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
+import { provideDfxTranslate } from '../translate.provider';
+import { TranslateStore } from '../service/translate.store';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { dfxTranslateSetLanguage } from '../service/set-language';
+import { dfxTranslateSetLanguageFn } from '../types';
+import { TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage } from './default-language/default-language';
+import { withAssetsPath } from './assets-path/assets-path';
+import { TRANSLATE_REMEMBER_LANGUAGE } from './remember-language/remember-language';
+import { TRANSLATE_AUTO_TRANSLATED_LANGUAGES, withAutoTranslatedLanguages } from './auto-translated-languages/auto-translated-languages';
 
 describe('TranslateConfig', () => {
   let translateStore: TranslateStore;
@@ -20,7 +20,7 @@ describe('TranslateConfig', () => {
 
     void TestBed.configureTestingModule({
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
@@ -84,7 +84,7 @@ describe('TranslateConfig2', () => {
 
     void TestBed.configureTestingModule({
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withAssetsPath('assets/i18n/'), withAutoTranslatedLanguages(['de'])),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
@@ -113,7 +113,7 @@ describe('TranslateConfigChanged', () => {
 
     void TestBed.configureTestingModule({
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withDefaultLanguage('de')),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,

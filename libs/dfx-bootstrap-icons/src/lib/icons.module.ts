@@ -1,7 +1,7 @@
-import { ModuleWithProviders, NgModule } from "@angular/core";
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { BiComponent } from "./icon.component";
-import { IconFeatures } from "./icons.feature";
+import { BiComponent } from './icon.component';
+import { IconFeatures } from './icons.feature';
 
 @NgModule({
   imports: [BiComponent],

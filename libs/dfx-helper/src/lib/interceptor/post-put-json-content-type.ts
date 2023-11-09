@@ -1,10 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import {HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS} from '../config';
-import {AbstractIgnorableInterceptor} from './abstract-ignoreable';
-import {POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR} from './http-context-token';
+import { HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS } from '../config';
+import { AbstractIgnorableInterceptor } from './abstract-ignoreable';
+import { POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR } from './http-context-token';
 
 @Injectable()
 export class PostPutJsonContentTypeInterceptor extends AbstractIgnorableInterceptor {
@@ -19,7 +19,7 @@ export class PostPutJsonContentTypeInterceptor extends AbstractIgnorableIntercep
 
     const method = req.method.toLowerCase();
     if (method.includes('post') || method.includes('put')) {
-      return next.handle(req.clone({headers: req.headers.set('Content-Type', 'application/json')}));
+      return next.handle(req.clone({ headers: req.headers.set('Content-Type', 'application/json') }));
     }
     return next.handle(req);
   }

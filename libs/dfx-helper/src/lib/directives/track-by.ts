@@ -1,6 +1,6 @@
-import { Directive, Host, Input, NgIterable, NgModule } from "@angular/core";
-import { NgForOf } from "@angular/common";
-import { StringOrNumber } from "dfts-helper";
+import { Directive, Host, Input, NgIterable, NgModule } from '@angular/core';
+import { NgForOf } from '@angular/common';
+import { StringOrNumber } from 'dfts-helper';
 
 /**
  * @deprecated
@@ -29,7 +29,7 @@ export class DfxTrackByProperty<T, U extends NgIterable<T> = NgIterable<T>> {
   selector: '[ngForTrackById]',
   standalone: true,
 })
-export class DfxTrackById<T extends {id: StringOrNumber}> {
+export class DfxTrackById<T extends { id: StringOrNumber }> {
   constructor(@Host() ngFor: NgForOf<T>) {
     ngFor.ngForTrackBy = (_: number, item: T) => item.id;
   }

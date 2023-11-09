@@ -1,4 +1,3 @@
-
 export function toEscapedName(input: string): string {
   // Define a mapping of number-to-word
   const numberToWord: { [key: string]: string } = {

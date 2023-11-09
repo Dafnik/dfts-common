@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import {
   NgbPaginator,
@@ -11,7 +11,7 @@ import {
   NgbPaginatorPages,
   NgbPaginatorPrevious,
 } from './pagination';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 export {
   NgbPaginator,
@@ -35,5 +35,5 @@ const DIRECTIVES = [
   NgbPaginatorPages,
 ];
 
-@NgModule({declarations: DIRECTIVES, exports: DIRECTIVES, imports: [CommonModule, FormsModule]})
+@NgModule({ declarations: DIRECTIVES, exports: DIRECTIVES, imports: [CommonModule, FormsModule] })
 export class DfxPaginationModule {}

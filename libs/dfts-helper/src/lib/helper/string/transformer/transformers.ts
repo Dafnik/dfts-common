@@ -1,4 +1,4 @@
-import {UndefinedOrNullOr} from '../../../types';
+import { UndefinedOrNullOr } from '../../../types';
 
 export const s_upperCaseFirstLetter = (text: UndefinedOrNullOr<string>): string =>
   text ? `${text.slice(0, 1).toUpperCase()}${text.slice(1)}` : '';

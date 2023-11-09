@@ -1,4 +1,4 @@
-import {Directive, HostBinding, HostListener, NgModule} from '@angular/core';
+import { Directive, HostBinding, HostListener, NgModule } from '@angular/core';
 
 @Directive({
   selector: '[hideIfOnline]',

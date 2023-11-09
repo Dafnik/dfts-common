@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
-import {provideDfxTranslate} from '../translate.provider';
-import {TranslateStore} from '../service/translate.store';
-import {dfxTranslateSetLanguage} from '../service/set-language';
-import {DfxTrA} from './tra';
-import {dfxTranslateSetLanguageFn} from '../types';
-import {withLibreTranslate} from '../features/libre-translate/libre-translate';
-import {withRememberLanguage} from '../features/remember-language/remember-language';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { serviceStub, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
+import { provideDfxTranslate } from '../translate.provider';
+import { TranslateStore } from '../service/translate.store';
+import { dfxTranslateSetLanguage } from '../service/set-language';
+import { DfxTrA } from './tra';
+import { dfxTranslateSetLanguageFn } from '../types';
+import { withLibreTranslate } from '../features/libre-translate/libre-translate';
+import { withRememberLanguage } from '../features/remember-language/remember-language';
 
 @Component({
   template: '<div>{{ translateKey | tra }}</div>',
@@ -31,7 +31,7 @@ describe('TranslateAutoDirective', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrA],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false), withLibreTranslate('https://test.i.activate.this.feature')),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
@@ -77,7 +77,7 @@ describe('TranslateAutoDirective disabled', () => {
     void TestBed.configureTestingModule({
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrA],
-      providers: [{provide: HttpClient, useValue: serviceStub}, provideDfxTranslate(withRememberLanguage(false))],
+      providers: [{ provide: HttpClient, useValue: serviceStub }, provideDfxTranslate(withRememberLanguage(false))],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestTranslateDirectiveComponent) as typeof fixture;

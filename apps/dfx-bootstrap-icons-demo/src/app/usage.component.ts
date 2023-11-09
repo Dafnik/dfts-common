@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -104,11 +103,13 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
       </div>
     </div>
   `,
-  styles: [`
-  .codebox {
-    background-color: var(--bs-secondary-bg);
-  }
-  `]
+  styles: [
+    `
+      .codebox {
+        background-color: var(--bs-secondary-bg);
+      }
+    `,
+  ],
 })
 export class UsageComponent {
   standaloneConfigCode = `import { provideDfxBootstrapIcons, withHeight, withWidth } from "dfx-bootstrap-icons";
@@ -147,7 +148,6 @@ bootstrapApplication(AppComponent, {
   ]
 })`;
 
-
   importModuleCode = `import { DfxIconsModule, withHeight, withWidth, withIcons, allIcons } from "dfx-bootstrap-icons";
 
 @NgModule({
@@ -174,5 +174,4 @@ export class AppModule { }`;
 })
 export class AppComponent { }
   `;
-
 }

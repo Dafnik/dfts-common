@@ -1,20 +1,17 @@
-const fs = require("fs-extra");
+const fs = require('fs-extra');
 
-const urlBase = "https://icons.getbootstrap.com/icons/";
-const allIconsVariable = "allIcons";
-const libFolder = "libs/dfx-bootstrap-icons/src/lib";
+const urlBase = 'https://icons.getbootstrap.com/icons/';
+const allIconsVariable = 'allIcons';
+const libFolder = 'libs/dfx-bootstrap-icons/src/lib';
 
 // source original bootstrap icons
-const iconsSrcFolder = "./node_modules/bootstrap-icons/icons";
+const iconsSrcFolder = './node_modules/bootstrap-icons/icons';
 // generated folder
 const generatedDestFolder = `${libFolder}/generated`;
 // type output folder
 const iconsDestFolder = `${generatedDestFolder}/icons`;
 // template for icons
-const iconTemplate = fs.readFileSync(
-  "tools/tmpl/icon.ts.tmpl",
-  "utf-8"
-);
+const iconTemplate = fs.readFileSync('tools/tmpl/icon.ts.tmpl', 'utf-8');
 
 const indexFile = `${iconsDestFolder}/index.ts`;
 const allFile = `${iconsDestFolder}/all.ts`;
@@ -36,15 +33,15 @@ exportEnumString += `\nexport enum IconNamesEnum {\n`;
 
 fs.emptyDirSync(iconsDestFolder);
 fs.readdirSync(iconsSrcFolder).forEach((filename) => {
-  if (filename.includes(".svg")) {
-    const iconName = filename.replace(".svg", "").trim();
+  if (filename.includes('.svg')) {
+    const iconName = filename.replace('.svg', '').trim();
 
     exportAllIconsList += `/** {@link ${urlBase}${iconName}} */\n`;
     exportAllIconsList += `'${iconName}',\n`;
     exportTypeString += `/** {@link ${urlBase}${iconName}} */\n`;
     exportTypeString += `'${iconName}' | \n`;
 
-    const fileContent = fs.readFileSync(`${iconsSrcFolder}/${filename}`, "utf-8");
+    const fileContent = fs.readFileSync(`${iconsSrcFolder}/${filename}`, 'utf-8');
     const exportName = escapedName(iconName);
 
     exportEnumString += `/** {@link ${urlBase}${iconName}} */\n`;
@@ -54,16 +51,10 @@ fs.readdirSync(iconsSrcFolder).forEach((filename) => {
       .replace(/__ICON_NAME__/g, iconName)
       .replace(/__EXPORT_NAME__/g, exportName)
       .replace(/__PAYLOAD__/, fileContent.replace(/<(\w+)([^>]*)\/>/g, '<$1$2></$1>'));
-    fs.writeFileSync(`${iconsDestFolder}/${iconName}.ts`, iconOutput, "utf-8");
+    fs.writeFileSync(`${iconsDestFolder}/${iconName}.ts`, iconOutput, 'utf-8');
 
-    fs.appendFileSync(
-      indexFile,
-      `export { ${exportName} } from './${iconName}';\n`
-    );
-    fs.appendFileSync(
-      allFile,
-      `import { ${exportName} } from './${iconName}';\n`
-    );
+    fs.appendFileSync(indexFile, `export { ${exportName} } from './${iconName}';\n`);
+    fs.appendFileSync(allFile, `import { ${exportName} } from './${iconName}';\n`);
     exportAllString += `  ${exportName},\n`;
     console.log(`icon ${exportName} | ${iconName} generated.`);
   }
@@ -77,31 +68,27 @@ exportTypeString = exportTypeString.slice(0, -3);
 exportTypeString += `;\n`;
 
 fs.appendFileSync(allFile, exportAllString);
-fs.appendFileSync(
-  indexFile,
-  `\nexport { ${allIconsVariable} } from './all';\n`
-);
+fs.appendFileSync(indexFile, `\nexport { ${allIconsVariable} } from './all';\n`);
 fs.writeFileSync(enumFile, exportEnumString);
 fs.writeFileSync(listFile, exportAllIconsList);
 fs.writeFileSync(typeFile, exportTypeString);
 
 const bootstrapIconsVersion = JSON.parse(fs.readFileSync('./node_modules/bootstrap-icons/package.json', 'utf8')).version;
-fs.writeFileSync(versionFile, `export const BOOTSTRAP_ICONS_VERSION = "${bootstrapIconsVersion}"`)
-
+fs.writeFileSync(versionFile, `export const BOOTSTRAP_ICONS_VERSION = "${bootstrapIconsVersion}"`);
 
 function escapedName(input) {
   // Define a mapping of number-to-word
   const numberToWord = {
-    '0': 'Zero',
-    '1': 'One',
-    '2': 'Two',
-    '3': 'Three',
-    '4': 'Four',
-    '5': 'Five',
-    '6': 'Six',
-    '7': 'Seven',
-    '8': 'Eight',
-    '9': 'Nine'
+    0: 'Zero',
+    1: 'One',
+    2: 'Two',
+    3: 'Three',
+    4: 'Four',
+    5: 'Five',
+    6: 'Six',
+    7: 'Seven',
+    8: 'Eight',
+    9: 'Nine',
   };
 
   // Split the input string into words
@@ -156,4 +143,3 @@ function toCamelCase(input, separator = '-') {
   }
   return res.trim();
 }
-

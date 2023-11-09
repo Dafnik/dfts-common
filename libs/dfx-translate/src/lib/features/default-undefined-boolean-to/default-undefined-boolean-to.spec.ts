@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
-import {provideDfxTranslate} from '../../translate.provider';
-import {withRememberLanguage} from '../remember-language/remember-language';
-import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO, withDefaultUndefinedOrNullBooleanTo} from './default-undefined-boolean-to';
+import { TestBed } from '@angular/core/testing';
+import { provideDfxTranslate } from '../../translate.provider';
+import { withRememberLanguage } from '../remember-language/remember-language';
+import { TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO, withDefaultUndefinedOrNullBooleanTo } from './default-undefined-boolean-to';
 
 describe('default-undefined-boolean-to feature', () => {
   beforeAll(() => localStorage.clear());

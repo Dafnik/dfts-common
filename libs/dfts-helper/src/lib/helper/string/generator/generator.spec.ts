@@ -1,6 +1,6 @@
-import {s_generate} from './generator';
-import {a_containsDuplicates} from '../../array/contains-duplicates/contains-duplicates';
-import {StringHelper} from '../_string';
+import { s_generate } from './generator';
+import { a_containsDuplicates } from '../../array/contains-duplicates/contains-duplicates';
+import { StringHelper } from '../_string';
 
 describe('string generator', () => {
   it('randomness string', () => {
@@ -13,14 +13,14 @@ describe('string generator', () => {
   it('randomness string with special characters', () => {
     const test = [];
     for (let i = 0; i < 10000; i++) {
-      test.push(s_generate(10, {containsNumbers: true, containsSpecialCharacters: true}));
+      test.push(s_generate(10, { containsNumbers: true, containsSpecialCharacters: true }));
     }
     expect(a_containsDuplicates(test)).toBeFalsy();
   });
   it('randomness string without numbers, with special characters', () => {
     const test = [];
     for (let i = 0; i < 10000; i++) {
-      test.push(s_generate(10, {containsNumbers: false, containsSpecialCharacters: true}));
+      test.push(s_generate(10, { containsNumbers: false, containsSpecialCharacters: true }));
     }
     expect(a_containsDuplicates(test)).toBeFalsy();
   });
@@ -33,7 +33,7 @@ describe('string generator', () => {
   });
   it('expect random string to have letters and no numbers', () => {
     for (let i = 0; i < 100; i++) {
-      const val = s_generate(70, {containsNumbers: false});
+      const val = s_generate(70, { containsNumbers: false });
       expect(StringHelper.hasNoNumbersInString(val)).toBeTruthy();
       expect(StringHelper.hasOnlyLettersInString(val)).toBeTruthy();
       expect(StringHelper.hasNotOnlyLettersInString(val)).toBeFalsy();
@@ -44,7 +44,7 @@ describe('string generator', () => {
   });
   it('expect random string to have letters and no numbers but special characters', () => {
     for (let i = 0; i < 100; i++) {
-      const val = s_generate(70, {containsNumbers: false, containsSpecialCharacters: true});
+      const val = s_generate(70, { containsNumbers: false, containsSpecialCharacters: true });
       expect(StringHelper.hasNoNumbersInString(val)).toBeTruthy();
       expect(StringHelper.hasOnlyLettersInString(val)).toBeFalsy();
       expect(StringHelper.hasNotOnlyLettersInString(val)).toBeTruthy();

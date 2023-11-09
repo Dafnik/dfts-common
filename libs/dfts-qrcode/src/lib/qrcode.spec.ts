@@ -1,8 +1,8 @@
-import {generateQrCodeMatrix} from './qrcode';
+import { generateQrCodeMatrix } from './qrcode';
 
 describe('QRCode', () => {
   it('generate correct Numeric qrcode matrix', () => {
-    expect(generateQrCodeMatrix('123456798', {mode: 'numeric'})).toStrictEqual([
+    expect(generateQrCodeMatrix('123456798', { mode: 'numeric' })).toStrictEqual([
       [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1],
@@ -27,7 +27,7 @@ describe('QRCode', () => {
     ]);
   });
   it('generate correct alpha numeric qrcode matrix', () => {
-    expect(generateQrCodeMatrix('AT123456798', {mode: 'alphanumeric'})).toStrictEqual([
+    expect(generateQrCodeMatrix('AT123456798', { mode: 'alphanumeric' })).toStrictEqual([
       [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1],
@@ -52,7 +52,7 @@ describe('QRCode', () => {
     ]);
   });
   it('generate correct byte qrcode matrix', () => {
-    expect(generateQrCodeMatrix('AT123456798!!ww:', {mode: 'octet'})).toStrictEqual([
+    expect(generateQrCodeMatrix('AT123456798!!ww:', { mode: 'octet' })).toStrictEqual([
       [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1],

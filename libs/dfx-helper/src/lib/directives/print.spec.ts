@@ -2,11 +2,11 @@
 Copyright belongs to https://github.com/selemxmn/ngx-print
 Licensed under MIT license
  */
-import {Component, DebugElement} from '@angular/core';
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import {DfxPrint} from './print';
+import { DfxPrint } from './print';
 
 @Component({
   template: `
@@ -51,9 +51,9 @@ describe('DfxPrintDirective', () => {
   let component: TestDfxPrintComponent;
   let fixture: ComponentFixture<TestDfxPrintComponent>;
 
-  const styleSheet: {[key: string]: {[key: string]: string}} = {
-    h2: {border: 'solid 1px'},
-    h1: {color: 'red', border: '1px solid'},
+  const styleSheet: { [key: string]: { [key: string]: string } } = {
+    h2: { border: 'solid 1px' },
+    h1: { color: 'red', border: '1px solid' },
   };
 
   beforeEach(waitForAsync(() => {

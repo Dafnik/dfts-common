@@ -1,4 +1,4 @@
-import {d_format} from './format-date';
+import { d_format } from './format-date';
 
 describe('format-date', () => {
   it('format', () => {

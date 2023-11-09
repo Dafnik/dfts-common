@@ -1,6 +1,6 @@
 'use strict';
 
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (config, context) => {
@@ -27,6 +27,6 @@ module.exports = (config, context) => {
       minimizer: [new TerserPlugin()],
     },
     target: 'web',
-    externalsPresets: {node: true},
+    externalsPresets: { node: true },
   });
 };

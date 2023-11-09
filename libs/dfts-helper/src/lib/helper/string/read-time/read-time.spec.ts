@@ -1,4 +1,4 @@
-import {calculateWordsReadTime, imageReadTime, removeOtherLanguageCharacters, s_readTime} from './read-time';
+import { calculateWordsReadTime, imageReadTime, removeOtherLanguageCharacters, s_readTime } from './read-time';
 
 describe('calculateReadTime', () => {
   it('should return ">1m" for a text with no images and fewer than 275 words', () => {

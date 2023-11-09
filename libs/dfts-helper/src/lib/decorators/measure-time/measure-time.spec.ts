@@ -1,5 +1,5 @@
-import {MeasureTime} from './measure-time';
-import {thr_block} from '../../helper/thread';
+import { MeasureTime } from './measure-time';
+import { thr_block } from '../../helper/thread';
 
 describe('MeasureTime', () => {
   it('5ms', () => {

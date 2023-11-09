@@ -138,7 +138,7 @@ in [here](https://github.com/Dafnik/dfts-common/tree/main/apps/dfx-bootstrap-tab
 [all.component.ts](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/all/all.component.ts)
 
 ```typescript
-import {NgbPaginator, NgbSort, NgbTableDataSource} from 'dfx-bootstrap-table';
+import { NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
 
 export type eventModel = {
   id: number;

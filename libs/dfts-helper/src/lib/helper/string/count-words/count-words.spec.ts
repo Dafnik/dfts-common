@@ -1,4 +1,4 @@
-import {s_countWords} from './count-words';
+import { s_countWords } from './count-words';
 
 describe('wordsCount', () => {
   it('should count the number of words in a string', () => {

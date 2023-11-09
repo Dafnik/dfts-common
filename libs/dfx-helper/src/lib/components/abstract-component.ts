@@ -1,5 +1,5 @@
-import {Component, OnDestroy} from '@angular/core';
-import {ABlock} from './abstract-block';
+import { Component, OnDestroy } from '@angular/core';
+import { ABlock } from './abstract-block';
 
 @Component({
   template: '',

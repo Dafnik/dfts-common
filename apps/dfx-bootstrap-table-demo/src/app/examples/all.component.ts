@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from "@angular/core";
-import { UntypedFormControl } from "@angular/forms";
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 
-import { NgbPaginator, NgbSort, NgbTableDataSource } from "dfx-bootstrap-table";
-import { EventType, Helper } from "../Helper";
+import { NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
+import { EventType, Helper } from '../Helper';
 
 @Component({
   selector: 'app-all',
@@ -40,7 +40,7 @@ import { EventType, Helper } from "../Helper";
       <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
     </table>
     <ngb-paginator [collectionSize]="dataSource.data.length"></ngb-paginator>
-  `
+  `,
 })
 export class AllComponent implements OnInit, AfterViewInit {
   // Filtering

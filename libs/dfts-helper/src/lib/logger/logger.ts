@@ -1,5 +1,5 @@
-import {LogType} from './loggerInfo';
-import {getLogMessage} from './log.header';
+import { LogType } from './loggerInfo';
+import { getLogMessage } from './log.header';
 
 export class Logger {
   public readonly className: string;
@@ -12,7 +12,7 @@ export class Logger {
     this.className = className;
   }
 
-  private _log(props: {logType: LogType; methodeName: string; description: string; objects?: unknown[]; group?: boolean}): Logger {
+  private _log(props: { logType: LogType; methodeName: string; description: string; objects?: unknown[]; group?: boolean }): Logger {
     const header = getLogMessage(props.logType, this.className, props.methodeName, props.description);
 
     if (props.group) {
@@ -46,7 +46,7 @@ export class Logger {
    * @param {string} description The log message or description
    */
   group(methodeName: string, description: string): Logger {
-    return this._log({logType: 'LOG', methodeName, description, group: true});
+    return this._log({ logType: 'LOG', methodeName, description, group: true });
   }
 
   groupEnd(): Logger {
@@ -62,7 +62,7 @@ export class Logger {
    * @return {Logger} Returns logger
    */
   log(methodeName: string, description: string, ...objects: unknown[]): Logger {
-    return this._log({logType: 'LOG', methodeName, description, objects: objects});
+    return this._log({ logType: 'LOG', methodeName, description, objects: objects });
   }
 
   /**
@@ -73,7 +73,7 @@ export class Logger {
    * @return {Logger} Returns logger
    */
   info(methodeName: string, description: string, ...objects: unknown[]): Logger {
-    return this._log({logType: 'INFO', methodeName, description, objects});
+    return this._log({ logType: 'INFO', methodeName, description, objects });
   }
 
   /**
@@ -84,7 +84,7 @@ export class Logger {
    * @return {Logger} Returns logger
    */
   warning(methodeName: string, description: string, ...objects: unknown[]): Logger {
-    return this._log({logType: 'WARNING', methodeName, description, objects});
+    return this._log({ logType: 'WARNING', methodeName, description, objects });
   }
 
   /**
@@ -95,7 +95,7 @@ export class Logger {
    * @return {Logger} Returns logger
    */
   error(methodeName: string, description: string, ...objects: unknown[]): Logger {
-    return this._log({logType: 'ERROR', methodeName, description, objects});
+    return this._log({ logType: 'ERROR', methodeName, description, objects });
   }
 }
 

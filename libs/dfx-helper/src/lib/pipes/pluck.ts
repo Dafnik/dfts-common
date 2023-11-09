@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {a_pluck} from 'dfts-helper';
+import { Pipe, PipeTransform } from '@angular/core';
+import { a_pluck } from 'dfts-helper';
 
 @Pipe({
   name: 'a_pluck',

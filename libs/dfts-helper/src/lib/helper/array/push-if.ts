@@ -1,4 +1,4 @@
-import {IPredicate} from '../../types';
+import { IPredicate } from '../../types';
 
 /**
  * Push items to an array if they meet a certain condition.

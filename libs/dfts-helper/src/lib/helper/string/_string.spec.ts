@@ -1,4 +1,4 @@
-import { StringHelper } from "./_string";
+import { StringHelper } from './_string';
 
 describe('StringHelper', () => {
   it('hasNumbersInString', () => {

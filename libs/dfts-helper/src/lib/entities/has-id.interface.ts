@@ -1,4 +1,4 @@
-import {StringOrNumber} from '../types';
+import { StringOrNumber } from '../types';
 
 /**
  * @since 3.2.5

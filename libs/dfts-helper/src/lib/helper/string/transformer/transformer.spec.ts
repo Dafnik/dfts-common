@@ -1,4 +1,4 @@
-import {s_upperCaseFirstLetter} from './transformers';
+import { s_upperCaseFirstLetter } from './transformers';
 
 describe('transformer', () => {
   it('upperCaseFirstLetter', () => {

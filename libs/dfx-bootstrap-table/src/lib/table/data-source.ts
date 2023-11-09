@@ -7,12 +7,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {_isNumberValue} from '@angular/cdk/coercion';
-import {DataSource} from '@angular/cdk/table';
-import {BehaviorSubject, combineLatest, merge, Observable, of, Subject, Subscription} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {NgbSort, Sort} from '../sort/sort';
-import {NgbPaginator} from '../pagination/pagination';
+import { _isNumberValue } from '@angular/cdk/coercion';
+import { DataSource } from '@angular/cdk/table';
+import { BehaviorSubject, combineLatest, merge, Observable, of, Subject, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { NgbSort, Sort } from '../sort/sort';
+import { NgbPaginator } from '../pagination/pagination';
 
 /**
  * Corresponds to `Number.MAX_SAFE_INTEGER`. Moved out into a variable here due to

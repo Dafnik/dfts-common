@@ -1,6 +1,6 @@
-import {TestBed} from '@angular/core/testing';
-import {provideDfxTranslate} from '../../translate.provider';
-import {TRANSLATE_REMEMBER_LANGUAGE, withRememberLanguage} from './remember-language';
+import { TestBed } from '@angular/core/testing';
+import { provideDfxTranslate } from '../../translate.provider';
+import { TRANSLATE_REMEMBER_LANGUAGE, withRememberLanguage } from './remember-language';
 
 describe('remember-language feature', () => {
   beforeAll(() => localStorage.clear());

@@ -1,5 +1,5 @@
-import {StringOrNumberOr, UndefinedOrNullOr} from '../../types';
-import {d_is} from './is/is';
+import { StringOrNumberOr, UndefinedOrNullOr } from '../../types';
+import { d_is } from './is/is';
 
 /**
  * Converts the given date to a Date object. If the date is undefined, null, or an empty string, returns the current date.

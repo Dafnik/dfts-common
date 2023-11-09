@@ -1,7 +1,7 @@
-import {inject, OnDestroy, Pipe, PipeTransform} from '@angular/core';
-import {dfxTranslate$} from '../service/rx-translate';
-import {AsyncTranslatePipe} from './async.pipe';
-import {TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO} from '../features/default-undefined-boolean-to/default-undefined-boolean-to';
+import { inject, OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { dfxTranslate$ } from '../service/rx-translate';
+import { AsyncTranslatePipe } from './async.pipe';
+import { TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO } from '../features/default-undefined-boolean-to/default-undefined-boolean-to';
 
 @Pipe({
   name: 'trb',

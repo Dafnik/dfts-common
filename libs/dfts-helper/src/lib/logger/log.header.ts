@@ -1,5 +1,5 @@
-import {LogType, maxClassNameLength, maxMethodeNameLength} from './loggerInfo';
-import {d_formatWithHoursMinutesAndSeconds} from '../helper/date/format-date-with-hours-minutes-seconds/format-date-with-hours-minutes-seconds';
+import { LogType, maxClassNameLength, maxMethodeNameLength } from './loggerInfo';
+import { d_formatWithHoursMinutesAndSeconds } from '../helper/date/format-date-with-hours-minutes-seconds/format-date-with-hours-minutes-seconds';
 
 export function getLogMessage(logType: LogType, className: string, methodeName: string, description: string): string {
   const date = new Date();

@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {IHasName, UndefinedOrNullOr} from 'dfts-helper';
+import { Pipe, PipeTransform } from '@angular/core';
+import { IHasName, UndefinedOrNullOr } from 'dfts-helper';
 
 @Pipe({
   name: 'a_mapName',

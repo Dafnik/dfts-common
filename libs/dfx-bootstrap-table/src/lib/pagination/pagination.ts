@@ -12,8 +12,8 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import {mixinInitialized} from '../core/initialized';
-import {mixinDisabled} from '../core/disabled';
+import { mixinInitialized } from '../core/initialized';
+import { mixinDisabled } from '../core/disabled';
 
 /**
  * A context for the
@@ -82,7 +82,7 @@ export interface NgbPaginatorPagesContext {
  *
  * @since 4.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorEllipsis]'})
+@Directive({ selector: 'ng-template[ngbPaginatorEllipsis]' })
 export class NgbPaginatorEllipsis {
   constructor(public templateRef: TemplateRef<NgbPaginatorLinkContext>) {}
 }
@@ -92,7 +92,7 @@ export class NgbPaginatorEllipsis {
  *
  * @since 4.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorFirst]'})
+@Directive({ selector: 'ng-template[ngbPaginatorFirst]' })
 export class NgbPaginatorFirst {
   constructor(public templateRef: TemplateRef<NgbPaginatorLinkContext>) {}
 }
@@ -102,7 +102,7 @@ export class NgbPaginatorFirst {
  *
  * @since 4.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorLast]'})
+@Directive({ selector: 'ng-template[ngbPaginatorLast]' })
 export class NgbPaginatorLast {
   constructor(public templateRef: TemplateRef<NgbPaginatorLinkContext>) {}
 }
@@ -112,7 +112,7 @@ export class NgbPaginatorLast {
  *
  * @since 4.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorNext]'})
+@Directive({ selector: 'ng-template[ngbPaginatorNext]' })
 export class NgbPaginatorNext {
   constructor(public templateRef: TemplateRef<NgbPaginatorLinkContext>) {}
 }
@@ -122,7 +122,7 @@ export class NgbPaginatorNext {
  *
  * @since 4.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorNumber]'})
+@Directive({ selector: 'ng-template[ngbPaginatorNumber]' })
 export class NgbPaginatorNumber {
   constructor(public templateRef: TemplateRef<NgbPaginatorNumberContext>) {}
 }
@@ -132,7 +132,7 @@ export class NgbPaginatorNumber {
  *
  * @since 4.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorPrevious]'})
+@Directive({ selector: 'ng-template[ngbPaginatorPrevious]' })
 export class NgbPaginatorPrevious {
   constructor(public templateRef: TemplateRef<NgbPaginatorLinkContext>) {}
 }
@@ -142,7 +142,7 @@ export class NgbPaginatorPrevious {
  *
  * @since 9.1.0
  */
-@Directive({selector: 'ng-template[ngbPaginatorPages]'})
+@Directive({ selector: 'ng-template[ngbPaginatorPages]' })
 export class NgbPaginatorPages {
   constructor(public templateRef: TemplateRef<NgbPaginatorPagesContext>) {}
 }
@@ -157,7 +157,7 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
 @Component({
   selector: 'ngb-paginator',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {role: 'navigation'},
+  host: { role: 'navigation' },
   template: `
     <ng-template #first><span aria-hidden="true" i18n="@@ngb.pagination.first">&laquo;&laquo;</span></ng-template>
     <ng-template #previous><span aria-hidden="true" i18n="@@ngb.pagination.previous">&laquo;</span></ng-template>
@@ -179,7 +179,7 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
         <a *ngIf="isEllipsis(pageNumber)" class="page-link" tabindex="-1" aria-disabled="true">
           <ng-template
             [ngTemplateOutlet]="tplEllipsis?.templateRef || ellipsis"
-            [ngTemplateOutletContext]="{disabled: true, currentPage: page}"
+            [ngTemplateOutletContext]="{ disabled: true, currentPage: page }"
           ></ng-template>
         </a>
         <a
@@ -192,7 +192,7 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
         >
           <ng-template
             [ngTemplateOutlet]="tplNumber?.templateRef || defaultNumber"
-            [ngTemplateOutletContext]="{disabled: disabled, $implicit: pageNumber, currentPage: page}"
+            [ngTemplateOutletContext]="{ disabled: disabled, $implicit: pageNumber, currentPage: page }"
           ></ng-template>
         </a>
       </li>
@@ -226,7 +226,7 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
           >
             <ng-template
               [ngTemplateOutlet]="tplFirst?.templateRef || first"
-              [ngTemplateOutletContext]="{disabled: previousDisabled(), currentPage: page}"
+              [ngTemplateOutletContext]="{ disabled: previousDisabled(), currentPage: page }"
             ></ng-template>
           </a>
         </li>
@@ -243,13 +243,13 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
           >
             <ng-template
               [ngTemplateOutlet]="tplPrevious?.templateRef || previous"
-              [ngTemplateOutletContext]="{disabled: previousDisabled()}"
+              [ngTemplateOutletContext]="{ disabled: previousDisabled() }"
             ></ng-template>
           </a>
         </li>
         <ng-template
           [ngTemplateOutlet]="tplPages?.templateRef || defaultPages"
-          [ngTemplateOutletContext]="{$implicit: page, pages: pages, disabled: disabled}"
+          [ngTemplateOutletContext]="{ $implicit: page, pages: pages, disabled: disabled }"
         >
         </ng-template>
         <li *ngIf="directionLinks" class="page-item" [class.disabled]="nextDisabled()">
@@ -264,7 +264,7 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
           >
             <ng-template
               [ngTemplateOutlet]="tplNext?.templateRef || next"
-              [ngTemplateOutletContext]="{disabled: nextDisabled(), currentPage: page}"
+              [ngTemplateOutletContext]="{ disabled: nextDisabled(), currentPage: page }"
             ></ng-template>
           </a>
         </li>
@@ -281,7 +281,7 @@ const _NgbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
           >
             <ng-template
               [ngTemplateOutlet]="tplLast?.templateRef || last"
-              [ngTemplateOutletContext]="{disabled: nextDisabled(), currentPage: page}"
+              [ngTemplateOutletContext]="{ disabled: nextDisabled(), currentPage: page }"
             ></ng-template>
           </a>
         </li>
@@ -295,13 +295,13 @@ export class NgbPaginator extends _NgbPaginatorBase implements OnInit, OnChanges
 
   private _initialized = false;
 
-  @ContentChild(NgbPaginatorEllipsis, {static: false}) tplEllipsis?: NgbPaginatorEllipsis;
-  @ContentChild(NgbPaginatorFirst, {static: false}) tplFirst?: NgbPaginatorFirst;
-  @ContentChild(NgbPaginatorLast, {static: false}) tplLast?: NgbPaginatorLast;
-  @ContentChild(NgbPaginatorNext, {static: false}) tplNext?: NgbPaginatorNext;
-  @ContentChild(NgbPaginatorNumber, {static: false}) tplNumber?: NgbPaginatorNumber;
-  @ContentChild(NgbPaginatorPrevious, {static: false}) tplPrevious?: NgbPaginatorPrevious;
-  @ContentChild(NgbPaginatorPages, {static: false}) tplPages?: NgbPaginatorPages;
+  @ContentChild(NgbPaginatorEllipsis, { static: false }) tplEllipsis?: NgbPaginatorEllipsis;
+  @ContentChild(NgbPaginatorFirst, { static: false }) tplFirst?: NgbPaginatorFirst;
+  @ContentChild(NgbPaginatorLast, { static: false }) tplLast?: NgbPaginatorLast;
+  @ContentChild(NgbPaginatorNext, { static: false }) tplNext?: NgbPaginatorNext;
+  @ContentChild(NgbPaginatorNumber, { static: false }) tplNumber?: NgbPaginatorNumber;
+  @ContentChild(NgbPaginatorPrevious, { static: false }) tplPrevious?: NgbPaginatorPrevious;
+  @ContentChild(NgbPaginatorPages, { static: false }) tplPages?: NgbPaginatorPages;
 
   /**
    * If `true`, pagination links will be disabled.

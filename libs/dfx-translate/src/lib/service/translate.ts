@@ -1,6 +1,6 @@
-import {firstValueFrom} from 'rxjs';
-import {translationKeys} from '../translationKeys';
-import {dfxTranslate$} from './rx-translate';
+import { firstValueFrom } from 'rxjs';
+import { translationKeys } from '../translationKeys';
+import { dfxTranslate$ } from './rx-translate';
 
 export function dfxTranslate(): (key: translationKeys) => Promise<string> {
   const translate$ = dfxTranslate$();

@@ -1,5 +1,5 @@
-import {IHasID} from './entities/has-id.interface';
-import {IHasName} from './entities/has-name.interface';
+import { IHasID } from './entities/has-id.interface';
+import { IHasName } from './entities/has-name.interface';
 
 export type UnknownOr<T> = T | unknown;
 export type UndefinedOr<T> = T | undefined;

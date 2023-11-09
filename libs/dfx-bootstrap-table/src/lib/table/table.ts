@@ -15,8 +15,8 @@ import {
   CdkTable,
   STICKY_POSITIONING_LISTENER,
 } from '@angular/cdk/table';
-import {ChangeDetectionStrategy, Component, Directive, HostBinding, Input, ViewEncapsulation} from '@angular/core';
-import {_DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY} from '@angular/cdk/collections';
+import { ChangeDetectionStrategy, Component, Directive, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { _DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY } from '@angular/cdk/collections';
 
 /**
  * Enables the recycle view repeater strategy, which reduces rendering latency. Not compatible with
@@ -24,7 +24,7 @@ import {_DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEAT
  */
 @Directive({
   selector: 'ngb-table[recycleRows], table[ngb-table][recycleRows]',
-  providers: [{provide: _VIEW_REPEATER_STRATEGY, useClass: _RecycleViewRepeaterStrategy}],
+  providers: [{ provide: _VIEW_REPEATER_STRATEGY, useClass: _RecycleViewRepeaterStrategy }],
 })
 export class NgbRecycleRows {}
 
@@ -36,12 +36,12 @@ export class NgbRecycleRows {}
   exportAs: 'ngbTable',
   template: CDK_TABLE_TEMPLATE,
   providers: [
-    {provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy},
-    {provide: CdkTable, useExisting: NgbTable},
-    {provide: CDK_TABLE, useExisting: NgbTable},
-    {provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler},
+    { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
+    { provide: CdkTable, useExisting: NgbTable },
+    { provide: CDK_TABLE, useExisting: NgbTable },
+    { provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler },
     // Prevent nested tables from seeing this table's StickyPositioningListener.
-    {provide: STICKY_POSITIONING_LISTENER, useValue: null},
+    { provide: STICKY_POSITIONING_LISTENER, useValue: null },
   ],
   encapsulation: ViewEncapsulation.None,
   // See note on CdkTable for explanation on why this uses the default change detection strategy.

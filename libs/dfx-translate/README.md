@@ -211,8 +211,8 @@ export class ExampleLanguageSwitcher {
 Access translations via code with `TranslateService`
 
 ```typescript
-import {Component, OnInit} from '@angular/core';
-import {TranslateService} from 'dfx-translate';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from 'dfx-translate';
 
 @Component({
   selector: 'app-example',

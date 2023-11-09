@@ -1,4 +1,4 @@
-import {NullOr, UndefinedOr} from '../../types';
+import { NullOr, UndefinedOr } from '../../types';
 
 /**
  * Converts parameter from <code>T | null</code> to <code>T | undefined</code>

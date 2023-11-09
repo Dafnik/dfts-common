@@ -1,6 +1,6 @@
-import {DateInput, UndefinedOr} from '../../../types';
-import {formatDateBeginning} from '../format-date-beginning';
-import {d_from} from '../from';
+import { DateInput, UndefinedOr } from '../../../types';
+import { formatDateBeginning } from '../format-date-beginning';
+import { d_from } from '../from';
 
 export function d_format(date: string | number | Date): string;
 export function d_format(date: null | undefined): undefined;

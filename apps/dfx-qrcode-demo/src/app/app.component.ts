@@ -1,28 +1,30 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from "@angular/core";
-import { AsyncPipe, NgIf, NgOptimizedImage } from "@angular/common";
-import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { debounceTime, of, startWith, switchMap } from "rxjs";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { debounceTime, of, startWith, switchMap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { cl_copy } from "dfts-helper";
-import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
-import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
-import { ThemePickerComponent } from "./theme.component";
-import { BiComponent, copy, provideIcons } from "dfx-bootstrap-icons";
+import { cl_copy } from 'dfts-helper';
+import { ColorValueHex, QRCodeErrorCorrectionLevel } from 'dfts-qrcode';
+import { downloadQRCode, QRCodeComponent, QRCodeElementType } from 'dfx-qrcode';
+import { ThemePickerComponent } from './theme.component';
+import { BiComponent, copy, provideIcons } from 'dfx-bootstrap-icons';
 
 @Component({
   standalone: true,
   selector: 'dfx-qrcode-demo-root',
   templateUrl: './app.component.html',
-  styles: [`
-    .codebox {
-      background-color: var(--bs-secondary-bg);
-    }
-  `],
+  styles: [
+    `
+      .codebox {
+        background-color: var(--bs-secondary-bg);
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePickerComponent, BiComponent],
-  providers: [provideIcons({copy})]
+  providers: [provideIcons({ copy })],
 })
 export class AppComponent {
   form = inject(FormBuilder).nonNullable.group({
@@ -77,7 +79,7 @@ export class AppComponent {
         [imageWidth]="${form.imageWidth}"
         [imageHeight]="${form.imageHeight}"`
             : ''
-        } />`
+        } />`,
       ),
     ),
   );
@@ -89,18 +91,24 @@ export class AppComponent {
       withAllowEmptyString(${form.allowEmptyString}),
       withElementType('${form.elementType}'),
       withErrorCorrectionLevel('${form.errorCorrectionLevel}'),${
-          form.stylingEnabled
-            ? `
+        form.stylingEnabled
+          ? `
       withCssClass('${form.cssClass}'),
       withColorDark('${form.colorDark}'),
       withColorLight('${form.colorLight}'),
       withMargin(${form.margin}),
-      withSize(${form.size}),` : ''}${form.imageEnabled ? `
+      withSize(${form.size}),`
+          : ''
+      }${
+        form.imageEnabled
+          ? `
       withImage(
         withImageSrc('${form.imageSrc}'),
         withImageWidth(${form.imageWidth}),
         withImageHeight(${form.imageHeight})
-      )` : ''}
+      )`
+          : ''
+      }
 )`,
       ),
     ),
@@ -163,6 +171,6 @@ export class AppComponent {
   }
 
   copy(it: string): void {
-    cl_copy(it)
+    cl_copy(it);
   }
 }

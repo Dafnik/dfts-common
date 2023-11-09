@@ -1,5 +1,5 @@
-import {ChangeDetectorRef, inject} from '@angular/core';
-import {Subscription} from 'rxjs';
+import { ChangeDetectorRef, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 export class AsyncTranslatePipe {
   translation?: string;

@@ -1,4 +1,4 @@
-import { s_from } from "../from/from";
+import { s_from } from '../from/from';
 
 export const s_imploder = (source?: string[] | null): ImploderBuilder => {
   return ImploderBuilder.get(source);

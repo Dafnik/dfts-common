@@ -1,13 +1,13 @@
-import {HttpClient} from '@angular/common/http';
-import {TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE_FN, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
-import {provideDfxTranslate} from '../translate.provider';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {TranslateStore} from './translate.store';
-import {dfxTranslateSetLanguage} from './set-language';
-import {dfxTranslateFn, dfxTranslateSetLanguageFn, TRANSLATE_LOCALSTORAGE_KEY} from '../types';
-import {withAutoTranslatedLanguages} from '../features/auto-translated-languages/auto-translated-languages';
-import {dfxTranslate} from './translate';
+import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { serviceStub, TRANSLATE_FN, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
+import { provideDfxTranslate } from '../translate.provider';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { TranslateStore } from './translate.store';
+import { dfxTranslateSetLanguage } from './set-language';
+import { dfxTranslateFn, dfxTranslateSetLanguageFn, TRANSLATE_LOCALSTORAGE_KEY } from '../types';
+import { withAutoTranslatedLanguages } from '../features/auto-translated-languages/auto-translated-languages';
+import { dfxTranslate } from './translate';
 
 describe('dfxTranslate', () => {
   let translateStore: TranslateStore;

@@ -1,6 +1,6 @@
-import {OnDestroy, Pipe, PipeTransform} from '@angular/core';
-import {AsyncTranslatePipe} from './async.pipe';
-import {dfxAutoTranslate$} from '../service/rx-auto-translate';
+import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { AsyncTranslatePipe } from './async.pipe';
+import { dfxAutoTranslate$ } from '../service/rx-auto-translate';
 
 @Pipe({
   name: 'tra',

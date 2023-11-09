@@ -1,4 +1,4 @@
-import {HttpContextToken} from '@angular/common/http';
+import { HttpContextToken } from '@angular/common/http';
 
 export const BASE_URL_INTERCEPTOR = new HttpContextToken(() => false);
 export const LOGGING_INTERCEPTOR = new HttpContextToken(() => false);

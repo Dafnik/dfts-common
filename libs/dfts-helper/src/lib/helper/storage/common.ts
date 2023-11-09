@@ -1,5 +1,5 @@
-import {st_remove} from './remove';
-import {s_generate} from '../string/generator/generator';
+import { st_remove } from './remove';
+import { s_generate } from '../string/generator/generator';
 
 export const ttlSuffix = '_ttl';
 
@@ -56,7 +56,7 @@ export function st_hasEntries(): boolean {
  * @return {boolean} Returns <code>true</code> if local storage is full, <code>false</code> if not
  */
 export function st_isFull(): boolean {
-  const key = s_generate(6, {containsNumbers: true, containsSpecialCharacters: true});
+  const key = s_generate(6, { containsNumbers: true, containsSpecialCharacters: true });
   try {
     localStorage.setItem(key, '0');
   } catch {

@@ -1,4 +1,4 @@
-import { ImploderBuilder, s_imploder } from "./imploder";
+import { ImploderBuilder, s_imploder } from './imploder';
 
 describe('imploder', () => {
   it('imploder', () => {

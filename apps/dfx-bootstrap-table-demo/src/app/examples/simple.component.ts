@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { NgbTableDataSource } from "dfx-bootstrap-table";
-import { EventType, Helper } from "../Helper";
+import { NgbTableDataSource } from 'dfx-bootstrap-table';
+import { EventType, Helper } from '../Helper';
 
 @Component({
   selector: 'app-simple',

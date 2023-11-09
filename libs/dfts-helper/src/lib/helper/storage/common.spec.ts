@@ -1,12 +1,12 @@
-import {st_removeAll, st_size, st_hasEntries, st_isEmpty, st_isFull, st_isNotFull, st_fillUp, st_isAvailable} from './common';
-import {st_set} from './set';
-import {st_exists} from './exists';
-import {st_remove} from './remove';
-import {thr_sleep} from '../thread';
-import {s_fromStorage} from '../string/from-storage/from-storage';
-import {b_fromStorage} from '../boolean/from-storage/from-storage';
-import {o_fromStorage} from '../object/from-storage/from-storage';
-import {n_fromStorage} from '../number/from-storage/from-storage';
+import { st_removeAll, st_size, st_hasEntries, st_isEmpty, st_isFull, st_isNotFull, st_fillUp, st_isAvailable } from './common';
+import { st_set } from './set';
+import { st_exists } from './exists';
+import { st_remove } from './remove';
+import { thr_sleep } from '../thread';
+import { s_fromStorage } from '../string/from-storage/from-storage';
+import { b_fromStorage } from '../boolean/from-storage/from-storage';
+import { o_fromStorage } from '../object/from-storage/from-storage';
+import { n_fromStorage } from '../number/from-storage/from-storage';
 
 describe('StorageHelper', () => {
   beforeEach(() => {
@@ -45,7 +45,7 @@ describe('StorageHelper', () => {
     st_set('key1', 'test');
     st_set('key2', 1);
     st_set('key3', false);
-    const o = {bla: 'bli', test: 'tust'};
+    const o = { bla: 'bli', test: 'tust' };
     st_set('key4', o);
     expect(s_fromStorage('key1')).toBe('test');
     expect(n_fromStorage('key2')).toBe(1);

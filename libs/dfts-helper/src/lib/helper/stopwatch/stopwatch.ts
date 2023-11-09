@@ -1,4 +1,4 @@
-import {UndefinedOr} from '../../types';
+import { UndefinedOr } from '../../types';
 
 /**
  * Stopwatch - Stops the time

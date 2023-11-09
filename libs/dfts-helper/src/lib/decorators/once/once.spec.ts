@@ -1,4 +1,4 @@
-import {Once} from './once';
+import { Once } from './once';
 
 describe('Once decorator', () => {
   it('should only allow a method to be called once', () => {

@@ -1,5 +1,5 @@
-import {FactoryProvider, inject, InjectionToken, PLATFORM_ID} from '@angular/core';
-import {isPlatformBrowser} from '@angular/common';
+import { FactoryProvider, inject, InjectionToken, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export const WINDOW = new InjectionToken<Window | undefined>('window');
 

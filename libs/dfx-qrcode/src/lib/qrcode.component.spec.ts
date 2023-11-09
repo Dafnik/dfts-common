@@ -1,7 +1,7 @@
-import {DebugElement} from '@angular/core';
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {QRCodeComponent} from './qrcode.component';
-import {provideQRCode, withAllowEmptyString} from './qrcode.provider';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { QRCodeComponent } from './qrcode.component';
+import { provideQRCode, withAllowEmptyString } from './qrcode.provider';
 
 describe('dfx-qrcode', () => {
   let de: DebugElement;

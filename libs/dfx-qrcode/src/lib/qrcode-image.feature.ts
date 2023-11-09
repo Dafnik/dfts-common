@@ -1,4 +1,4 @@
-import {Provider} from '@angular/core';
+import { Provider } from '@angular/core';
 
 export enum QRCodeImageFeatureKind {
   SRC,

@@ -1,10 +1,6 @@
-import { HttpContext, HttpContextToken } from "@angular/common/http";
-import {
-  BASE_URL_INTERCEPTOR,
-  LOGGING_INTERCEPTOR,
-  POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR
-} from "./http-context-token";
-import { IBuilder } from "dfts-helper";
+import { HttpContext, HttpContextToken } from '@angular/common/http';
+import { BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR } from './http-context-token';
+import { IBuilder } from 'dfts-helper';
 
 export const interceptorByPass = (context?: HttpContext): ByPassInterceptorBuilder => {
   return new ByPassInterceptorBuilder().context(context);
@@ -51,7 +47,7 @@ export class ByPassInterceptorBuilder implements IBuilder<HttpContext> {
     return this._context;
   }
 
-  buildAsOptions(): {context: HttpContext} {
-    return {context: this.build()};
+  buildAsOptions(): { context: HttpContext } {
+    return { context: this.build() };
   }
 }

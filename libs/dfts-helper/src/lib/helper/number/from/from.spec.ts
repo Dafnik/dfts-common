@@ -1,4 +1,4 @@
-import {n_from} from './from';
+import { n_from } from './from';
 
 describe('number from', () => {
   it('null, undefined and number', () => {

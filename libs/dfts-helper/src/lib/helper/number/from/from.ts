@@ -1,4 +1,4 @@
-import {StringOrNumberOr, UndefinedOrNullOr} from '../../../types';
+import { StringOrNumberOr, UndefinedOrNullOr } from '../../../types';
 
 /**
  * Converts nearly everything to number

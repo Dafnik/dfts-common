@@ -7,13 +7,13 @@ import {
   Input,
   OnChanges,
   OnInit,
-  Renderer2
-} from "@angular/core";
+  Renderer2,
+} from '@angular/core';
 
-import { BiName, BiNamesEnum } from "./generated";
-import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_PICKED } from "./icons.config";
-import { ColorValueHex, IconsType } from "./types";
-import { toEscapedName } from "./internal/toEscapedName";
+import { BiName, BiNamesEnum } from './generated';
+import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_PICKED } from './icons.config';
+import { ColorValueHex, IconsType } from './types';
+import { toEscapedName } from './internal/toEscapedName';
 
 @Component({
   selector: 'bi, *[bi]',
@@ -22,15 +22,15 @@ import { toEscapedName } from "./internal/toEscapedName";
   template: '',
 })
 export class BiComponent implements OnInit, OnChanges {
-  @Input({required: true}) name!: BiName | BiNamesEnum;
+  @Input({ required: true }) name!: BiName | BiNamesEnum;
 
-  @Input() public width : string = inject(ICON_WIDTH);
+  @Input() public width: string = inject(ICON_WIDTH);
 
-  @Input() public height : string= inject(ICON_HEIGHT);
+  @Input() public height: string = inject(ICON_HEIGHT);
 
   @Input() public color?: ColorValueHex = inject(ICON_COLOR);
 
-  @Input({transform: booleanAttribute}) public clearDimensions = false;
+  @Input({ transform: booleanAttribute }) public clearDimensions = false;
 
   @Input() public ariaLabel?: string;
 
@@ -42,7 +42,7 @@ export class BiComponent implements OnInit, OnChanges {
 
   constructor() {
     // icons are provided as an array of objects because of "multi: true"
-    this.pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType
+    this.pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType;
   }
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class BiComponent implements OnInit, OnChanges {
   }
 
   renderIcon(): void {
-    const escapedName = toEscapedName(this.name)
+    const escapedName = toEscapedName(this.name);
 
     let svg = this.pickedIcons[escapedName] || undefined;
 
@@ -85,11 +85,9 @@ export class BiComponent implements OnInit, OnChanges {
 
   private getSizeText = (type: DimensionType, size: string = DEFAULT_ICON_SIZE): string => `${type}="${size}"`;
 
-  private setFillColor = (svg: string, color: string): string =>
-    svg.replace(this.getColorText(), this.getColorText(color));
+  private setFillColor = (svg: string, color: string): string => svg.replace(this.getColorText(), this.getColorText(color));
 
   private getColorText = (color: string = DEFAULT_COLOR): string => `fill="${color}"`;
 }
 
 type DimensionType = 'width' | 'height';
-

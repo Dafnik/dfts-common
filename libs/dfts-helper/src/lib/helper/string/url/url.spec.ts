@@ -1,4 +1,4 @@
-import {s_isNoUrl, s_isUrl} from './url';
+import { s_isNoUrl, s_isUrl } from './url';
 
 describe('url', () => {
   it('isUrl', () => {

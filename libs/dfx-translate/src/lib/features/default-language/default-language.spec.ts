@@ -1,12 +1,12 @@
-import {TestBed} from '@angular/core/testing';
-import {provideDfxTranslate} from '../../translate.provider';
-import {withRememberLanguage} from '../remember-language/remember-language';
-import {TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage} from './default-language';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
-import {TranslateStore} from '../../service/translate.store';
-import {of} from 'rxjs';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
+import { TestBed } from '@angular/core/testing';
+import { provideDfxTranslate } from '../../translate.provider';
+import { withRememberLanguage } from '../remember-language/remember-language';
+import { TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage } from './default-language';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
+import { TranslateStore } from '../../service/translate.store';
+import { of } from 'rxjs';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
 describe('default-language feature', () => {
   beforeAll(() => localStorage.clear());

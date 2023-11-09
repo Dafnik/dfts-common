@@ -1,4 +1,4 @@
-import {n_is} from './is';
+import { n_is } from './is';
 
 describe('TypeHelper', () => {
   it('n_is', () => {

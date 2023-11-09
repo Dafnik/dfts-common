@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { UntypedFormControl } from "@angular/forms";
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 
-import { NgbTableDataSource } from "dfx-bootstrap-table";
-import { EventType, Helper } from "../Helper";
+import { NgbTableDataSource } from 'dfx-bootstrap-table';
+import { EventType, Helper } from '../Helper';
 
 @Component({
   selector: 'app-filtering',
@@ -39,7 +39,7 @@ import { EventType, Helper } from "../Helper";
       <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
       <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
     </table>
-  `
+  `,
 })
 export class FilteringComponent implements OnInit, AfterViewInit {
   // Filtering

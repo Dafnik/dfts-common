@@ -1,61 +1,57 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
-import { NgClass } from "@angular/common";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { toSignal } from "@angular/core/rxjs-interop";
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
-import { debounceTime } from "rxjs";
-import { BiComponent, BiNameList, toEscapedName } from "dfx-bootstrap-icons";
-import { WINDOW } from "dfx-helper";
-
+import { debounceTime } from 'rxjs';
+import { BiComponent, BiNameList, toEscapedName } from 'dfx-bootstrap-icons';
+import { WINDOW } from 'dfx-helper';
 
 @Component({
-
   template: `
-      <div class="d-flex flex-column gap-2">
-          <input type="text" class="form-control" id="search" placeholder="Search for icons..."
-                 [formControl]="searchCtrl" />
+    <div class="d-flex flex-column gap-2">
+      <input type="text" class="form-control" id="search" placeholder="Search for icons..." [formControl]="searchCtrl" />
 
-          <div class="d-flex justify-content-end">
-              <div class="badge bg-secondary rounded-pill">Showing {{ searchResults().length }}
-                  of {{ IconNameList.length }}
+      <div class="d-flex justify-content-end">
+        <div class="badge bg-secondary rounded-pill">Showing {{ searchResults().length }} of {{ IconNameList.length }}</div>
+      </div>
+
+      <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
+        @for (icon of searchResults(); track icon) {
+        <li class="col mb-4">
+          <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{ icon }}/">
+            <div class="px-3 py-5 mb-2 text-center rounded icon-block">
+              @defer (on viewport, idle) {
+              <bi [name]="icon" />
+              } @placeholder (minimum 500ms) {
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
-          </div>
-
-          <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
-              @for (icon of searchResults(); track icon) {
-                  <li class="col mb-4">
-                      <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{icon}}/">
-                          <div class="px-3 py-5 mb-2 text-center rounded icon-block">
-                              @defer (on viewport, idle) {
-                                  <bi [name]="icon" />
-                              } @placeholder (minimum 500ms) {
-                                  <div class="spinner-border" role="status">
-                                      <span class="visually-hidden">Loading...</span>
-                                  </div>
-                              }
-                          </div>
-                          <div class="name text-muted text-decoration-none text-center pt-1">
-                              <strong>{{ icon }}</strong></div>
-                          <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
-                      </a>
-                  </li>
-              } @empty {
-                  <li class="d-flex w-100 justify-content-center">
-                      <div class="d-flex align-items-center gap-2">
-                          <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
-                          <span>Nothing found.</span>
-                      </div>
-                  </li>
               }
-          </ul>
-      </div>
+            </div>
+            <div class="name text-muted text-decoration-none text-center pt-1">
+              <strong>{{ icon }}</strong>
+            </div>
+            <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
+          </a>
+        </li>
+        } @empty {
+        <li class="d-flex w-100 justify-content-center">
+          <div class="d-flex align-items-center gap-2">
+            <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
+            <span>Nothing found.</span>
+          </div>
+        </li>
+        }
+      </ul>
+    </div>
 
-      <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
-          <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
-              Scroll to top
-              <bi name="arrow-up-circle-fill" />
-          </button>
-      </div>
+    <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
+      <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
+        Scroll to top
+        <bi name="arrow-up-circle-fill" />
+      </button>
+    </div>
   `,
   styles: `
   .icon-block {
@@ -84,14 +80,14 @@ import { WINDOW } from "dfx-helper";
   standalone: true,
   imports: [BiComponent, ReactiveFormsModule, NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: "app-home"
+  selector: 'app-home',
 })
 export class HomeComponent implements OnInit {
   window = inject(WINDOW);
   windowScrolled = signal(false);
 
   ngOnInit() {
-    this.window?.addEventListener("scroll", () => {
+    this.window?.addEventListener('scroll', () => {
       this.windowScrolled.set((this.window?.pageYOffset ?? 0) > 200);
     });
   }
@@ -102,9 +98,7 @@ export class HomeComponent implements OnInit {
 
   searchCtrl = new FormControl();
 
-  searchValue = toSignal(this.searchCtrl.valueChanges.pipe(
-    debounceTime(300)
-  ), { initialValue: "" });
+  searchValue = toSignal(this.searchCtrl.valueChanges.pipe(debounceTime(300)), { initialValue: '' });
 
   searchResults = computed(() => {
     const searchValue = this.searchValue();

@@ -1,4 +1,4 @@
-import {a_pushIf} from '../push-if';
+import { a_pushIf } from '../push-if';
 
 /**
  * Push items to an array if they are not already present.

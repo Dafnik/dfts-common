@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
-import {provideDfxTranslate} from '../../translate.provider';
-import {withRememberLanguage} from '../remember-language/remember-language';
-import {TRANSLATE_AUTO_TRANSLATED_LANGUAGES, withAutoTranslatedLanguages} from './auto-translated-languages';
+import { TestBed } from '@angular/core/testing';
+import { provideDfxTranslate } from '../../translate.provider';
+import { withRememberLanguage } from '../remember-language/remember-language';
+import { TRANSLATE_AUTO_TRANSLATED_LANGUAGES, withAutoTranslatedLanguages } from './auto-translated-languages';
 
 describe('auto-translated-languages feature', () => {
   beforeAll(() => localStorage.clear());

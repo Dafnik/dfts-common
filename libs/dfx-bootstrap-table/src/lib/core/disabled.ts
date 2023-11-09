@@ -6,8 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
-import {AbstractConstructor, Constructor} from './constructor';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { AbstractConstructor, Constructor } from './constructor';
 
 /** @docs-private */
 export interface CanDisable {

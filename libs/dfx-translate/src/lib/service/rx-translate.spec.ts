@@ -1,14 +1,14 @@
-import {HttpClient} from '@angular/common/http';
-import {TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE$_FN, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
-import {provideDfxTranslate} from '../translate.provider';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {TranslateStore} from './translate.store';
-import {dfxTranslate$} from './rx-translate';
-import {dfxTranslateSetLanguage} from './set-language';
-import {dfxTranslateFn$, dfxTranslateSetLanguageFn, TRANSLATE_LOCALSTORAGE_KEY} from '../types';
-import {TRANSLATE_DEFAULT_LANGUAGE} from '../features/default-language/default-language';
-import {TRANSLATE_REMEMBER_LANGUAGE} from '../features/remember-language/remember-language';
+import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { serviceStub, TRANSLATE$_FN, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
+import { provideDfxTranslate } from '../translate.provider';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { TranslateStore } from './translate.store';
+import { dfxTranslate$ } from './rx-translate';
+import { dfxTranslateSetLanguage } from './set-language';
+import { dfxTranslateFn$, dfxTranslateSetLanguageFn, TRANSLATE_LOCALSTORAGE_KEY } from '../types';
+import { TRANSLATE_DEFAULT_LANGUAGE } from '../features/default-language/default-language';
+import { TRANSLATE_REMEMBER_LANGUAGE } from '../features/remember-language/remember-language';
 import {
   TRANSLATE_AUTO_TRANSLATED_LANGUAGES,
   withAutoTranslatedLanguages,

@@ -1,6 +1,6 @@
-import { HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { shouldIntercept } from "./interceptor";
+import { HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { shouldIntercept } from './interceptor';
 
 export abstract class AbstractIgnorableInterceptor implements HttpInterceptor {
   protected constructor(

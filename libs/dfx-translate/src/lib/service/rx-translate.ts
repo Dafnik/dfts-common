@@ -1,8 +1,8 @@
-import {inject} from '@angular/core';
-import {combineLatest, map, Observable, of, switchMap} from 'rxjs';
-import {TranslateStore} from './translate.store';
-import {translationKeys} from '../translationKeys';
-import {TRANSLATE_DEFAULT_UNDEFINED_KEY_TO} from '../features/default-undefined-key-to/default-undefined-key-to';
+import { inject } from '@angular/core';
+import { combineLatest, map, Observable, of, switchMap } from 'rxjs';
+import { TranslateStore } from './translate.store';
+import { translationKeys } from '../translationKeys';
+import { TRANSLATE_DEFAULT_UNDEFINED_KEY_TO } from '../features/default-undefined-key-to/default-undefined-key-to';
 
 export function dfxTranslate$(): (key: translationKeys) => Observable<string> {
   const store = inject(TranslateStore);

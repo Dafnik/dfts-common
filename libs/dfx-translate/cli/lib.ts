@@ -1,7 +1,7 @@
-import * as fs from "fs";
+import * as fs from 'fs';
 
-type KeyValue = {key: string; value: string};
-type jsonType = {[key: string]: string};
+type KeyValue = { key: string; value: string };
+type jsonType = { [key: string]: string };
 
 export const getDefaultLanguage = async (log: boolean): Promise<string> => {
   const appModulePath = './src/app/app.module.ts';
@@ -20,7 +20,7 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
     const json = jsonMatch[1].replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ').replace(/'/g, '"');
 
     // Parse the JSON string and return the defaultLanguage property.
-    defaultLanguage = (JSON.parse(json) as {defaultLanguage?: string}).defaultLanguage;
+    defaultLanguage = (JSON.parse(json) as { defaultLanguage?: string }).defaultLanguage;
     if (!defaultLanguage) {
       console.log('dfx-translate >> getDefaultLanguage: Unable to extract default language out of json');
       throw new Error('Unable to extract default language out of json');
@@ -54,7 +54,7 @@ export const getDefaultLanguage = async (log: boolean): Promise<string> => {
 
 export const exists = (path: string): boolean => fs.existsSync(path);
 
-export const createDir = (path: string): string | undefined => fs.mkdirSync(path, {recursive: true});
+export const createDir = (path: string): string | undefined => fs.mkdirSync(path, { recursive: true });
 
 /**
  * Get json from local machine
@@ -81,7 +81,7 @@ export const writeToFile = async (filename: string, obj: string): Promise<void> 
  * convertToArray({fullName:"Full Name"})
  * returns [{key:"fullName", value:"Full name"}]
  */
-export const convertToArray = (obj: jsonType): KeyValue[] => Object.keys(obj).map((key) => ({key, value: obj[key]}));
+export const convertToArray = (obj: jsonType): KeyValue[] => Object.keys(obj).map((key) => ({ key, value: obj[key] }));
 
 /**
  * Converts array to object
@@ -194,7 +194,7 @@ const getTranslation = async (url: string, source: string, target: string, term:
     throw new Error(`Fetch failed with status code ${response.status}`);
   }
 
-  const json = (await response.json()) as {translatedText: string};
+  const json = (await response.json()) as { translatedText: string };
   console.log(`Translating "${term.value}" to ${target}: "${json.translatedText}"`);
-  return {key: term.key, value: json.translatedText};
+  return { key: term.key, value: json.translatedText };
 };

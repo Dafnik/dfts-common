@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {QRCodeComponent} from './qrcode.component';
+import { NgModule } from '@angular/core';
+import { QRCodeComponent } from './qrcode.component';
 
 @NgModule({
   imports: [QRCodeComponent],

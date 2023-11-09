@@ -1,4 +1,4 @@
-import {Confirmable} from './confirmable';
+import { Confirmable } from './confirmable';
 
 describe('Confirmable', () => {
   it('should return the original method if the user confirms the action', () => {

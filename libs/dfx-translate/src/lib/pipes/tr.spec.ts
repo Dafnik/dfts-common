@@ -1,15 +1,15 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
-import {provideDfxTranslate} from '../translate.provider';
-import {TranslateStore} from '../service/translate.store';
-import {DfxTr} from './tr';
-import {dfxTranslateSetLanguage} from '../service/set-language';
-import {dfxTranslateSetLanguageFn} from '../types';
-import {TRANSLATE_DEFAULT_LANGUAGE} from '../features/default-language/default-language';
-import {TRANSLATE_REMEMBER_LANGUAGE, withRememberLanguage} from '../features/remember-language/remember-language';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { serviceStub, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
+import { provideDfxTranslate } from '../translate.provider';
+import { TranslateStore } from '../service/translate.store';
+import { DfxTr } from './tr';
+import { dfxTranslateSetLanguage } from '../service/set-language';
+import { dfxTranslateSetLanguageFn } from '../types';
+import { TRANSLATE_DEFAULT_LANGUAGE } from '../features/default-language/default-language';
+import { TRANSLATE_REMEMBER_LANGUAGE, withRememberLanguage } from '../features/remember-language/remember-language';
 import {
   TRANSLATE_AUTO_TRANSLATED_LANGUAGES,
   withAutoTranslatedLanguages,
@@ -36,7 +36,7 @@ describe('TranslateDirective', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTr],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false)),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
@@ -123,7 +123,7 @@ describe('TranslateDirectiveWithAuto', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTr],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false), withAutoTranslatedLanguages(['de'])),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,

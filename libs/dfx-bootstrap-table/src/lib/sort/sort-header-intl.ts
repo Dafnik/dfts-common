@@ -7,14 +7,14 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Injectable, Optional, SkipSelf} from '@angular/core';
-import {Subject} from 'rxjs';
+import { Injectable, Optional, SkipSelf } from '@angular/core';
+import { Subject } from 'rxjs';
 
 /**
  * To modify the labels and text displayed, create a new instance of MatSortHeaderIntl and
  * include it in a custom provider.
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class NgbSortHeaderIntl {
   /**
    * Stream that emits whenever the labels here are changed. Use this to notify

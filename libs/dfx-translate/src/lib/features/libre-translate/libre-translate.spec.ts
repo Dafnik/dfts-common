@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
-import {provideDfxTranslate} from '../../translate.provider';
-import {withRememberLanguage} from '../remember-language/remember-language';
-import {TRANSLATE_LIBRE_TRANSLATE_INSTANCE_URL, withLibreTranslate} from './libre-translate';
+import { TestBed } from '@angular/core/testing';
+import { provideDfxTranslate } from '../../translate.provider';
+import { withRememberLanguage } from '../remember-language/remember-language';
+import { TRANSLATE_LIBRE_TRANSLATE_INSTANCE_URL, withLibreTranslate } from './libre-translate';
 
 describe('libre-translate feature', () => {
   beforeAll(() => localStorage.clear());

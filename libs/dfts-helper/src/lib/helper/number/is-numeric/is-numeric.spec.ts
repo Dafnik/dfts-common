@@ -1,4 +1,4 @@
-import {n_isNumeric} from './is-numeric';
+import { n_isNumeric } from './is-numeric';
 
 describe('TypeHelper', () => {
   it('n_isNumeric', () => {

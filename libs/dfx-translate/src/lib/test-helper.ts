@@ -1,7 +1,7 @@
-import {HttpClient} from '@angular/common/http';
-import {of} from 'rxjs';
-import {InjectionToken} from '@angular/core';
-import {dfxTranslateFn, dfxTranslateFn$} from './types';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { InjectionToken } from '@angular/core';
+import { dfxTranslateFn, dfxTranslateFn$ } from './types';
 
 export const TRANSLATE$_FN = new InjectionToken<dfxTranslateFn$>('TRANSLATE_RX_FN');
 export const TRANSLATE_FN = new InjectionToken<dfxTranslateFn>('TRANSLATE_FN');
@@ -30,5 +30,5 @@ export const serviceStub = {
   get: (path: string) =>
     of(path === 'assets/i18n/en.json' ? TRANSLATIONS_EN : path === 'assets/i18n/de.json' ? TRANSLATIONS_DE : TRANSLATIONS_DE_AUTO),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  put: (url: string, body: unknown) => of({translatedText: 'Hallo'}),
+  put: (url: string, body: unknown) => of({ translatedText: 'Hallo' }),
 } as HttpClient;

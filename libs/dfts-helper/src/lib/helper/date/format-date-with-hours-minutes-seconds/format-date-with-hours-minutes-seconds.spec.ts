@@ -1,4 +1,4 @@
-import {d_formatWithHoursMinutesAndSeconds} from './format-date-with-hours-minutes-seconds';
+import { d_formatWithHoursMinutesAndSeconds } from './format-date-with-hours-minutes-seconds';
 
 describe('format-date-with-hours-minutes-seconds', () => {
   it('getFormattedWithHoursMinutesAndSeconds', () => {

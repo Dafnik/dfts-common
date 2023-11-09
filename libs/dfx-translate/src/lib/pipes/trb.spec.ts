@@ -1,17 +1,17 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {subscribeSpyTo} from '@hirez_io/observer-spy';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {serviceStub, TRANSLATE_SET_LANGUAGE_FN} from '../test-helper';
-import {provideDfxTranslate} from '../translate.provider';
-import {TranslateStore} from '../service/translate.store';
-import {dfxTranslateSetLanguage} from '../service/set-language';
-import {dfxTranslateSetLanguageFn} from '../types';
-import {TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage} from '../features/default-language/default-language';
-import {TRANSLATE_REMEMBER_LANGUAGE, withRememberLanguage} from '../features/remember-language/remember-language';
-import {TRANSLATE_AUTO_TRANSLATED_LANGUAGES} from '../features/auto-translated-languages/auto-translated-languages';
-import {DfxTrB} from './trb';
-import {withDefaultUndefinedOrNullBooleanTo} from '../features/default-undefined-boolean-to/default-undefined-boolean-to';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { serviceStub, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
+import { provideDfxTranslate } from '../translate.provider';
+import { TranslateStore } from '../service/translate.store';
+import { dfxTranslateSetLanguage } from '../service/set-language';
+import { dfxTranslateSetLanguageFn } from '../types';
+import { TRANSLATE_DEFAULT_LANGUAGE, withDefaultLanguage } from '../features/default-language/default-language';
+import { TRANSLATE_REMEMBER_LANGUAGE, withRememberLanguage } from '../features/remember-language/remember-language';
+import { TRANSLATE_AUTO_TRANSLATED_LANGUAGES } from '../features/auto-translated-languages/auto-translated-languages';
+import { DfxTrB } from './trb';
+import { withDefaultUndefinedOrNullBooleanTo } from '../features/default-undefined-boolean-to/default-undefined-boolean-to';
 
 @Component({
   template: '<div>{{ translateKey | trb }}</div>',
@@ -34,7 +34,7 @@ describe('TranslateBooleanDirective', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrB],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false)),
         {
           provide: TRANSLATE_SET_LANGUAGE_FN,
@@ -104,7 +104,7 @@ describe('TranslateBooleanDirective with default undefined to', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrB],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false), withDefaultUndefinedOrNullBooleanTo(true)),
       ],
     }).compileComponents();
@@ -122,7 +122,7 @@ describe('TranslateBooleanDirective with default undefined to', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrB],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false), withDefaultUndefinedOrNullBooleanTo(false)),
       ],
     }).compileComponents();
@@ -140,7 +140,7 @@ describe('TranslateBooleanDirective with default undefined to', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrB],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false), withDefaultUndefinedOrNullBooleanTo(false), withDefaultLanguage('de')),
       ],
     }).compileComponents();
@@ -158,7 +158,7 @@ describe('TranslateBooleanDirective with default undefined to', () => {
       declarations: [TestTranslateDirectiveComponent],
       imports: [DfxTrB],
       providers: [
-        {provide: HttpClient, useValue: serviceStub},
+        { provide: HttpClient, useValue: serviceStub },
         provideDfxTranslate(withRememberLanguage(false), withDefaultUndefinedOrNullBooleanTo(true), withDefaultLanguage('de')),
       ],
     }).compileComponents();

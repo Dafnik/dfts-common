@@ -1,4 +1,4 @@
-import {s_from} from './from';
+import { s_from } from './from';
 
 describe('string from', () => {
   it('null, undefined and string', () => {

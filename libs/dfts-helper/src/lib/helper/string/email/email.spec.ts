@@ -1,4 +1,4 @@
-import {s_isEmail, s_isNoEmail} from './email';
+import { s_isEmail, s_isNoEmail } from './email';
 
 describe('email', () => {
   it('isEmail', () => {

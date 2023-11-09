@@ -1,6 +1,6 @@
-import { booleanAttribute, Directive, ElementRef, HostListener, inject, Input, numberAttribute } from "@angular/core";
-import { s_from } from "dfts-helper";
-import { injectWindow } from "../windows-provider";
+import { booleanAttribute, Directive, ElementRef, HostListener, inject, Input, numberAttribute } from '@angular/core';
+import { s_from } from 'dfts-helper';
+import { injectWindow } from '../windows-provider';
 
 @Directive({
   selector: '[countUp]',
@@ -9,9 +9,9 @@ import { injectWindow } from "../windows-provider";
 export class DfxCountUp {
   el = inject(ElementRef<HTMLElement>);
 
-  window = injectWindow()
+  window = injectWindow();
 
-  @Input({transform: numberAttribute, required: true}) set countUp(it: number) {
+  @Input({ transform: numberAttribute, required: true }) set countUp(it: number) {
     if (it) {
       this.count = it;
       this.animateCountUp();
@@ -24,9 +24,9 @@ export class DfxCountUp {
    * How long you want the animation to take.
    * @param time time in ms; defaults to <code>4000</code>
    */
-  @Input({transform: numberAttribute}) animationDuration = 4000;
+  @Input({ transform: numberAttribute }) animationDuration = 4000;
 
-  @Input({transform: booleanAttribute}) clickable = true;
+  @Input({ transform: booleanAttribute }) clickable = true;
 
   counterRunning = false;
 

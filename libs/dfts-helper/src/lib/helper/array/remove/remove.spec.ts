@@ -1,4 +1,4 @@
-import {a_remove} from './remove';
+import { a_remove } from './remove';
 
 describe('remove', () => {
   it('string', () => {

@@ -1,5 +1,5 @@
-import { NgModule, Pipe, PipeTransform } from "@angular/core";
-import { s_imploder, UndefinedOrNullOr } from "dfts-helper";
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
+import { s_imploder, UndefinedOrNullOr } from 'dfts-helper';
 
 @Pipe({
   name: 's_implode',

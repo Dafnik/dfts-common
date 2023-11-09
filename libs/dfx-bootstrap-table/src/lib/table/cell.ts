@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Directive, HostBinding, Input} from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 import {
   CdkCell,
   CdkCellDef,
@@ -25,14 +25,14 @@ import {
  */
 @Directive({
   selector: '[ngbCellDef]',
-  providers: [{provide: CdkCellDef, useExisting: NgbCellDef}],
+  providers: [{ provide: CdkCellDef, useExisting: NgbCellDef }],
 })
 export class NgbCellDef<T> extends CdkCellDef {
   // leveraging syntactic-sugar syntax when we use *matCellDef
   @Input() ngbCellDefTable?: CdkTable<T>;
 
   // ngTemplateContextGuard flag to help with the Language Service
-  static ngTemplateContextGuard<T>(dir: NgbCellDef<T>, ctx: unknown): ctx is {$implicit: T; index: number} {
+  static ngTemplateContextGuard<T>(dir: NgbCellDef<T>, ctx: unknown): ctx is { $implicit: T; index: number } {
     return true;
   }
 }
@@ -43,7 +43,7 @@ export class NgbCellDef<T> extends CdkCellDef {
  */
 @Directive({
   selector: '[ngbHeaderCellDef]',
-  providers: [{provide: CdkHeaderCellDef, useExisting: NgbHeaderCellDef}],
+  providers: [{ provide: CdkHeaderCellDef, useExisting: NgbHeaderCellDef }],
 })
 export class NgbHeaderCellDef extends CdkHeaderCellDef {}
 
@@ -53,7 +53,7 @@ export class NgbHeaderCellDef extends CdkHeaderCellDef {}
  */
 @Directive({
   selector: '[ngbFooterCellDef]',
-  providers: [{provide: CdkFooterCellDef, useExisting: NgbFooterCellDef}],
+  providers: [{ provide: CdkFooterCellDef, useExisting: NgbFooterCellDef }],
 })
 export class NgbFooterCellDef extends CdkFooterCellDef {}
 
@@ -64,8 +64,8 @@ export class NgbFooterCellDef extends CdkFooterCellDef {}
 @Directive({
   selector: '[ngbColumnDef]',
   providers: [
-    {provide: CdkColumnDef, useExisting: NgbColumnDef},
-    {provide: 'NGB_SORT_HEADER_COLUMN_DEF', useExisting: NgbColumnDef},
+    { provide: CdkColumnDef, useExisting: NgbColumnDef },
+    { provide: 'NGB_SORT_HEADER_COLUMN_DEF', useExisting: NgbColumnDef },
   ],
 })
 export class NgbColumnDef extends CdkColumnDef {

@@ -12,10 +12,10 @@ export function downloadQRCode(dataURL: string, filename = 'qrcode') {
     uInt8Array[i] = decodedData.charCodeAt(i);
   }
   // return blob image after conversion
-  const blobData = new Blob([uInt8Array], {type: imageType});
+  const blobData = new Blob([uInt8Array], { type: imageType });
 
   // saves as image
-  const blob = new Blob([blobData], {type: 'image/png'});
+  const blob = new Blob([blobData], { type: 'image/png' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

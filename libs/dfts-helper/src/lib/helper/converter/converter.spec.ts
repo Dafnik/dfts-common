@@ -1,4 +1,4 @@
-import {c_nullToUndefined, c_undefinedToNull, c_unchecked} from './converter';
+import { c_nullToUndefined, c_undefinedToNull, c_unchecked } from './converter';
 
 describe('c_undefinedToNull function', () => {
   it('c_undefinedToNull', () => {
@@ -20,7 +20,7 @@ describe('c_undefinedToNull function', () => {
   });
 
   it('should work correctly when the input value is an object', () => {
-    const obj = {foo: 'bar'};
+    const obj = { foo: 'bar' };
     const result = c_undefinedToNull(obj);
     expect(result).toEqual(obj);
   });
@@ -53,7 +53,7 @@ describe('c_nullToUndefined function', () => {
   });
 
   it('should work correctly when the input value is an object', () => {
-    const obj = {foo: 'bar'};
+    const obj = { foo: 'bar' };
     const result = c_nullToUndefined(obj);
     expect(result).toEqual(obj);
   });

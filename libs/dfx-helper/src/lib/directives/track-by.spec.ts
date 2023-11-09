@@ -1,6 +1,6 @@
-import {Component, DebugElement} from '@angular/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {DfxTrackById, DfxTrackByProperty} from './track-by';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DfxTrackById, DfxTrackByProperty } from './track-by';
 
 interface Player {
   id: number;
@@ -8,9 +8,9 @@ interface Player {
 }
 
 const players: Player[] = [
-  {id: 1, name: 'Playerr 1'},
-  {id: 2, name: 'Player 2'},
-  {id: 3, name: 'Player 3'},
+  { id: 1, name: 'Playerr 1' },
+  { id: 2, name: 'Player 2' },
+  { id: 3, name: 'Player 3' },
 ];
 
 @Component({

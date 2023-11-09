@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 
-import { NgbSort, NgbTableDataSource } from "dfx-bootstrap-table";
-import { EventType, Helper } from "../Helper";
+import { NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
+import { EventType, Helper } from '../Helper';
 
 @Component({
   selector: 'app-all',

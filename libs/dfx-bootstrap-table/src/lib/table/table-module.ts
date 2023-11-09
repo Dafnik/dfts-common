@@ -7,12 +7,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {NgModule} from '@angular/core';
-import {NgbRecycleRows, NgbTable} from './table';
-import {CdkTableModule} from '@angular/cdk/table';
-import {NgbCell, NgbCellDef, NgbColumnDef, NgbFooterCell, NgbFooterCellDef, NgbHeaderCell, NgbHeaderCellDef} from './cell';
-import {NgbFooterRow, NgbFooterRowDef, NgbHeaderRow, NgbHeaderRowDef, NgbNoDataRow, NgbRow, NgbRowDef} from './row';
-import {NgbTextColumn} from './text-column';
+import { NgModule } from '@angular/core';
+import { NgbRecycleRows, NgbTable } from './table';
+import { CdkTableModule } from '@angular/cdk/table';
+import { NgbCell, NgbCellDef, NgbColumnDef, NgbFooterCell, NgbFooterCellDef, NgbHeaderCell, NgbHeaderCellDef } from './cell';
+import { NgbFooterRow, NgbFooterRowDef, NgbHeaderRow, NgbHeaderRowDef, NgbNoDataRow, NgbRow, NgbRowDef } from './row';
+import { NgbTextColumn } from './text-column';
 
 const EXPORTED_DECLARATIONS = [
   // Table

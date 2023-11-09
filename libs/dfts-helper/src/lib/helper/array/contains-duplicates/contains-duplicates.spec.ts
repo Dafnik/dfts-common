@@ -1,4 +1,4 @@
-import {a_containsDuplicates} from './contains-duplicates';
+import { a_containsDuplicates } from './contains-duplicates';
 
 describe('containsDuplicates', () => {
   it('string to work', () => {

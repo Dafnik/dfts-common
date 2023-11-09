@@ -7,23 +7,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
-import {
-  Directive,
-  EventEmitter,
-  Inject,
-  InjectionToken,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Optional,
-  Output
-} from "@angular/core";
-import { Subject } from "rxjs";
-import { SortDirection } from "./sort-direction";
-import { HasInitialized, mixinInitialized } from "../core/initialized";
-import { CanDisable, mixinDisabled } from "../core/disabled";
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Directive, EventEmitter, Inject, InjectionToken, Input, OnChanges, OnDestroy, OnInit, Optional, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { SortDirection } from './sort-direction';
+import { HasInitialized, mixinInitialized } from '../core/initialized';
+import { CanDisable, mixinDisabled } from '../core/disabled';
 
 /** Position of the arrow that displays when sorted. */
 export type SortHeaderArrowPosition = 'before' | 'after';
@@ -68,7 +57,7 @@ const _NgbSortBase = mixinInitialized(mixinDisabled(class {}));
 @Directive({
   selector: '[ngb-sort]',
   exportAs: 'ngbSort',
-  host: {class: 'ngb--sort'},
+  host: { class: 'ngb--sort' },
   inputs: ['disabled: ngbSortDisabled'],
 })
 export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized, OnChanges, OnDestroy, OnInit {
@@ -151,7 +140,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
       this.direction = this.getNextSortDirection(sortable);
     }
 
-    this.sortChange.emit({active: this.active, direction: this.direction});
+    this.sortChange.emit({ active: this.active, direction: this.direction });
   }
 
   /** Returns the next sort direction of the active sortable, checking for potential overrides. */

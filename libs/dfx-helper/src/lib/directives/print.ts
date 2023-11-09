@@ -3,8 +3,8 @@ Copyright belongs to https://github.com/selemxmn/ngx-print
 Licensed under MIT license
  */
 
-import {booleanAttribute, Directive, HostListener, Input, numberAttribute} from '@angular/core';
-import {loggerOf} from 'dfts-helper';
+import { booleanAttribute, Directive, HostListener, Input, numberAttribute } from '@angular/core';
+import { loggerOf } from 'dfts-helper';
 
 @Directive({
   selector: 'button[print]',
@@ -18,21 +18,21 @@ export class DfxPrint {
   @Input() printSectionId!: string;
   @Input() printTitle?: string;
 
-  @Input({transform: booleanAttribute}) useExistingCss = false;
+  @Input({ transform: booleanAttribute }) useExistingCss = false;
 
   /**
    * A delay in milliseconds to force the print dialog to wait before opened. Default: 0
    */
-  @Input({transform: numberAttribute}) printDelay = 0;
+  @Input({ transform: numberAttribute }) printDelay = 0;
 
   private _printStyle: string[] = [];
   @Input()
-  set printStyle(values: {[key: string]: {[key: string]: string}} | string[]) {
+  set printStyle(values: { [key: string]: { [key: string]: string } } | string[]) {
     if (Array.isArray(values)) {
       this._printStyle = values;
       return;
     }
-    values = values as {[key: string]: {[key: string]: string}};
+    values = values as { [key: string]: { [key: string]: string } };
     for (const key in values) {
       // eslint-disable-next-line no-prototype-builtins
       if (values.hasOwnProperty(key)) {

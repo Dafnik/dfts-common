@@ -32,12 +32,7 @@
 //
 // the number in this table (in particular, [0]) does not exactly match with
 // the numbers in the specficiation. see augumenteccs below for the reason.
-import {
-  generateMatrixOptions,
-  generateOptions,
-  generateWithAccessibleOptions,
-  generateWithImageOptions
-} from "./types";
+import { generateMatrixOptions, generateOptions, generateWithAccessibleOptions, generateWithImageOptions } from './types';
 
 const VERSIONS = [
   null,
@@ -245,7 +240,7 @@ const MODE_NUMERIC = 1,
   MODE_ALPHANUMERIC = 2,
   MODE_OCTET = 4,
   MODE_KANJI = 8;
-const MODES_MAP: {[x: string]: number} = {
+const MODES_MAP: { [x: string]: number } = {
   numeric: MODE_NUMERIC,
   alphanumeric: MODE_ALPHANUMERIC,
   octet: MODE_OCTET,
@@ -261,7 +256,7 @@ const ECCLEVEL_L = 1,
   ECCLEVEL_M = 0,
   ECCLEVEL_Q = 3,
   ECCLEVEL_H = 2;
-const ECCLEVELS_MAP: {[x: string]: number} = {
+const ECCLEVELS_MAP: { [x: string]: number } = {
   L: ECCLEVEL_L,
   M: ECCLEVEL_M,
   Q: ECCLEVEL_Q,
@@ -298,7 +293,7 @@ for (let i = 0; i < 30; i++) {
 }
 
 // alphanumeric character mapping (cf. Table 5 in JIS X 0510:2004 p. 19)
-const ALPHANUMERIC_MAP: {[x: string]: number} = {};
+const ALPHANUMERIC_MAP: { [x: string]: number } = {};
 for (let i = 0; i < 45; i++) {
   ALPHANUMERIC_MAP['0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:'.charAt(i)] = i;
 }
@@ -674,7 +669,7 @@ function makebasematrix(ver: number) {
     }
   }
 
-  return {matrix: matrix, reserved: reserved};
+  return { matrix: matrix, reserved: reserved };
 }
 
 // fills the data portion (i.e. unmarked in reserved) of the matrix with given
@@ -956,7 +951,7 @@ export function generateQrCodeImage(
   image.setAttribute('aria-label', options.ariaLabel ?? '');
   image.setAttribute('title', options.title ?? '');
 
-  return {image, dataUrl};
+  return { image, dataUrl };
 }
 
 export function generateQrCodeCanvas$(
@@ -1002,5 +997,5 @@ export async function generateQrCodeImage$(
   image.setAttribute('aria-label', options.ariaLabel ?? '');
   image.setAttribute('title', options.title ?? '');
 
-  return {image, dataUrl};
+  return { image, dataUrl };
 }

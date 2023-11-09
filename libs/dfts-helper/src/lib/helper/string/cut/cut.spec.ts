@@ -1,4 +1,4 @@
-import {s_cut} from './cut';
+import { s_cut } from './cut';
 
 describe('cut', () => {
   it('cutString', () => {

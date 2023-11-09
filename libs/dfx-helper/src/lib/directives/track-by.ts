@@ -1,7 +1,11 @@
-import {Directive, Host, Input, NgIterable, NgModule} from '@angular/core';
-import {NgForOf} from '@angular/common';
-import {StringOrNumber} from 'dfts-helper';
+import { Directive, Host, Input, NgIterable, NgModule } from "@angular/core";
+import { NgForOf } from "@angular/common";
+import { StringOrNumber } from "dfts-helper";
 
+/**
+ * @deprecated
+ * Use new angular control flow syntax.
+ */
 @Directive({
   selector: '[ngForTrackByProperty]',
   standalone: true,
@@ -17,6 +21,10 @@ export class DfxTrackByProperty<T, U extends NgIterable<T> = NgIterable<T>> {
   }
 }
 
+/**
+ * @deprecated
+ * Use new angular control flow syntax.
+ */
 @Directive({
   selector: '[ngForTrackById]',
   standalone: true,
@@ -27,6 +35,10 @@ export class DfxTrackById<T extends {id: StringOrNumber}> {
   }
 }
 
+/**
+ * @deprecated
+ * Use new angular control flow syntax.
+ */
 @Directive({
   selector: '[ngForTrackByIndex]',
   standalone: true,
@@ -37,6 +49,10 @@ export class DfxTrackByIndex {
   }
 }
 
+/**
+ * @deprecated
+ * Use new angular control flow syntax.
+ */
 @NgModule({
   imports: [DfxTrackById, DfxTrackByProperty, DfxTrackByIndex],
   exports: [DfxTrackById, DfxTrackByProperty, DfxTrackByIndex],

@@ -1,7 +1,5 @@
 # dfx-bootstrap-icons
 
-This library was generated with [Nx](https://nx.dev).
+Straightforward, state-of-the-art Angular icon library.
 
-## Running unit tests
-
-Run `nx test dfx-bootstrap-icons` to execute the unit tests.
+Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons in a bundle-size friendly way.

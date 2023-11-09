@@ -2,11 +2,32 @@
   "name": "dfx-bootstrap-icons",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^16.2.0",
-    "@angular/core": "^16.2.0"
+    "@angular/common": "17",
+    "@angular/core": "17"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2"
   },
+  "description": "Straightforward, state-of-the-art Angular icon library. Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons in a bundle-size friendly way.",
+  "private": false,
+  "author": {
+    "name": "Dafnik",
+    "email": "contact@dafnik.me",
+    "url": "https://dafnik.me"
+  },
+  "funding": {
+    "type": "liberapay",
+    "url": "https://liberapay.com/Dafnik"
+  },
+  "bugs": {
+    "url": "https://github.com/Dafnik/dfts-common/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Dafnik/dfts-common.git",
+    "directory": "libs/dfx-boostrap-icons"
+  },
+  "license": "MIT",
+  "homepage": "https://playground.dafnik.me/bootstrap-icons/",
   "sideEffects": false
 }

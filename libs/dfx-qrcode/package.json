@@ -4,7 +4,7 @@
   "description": "tiny and simple-to-use Angular QR-Code generator library",
   "private": false,
   "license": "MIT",
-  "homepage": "https://dafnik.me",
+  "homepage": "https://playground.dafnik.me/qrcode/",
   "keywords": [
     "ng",
     "ngx",
@@ -38,12 +38,12 @@
     "directory": "libs/dfx-qrcode"
   },
   "peerDependencies": {
-    "@angular/common": "16",
-    "@angular/core": "16",
-    "@angular/platform-browser": "16"
+    "@angular/common": "17",
+    "@angular/core": "17",
+    "@angular/platform-browser": "17"
   },
   "dependencies": {
-    "dfts-qrcode": "0 - 1",
+    "dfts-qrcode": "1",
     "tslib": "^2"
   },
   "sideEffects": false

@@ -4,7 +4,7 @@
   "description": "Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.",
   "private": false,
   "license": "MIT",
-  "homepage": "https://datepoll.org",
+  "homepage": "https://playground.dafnik.me/bootstrap-table/all",
   "keywords": [
     "table",
     "angular",
@@ -43,11 +43,11 @@
     "directory": "libs/dfx-boostrap-table"
   },
   "peerDependencies": {
-    "@angular/common": "16",
-    "@angular/core": "16",
-    "@angular/cdk": "16",
-    "@angular/animations": "16",
-    "@angular/forms": "16",
+    "@angular/common": "17",
+    "@angular/core": "17",
+    "@angular/cdk": "17",
+    "@angular/animations": "17",
+    "@angular/forms": "17",
     "bootstrap": "5",
     "rxjs": "7"
   }

@@ -60,3 +60,13 @@ Angular table CDK implementation for Bootstrap with filtering, sorting and pagin
 [![npm version](https://badge.fury.io/js/dfx-qrcode.svg)](https://npmjs.org/package/dfx-qrcode)
 [![NPM](https://img.shields.io/npm/dw/dfx-qrcode?logo=npm)](https://npmjs.org/package/dfx-qrcode)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfx-qrcode)
+
+### dfx-bootstrap-icons
+
+Straightforward, state-of-the-art Angular icon library.
+
+Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons in a bundle-size friendly way.
+
+[![npm version](https://badge.fury.io/js/dfx-bootstrap-icons.svg)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![NPM](https://img.shields.io/npm/dw/dfx-bootstrap-icons?logo=npm)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-icons?cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)

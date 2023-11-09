@@ -1,7 +1,7 @@
-import {IconName} from './icon-names.type'
+import { BiName } from "./icon-names.type";
 
 /** List with all icons. */
-export const IconNameList: IconName[] = [
+export const BiNameList: BiName[] = [
 /** {@link https://icons.getbootstrap.com/icons/0-circle-fill} */
 '0-circle-fill',
 /** {@link https://icons.getbootstrap.com/icons/0-circle} */

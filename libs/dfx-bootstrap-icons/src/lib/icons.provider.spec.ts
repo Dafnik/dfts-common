@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
 
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { IconComponent } from "./icon.component";
-import { provideDfxBootstrapIcons, provideIcons, withColor, withHeight, withIcons, withWidth } from "./icons.provider";
+import { BiComponent } from "./icon.component";
+import { provideBi, provideIcons, withColor, withHeight, withIcons, withWidth } from "./icons.provider";
 import { allIcons, xCircleFill, zeroCircle } from "./generated";
 import { IconFeatures } from "./icons.feature";
 import { DEFAULT_ICON_SIZE } from "./icons.config";
@@ -90,13 +90,13 @@ describe("IconFeatures ", () => {
 
   it("test provideIcons", () => {
     void TestBed.configureTestingModule({
-      imports: [IconComponent],
+      imports: [BiComponent],
       providers: [
         provideIcons({ xCircleFill, zeroCircle })
       ]
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(IconComponent) as ComponentFixture<IconComponent>;
+    const fixture = TestBed.createComponent(BiComponent) as ComponentFixture<BiComponent>;
 
     const component = fixture.componentInstance,
       nativeElement = fixture.nativeElement as HTMLElement;
@@ -121,14 +121,14 @@ describe("IconFeatures ", () => {
 
   it("test withIcons & provideIcons", () => {
     void TestBed.configureTestingModule({
-      imports: [IconComponent],
+      imports: [BiComponent],
       providers: [
-        provideDfxBootstrapIcons(withIcons({zeroCircle})),
+        provideBi(withIcons({zeroCircle})),
         provideIcons({ xCircleFill })
       ]
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(IconComponent) as ComponentFixture<IconComponent>;
+    const fixture = TestBed.createComponent(BiComponent) as ComponentFixture<BiComponent>;
 
     const component = fixture.componentInstance,
       nativeElement = fixture.nativeElement as HTMLElement;
@@ -159,13 +159,13 @@ function getAttributeValue(text: string | undefined, attributeName: string): str
 
 function getNewConfiguration(...features: IconFeatures[]) {
   void TestBed.configureTestingModule({
-    imports: [IconComponent],
+    imports: [BiComponent],
     providers: [
-      provideDfxBootstrapIcons(...features)
+      provideBi(...features)
     ]
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(IconComponent) as ComponentFixture<IconComponent>;
+  const fixture = TestBed.createComponent(BiComponent) as ComponentFixture<BiComponent>;
 
   return {
     fixture,

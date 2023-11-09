@@ -1,17 +1,17 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 
-import { IconComponent } from "./icon.component";
+import { BiComponent } from "./icon.component";
 import { IconFeatures } from "./icons.feature";
 
 @NgModule({
-  imports: [IconComponent],
-  exports: [IconComponent],
+  imports: [BiComponent],
+  exports: [BiComponent],
 })
-export class DfxIconsModule {
-  static setup(...features: IconFeatures[]): ModuleWithProviders<DfxIconsModule> {
+export class BiModule {
+  static setup(...features: IconFeatures[]): ModuleWithProviders<BiModule> {
     console.log(`DfxIconsModule: setup with features and icons`, features);
     return {
-      ngModule: DfxIconsModule,
+      ngModule: BiModule,
       providers: [features.map((it) => it.providers)],
     };
   }

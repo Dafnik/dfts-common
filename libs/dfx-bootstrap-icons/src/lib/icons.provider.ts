@@ -10,7 +10,7 @@ import {
 import { ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_PICKED } from "./icons.config";
 import { ColorValueHex, IconsType } from "./types";
 
-export function provideDfxBootstrapIcons(...features: IconFeatures[]): EnvironmentProviders {
+export function provideBi(...features: IconFeatures[]): EnvironmentProviders {
   return makeEnvironmentProviders([
     features.map((it) => it.providers),
   ]);

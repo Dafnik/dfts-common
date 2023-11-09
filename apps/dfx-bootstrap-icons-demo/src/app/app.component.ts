@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal, WritableSignal } from "@angular/core";
 import { NgOptimizedImage } from "@angular/common";
 
-import { BOOTSTRAP_ICONS_VERSION, IconComponent, IconName } from "dfx-bootstrap-icons";
+import { BiComponent, BiName, BOOTSTRAP_ICONS_VERSION } from "dfx-bootstrap-icons";
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { cl_copy } from "dfts-helper";
 import { delay, of } from "rxjs";
@@ -9,10 +9,6 @@ import { ThemePickerComponent } from "./theme.component";
 
 
 @Component({
-  standalone: true,
-  imports: [NgOptimizedImage, RouterLink, RouterOutlet, IconComponent, ThemePickerComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-root',
   template: `
     <nav class="navbar navbar-expand-lg sticky-top">
       <div class="container-xxl flex-row justify-content-between justify-content-sm-start">
@@ -75,7 +71,7 @@ import { ThemePickerComponent } from "./theme.component";
             </div>
           </div>
           <div class="col-12 col-lg-4 d-flex justify-content-center">
-            <img ngSrc="assets/header.png" alt="" width="400" height="300" />
+            <img ngSrc="assets/header.png" priority alt="" width="400" height="300" />
           </div>
         </header>
       </div>
@@ -87,7 +83,7 @@ import { ThemePickerComponent } from "./theme.component";
       </div>
     </main>
   `,
-  styles: [`
+  styles: `
     @media (min-width: 540px) {
       .hero-notice {
         border-radius: 5em !important;
@@ -107,12 +103,16 @@ import { ThemePickerComponent } from "./theme.component";
       --bs-btn-hover-bg: var(--bs-emphasis-color);
       --bs-btn-hover-border-color: var(--bs-btn-hover-bg);
     }
-  `]
+  `,
+  standalone: true,
+  imports: [NgOptimizedImage, RouterLink, RouterOutlet, BiComponent, ThemePickerComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-root',
 })
 export class AppComponent {
   bootstrapIconsVersion = BOOTSTRAP_ICONS_VERSION;
 
-  copyIcon : WritableSignal<IconName> = signal("clipboard");
+  copyIcon : WritableSignal<BiName> = signal("clipboard");
 
   copy(it: string): void {
     this.copyIcon.set('check-lg');

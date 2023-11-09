@@ -1,7 +1,6 @@
 import { InjectionToken } from "@angular/core";
 
-import { ColorValueHex } from "./types/color.type";
-import { IconsType } from "./types/icons.type";
+import { ColorValueHex, IconsType } from "./types";
 
 export const ICONS_PICKED = new InjectionToken<IconsType>('DFX_ICONS_PICKED', {
   factory: () => ({}),

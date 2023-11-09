@@ -1,5 +1,5 @@
 /** Enum with all icons. */
-export enum IconNamesEnum {
+export enum BiNamesEnum {
 /** {@link https://icons.getbootstrap.com/icons/0-circle-fill} */
 zeroCircleFill = '0-circle-fill',
 /** {@link https://icons.getbootstrap.com/icons/0-circle} */

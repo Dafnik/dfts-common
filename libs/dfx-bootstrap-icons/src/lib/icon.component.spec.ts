@@ -1,30 +1,30 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
 
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { IconComponent } from "./icon.component";
-import { provideDfxBootstrapIcons, withIcons } from "./icons.provider";
-import { allIcons, IconNameList } from "./generated";
+import { BiComponent } from "./icon.component";
+import { provideBi, withIcons } from "./icons.provider";
+import { allIcons, BiNameList } from "./generated";
 import { toEscapedName } from "./internal/toEscapedName";
 
 describe("SVG Icons", () => {
-  let component: IconComponent;
-  let fixture: ComponentFixture<IconComponent>;
+  let component: BiComponent;
+  let fixture: ComponentFixture<BiComponent>;
   let nativeElement: HTMLElement;
 
   beforeEach(() => {
     void TestBed.configureTestingModule({
-      imports: [IconComponent],
+      imports: [BiComponent],
       providers: [
-        provideDfxBootstrapIcons(withIcons(allIcons))
+        provideBi(withIcons(allIcons))
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(IconComponent) as typeof fixture;
+    fixture = TestBed.createComponent(BiComponent) as typeof fixture;
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement as HTMLElement;
   });
 
-  for (const name of IconNameList) {
+  for (const name of BiNameList) {
     it(`load right svg for ${name} icon`, () => {
       component.name = name;
       fixture.detectChanges();
@@ -48,19 +48,19 @@ describe("SVG Icons", () => {
 
 
 describe("IconComponent", () => {
-  let component: IconComponent;
-  let fixture: ComponentFixture<IconComponent>;
+  let component: BiComponent;
+  let fixture: ComponentFixture<BiComponent>;
   let nativeElement: HTMLElement;
 
   beforeEach(() => {
     void TestBed.configureTestingModule({
-      imports: [IconComponent],
+      imports: [BiComponent],
       providers: [
-        provideDfxBootstrapIcons(withIcons(allIcons))
+        provideBi(withIcons(allIcons))
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(IconComponent) as typeof fixture;
+    fixture = TestBed.createComponent(BiComponent) as typeof fixture;
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement as HTMLElement;
   });

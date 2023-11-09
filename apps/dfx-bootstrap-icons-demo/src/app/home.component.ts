@@ -1,54 +1,63 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
-import { NgClass, NgForOf, NgIf } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { toSignal } from "@angular/core/rxjs-interop";
 
 import { debounceTime } from "rxjs";
-import { IconComponent, IconNameList, toEscapedName } from "dfx-bootstrap-icons";
+import { BiComponent, BiNameList, toEscapedName } from "dfx-bootstrap-icons";
 import { WINDOW } from "dfx-helper";
 
 
 @Component({
-  standalone: true,
-  imports: [NgForOf, IconComponent, ReactiveFormsModule, NgIf, NgClass],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-home',
+
   template: `
-    <div class="d-flex flex-column gap-2">
-      <input type="text" class="form-control" id="search" placeholder="Search for icons..."
-             [formControl]="searchCtrl" />
+      <div class="d-flex flex-column gap-2">
+          <input type="text" class="form-control" id="search" placeholder="Search for icons..."
+                 [formControl]="searchCtrl" />
 
-      <div class="d-flex justify-content-end">
-        <div class="badge bg-secondary rounded-pill">Showing {{searchResults().length}} of {{IconNameList.length}}</div>
+          <div class="d-flex justify-content-end">
+              <div class="badge bg-secondary rounded-pill">Showing {{ searchResults().length }}
+                  of {{ IconNameList.length }}
+              </div>
+          </div>
+
+          <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
+              @for (icon of searchResults(); track icon) {
+                  <li class="col mb-4">
+                      <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{icon}}/">
+                          <div class="px-3 py-5 mb-2 text-center rounded icon-block">
+                              @defer (on viewport, idle) {
+                                  <bi [name]="icon" />
+                              } @placeholder (minimum 500ms) {
+                                  <div class="spinner-border" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                  </div>
+                              }
+                          </div>
+                          <div class="name text-muted text-decoration-none text-center pt-1">
+                              <strong>{{ icon }}</strong></div>
+                          <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
+                      </a>
+                  </li>
+              } @empty {
+                  <li class="d-flex w-100 justify-content-center">
+                      <div class="d-flex align-items-center gap-2">
+                          <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
+                          <span>Nothing found.</span>
+                      </div>
+                  </li>
+              }
+          </ul>
       </div>
 
-      <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
-        <li class="col mb-4" *ngFor="let icon of searchResults()">
-          <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{icon}}/">
-            <div class="px-3 py-5 mb-2 text-center rounded icon-block">
-              <bi [name]="icon" />
-            </div>
-            <div class="name text-muted text-decoration-none text-center pt-1"><strong>{{ icon }}</strong></div>
-            <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
-          </a>
-        </li>
-      </ul>
-
-      <div class="d-flex justify-content-center" *ngIf="searchResultsEmpty()">
-        <div class="d-flex align-items-center gap-2">
-          <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
-          <span>Nothing found.</span>
-        </div>
+      <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
+          <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
+              Scroll to top
+              <bi name="arrow-up-circle-fill" />
+          </button>
       </div>
-    </div>
-
-    <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
-      <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
-        Scroll to top <bi name="arrow-up-circle-fill" />
-      </button>
-    </div>
   `,
-  styles: [`
+  styles: `
   .icon-block {
     background-color: var(--bs-tertiary-bg);
     color: var(--bs-body-color);
@@ -71,15 +80,19 @@ import { WINDOW } from "dfx-helper";
     transition: all 0.2s ease-in-out;
   }
 
-  `]
+  `,
+  standalone: true,
+  imports: [BiComponent, ReactiveFormsModule, NgClass],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: "app-home"
 })
 export class HomeComponent implements OnInit {
-  window = inject(WINDOW)
+  window = inject(WINDOW);
   windowScrolled = signal(false);
 
   ngOnInit() {
-    this.window?.addEventListener('scroll', () => {
-      this.windowScrolled.set((this.window?.pageYOffset ?? 0) > 200)
+    this.window?.addEventListener("scroll", () => {
+      this.windowScrolled.set((this.window?.pageYOffset ?? 0) > 200);
     });
   }
 
@@ -91,17 +104,17 @@ export class HomeComponent implements OnInit {
 
   searchValue = toSignal(this.searchCtrl.valueChanges.pipe(
     debounceTime(300)
-  ), {initialValue: ''});
+  ), { initialValue: "" });
 
   searchResults = computed(() => {
-    const searchValue = this.searchValue()
-    return searchValue.length > 0 ? IconNameList.filter((name) => name.includes(searchValue)) : IconNameList
-  })
+    const searchValue = this.searchValue();
+    return searchValue.length > 0 ? BiNameList.filter((name) => name.includes(searchValue)) : BiNameList;
+  });
 
-  escapedName = (it: string) => toEscapedName(it)
+  escapedName = (it: string) => toEscapedName(it);
 
-  searchResultsEmpty = computed(() => this.searchResults().length === 0)
+  searchResultsEmpty = computed(() => this.searchResults().length === 0);
 
-  protected readonly IconNameList = IconNameList;
+  protected readonly IconNameList = BiNameList;
   protected readonly toEscapedName = toEscapedName;
 }

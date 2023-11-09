@@ -10,7 +10,7 @@ import {
   Renderer2
 } from "@angular/core";
 
-import { IconName, IconNamesEnum } from "./generated";
+import { BiName, BiNamesEnum } from "./generated";
 import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_PICKED } from "./icons.config";
 import { ColorValueHex, IconsType } from "./types";
 import { toEscapedName } from "./internal/toEscapedName";
@@ -21,8 +21,8 @@ import { toEscapedName } from "./internal/toEscapedName";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '',
 })
-export class IconComponent implements OnInit, OnChanges {
-  @Input({required: true}) name!: IconName | IconNamesEnum;
+export class BiComponent implements OnInit, OnChanges {
+  @Input({required: true}) name!: BiName | BiNamesEnum;
 
   @Input() public width : string = inject(ICON_WIDTH);
 

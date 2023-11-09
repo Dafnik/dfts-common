@@ -9,7 +9,7 @@ import { cl_copy } from "dfts-helper";
 import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
 import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
 import { ThemePickerComponent } from "./theme.component";
-import { copy, IconComponent, provideIcons } from "dfx-bootstrap-icons";
+import { BiComponent, copy, provideIcons } from "dfx-bootstrap-icons";
 
 @Component({
   standalone: true,
@@ -21,7 +21,7 @@ import { copy, IconComponent, provideIcons } from "dfx-bootstrap-icons";
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePickerComponent, IconComponent],
+  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePickerComponent, BiComponent],
   providers: [provideIcons({copy})]
 })
 export class AppComponent {

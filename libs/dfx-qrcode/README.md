@@ -26,6 +26,13 @@
 - Server Side Rendering (Angular Universal)
 - Standalone Component
 
+## Version compatibility
+
+| Angular | dfx-qrcode |
+| ------- | ---------- |
+| 17.x.x  | 2.x.x      |
+| 16.x.x  | 1.x.x      |
+
 ## Installation
 
 - npm
@@ -247,3 +254,5 @@ The table below shows the maximum number of storable characters in each encoding
 | Byte         | 2953 | 2331 | 1663 | 1273 |
 
 If no version is specified, the more suitable value will be used. Unless a specific version is required, this option is not needed.
+
+By [Dafnik](https://dafnik.me)

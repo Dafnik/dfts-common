@@ -1,6 +1,6 @@
 # dfx-translate
 
-A simple translation package for Angular 16.
+A simple translation package for Angular.
 
 [![npm version](https://badge.fury.io/js/dfx-translate.svg)](https://npmjs.org/package/dfx-translate)
 [![NPM](https://img.shields.io/npm/dw/dfx-translate?logo=npm)](https://npmjs.org/package/dfx-translate)
@@ -22,9 +22,14 @@ A simple translation package for Angular 16.
   - [Language switching](#switching-languages)
   - [Pipeline](#pipeline-usage)
   - [Service](#service-usage)
-- [Project website](https://datepoll.org)
-- created with [Angular](https://angular.io)
-  , [used libraries](https://gitlab.com/DatePoll/common/dfx-common/-/blob/develop/package.json)
+
+### Version compatibility
+
+| Angular | dfx-translate |
+| ------- | ------------- |
+| 17.x.x  | 4.x.x         |
+| 16.x.x  | 3.x.x         |
+| 15.x.x  | 2.x.x         |
 
 ## Setup
 
@@ -283,3 +288,5 @@ time main
 ```
 
 Now you only have to run this script.
+
+By [Dafnik](https://dafnik.me)

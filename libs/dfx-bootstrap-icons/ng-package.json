@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/dfx-bootstrap-icons",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "assets": ["./*.md", "./LICENSE"]
 }

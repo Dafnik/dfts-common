@@ -6,13 +6,13 @@ Angular Library with tons of utility tools helping in all projects.
 [![NPM](https://img.shields.io/npm/dw/dfx-helper?logo=npm)](https://npmjs.org/package/dfx-helper)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
 
-### Information
+## Version compatibility
 
-- [NPM package link](https://www.npmjs.com/package/dfx-helper)
-- [Usage](#usage)
-- [Development](#development)
-- [Deployment notes](#deployment-notes)
-- [Project website](https://datepoll.org)
+| Angular | dfx-helper |
+| ------- | ---------- |
+| 17.x.x  | 7.x.x      |
+| 16.x.x  | 6.1.x      |
+| 15.x.x  | 6.0.x      |
 
 ## Usage
 
@@ -33,18 +33,11 @@ npm install @angular/cdk
   - `AComponent`
   - `ADirective`
 - **Decorator**/**Annotations**
-  - `Confirmable()`
-  - `Delay()`
-  - `MeasureTime()`
-  - `Once`
-  - `RememberResult`
   - `RunOutesideChangeDetection`
-  - `Throttle()`
 - **Directives**
   - `hideIfOnline` & `hideIfOffline`
   - `hideIfPingSucceeds` & `hideIfPingFails`
   - `print`
-  - `trackByPropertyName`, `trackById` & `trackByIndex`
 - **Helper**
   - `ArrayHelper`
   - `BrowserHelper`
@@ -62,10 +55,6 @@ npm install @angular/cdk
 - **Entities**
   - `HasID` & `HasName`
   - `IEntity` & `IEntityWithName`
-  - `AEntity` & `AEntityWithName`
-  - **EntityServices**
-    - `AEntityService`
-    - `ASelectableEntityService`
 - **Interceptors**
   - `BaseUrlInterceptor`
   - `LoggingInterceptor`
@@ -80,58 +69,5 @@ npm install @angular/cdk
 - **Strategies**
   - `AbstractTitleStrategy`
   - `DfxPreloadStrategy`
-- **Collections**
-  - `List`
-  - `EntityList`
-  - `IList`
 
-## Development
-
-Everything important in this library is located in `projects/dfx-helper`, that's the "real" library. (following
-commands still have to be executed at the root level)
-
-#### Dependency installation
-
-```shell
-npm install
-```
-
-#### Building a production version
-
-```shell
-npm run helper:build
-```
-
-#### Lint
-
-```shell
-npm run helper:lint
-```
-
-#### Starting development environment (with automatic tests)
-
-```shell
-npm helper:test
-```
-
-#### Generating a coverage report
-
-```shell
-npm run helper:test:coverage
-```
-
-#### Starting the development environment (for direct use in another project)
-
-```shell
-npm run helper:watch
-```
-
-#### Development builds
-
-Development builds are downloadable via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-helper-dev.zip).
-
-#### Production builds
-
-Tags create a release build downloadable
-via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-helper-latest.zip). Additionally, a versioned
-zip is uploaded and the package is published to [npm](https://www.npmjs.com/package/dfx-helper).
+By [Dafnik](https://dafnik.me)

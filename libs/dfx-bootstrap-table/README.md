@@ -15,7 +15,7 @@ Working with [@ng-bootstrap/ng-bootstrap](https://npmjs.org/package/@ng-bootstra
 [Click me](https://share.dafnik.me/dfx-bootstrap-table-demo/dfx_bootstrap_table_demo.mp4) (or the video) for a faster
 version
 
-**Visit the [demo](https://table-demo.dafnik.me) in the browser.**
+**Visit the [demo](https://playground.dafnik.me/bootstrap-table) in the browser.**
 
 ### Description
 
@@ -26,14 +26,16 @@ except that its element and attribute selectors will be prefixed with ngb- inste
 For more information on the interface and a detailed look at how the table is implemented, see the
 [guide covering the CDK data-table](https://material.angular.io/guide/cdk-table).
 
-### Information
+### Version compatibility
 
-- [Usage](#usage)
-- [Development](#development)
-- [Deployment notes](#deployment-notes)
-- [Project website](https://datepoll.org)
-- created with [Angular](https://angular.io),
-  [used libraries](https://github.com/Dafnik/dfts-common/blob/main/package.json)
+| Angular | dfx-helper | Bootstrap |
+| ------- | ---------- | --------- |
+| 17.x.x  | 3.x.x      | 5.x.x     |
+| 16.x.x  | 2.x.x      | 5.x.x     |
+| 15.x.x  | 1.4.x      | 5.x.x     |
+| 14.x.x  | 1.3.x      | 5.x.x     |
+| 13.x.x  | 1.1.x      | 5.x.x     |
+| 12.x.x  | 1.0.x      | 5.x.x     |
 
 ### Credits
 
@@ -378,55 +380,4 @@ functionality by extending a different base class, the DataSource base class can
 instead (`MyCustomDataSource extends SomeOtherBaseClass implements DataSource`) to respect Typescript's restriction to
 only implement one base class.
 
-## Development
-
-Everything important in this library is located in `projects/dfx-bootstrap-table`, that's the "real" library.
-(following
-commands still have to be executed at the root level)
-
-#### Dependency installation
-
-```shell
-npm install
-```
-
-#### Building a production version
-
-```shell
-npm run table:bs:build
-```
-
-#### Lint
-
-```shell
-npm run table:bs:lint
-```
-
-#### Starting development environment (with automatic tests)
-
-```shell
-npm table:bs:test
-```
-
-#### Generating a coverage report
-
-```shell
-npm run table:bs:test:coverage
-```
-
-#### Starting the development environment (for direct use in another project)
-
-```shell
-npm run table:bs:watch
-```
-
-#### Development builds
-
-Development builds are downloadable via [this link](https://releases.datepoll.org/common/dfx-helper/dfx-bootstrap-table-dev.zip).
-
-#### Production builds
-
-Tags create a release build downloadable
-via [this link](https://releases.datepoll.org/common/dfx-bootstrap-table/dfx-bootstrap-table-latest.zip).
-Additionally, a versioned zip is uploaded and the package is published to [npm](https://www.npmjs.
-com/package/dfx-bootstrap-table).
+By [Dafnik](https://dafnik.me)

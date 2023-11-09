@@ -6,7 +6,7 @@ on:
       - 'dfx-bootstrap-table*'
 
 jobs:
-  dfx-translate:
+  dfx-bootstrap-table:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-bootstrap-table

@@ -1,6 +1,6 @@
-import {booleanAttribute, Directive, ElementRef, HostListener, inject, Input, numberAttribute} from '@angular/core';
-import {s_from} from 'dfts-helper';
-import {WINDOW} from '../windows-provider';
+import { booleanAttribute, Directive, ElementRef, HostListener, inject, Input, numberAttribute } from "@angular/core";
+import { s_from } from "dfts-helper";
+import { injectWindow } from "../windows-provider";
 
 @Directive({
   selector: '[countUp]',
@@ -9,7 +9,7 @@ import {WINDOW} from '../windows-provider';
 export class DfxCountUp {
   el = inject(ElementRef<HTMLElement>);
 
-  window = inject(WINDOW);
+  window = injectWindow()
 
   @Input({transform: numberAttribute, required: true}) set countUp(it: number) {
     if (it) {

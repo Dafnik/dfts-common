@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from "@angular/core";
 
-import {AllComponent} from './all/all.component';
-import {RouterModule, Routes} from '@angular/router';
-import {SimpleComponent} from './simple/simple.component';
-import {OrderingComponent} from './ordering/ordering.component';
-import {PaginationComponent} from './pagination/pagination.component';
-import {FilteringComponent} from './filtering/filtering.component';
+import { AllComponent } from "./examples/all.component";
+import { RouterModule, Routes } from "@angular/router";
+import { SimpleComponent } from "./examples/simple.component";
+import { OrderingComponent } from "./examples/ordering.component";
+import { PaginationComponent } from "./examples/pagination.component";
+import { FilteringComponent } from "./examples/filtering.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/all', pathMatch: 'full'},

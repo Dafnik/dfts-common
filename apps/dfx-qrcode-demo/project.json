@@ -51,10 +51,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "dfx-qrcode-demo:build:production"
+          "buildTarget": "dfx-qrcode-demo:build:production"
         },
         "development": {
-          "browserTarget": "dfx-qrcode-demo:build:development"
+          "buildTarget": "dfx-qrcode-demo:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -62,7 +62,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "dfx-qrcode-demo:build"
+        "buildTarget": "dfx-qrcode-demo:build"
       }
     },
     "lint": {
@@ -76,14 +76,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/dfx-qrcode-demo/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/dfx-qrcode-demo/jest.config.ts"
       }
     },
     "serve-static": {

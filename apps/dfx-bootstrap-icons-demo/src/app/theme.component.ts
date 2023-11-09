@@ -17,7 +17,9 @@ interface Theme {
   providers: [provideIcons({circleHalf, sunFill, moonStarsFill})],
   template: `
     <div class="d-flex gap-2">
-      <bi width="16" height="16" [name]="currentTheme().icon" class="text-white" />
+      <label for="theme">
+        <bi width="16" height="16" [name]="currentTheme().icon" class="text-white" />
+      </label>
       <select class="rounded-3 px-2" name="theme" id="theme" (change)="setTheme($any($event.target).value)">
         <option *ngFor="let theme of themes" [class.active]="theme.id === currentTheme().id" [value]="theme.id"><bi [name]="theme.icon" />{{theme.name}}</option>
       </select>
@@ -46,7 +48,7 @@ export class ThemePickerComponent {
     this.setTheme(this.getPreferredTheme().id);
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      if (this.currentTheme().id !== 'light' || this.currentTheme().id !== ('dark' as any)) {
+      if (this.currentTheme().id !== 'light' || this.currentTheme().id !== 'dark') {
         this.setTheme(this.getPreferredTheme().id);
       }
     });

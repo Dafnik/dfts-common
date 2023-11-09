@@ -3,8 +3,6 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 @Component({
   standalone: true,
-  imports: [
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-usage',
   template: `
@@ -19,7 +17,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Directly provide icons on configuration.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="importStandaloneCode"></code></pre>
               </div>
             </div>
@@ -30,7 +28,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Directly provide icons on configuration.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="importModuleCode"></code></pre>
               </div>
             </div>
@@ -47,7 +45,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Directly provide icons on configuration.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="importStandaloneCode"></code></pre>
               </div>
             </div>
@@ -58,7 +56,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Directly provide icons on configuration.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="importModuleCode"></code></pre>
               </div>
             </div>
@@ -69,7 +67,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Just provide the items you need per component.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="importStandaloneComponentCode"></code></pre>
               </div>
             </div>
@@ -86,7 +84,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Configure the library wherever you have a providers array.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="standaloneConfigCode"></code></pre>
               </div>
             </div>
@@ -97,16 +95,20 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
               <p>Configure the library in any module you like.</p>
             </div>
             <div class="col-12 col-lg-8">
-              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace" style="background-color:#343A40 ">
+              <div class="d-flex w-100 rounded px-4 pt-3 font-monospace codebox">
                 <pre><code [innerText]="moduleConfigCode"></code></pre>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-  `
+  `,
+  styles: [`
+  .codebox {
+    background-color: var(--bs-secondary-bg);
+  }
+  `]
 })
 export class UsageComponent {
   standaloneConfigCode = `import { provideDfxBootstrapIcons, withHeight, withWidth } from "dfx-bootstrap-icons";

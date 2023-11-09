@@ -7,13 +7,10 @@ body {
   padding: 0 !important;
   width: 100% !important;
   overflow-x: hidden !important;
-  background-color: $cyan-400 !important;
 }
 
 main {
-  background-color: #212529;
   min-height: 100vh !important;
-  color: #fff !important;
 }
 
 .navbar {
@@ -34,7 +31,7 @@ main {
 }
 
 .highlight {
-  background-color: $gray-800;
+  background-color: var(--bs-secondary-bg);
   .code:before {
     content: '$';
     color: $gray-500;

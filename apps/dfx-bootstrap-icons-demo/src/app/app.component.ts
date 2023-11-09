@@ -5,25 +5,24 @@ import { BOOTSTRAP_ICONS_VERSION, IconComponent, IconName } from "dfx-bootstrap-
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { cl_copy } from "dfts-helper";
 import { delay, of } from "rxjs";
+import { ThemePickerComponent } from "./theme.component";
 
 
 @Component({
   standalone: true,
-  imports: [NgOptimizedImage, RouterLink, RouterOutlet, IconComponent],
+  imports: [NgOptimizedImage, RouterLink, RouterOutlet, IconComponent, ThemePickerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
   template: `
-    <nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark">
-      <div
-        class="container-xxl d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2">
-        <div class="d-flex gap-2">
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-xxl flex-row justify-content-between justify-content-sm-start">
           <a class="navbar-brand d-flex align-items-center gap-1" routerLink="/">
             <span>dfx</span>
             <img ngSrc="assets/bootstrap-logo.png" alt="Bootstrap" height="24" width="30"
                  style="transform: rotate(-20deg)" />
             <span>icons</span>
           </a>
-          <ul class="navbar-nav flex-row gap-2">
+          <ul class="navbar-nav flex-row gap-2 me-auto">
             <li class="nav-item">
               <a class="nav-link" routerLink="/usage">Usage</a>
             </li>
@@ -34,7 +33,11 @@ import { delay, of } from "rxjs";
               <a class="nav-link" href="https://github.com/Dafnik/dfts-common" target="_blank" rel="noopener">GitHub</a>
             </li>
           </ul>
-        </div>
+          <div class="d-flex">
+            <li class="nav-item d-flex align-items-center">
+              <theme-picker />
+            </li>
+          </div>
       </div>
     </nav>
 
@@ -56,11 +59,11 @@ import { delay, of } from "rxjs";
               <div class="highlight fs-6 p-3 rounded-3 d-flex gap-4 align-items-center">
                 <div class="code font-monospace">npm i dfx-bootstrap-icons</div>
                 <button class="btn" (click)="copy('npm i dfx-bootstrap-icon');">
-                  <bi [name]="copyIcon()" [color]="copyIcon() === 'check-lg' ? '#198754' : '#FFFFFF'" height="20" width="20" />
+                  <bi [name]="copyIcon()" class="copy-icon" height="20" width="20" />
                 </button>
               </div>
               <a
-                class="btn btn-outline-light btn-lg d-flex align-items-center gap-2"
+                class="btn btn-bi-icons btn-lg d-flex align-items-center gap-2"
                 href="https://icons.getbootstrap.com" role="button"
                 target="_blank" rel="noopener">
                 <img ngSrc="assets/bootstrap-logo.png" alt="Bootstrap Logo" width="32" height="24" />
@@ -91,9 +94,18 @@ import { delay, of } from "rxjs";
       }
     }
     .hero-notice {
-      color: rgb(222, 226, 230);
-      background-color: rgb(3, 40, 48);
+      background-color: var(--bs-secondary-bg);
       border: 1px solid #087990;
+    }
+    .copy-icon {
+      color: var(--bs-secondary-color);
+    }
+    .btn-bi-icons {
+      --bs-btn-color: var(--bs-emphasis-color);
+      --bs-btn-border-color: var(--bs-emphasis-color);
+      --bs-btn-hover-color: var(--bs-body-bg);
+      --bs-btn-hover-bg: var(--bs-emphasis-color);
+      --bs-btn-hover-border-color: var(--bs-btn-hover-bg);
     }
   `]
 })

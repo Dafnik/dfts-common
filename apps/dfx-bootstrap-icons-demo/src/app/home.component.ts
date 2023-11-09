@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, computed, inject, OnInit, signal} from "@angular/core";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
+import { NgClass, NgForOf, NgIf } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { toSignal } from "@angular/core/rxjs-interop";
 
 import { debounceTime } from "rxjs";
-import {IconComponent, IconNameList, toEscapedName} from "dfx-bootstrap-icons";
-import {WINDOW} from "dfx-helper";
+import { IconComponent, IconNameList, toEscapedName } from "dfx-bootstrap-icons";
+import { WINDOW } from "dfx-helper";
 
 
 @Component({
@@ -15,7 +15,7 @@ import {WINDOW} from "dfx-helper";
   selector: 'app-home',
   template: `
     <div class="d-flex flex-column gap-2">
-      <input type="text" class="form-control bg-dark text-white" id="search" placeholder="Search for icons..."
+      <input type="text" class="form-control" id="search" placeholder="Search for icons..."
              [formControl]="searchCtrl" />
 
       <div class="d-flex justify-content-end">
@@ -25,11 +25,11 @@ import {WINDOW} from "dfx-helper";
       <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
         <li class="col mb-4" *ngFor="let icon of searchResults()">
           <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{icon}}/">
-            <div class="px-3 py-5 mb-2 text-white text-center rounded icon-block">
+            <div class="px-3 py-5 mb-2 text-center rounded icon-block">
               <bi [name]="icon" />
             </div>
-            <div class="name text-muted text-decoration-none text-center pt-1 text-white-50"><strong>{{ icon }}</strong></div>
-            <div class="name text-muted text-decoration-none text-center pt-1 text-white-50">{{ escapedName(icon) }}</div>
+            <div class="name text-muted text-decoration-none text-center pt-1"><strong>{{ icon }}</strong></div>
+            <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
           </a>
         </li>
       </ul>
@@ -40,22 +40,23 @@ import {WINDOW} from "dfx-helper";
           <span>Nothing found.</span>
         </div>
       </div>
+    </div>
 
-      <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
-        <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
-          Scroll to top <bi name="arrow-up-circle-fill" />
-        </button>
-      </div>
+    <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
+      <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
+        Scroll to top <bi name="arrow-up-circle-fill" />
+      </button>
     </div>
   `,
   styles: [`
   .icon-block {
-    background-color: #263238;
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
     transition-duration: 0.3s;
   }
   .icon-block:hover {
     transition-duration: 0.4s;
-    background-color: #495057;
+    background-color: var(--bs-secondary-bg);
   }
   .to-top {
     bottom: 0;

@@ -6,7 +6,7 @@ on:
       - 'dfx-bootstrap-icons*'
 
 jobs:
-  dfx-translate:
+  dfx-bootstrap-icons:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-bootstrap-icons

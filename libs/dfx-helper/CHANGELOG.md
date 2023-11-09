@@ -1,3 +1,17 @@
+# [7.0.0-beta.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-6.1.0...dfx-helper-7.0.0-beta.0) (2023-11-09)
+
+### Bug Fixes
+
+- **dfx-helper:** typo ([3dd2816](https://github.com/Dafnik/dfts-common/commit/3dd28166fc3e1e9efebb92e0f7a82f1ae8eed43d))
+
+### Features
+
+- add signal support to is-mobile service ([a701010](https://github.com/Dafnik/dfts-common/commit/a701010216bd985e4ce10545a82adca393b4086e))
+- allow custom HttpContextToken in ByPassInterceptorBuilder ([1014e7b](https://github.com/Dafnik/dfts-common/commit/1014e7b4c0c5ad24d25b549fef43d4fc9fdea2ea))
+- raise peerDependencies to angular v17 ([e4f479e](https://github.com/Dafnik/dfts-common/commit/e4f479e25115e07c3ab9c02178e9ef424daa5c0c))
+- update README.md's ([ba21cbb](https://github.com/Dafnik/dfts-common/commit/ba21cbb6c9baa00accc1c17f7211dc2d0deed9e4))
+- update to angular 17 ([05f67d3](https://github.com/Dafnik/dfts-common/commit/05f67d3dd9e2798357c6e429fa3a84b99abed42a))
+
 # [7.0.0-0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-6.1.0...dfx-helper-7.0.0-0) (2023-11-09)
 
 ### Bug Fixes

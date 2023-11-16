@@ -1,5 +1,5 @@
-import { NgModule, Pipe, PipeTransform } from '@angular/core';
-import { s_imploder, UndefinedOrNullOr } from 'dfts-helper';
+import { NgModule, Pipe, PipeTransform } from "@angular/core";
+import { s_imploder, UndefinedOrNullOr } from "dfts-helper";
 
 @Pipe({
   name: 's_implode',
@@ -13,7 +13,7 @@ export class DfxImplodePipe implements PipeTransform {
     maxLength?: UndefinedOrNullOr<number>,
     suffix?: UndefinedOrNullOr<string>,
   ): string {
-    return s_imploder(strings).maxLength(maxLength).separator(separator).suffix(suffix).build();
+    return s_imploder().source(strings).maxLength(maxLength).separator(separator).suffix(suffix).build();
   }
 }
 
@@ -30,7 +30,7 @@ export class ImplodeMappedPipe implements PipeTransform {
     maxLength?: UndefinedOrNullOr<number>,
     suffix?: UndefinedOrNullOr<string>,
   ): string {
-    return s_imploder().mappedSource(strings, mapFn).maxLength(maxLength).separator(separator).suffix(suffix).build();
+    return s_imploder().source(strings, mapFn).maxLength(maxLength).separator(separator).suffix(suffix).build();
   }
 }
 

@@ -1,26 +1,37 @@
-import { ImploderBuilder, s_imploder } from './imploder';
+import { ImploderBuilder, s_imploder } from "./imploder";
 
-describe('imploder', () => {
-  it('imploder', () => {
-    const test = ['Apple', 'Bannana', 'Rasberry', 'Pie', 'Ananas', 'Lannanas'];
-    expect(s_imploder(test).separator(', ').build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, Lannanas');
-    expect(s_imploder(test).separator(', ').maxLength(40).suffix('...').build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, L...');
-    expect(s_imploder(test).separator(', ').maxLength(40).build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, L');
-    expect(s_imploder(test).separator(', ').maxLength(15).build()).toBe('Apple, Bannana,');
-    expect(s_imploder(test).separator(', ').maxLength(15).suffix('BBB').build()).toBe('Apple, Bannana,BBB');
-    expect(s_imploder(test).separator(', ').maxLength(15).suffix('...').build()).toBe('Apple, Bannana,...');
-    expect(s_imploder(test).separator('; ').build()).toBe('Apple; Bannana; Rasberry; Pie; Ananas; Lannanas');
+describe('s_imploder', () => {
+  it('should create an instance of ImploderBuilder using s_imploder', () => {
+    const builder = s_imploder();
+    expect(builder).toBeInstanceOf(ImploderBuilder);
+  });
+
+  it('should create an instance of ImploderBuilder with the provided source using s_imploder', () => {
+    const source = ['one', 'two', 'three'];
+    const builder = s_imploder().source(source);
+    expect(builder.build()).toEqual(source.join(''));
   });
 });
 
-describe('ImploderBuilder', () => {
+describe('imploder', () => {
+  it('general tests', () => {
+    const test = ['Apple', 'Bannana', 'Rasberry', 'Pie', 'Ananas', 'Lannanas'];
+    expect(s_imploder().source(test).separator(', ').build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, Lannanas');
+    expect(s_imploder().source(test).separator(', ').maxLength(40).suffix('...').build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, L...');
+    expect(s_imploder().source(test).separator(', ').maxLength(40).build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, L');
+    expect(s_imploder().source(test).separator(', ').maxLength(15).build()).toBe('Apple, Bannana,');
+    expect(s_imploder().source(test).separator(', ').maxLength(15).suffix('BBB').build()).toBe('Apple, Bannana,BBB');
+    expect(s_imploder().source(test).separator(', ').maxLength(15).suffix('...').build()).toBe('Apple, Bannana,...');
+    expect(s_imploder().source(test).separator('; ').build()).toBe('Apple; Bannana; Rasberry; Pie; Ananas; Lannanas');
+  });
+
   it('should create an instance of ImploderBuilder', () => {
     const builder = new ImploderBuilder();
     expect(builder).toBeInstanceOf(ImploderBuilder);
   });
 
   it('should create an instance of ImploderBuilder using static get method', () => {
-    const builder = ImploderBuilder.get();
+    const builder = s_imploder();
     expect(builder).toBeInstanceOf(ImploderBuilder);
   });
 
@@ -32,7 +43,7 @@ describe('ImploderBuilder', () => {
 
   it('should map source correctly', () => {
     const source = [1, 2, 3];
-    const builder = new ImploderBuilder().mappedSource(source, (it) => it.toString());
+    const builder = new ImploderBuilder().source(source, (it) => it.toString());
     expect(builder.build()).toEqual(source.join(''));
   });
 
@@ -72,6 +83,20 @@ describe('ImploderBuilder', () => {
     expect(builder.build()).toEqual('onetwothre...');
   });
 
+  it('should set and retrieve the suffix and max length correctly with map', () => {
+    const suffix = '...';
+    const source = [{test: 'one'}, {test: 'two'}, {test: 'three'}];
+    const builder = new ImploderBuilder().source(source, (it) => it.test).suffix(suffix).maxLength(10);
+    expect(builder.build()).toEqual('onetwothre...');
+  });
+
+  it('should set and retrieve the suffix and max length correctly', () => {
+    const suffix = '...';
+    const source = ['one', 'two', 'three'];
+    const builder = new ImploderBuilder().source(source).suffix(suffix).forceSuffix(true);
+    expect(builder.build()).toEqual('onetwothree...');
+  });
+
   it('should handle a null source gracefully', () => {
     const builder = new ImploderBuilder().source(null);
     expect(builder.build()).toEqual('');
@@ -81,48 +106,28 @@ describe('ImploderBuilder', () => {
     const builder = new ImploderBuilder();
     expect(builder.build()).toEqual('');
   });
-});
 
-describe('s_imploder', () => {
-  it('should create an instance of ImploderBuilder using s_imploder', () => {
-    const builder = s_imploder();
-    expect(builder).toBeInstanceOf(ImploderBuilder);
-  });
-
-  it('should create an instance of ImploderBuilder with the provided source using s_imploder', () => {
-    const source = ['one', 'two', 'three'];
-    const builder = s_imploder(source);
-    expect(builder.build()).toEqual(source.join(''));
-  });
-});
-
-describe('Edge Cases', () => {
   it('should handle a null source gracefully when using s_imploder', () => {
-    const builder = s_imploder(null);
-    expect(builder.build()).toEqual('');
-  });
-
-  it('should handle undefined values gracefully when using s_imploder', () => {
-    const builder = s_imploder(undefined);
+    const builder = s_imploder();
     expect(builder.build()).toEqual('');
   });
 
   it('should handle mapping with a null source when using mappedSource', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const builder = new ImploderBuilder().mappedSource(null, (it) => it.toString());
+    const builder = new ImploderBuilder().source(null, (it) => it.toString());
     expect(builder.build()).toEqual('');
   });
 
   it('should handle mapping without a map function when using mappedSource and numbers', () => {
     const source = [1, 2, 3];
-    const builder = new ImploderBuilder().mappedSource(source);
+    const builder = new ImploderBuilder().source(source, (it) => it.toString());
     expect(builder.build()).toEqual(source.join(''));
   });
 
   it('should handle mapping without a map function when using mappedSource and strings', () => {
     const source = ['1', '2', '3'];
-    const builder = new ImploderBuilder().mappedSource(source);
+    const builder = new ImploderBuilder().source(source);
     expect(builder.build()).toEqual(source.join(''));
   });
 
@@ -143,7 +148,7 @@ describe('Edge Cases', () => {
   it('should handle a negative offset when using offset and max length', () => {
     const offset = -2;
     const source = ['one', 'two', 'three'];
-    const builder = new ImploderBuilder().source(source).offset(offset);
+    const builder = new ImploderBuilder().source(source).offset(offset).maxLength()
     expect(builder.build()).toEqual('twothree');
   });
 
@@ -180,6 +185,13 @@ describe('Edge Cases', () => {
     expect(builder.build()).toEqual(expected);
   });
 
+  it('should always show suffix if wished', () => {
+    const suffix = '...';
+    const source = ['one', 'two', 'three'];
+    const builder = new ImploderBuilder().source(source).suffix(suffix).forceSuffix(true);
+    expect(builder.build()).toEqual(`${source.join('')}...`);
+  });
+
   it('should build correctly with offset and separator', () => {
     const source = ['one', 'two', 'three', 'four'];
     const offset = 1;
@@ -192,7 +204,7 @@ describe('Edge Cases', () => {
   it('should handle mapping with a custom mapping function when using mappedSource', () => {
     const source = [1, 2, 3];
     const mappingFunction = (it: number) => `Item ${it}`;
-    const builder = new ImploderBuilder().mappedSource(source, mappingFunction);
+    const builder = new ImploderBuilder().source(source, mappingFunction);
     const expected = source.map(mappingFunction).join('');
     expect(builder.build()).toEqual(expected);
   });
@@ -201,7 +213,7 @@ describe('Edge Cases', () => {
     const source = [1, 2, 3];
     const mappingFunction = (it: number) => `Item ${it}`;
     const maxLength = 5;
-    const builder = new ImploderBuilder().mappedSource(source, mappingFunction).maxLength(maxLength);
+    const builder = new ImploderBuilder().source(source, mappingFunction).maxLength(maxLength);
     const expected = source.map(mappingFunction).join('').slice(0, maxLength);
     expect(builder.build()).toEqual(expected);
   });

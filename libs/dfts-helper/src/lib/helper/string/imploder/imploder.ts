@@ -1,31 +1,28 @@
-import { s_from } from '../from/from';
-
-export const s_imploder = (source?: string[] | null): ImploderBuilder => {
-  return ImploderBuilder.get(source);
-};
+export function s_imploder(): ImploderBuilder {
+  return new ImploderBuilder();
+}
 
 export class ImploderBuilder {
   private _maxLength?: number | null;
   private _offset?: number | null;
   private _separator?: string | null;
   private _suffix?: string | null;
-  private _alwaysShowSuffix?: boolean | null;
+  private _forceSuffix?: boolean | null;
   private _source?: string[] | null;
 
-  static get(source?: string[] | null): ImploderBuilder {
-    return new ImploderBuilder().source(source);
-  }
+  source<T extends string>(source: T[] | null | undefined, mapFn?: (it: T) => string): this;
 
-  source(source?: string[] | null): this {
-    this._source = source;
-    return this;
-  }
+  source<T>(source: T[] | null | undefined, mapFn: (it: T) => string): this;
 
-  mappedSource<T>(source?: T[] | null, mapFn?: (it: T) => string): this {
-    if (mapFn && source) {
-      this._source = source.map(mapFn);
-    } else if (source && source.every((it: T) => typeof it === 'string' || typeof it === 'boolean' || typeof it === 'number')) {
-      this._source = source.map((it) => s_from(it as string | boolean | number));
+  source<T>(source: T[] | null | undefined, mapFn?: (it: T) => string): this {
+    if (source) {
+      if (source.every((it) => typeof it === 'string')) {
+        this._source = source as string[];
+      } else if (mapFn) {
+        this._source = source.map(mapFn);
+      } else {
+        throw 'mapFn required on none string arrays';
+      }
     }
     return this;
   }
@@ -50,8 +47,8 @@ export class ImploderBuilder {
     return this;
   }
 
-  alwaysShowSuffix(alwaysShowSuffix?: boolean | null): this {
-    this._alwaysShowSuffix = alwaysShowSuffix;
+  forceSuffix(forceSuffix?: boolean | null): this {
+    this._forceSuffix = forceSuffix;
     return this;
   }
 
@@ -65,11 +62,11 @@ export class ImploderBuilder {
       source = source.slice(this._offset, source.length);
     }
 
-    const toReturn = source.join(this._separator ?? '');
+    const joinedSource = source.join(this._separator ?? '');
 
-    if (this._maxLength && toReturn.length > this._maxLength) {
-      return `${toReturn.slice(0, this._maxLength)}${this._suffix ?? ''}`;
+    if (this._maxLength && joinedSource.length > this._maxLength) {
+      return `${joinedSource.slice(0, this._maxLength)}${this._suffix ?? ''}`;
     }
-    return `${toReturn}${this._alwaysShowSuffix ? this._suffix ?? '' : ''}`;
+    return `${joinedSource}${this._forceSuffix ? this._suffix ?? '' : ''}`;
   }
 }

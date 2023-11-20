@@ -1,10 +1,10 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
 import { NgbPaginator, NgbTableDataSource } from 'dfx-bootstrap-table';
 import { EventType, Helper } from '../Helper';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'app-paginator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h1>Pagination</h1>
@@ -31,22 +31,18 @@ import { EventType, Helper } from '../Helper';
       <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
       <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
     </table>
-    <ngb-paginator [page]="1" [maxSize]="4" [pageSize]="10" [collectionSize]="dataSource.data.length"></ngb-paginator>
+    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource.data.length" showFirstLastButtons/>
   `,
 })
-export class PaginationComponent implements OnInit, AfterViewInit {
+export class PaginationComponent implements AfterViewInit {
   // Pagination
-  @ViewChild(NgbPaginator) pagination: NgbPaginator | undefined;
+  @ViewChild(NgbPaginator) paginator?: NgbPaginator;
 
   public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource: NgbTableDataSource<EventType> = new NgbTableDataSource();
-
-  ngOnInit(): void {
-    this.dataSource = new NgbTableDataSource<EventType>(Helper.getTestData(250));
-  }
+  public dataSource = new NgbTableDataSource<EventType>(Helper.getTestData(250));
 
   ngAfterViewInit(): void {
-    // Sort has to be set after template initializing
-    this.dataSource.paginator = this.pagination;
+    // Pagination has to be set after template initializing
+    this.dataSource.paginator = this.paginator;
   }
 }

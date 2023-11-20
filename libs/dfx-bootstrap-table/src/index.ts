@@ -6,8 +6,9 @@ export * from './lib/sort/sort';
 export * from './lib/sort/sort-header';
 export * from './lib/sort/sort-module';
 
-export * from './lib/pagination/pagination';
-export * from './lib/pagination/pagination-module';
+export * from './lib/paginator/paginator.component'
+export * from './lib/paginator/paginator.module'
+export * from './lib/paginator/paginator-intl.service';
 
 export * from './lib/table/cell';
 export * from './lib/table/data-source';

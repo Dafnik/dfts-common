@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
 import { NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { EventType, Helper } from '../Helper';
+import { Helper } from '../Helper';
 
 @Component({
   selector: 'app-all',
@@ -33,16 +33,12 @@ import { EventType, Helper } from '../Helper';
     </table>
   `,
 })
-export class OrderingComponent implements OnInit, AfterViewInit {
+export class OrderingComponent implements AfterViewInit {
   // Sorting
-  @ViewChild(NgbSort) sort: NgbSort | undefined;
+  @ViewChild(NgbSort) sort?: NgbSort;
 
   public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource: NgbTableDataSource<EventType> = new NgbTableDataSource();
-
-  ngOnInit(): void {
-    this.dataSource = new NgbTableDataSource<EventType>(Helper.getTestData(250));
-  }
+  public dataSource = new NgbTableDataSource(Helper.getTestData(250));
 
   ngAfterViewInit(): void {
     // Sort has to be set after template initializing

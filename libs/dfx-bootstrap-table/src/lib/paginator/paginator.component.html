@@ -1,0 +1,81 @@
+<div
+  class="d-flex flex-column-reverse flex-lg-row justify-content-center justify-content-lg-end align-items-end align-items-lg-center gap-2 gap-lg-0"
+>
+  @if (!hidePageSize) {
+  <div class="d-inline-flex gap-2 align-items-center">
+    @if (_displayedPageSizeOptions.length <= 1) {
+    <small>{{ _intl.itemsPerPageLabel }} {{ pageSize }}</small>
+    } @else {
+    <small class="ws-nowrap">{{ _intl.itemsPerPageLabel }}</small>
+    <select
+      class="form-select form-select-sm"
+      name="pageSize"
+      [ngModel]="pageSize"
+      (ngModelChange)="_changePageSize($any($event))"
+      [disabled]="disabled"
+    >
+      @for (pageSizeOption of _displayedPageSizeOptions; track pageSizeOption) {
+      <option [ngValue]="pageSizeOption">{{ pageSizeOption }}</option>
+      }
+    </select>
+    }
+  </div>
+  }
+
+  <div class="d-inline-flex align-items-center">
+    <small class="ms-4 me-3">{{ _intl.getRangeLabel(pageIndex, pageSize, length) }}</small>
+    <ul [class]="'my-0 pagination' + (size ? ' pagination-' + size : '')">
+      @if (showFirstLastButtons) {
+      <li class="page-item" [class.disabled]="_previousButtonsDisabled()">
+        <button
+          [attr.aria-label]="_intl.firstPageLabel"
+          class="page-link"
+          (click)="firstPage()"
+          [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null"
+          [attr.aria-disabled]="_previousButtonsDisabled() ? 'true' : null"
+        >
+          <span aria-hidden="true"> &laquo;&laquo;</span>
+        </button>
+      </li>
+      }
+
+      <li class="page-item" [class.disabled]="_previousButtonsDisabled()">
+        <button
+          [attr.aria-label]="_intl.previousPageLabel"
+          class="page-link"
+          href
+          (click)="previousPage()"
+          [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null"
+          [attr.aria-disabled]="_previousButtonsDisabled() ? 'true' : null"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <li class="page-item" [class.disabled]="_nextButtonsDisabled()">
+        <button
+          [attr.aria-label]="_intl.nextPageLabel"
+          class="page-link"
+          (click)="nextPage()"
+          [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null"
+          [attr.aria-disabled]="_nextButtonsDisabled() ? 'true' : null"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+
+      @if(showFirstLastButtons) {
+      <li class="page-item" [class.disabled]="_nextButtonsDisabled()">
+        <button
+          [attr.aria-label]="_intl.lastPageLabel"
+          class="page-link"
+          (click)="lastPage()"
+          [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null"
+          [attr.aria-disabled]="_nextButtonsDisabled() ? 'true' : null"
+        >
+          <span aria-hidden="true">&raquo;&raquo;</span>
+        </button>
+      </li>
+      }
+    </ul>
+  </div>
+</div>

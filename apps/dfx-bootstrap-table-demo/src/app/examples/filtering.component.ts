@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 
 import { NgbTableDataSource } from 'dfx-bootstrap-table';
-import { EventType, Helper } from '../Helper';
+import { Helper } from '../Helper';
 
 @Component({
   selector: 'app-filtering',
@@ -41,16 +41,12 @@ import { EventType, Helper } from '../Helper';
     </table>
   `,
 })
-export class FilteringComponent implements OnInit, AfterViewInit {
+export class FilteringComponent implements AfterViewInit {
   // Filtering
   public filter = new UntypedFormControl();
 
   public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource: NgbTableDataSource<EventType> = new NgbTableDataSource();
-
-  ngOnInit(): void {
-    this.dataSource = new NgbTableDataSource<EventType>(Helper.getTestData(250));
-  }
+  public dataSource = new NgbTableDataSource(Helper.getTestData(250));
 
   ngAfterViewInit(): void {
     this.filter.valueChanges.subscribe((value: string) => {

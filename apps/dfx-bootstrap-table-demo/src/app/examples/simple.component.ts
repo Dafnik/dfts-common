@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { NgbTableDataSource } from 'dfx-bootstrap-table';
-import { EventType, Helper } from '../Helper';
+import { Helper } from '../Helper';
 
 @Component({
   selector: 'app-simple',
@@ -33,11 +33,7 @@ import { EventType, Helper } from '../Helper';
     </table>
   `,
 })
-export class SimpleComponent implements OnInit {
+export class SimpleComponent {
   public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource: NgbTableDataSource<EventType> = new NgbTableDataSource();
-
-  ngOnInit(): void {
-    this.dataSource = new NgbTableDataSource<EventType>(Helper.getTestData(30));
-  }
+  public dataSource = new NgbTableDataSource(Helper.getTestData(30));
 }

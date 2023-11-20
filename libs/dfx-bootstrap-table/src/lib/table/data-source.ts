@@ -9,10 +9,10 @@
 
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { DataSource } from '@angular/cdk/table';
-import {BehaviorSubject, combineLatest, merge, Observable, of, Subject, Subscription, tap} from 'rxjs';
+import {BehaviorSubject, combineLatest, merge, Observable, of, Subject, Subscription} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NgbSort, Sort } from '../sort/sort';
-import {NgbPaginator, PageEvent} from 'dfx-bootstrap-table';
+import {NgbPaginator, PageEvent} from '../paginator/paginator.component';
 
 /**
  * Corresponds to `Number.MAX_SAFE_INTEGER`. Moved out into a variable here due to

@@ -1,3 +1,13 @@
+# [3.0.0-beta.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0-beta.0...dfx-bootstrap-table-3.0.0-beta.1) (2023-11-20)
+
+### Bug Fixes
+
+- build error ([78a9f4c](https://github.com/Dafnik/dfts-common/commit/78a9f4cd3780f94ecb215149f928a01c66b7889c))
+
+### Features
+
+- refactor paginator ([2094171](https://github.com/Dafnik/dfts-common/commit/20941719fddea0f0e02e5cb153aa2f0030771638))
+
 # [3.0.0-beta.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-2.0.1...dfx-bootstrap-table-3.0.0-beta.0) (2023-11-09)
 
 ### Features

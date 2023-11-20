@@ -3,6 +3,7 @@
  */
 
 export * from './lib/sort/sort';
+export * from './lib/sort/sort-direction'
 export * from './lib/sort/sort-header';
 export * from './lib/sort/sort-module';
 

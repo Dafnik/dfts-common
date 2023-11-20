@@ -1,3 +1,9 @@
+# [3.0.0-beta.2](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0-beta.1...dfx-bootstrap-table-3.0.0-beta.2) (2023-11-20)
+
+### Chore
+
+- increase version
+
 # [3.0.0-beta.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0-beta.0...dfx-bootstrap-table-3.0.0-beta.1) (2023-11-20)
 
 ### Bug Fixes

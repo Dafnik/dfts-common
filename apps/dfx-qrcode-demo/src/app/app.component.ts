@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from "@angular/core";
-import { AsyncPipe, NgIf, NgOptimizedImage } from "@angular/common";
+import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
+import { AsyncPipe, NgOptimizedImage } from "@angular/common";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { debounceTime, of, startWith, switchMap } from "rxjs";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { debounceTime } from "rxjs";
+import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 
 import { cl_copy } from "dfts-helper";
 import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
@@ -23,7 +23,7 @@ import { ThemePicker } from "playground-lib";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePicker, BiComponent],
+  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, ReactiveFormsModule, ThemePicker, BiComponent],
   providers: [provideIcons({ copy })],
 })
 export class AppComponent {
@@ -48,76 +48,68 @@ export class AppComponent {
     imageHeight: [80, [Validators.required]],
   });
 
-  public formValues = this.form.valueChanges.pipe(debounceTime(400), startWith(this.form.getRawValue()));
+  public formValues = toSignal(this.form.valueChanges.pipe(debounceTime(400)), {initialValue: this.form.getRawValue()});
 
-  public previewHTML$ = this.formValues.pipe(
-    switchMap((form) =>
-      of(
-        `<qrcode [data]="'${form.data}'"
+  previewHTML = computed(() => {
+    const form = this.formValues()
+    return `<qrcode [data]="'${form.data}'"
         [allowEmptyString]="${form.allowEmptyString}"
         [elementType]="'${form.elementType}'"
         [errorCorrectionLevel]="'${form.errorCorrectionLevel}'"${
-          form.stylingEnabled
-            ? `
+      form.stylingEnabled
+        ? `
         [cssClass]="'${form.cssClass}'"
         [colorDark]="'${form.colorDark}'"
         [colorLight]="'${form.colorLight}'"
         [margin]="${form.margin}"
         [size]="${form.size}"`
-            : ''
-        }${
-          form.accessibilityEnabled
-            ? `
+        : ''
+    }${
+      form.accessibilityEnabled
+        ? `
         [ariaLabel]="'${form.ariaLabel}'"
         [title]="'${form.title}'"
         [alt]="'${form.alt}'"`
-            : ''
-        }${
-          form.imageEnabled
-            ? `
+        : ''
+    }${
+      form.imageEnabled
+        ? `
         [imageSrc]="'${form.imageSrc}'"
         [imageWidth]="${form.imageWidth}"
         [imageHeight]="${form.imageHeight}"`
-            : ''
-        } />`,
-      ),
-    ),
-  );
+        : ''
+    } />`
+  })
 
-  public previewConfig$ = this.formValues.pipe(
-    switchMap((form) =>
-      of(
-        `provideQRCode(
+  previewConfig = computed(() => {
+    const form = this.formValues();
+    return `provideQRCode(
       withAllowEmptyString(${form.allowEmptyString}),
       withElementType('${form.elementType}'),
       withErrorCorrectionLevel('${form.errorCorrectionLevel}'),${
-        form.stylingEnabled
-          ? `
+      form.stylingEnabled
+        ? `
       withCssClass('${form.cssClass}'),
       withColorDark('${form.colorDark}'),
       withColorLight('${form.colorLight}'),
       withMargin(${form.margin}),
       withSize(${form.size}),`
-          : ''
-      }${
-        form.imageEnabled
-          ? `
+        : ''
+    }${
+      form.imageEnabled
+        ? `
       withImage(
         withImageSrc('${form.imageSrc}'),
         withImageWidth(${form.imageWidth}),
         withImageHeight(${form.imageHeight})
       )`
-          : ''
-      }
-)`,
-      ),
-    ),
-  );
-
-  destroy = inject(DestroyRef);
+        : ''
+    }
+)`
+  })
 
   constructor() {
-    this.form.controls.accessibilityEnabled.valueChanges.pipe(takeUntilDestroyed(this.destroy)).subscribe((it) => {
+    this.form.controls.accessibilityEnabled.valueChanges.pipe(takeUntilDestroyed()).subscribe((it) => {
       if (it) {
         this.form.controls.ariaLabel.enable();
         this.form.controls.title.enable();
@@ -128,7 +120,7 @@ export class AppComponent {
         this.form.controls.alt.disable();
       }
     });
-    this.form.controls.imageEnabled.valueChanges.pipe(takeUntilDestroyed(this.destroy)).subscribe((it) => {
+    this.form.controls.imageEnabled.valueChanges.pipe(takeUntilDestroyed()).subscribe((it) => {
       if (it) {
         this.form.controls.imageSrc.enable();
         this.form.controls.imageWidth.enable();
@@ -140,7 +132,7 @@ export class AppComponent {
       }
     });
 
-    this.form.controls.stylingEnabled.valueChanges.pipe(takeUntilDestroyed(this.destroy)).subscribe((it) => {
+    this.form.controls.stylingEnabled.valueChanges.pipe(takeUntilDestroyed()).subscribe((it) => {
       if (it) {
         this.form.controls.cssClass.enable();
         this.form.controls.colorDark.enable();

@@ -24,23 +24,23 @@
   <div class="row g-4">
     <div class="col-12 col-md-6">
       <h4 class="mb-4">QR-Code Preview</h4>
-      <div class="d-flex flex-column align-items-center mb-5 gap-3 p-3 rounded-3 codebox" *ngIf="formValues | async as formValues">
+      <div class="d-flex flex-column align-items-center mb-5 gap-3 p-3 rounded-3 codebox">
         <qrcode
-          [data]="formValues!.data!"
-          [allowEmptyString]="formValues!.allowEmptyString!"
-          [elementType]="formValues!.elementType!"
-          [errorCorrectionLevel]="formValues!.errorCorrectionLevel!"
-          [ariaLabel]="formValues.accessibilityEnabled ? formValues.ariaLabel : undefined"
-          [title]="formValues.accessibilityEnabled ? formValues.title : undefined"
-          [alt]="formValues.accessibilityEnabled ? formValues.alt : undefined"
-          [cssClass]="formValues!.cssClass!"
-          [colorDark]="formValues!.colorDark!"
-          [colorLight]="formValues!.colorLight!"
-          [margin]="formValues!.margin!"
-          [size]="formValues!.size!"
-          [imageSrc]="formValues.imageEnabled ? formValues.imageSrc : undefined"
-          [imageWidth]="formValues.imageEnabled ? formValues.imageWidth : undefined"
-          [imageHeight]="formValues.imageEnabled ? formValues.imageHeight : undefined"
+          [data]="formValues().data!"
+          [allowEmptyString]="formValues().allowEmptyString!"
+          [elementType]="formValues().elementType!"
+          [errorCorrectionLevel]="formValues().errorCorrectionLevel!"
+          [ariaLabel]="formValues().accessibilityEnabled ? formValues().ariaLabel : undefined"
+          [title]="formValues().accessibilityEnabled ? formValues().title : undefined"
+          [alt]="formValues().accessibilityEnabled ? formValues().alt : undefined"
+          [cssClass]="formValues().cssClass!"
+          [colorDark]="$any(formValues().colorDark!)"
+          [colorLight]="$any(formValues().colorLight!)"
+          [margin]="formValues().margin!"
+          [size]="formValues().size!"
+          [imageSrc]="formValues().imageEnabled ? formValues().imageSrc : undefined"
+          [imageWidth]="formValues().imageEnabled ? formValues().imageWidth : undefined"
+          [imageHeight]="formValues().imageEnabled ? formValues().imageHeight : undefined"
           (qrCodeDataUrl)="setDataURL($event)"
         />
 
@@ -49,11 +49,11 @@
 
       <h6>HTML</h6>
 
-      <pre *ngIf="previewHTML$ | async as preview" class="codebox p-3 rounded">{{ preview }}</pre>
+      <pre class="codebox p-3 rounded">{{ previewHTML() }}</pre>
 
       <h6>Config</h6>
 
-      <pre *ngIf="previewConfig$ | async as preview" class="codebox p-3 rounded">{{ preview }}</pre>
+      <pre class="codebox p-3 rounded">{{ previewConfig() }}</pre>
 
       <h5 style="margin-top: 5vh; margin-bottom: 2vh">Installation</h5>
 

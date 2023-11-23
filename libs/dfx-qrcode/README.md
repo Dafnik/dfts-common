@@ -63,11 +63,11 @@ export class AppComponent {}
 ### Module
 
 ```typescript
-import { QRCodeModule } from 'dfx-qrcode';
+import { QRCodeComponent } from 'dfx-qrcode';
 
 @NgModule({
   declaration: [AppComponent],
-  imports: [QRCodeModule],
+  imports: [QRCodeComponent],
 })
 export class AppModule {}
 
@@ -127,7 +127,7 @@ export class AppComponent {}
 ```typescript
 import {
   provideQRCode,
-  QrCodeModule,
+  QRCodeComponent,
   withAllowEmptyString,
   withColorDark,
   withColorLight,
@@ -144,7 +144,7 @@ import {
 
 @NgModule({
   declaration: [AppComponent],
-  imports: [QRCodeModule],
+  imports: [QRCodeComponent],
   providers: [
     provideQRCode(
       withAllowEmptyString(false),

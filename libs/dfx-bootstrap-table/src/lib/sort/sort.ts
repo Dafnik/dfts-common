@@ -89,14 +89,14 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
 
   /** The sort direction of the currently active NgbSortable. */
   @Input('ngbSortDirection')
-  private direction: SortDirection = '';
+  direction: SortDirection = '';
 
   /**
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
    * May be overriden by the NgbSortable's disable clear input.
    */
   @Input({alias: 'ngbSortDisableClear', transform: booleanAttribute})
-  private disableClear = false;
+  disableClear = false;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   // eslint-disable-next-line @angular-eslint/no-output-rename

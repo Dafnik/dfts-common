@@ -58,7 +58,7 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   private _initialized!: boolean;
   private _intlChanges: Subscription;
 
-  @Input({transform: numberAttribute})
+  @Input({ transform: numberAttribute })
   set pageIndex(value: number) {
     this._pageIndex = Math.max(value, 0);
     this._changeDetectorRef.markForCheck();
@@ -68,7 +68,7 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   }
   private _pageIndex = 0;
 
-  @Input({transform: numberAttribute})
+  @Input({ transform: numberAttribute })
   set length(value: number) {
     this._length = Math.max(value, 0);
     this._changeDetectorRef.markForCheck();
@@ -79,7 +79,7 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   private _length = 0;
 
   /** Number of items to display on a page. By default, set to 10. */
-  @Input({transform: numberAttribute})
+  @Input({ transform: numberAttribute })
   set pageSize(value: number) {
     this._pageSize = Math.max(value, 0);
     this._updateDisplayedPageSizeOptions();
@@ -100,9 +100,9 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   }
   private _pageSizeOptions: number[] = [];
 
-  @Input({transform: booleanAttribute}) hidePageSize: boolean = false;
-  @Input({transform: booleanAttribute}) showFirstLastButtons: boolean = false;
-  @Input({transform: booleanAttribute}) disabled: boolean = false;
+  @Input({ transform: booleanAttribute }) hidePageSize: boolean = false;
+  @Input({ transform: booleanAttribute }) showFirstLastButtons: boolean = false;
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /**
    * The paginator display size.
@@ -123,7 +123,7 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
     this._intlChanges = _intl.changes.subscribe(() => this._changeDetectorRef.markForCheck());
 
     if (defaults) {
-      const {pageSize, pageSizeOptions, hidePageSize, showFirstLastButtons} = defaults;
+      const { pageSize, pageSizeOptions, hidePageSize, showFirstLastButtons } = defaults;
 
       if (pageSize != null) {
         this.pageSize = pageSize;

@@ -155,7 +155,7 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
   private _sortActionDescription = 'Sort';
 
   /** Overrides the disable clear value of the containing NgbSort for this NgbSortable. */
-  @Input({transform: booleanAttribute})
+  @Input({ transform: booleanAttribute })
   get disableClear(): boolean {
     return this._disableClear;
   }

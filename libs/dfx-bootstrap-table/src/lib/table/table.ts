@@ -71,10 +71,10 @@ export class NgbTable<T> extends CdkTable<T> {
   table = true;
 
   @HostBinding('class.table-hover')
-  @Input({transform: booleanAttribute})
+  @Input({ transform: booleanAttribute })
   hover = false;
 
   @HostBinding('class.table-striped')
-  @Input({transform: booleanAttribute})
+  @Input({ transform: booleanAttribute })
   striped = false;
 }

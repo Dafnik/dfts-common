@@ -39,7 +39,7 @@ import { Helper } from "../Helper";
       <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
       <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
     </table>
-    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource.data.length" showFirstLastButtons/>
+    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource.data.length" showFirstLastButtons />
   `,
 })
 export class AllComponent implements AfterViewInit {

@@ -3,12 +3,12 @@
  */
 
 export * from './lib/sort/sort';
-export * from './lib/sort/sort-direction'
+export * from './lib/sort/sort-direction';
 export * from './lib/sort/sort-header';
 export * from './lib/sort/sort-module';
 
-export * from './lib/paginator/paginator'
-export * from './lib/paginator/paginator.module'
+export * from './lib/paginator/paginator';
+export * from './lib/paginator/paginator.module';
 export * from './lib/paginator/paginator-intl.service';
 
 export * from './lib/table/cell';

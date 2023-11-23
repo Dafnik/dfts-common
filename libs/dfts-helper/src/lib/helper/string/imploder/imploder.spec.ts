@@ -17,7 +17,9 @@ describe('imploder', () => {
   it('general tests', () => {
     const test = ['Apple', 'Bannana', 'Rasberry', 'Pie', 'Ananas', 'Lannanas'];
     expect(s_imploder().source(test).separator(', ').build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, Lannanas');
-    expect(s_imploder().source(test).separator(', ').maxLength(40).suffix('...').build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, L...');
+    expect(s_imploder().source(test).separator(', ').maxLength(40).suffix('...').build()).toBe(
+      'Apple, Bannana, Rasberry, Pie, Ananas, L...',
+    );
     expect(s_imploder().source(test).separator(', ').maxLength(40).build()).toBe('Apple, Bannana, Rasberry, Pie, Ananas, L');
     expect(s_imploder().source(test).separator(', ').maxLength(15).build()).toBe('Apple, Bannana,');
     expect(s_imploder().source(test).separator(', ').maxLength(15).suffix('BBB').build()).toBe('Apple, Bannana,BBB');
@@ -85,8 +87,11 @@ describe('imploder', () => {
 
   it('should set and retrieve the suffix and max length correctly with map', () => {
     const suffix = '...';
-    const source = [{test: 'one'}, {test: 'two'}, {test: 'three'}];
-    const builder = new ImploderBuilder().source(source, (it) => it.test).suffix(suffix).maxLength(10);
+    const source = [{ test: 'one' }, { test: 'two' }, { test: 'three' }];
+    const builder = new ImploderBuilder()
+      .source(source, (it) => it.test)
+      .suffix(suffix)
+      .maxLength(10);
     expect(builder.build()).toEqual('onetwothre...');
   });
 
@@ -148,7 +153,7 @@ describe('imploder', () => {
   it('should handle a negative offset when using offset and max length', () => {
     const offset = -2;
     const source = ['one', 'two', 'three'];
-    const builder = new ImploderBuilder().source(source).offset(offset).maxLength()
+    const builder = new ImploderBuilder().source(source).offset(offset).maxLength();
     expect(builder.build()).toEqual('twothree');
   });
 

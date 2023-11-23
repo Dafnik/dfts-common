@@ -79,7 +79,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   readonly _stateChanges = new Subject<void>();
 
   /** The id of the most recently sorted NgbSortable. */
-  @Input({alias: 'ngbSortActive'}) active = ''
+  @Input({ alias: 'ngbSortActive' }) active = '';
 
   /**
    * The direction to set when an NgbSortable is initially sorted.
@@ -95,7 +95,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
    * May be overriden by the NgbSortable's disable clear input.
    */
-  @Input({alias: 'ngbSortDisableClear', transform: booleanAttribute})
+  @Input({ alias: 'ngbSortDisableClear', transform: booleanAttribute })
   disableClear = false;
 
   /** Event emitted when the user changes either the active sort or sort direction. */

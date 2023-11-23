@@ -137,10 +137,7 @@ export class NgbTableDataSource<T, P extends NgbPaginator = NgbPaginator> extend
    * @param data Data object that is being accessed.
    * @param sortHeaderId The name of the column that represents the data.
    */
-  sortingDataAccessor: (data: T, sortHeaderId: string) => string | number = (
-    data: T,
-    sortHeaderId: string,
-  ): string | number => {
+  sortingDataAccessor: (data: T, sortHeaderId: string) => string | number = (data: T, sortHeaderId: string): string | number => {
     const value = (data as unknown as Record<string, any>)[sortHeaderId];
 
     if (_isNumberValue(value)) {
@@ -263,29 +260,18 @@ export class NgbTableDataSource<T, P extends NgbPaginator = NgbPaginator> extend
       ? (merge(this._sort.sortChange, this._sort.initialized) as Observable<Sort | void>)
       : of(null);
     const pageChange: Observable<PageEvent | null | void> = this._paginator
-      ? (merge(
-        of(true),
-        this._paginator.page,
-        this._internalPageChanges,
-        this._paginator.initialized,
-      ) as Observable<PageEvent | void>)
+      ? (merge(of(true), this._paginator.page, this._internalPageChanges, this._paginator.initialized) as Observable<PageEvent | void>)
       : of(null);
     const dataStream = this._data;
     // Watch for base data or filter changes to provide a filtered set of data.
-    const filteredData = combineLatest([dataStream, this._filter]).pipe(
-      map(([data]) => this._filterData(data)),
-    );
+    const filteredData = combineLatest([dataStream, this._filter]).pipe(map(([data]) => this._filterData(data)));
     // Watch for filtered data or sort changes to provide an ordered set of data.
-    const orderedData = combineLatest([filteredData, sortChange]).pipe(
-      map(([data]) => this._orderData(data)),
-    );
+    const orderedData = combineLatest([filteredData, sortChange]).pipe(map(([data]) => this._orderData(data)));
     // Watch for ordered data or page changes to provide a paged set of data.
-    const paginatedData = combineLatest([orderedData, pageChange]).pipe(
-      map(([data]) => this._pageData(data)),
-    );
+    const paginatedData = combineLatest([orderedData, pageChange]).pipe(map(([data]) => this._pageData(data)));
     // Watched for paged data changes and send the result to the table to render.
     this._renderChangesSubscription?.unsubscribe();
-    this._renderChangesSubscription = paginatedData.subscribe(data => this._renderData.next(data));
+    this._renderChangesSubscription = paginatedData.subscribe((data) => this._renderData.next(data));
   }
 
   /**
@@ -297,10 +283,7 @@ export class NgbTableDataSource<T, P extends NgbPaginator = NgbPaginator> extend
     // If there is a filter string, filter out data that does not contain it.
     // Each data object is converted to a string using the function defined by filterPredicate.
     // May be overridden for customization.
-    this.filteredData =
-      this.filter == null || this.filter === ''
-        ? data
-        : data.filter(obj => this.filterPredicate(obj, this.filter));
+    this.filteredData = this.filter == null || this.filter === '' ? data : data.filter((obj) => this.filterPredicate(obj, this.filter));
 
     if (this.paginator) {
       this._updatePaginator(this.filteredData.length);

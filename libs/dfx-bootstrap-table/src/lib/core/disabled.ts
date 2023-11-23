@@ -6,8 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { AbstractConstructor, Constructor } from './constructor';
+import { AbstractConstructor, Constructor } from "./constructor";
 
 /** @docs-private */
 export interface CanDisable {
@@ -26,8 +25,8 @@ export function mixinDisabled<T extends Constructor<{}>>(base: T): CanDisableCto
     get disabled() {
       return this._disabled;
     }
-    set disabled(value: any) {
-      this._disabled = coerceBooleanProperty(value);
+    set disabled(it: boolean) {
+      this._disabled = it;
     }
 
     constructor(...args: any[]) {

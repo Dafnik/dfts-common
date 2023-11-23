@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation } from "@angular/core";
 import {
   CDK_ROW_TEMPLATE,
   CdkFooterRow,
@@ -17,11 +17,11 @@ import {
   CdkNoDataRow,
   CdkRow,
   CdkRowDef,
-  CdkTable,
-} from '@angular/cdk/table';
+  CdkTable
+} from "@angular/cdk/table";
 
 /**
- * Header row definition for the mat-table.
+ * Header row definition for the ngb-table.
  * Captures the header row's template and other header properties such as the columns to display.
  */
 @Directive({
@@ -32,7 +32,7 @@ import {
 export class NgbHeaderRowDef extends CdkHeaderRowDef {}
 
 /**
- * Footer row definition for the mat-table.
+ * Footer row definition for the ngb-table.
  * Captures the footer row's template and other footer properties such as the columns to display.
  */
 @Directive({
@@ -43,7 +43,7 @@ export class NgbHeaderRowDef extends CdkHeaderRowDef {}
 export class NgbFooterRowDef extends CdkFooterRowDef {}
 
 /**
- * Data row definition for the mat-table.
+ * Data row definition for the ngb-table.
  * Captures the data row's template and other properties such as the columns to display and
  * a when predicate that describes when this row should be used.
  */

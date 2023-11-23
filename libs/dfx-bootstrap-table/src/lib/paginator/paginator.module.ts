@@ -1,8 +1,8 @@
-import {FormsModule} from '@angular/forms';
-import {NgModule} from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { NgModule } from "@angular/core";
 
-import {NgbPaginator} from './paginator.component';
-import {NGB_PAGINATOR_INTL_PROVIDER} from './paginator-intl.service';
+import { NgbPaginator } from "./paginator";
+import { NGB_PAGINATOR_INTL_PROVIDER } from "./paginator-intl.service";
 
 @NgModule({
   imports: [FormsModule],

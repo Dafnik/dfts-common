@@ -47,7 +47,7 @@ copied most of their mat-table implementation and narrowed it down for Bootstrap
 ### Features
 
 - Extendable template
-- Builtin sorting, filtering and pagination available through `NgbTableDataSource` and `NgbPaginatior`
+- Builtin sorting, filtering and pagination available through `NgbTableDataSource`, `NgbSort` and `NgbPaginatior`
 
 ## Usage
 
@@ -76,12 +76,12 @@ npm install @angular/cdk
   npm install @angular/forms@latest
   ```
 
-### Getting started (table with filtering, sorting and pagination)
+### Example with everything
 
 This is the code for a table as you see it [above](#demo). Every code piece is located
 in [here](https://github.com/Dafnik/dfts-common/tree/main/apps/dfx-bootstrap-table-demo).
 
-[all.component.html](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/all/all.component.html)
+[all.component.html](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/examples/all.component.html)
 
 ```angular2html
 <!-- Filtering stuff -->
@@ -124,18 +124,12 @@ in [here](https://github.com/Dafnik/dfts-common/tree/main/apps/dfx-bootstrap-tab
 </table>
 
 <ngb-paginator
-  [page]="1"
-  [maxSize]="4"
+  [pageIndex]="1"
   [pageSize]="10"
-  [collectionSize]="dataSource.data.length"></ngb-paginator>
+  [length]="dataSource.data.length"></ngb-paginator>
 ```
 
-| ngb-table properties | Description                          | default |
-| -------------------- | ------------------------------------ | ------- |
-| hover                | Determines if the table is hoverable | `false` |
-| striped              | Determines if the table is striped   | `false` |
-
-[all.component.ts](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/all/all.component.ts)
+[all.component.ts](https://github.com/Dafnik/dfts-common/blob/main/apps/dfx-bootstrap-table-demo/src/app/examples/all.component.ts)
 
 ```typescript
 import { NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
@@ -148,16 +142,16 @@ export type eventModel = {
 @Component({
   selector: '...',
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements AfterViewInit {
   // Filtering
   public filter = new FormControl();
 
   // Sorting
-  @ViewChild(NgbSort) sort: NgbSort | undefined;
-  @ViewChild(NgbPaginator) paginator: NgbPaginator | undefined;
+  @ViewChild(NgbSort) sort!: NgbSort;
+  @ViewChild(NgbPaginator) paginator!: NgbPaginator;
 
   public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource: NgbTableDataSource<eventModel> = new NgbTableDataSource();
+  public dataSource: NgbTableDataSource<eventModel> = new NgbTableDataSource(this.eventModels);
 
   eventModels = [
     {
@@ -178,16 +172,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  ngOnInit(): void {
-    this.dataSource = new NgbTableDataSource<eventModel>(this.eventModels);
-  }
-
   ngAfterViewInit(): void {
     // Sort has to be set after template initializing
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
 
-    this.filter.valueChanges.subscribe((value) => {
+    this.filter.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {
       this.dataSource.filter = value;
     });
   }
@@ -215,6 +205,32 @@ import { DfxTableModule, DfxSortModule, DfxPaginationModule } from 'dfx-bootstra
 export class EventsModule {
 }
 ```
+
+### Inputs
+
+| ngb-table properties | Description                          | default |
+| -------------------- | ------------------------------------ | ------- |
+| hover                | Determines if the table is hoverable | `false` |
+| striped              | Determines if the table is striped   | `false` |
+
+| ngb-sort properties | Description                                                                                                     | default |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
+| ngbSortActive       | The id of the most recently sorted NgbSortable.                                                                 | `''`    |
+| ngbSortStart        | The direction to set when an NgbSortable is initially sorted. May be overriden by the NgbSortable's sort start. | `asc`   |
+| ngbSortDirection    | The sort direction of the currently active NgbSortable.                                                         |         |
+| ngbSortDisableClear | Whether to disable the user from clearing the sort by finishing the sort direction cycle.                       | `false` |
+
+| ngb-paginator properties | Description                                                   | default    |
+| ------------------------ | ------------------------------------------------------------- | ---------- |
+| pageIndex                | The current page.                                             | `0`        |
+| length                   | Length of all items.                                          | `0`        |
+| pageSize                 | Number of items to display on a page.                         | `10`       |
+| pageSizeOptions          | The set of provided page size options to display to the user. | `number[]` |
+| hidePageSize             | Hides the page size.                                          | `false`    |
+| showFirstLastButtons     | Show the first and last navigator buttons.                    | `false`    |
+| disabled                 | Disables the paginator.                                       | `false`    |
+
+### Getting started (table with filtering, sorting and pagination)
 
 #### 1. Write your ngb-table and provide data
 
@@ -342,7 +358,7 @@ for changes.
 
 To paginate the table's data, add a <ngb-paginator> after the table.
 
-If you are using the NgbTableDataSource for your table's data source, simply provide the DfxNgbPagination to your data
+If you are using the NgbTableDataSource for your table's data source, simply provide the `NgbPaginator` to your data
 source. It will automatically listen for page changes made by the user and send the right paged data to the table.
 
 Otherwise if you are implementing the logic to paginate your data, you will want to listen to the paginator's (page)

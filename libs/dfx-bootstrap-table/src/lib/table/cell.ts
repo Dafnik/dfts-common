@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input } from "@angular/core";
 import {
   CdkCell,
   CdkCellDef,
@@ -16,11 +16,11 @@ import {
   CdkFooterCellDef,
   CdkHeaderCell,
   CdkHeaderCellDef,
-  CdkTable,
-} from '@angular/cdk/table';
+  CdkTable
+} from "@angular/cdk/table";
 
 /**
- * Cell definition for the mat-table.
+ * Cell definition for the ngb-table.
  * Captures the template of a column's data row cell as well as cell-specific properties.
  */
 @Directive({
@@ -38,7 +38,7 @@ export class NgbCellDef<T> extends CdkCellDef {
 }
 
 /**
- * Header cell definition for the mat-table.
+ * Header cell definition for the ngb-table.
  * Captures the template of a column's header cell and as well as cell-specific properties.
  */
 @Directive({
@@ -48,7 +48,7 @@ export class NgbCellDef<T> extends CdkCellDef {
 export class NgbHeaderCellDef extends CdkHeaderCellDef {}
 
 /**
- * Footer cell definition for the mat-table.
+ * Footer cell definition for the ngb-table.
  * Captures the template of a column's footer cell and as well as cell-specific properties.
  */
 @Directive({
@@ -58,7 +58,7 @@ export class NgbHeaderCellDef extends CdkHeaderCellDef {}
 export class NgbFooterCellDef extends CdkFooterCellDef {}
 
 /**
- * Column definition for the mat-table.
+ * Column definition for the ngb-table.
  * Defines a set of cells available for a table column.
  */
 @Directive({

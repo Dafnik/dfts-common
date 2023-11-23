@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from "@angular/core";
+import { UntypedFormControl } from "@angular/forms";
 
-import { NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { Helper } from '../Helper';
+import { NgbPaginator, NgbSort, NgbTableDataSource } from "dfx-bootstrap-table";
+import { Helper } from "../Helper";
 
 @Component({
   selector: 'app-all',
@@ -24,7 +24,7 @@ import { Helper } from '../Helper';
       </ng-container>
 
       <ng-container ngbColumnDef="name">
-        <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>Name</th>
+        <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>Name and something long</th>
         <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.name }}</td>
       </ng-container>
 

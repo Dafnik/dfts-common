@@ -7,11 +7,11 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { AriaDescriber, FocusMonitor } from "@angular/cdk/a11y";
+import { ENTER, SPACE } from "@angular/cdk/keycodes";
 import {
   AfterViewInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -21,14 +21,14 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  ViewEncapsulation,
-} from '@angular/core';
-import { merge, Subscription } from 'rxjs';
-import { NGB_SORT_DEFAULT_OPTIONS, NgbSort, NgbSortable, NgbSortDefaultOptions, SortHeaderArrowPosition } from './sort';
-import { ngbSortAnimations } from './sort-animations';
-import { SortDirection } from './sort-direction';
-import { NgbSortHeaderIntl } from './sort-header-intl';
-import { CanDisable, mixinDisabled } from '../core/disabled';
+  ViewEncapsulation
+} from "@angular/core";
+import { merge, Subscription } from "rxjs";
+import { NGB_SORT_DEFAULT_OPTIONS, NgbSort, NgbSortable, NgbSortDefaultOptions, SortHeaderArrowPosition } from "./sort";
+import { ngbSortAnimations } from "./sort-animations";
+import { SortDirection } from "./sort-direction";
+import { NgbSortHeaderIntl } from "./sort-header-intl";
+import { CanDisable, mixinDisabled } from "../core/disabled";
 
 // Boilerplate for applying mixins to the sort header.
 /** @docs-private */
@@ -54,7 +54,7 @@ export interface ArrowViewStateTransition {
   toState?: ArrowViewState;
 }
 
-/** Column definition associated with a `MatSortHeader`. */
+/** Column definition associated with a `NgbSortHeader`. */
 interface NgbSortHeaderColumnDef {
   name: string;
 }
@@ -128,16 +128,16 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column's name.
    */
-  @Input('mat-sort-header') id!: string;
+  @Input('ngb-sort-header') id!: string;
 
   /** Sets the position of the arrow that displays when sorted. */
   @Input() arrowPosition: SortHeaderArrowPosition = 'after';
 
-  /** Overrides the sort start value of the containing MatSort for this MatSortable. */
+  /** Overrides the sort start value of the containing NgbSort for this NgbSortable. */
   @Input() start!: 'asc' | 'desc';
 
   /**
-   * Description applied to MatSortHeader's button element with aria-describedby. This text should
+   * Description applied to NgbSortHeader's button element with aria-describedby. This text should
    * describe the action that will occur when the user clicks the sort header.
    */
   @Input()
@@ -154,14 +154,14 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
   // which doesn't give any indication that it performs a sorting operation.
   private _sortActionDescription = 'Sort';
 
-  /** Overrides the disable clear value of the containing MatSort for this MatSortable. */
-  @Input()
+  /** Overrides the disable clear value of the containing NgbSort for this NgbSortable. */
+  @Input({transform: booleanAttribute})
   get disableClear(): boolean {
     return this._disableClear;
   }
 
-  set disableClear(v: BooleanInput) {
-    this._disableClear = coerceBooleanProperty(v);
+  set disableClear(it: boolean) {
+    this._disableClear = it;
   }
 
   private _disableClear!: boolean;
@@ -173,7 +173,7 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
      */
     public _intl: NgbSortHeaderIntl,
     private _changeDetectorRef: ChangeDetectorRef,
-    // `MatSort` is not optionally injected, but just asserted manually w/ better error.
+    // `NgbSort` is not optionally injected, but just asserted manually w/ better error.
     // tslint:disable-next-line: lightweight-tokens
     @Optional() public _sort: NgbSort,
     @Inject('NGB_SORT_HEADER_COLUMN_DEF')
@@ -295,7 +295,7 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
     }
   }
 
-  /** Whether this MatSortHeader is currently sorted in either ascending or descending order. */
+  /** Whether this NgbSortHeader is currently sorted in either ascending or descending order. */
   _isSorted() {
     return this._sort.active == this.id && (this._sort.direction === 'asc' || this._sort.direction === 'desc');
   }

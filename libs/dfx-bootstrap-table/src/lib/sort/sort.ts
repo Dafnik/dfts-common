@@ -7,17 +7,28 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Directive, EventEmitter, Inject, InjectionToken, Input, OnChanges, OnDestroy, OnInit, Optional, Output } from '@angular/core';
-import { Subject } from 'rxjs';
-import { SortDirection } from './sort-direction';
-import { HasInitialized, mixinInitialized } from '../core/initialized';
-import { CanDisable, mixinDisabled } from '../core/disabled';
+import {
+  booleanAttribute,
+  Directive,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output
+} from "@angular/core";
+import { Subject } from "rxjs";
+import { SortDirection } from "./sort-direction";
+import { HasInitialized, mixinInitialized } from "../core/initialized";
+import { CanDisable, mixinDisabled } from "../core/disabled";
 
 /** Position of the arrow that displays when sorted. */
 export type SortHeaderArrowPosition = 'before' | 'after';
 
-/** Interface for a directive that holds sorting state consumed by `MatSortHeader`. */
+/** Interface for a directive that holds sorting state consumed by `NgbSortHeader`. */
 export interface NgbSortable {
   /** The id of the column being sorted. */
   id: string;
@@ -46,10 +57,10 @@ export interface NgbSortDefaultOptions {
   arrowPosition?: SortHeaderArrowPosition;
 }
 
-/** Injection token to be used to override the default options for `mat-sort`. */
+/** Injection token to be used to override the default options for `ngb-sort`. */
 export const NGB_SORT_DEFAULT_OPTIONS = new InjectionToken<NgbSortDefaultOptions>('MAT_SORT_DEFAULT_OPTIONS');
 
-// Boilerplate for applying mixins to MatSort.
+// Boilerplate for applying mixins to NgbSort.
 /** @docs-private */
 const _NgbSortBase = mixinInitialized(mixinDisabled(class {}));
 
@@ -67,41 +78,25 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   /** Used to notify any child components listening to state changes. */
   readonly _stateChanges = new Subject<void>();
 
-  /** The id of the most recently sorted MatSortable. */
-  @Input('ngbSortActive') active = '';
+  /** The id of the most recently sorted NgbSortable. */
+  @Input({alias: 'ngbSortActive'}) active = ''
 
   /**
-   * The direction to set when an MatSortable is initially sorted.
-   * May be overriden by the MatSortable's sort start.
+   * The direction to set when an NgbSortable is initially sorted.
+   * May be overriden by the NgbSortable's sort start.
    */
   @Input('ngbSortStart') start: SortDirection = 'asc';
 
-  /** The sort direction of the currently active MatSortable. */
+  /** The sort direction of the currently active NgbSortable. */
   @Input('ngbSortDirection')
-  get direction(): SortDirection {
-    return this._direction;
-  }
-
-  set direction(direction: SortDirection) {
-    this._direction = direction;
-  }
-
-  private _direction: SortDirection = '';
+  private direction: SortDirection = '';
 
   /**
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
-   * May be overriden by the MatSortable's disable clear input.
+   * May be overriden by the NgbSortable's disable clear input.
    */
-  @Input('ngbSortDisableClear')
-  get disableClear(): boolean {
-    return this._disableClear;
-  }
-
-  set disableClear(v: BooleanInput) {
-    this._disableClear = coerceBooleanProperty(v);
-  }
-
-  private _disableClear = false;
+  @Input({alias: 'ngbSortDisableClear', transform: booleanAttribute})
+  private disableClear = false;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   // eslint-disable-next-line @angular-eslint/no-output-rename
@@ -116,7 +111,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   }
 
   /**
-   * Register function to be used by the contained NgbSortable. Adds the MatSortable to the
+   * Register function to be used by the contained NgbSortable. Adds the NgbSortable to the
    * collection of NgbSortable.
    */
   register(sortable: NgbSortable): void {
@@ -124,7 +119,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   }
 
   /**
-   * Unregister function to be used by the contained NgbSortable. Removes the MatSortable from the
+   * Unregister function to be used by the contained NgbSortable. Removes the NgbSortable from the
    * collection of contained NgbSortable.
    */
   deregister(sortable: NgbSortable): void {
@@ -135,7 +130,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   sort(sortable: NgbSortable): void {
     if (this.active != sortable.id) {
       this.active = sortable.id;
-      this.direction = sortable.start ? sortable.start : this.start;
+      this.direction = sortable.start ?? this.start;
     } else {
       this.direction = this.getNextSortDirection(sortable);
     }

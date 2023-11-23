@@ -13,10 +13,22 @@ import {
   CDK_TABLE,
   CDK_TABLE_TEMPLATE,
   CdkTable,
-  STICKY_POSITIONING_LISTENER,
-} from '@angular/cdk/table';
-import { ChangeDetectionStrategy, Component, Directive, HostBinding, Input, ViewEncapsulation } from '@angular/core';
-import { _DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY } from '@angular/cdk/collections';
+  STICKY_POSITIONING_LISTENER
+} from "@angular/cdk/table";
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  Directive,
+  HostBinding,
+  Input,
+  ViewEncapsulation
+} from "@angular/core";
+import {
+  _DisposeViewRepeaterStrategy,
+  _RecycleViewRepeaterStrategy,
+  _VIEW_REPEATER_STRATEGY
+} from "@angular/cdk/collections";
 
 /**
  * Enables the recycle view repeater strategy, which reduces rendering latency. Not compatible with
@@ -59,10 +71,10 @@ export class NgbTable<T> extends CdkTable<T> {
   table = true;
 
   @HostBinding('class.table-hover')
-  @Input()
+  @Input({transform: booleanAttribute})
   hover = false;
 
   @HostBinding('class.table-striped')
-  @Input()
+  @Input({transform: booleanAttribute})
   striped = false;
 }

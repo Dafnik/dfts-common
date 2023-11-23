@@ -12,13 +12,13 @@ import {
   OnInit,
   Optional,
   Output,
-  ViewEncapsulation,
-} from '@angular/core';
+  ViewEncapsulation
+} from "@angular/core";
 
-import {Subscription} from 'rxjs';
+import { Subscription } from "rxjs";
 
-import {HasInitialized, mixinInitialized} from '../core/initialized';
-import {NgbPaginatorIntl} from './paginator-intl.service';
+import { HasInitialized, mixinInitialized } from "../core/initialized";
+import { NgbPaginatorIntl } from "./paginator-intl.service";
 
 export type PageEvent = {
   pageIndex: number;
@@ -45,7 +45,7 @@ const _NgbPaginatorMixinBase = mixinInitialized(class {});
 @Component({
   selector: 'ngb-paginator',
   exportAs: 'ngbPaginator',
-  templateUrl: './paginator.component.html',
+  templateUrl: './paginator.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styles: `
@@ -78,7 +78,7 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   }
   private _length = 0;
 
-  /** Number of items to display on a page. By default, set to 50. */
+  /** Number of items to display on a page. By default, set to 10. */
   @Input({transform: numberAttribute})
   set pageSize(value: number) {
     this._pageSize = Math.max(value, 0);

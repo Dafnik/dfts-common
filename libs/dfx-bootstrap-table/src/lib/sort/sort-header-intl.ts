@@ -7,11 +7,11 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Injectable, Optional, SkipSelf } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, Optional, SkipSelf } from "@angular/core";
+import { Subject } from "rxjs";
 
 /**
- * To modify the labels and text displayed, create a new instance of MatSortHeaderIntl and
+ * To modify the labels and text displayed, create a new instance of NgbSortHeaderIntl and
  * include it in a custom provider.
  */
 @Injectable({ providedIn: 'root' })
@@ -30,7 +30,7 @@ export function NG_SORT_HEADER_INTL_PROVIDER_FACTORY(parentIntl: NgbSortHeaderIn
 
 /** @docs-private */
 export const NGB_SORT_HEADER_INTL_PROVIDER = {
-  // If there is already an MatSortHeaderIntl available, use that. Otherwise, provide a new one.
+  // If there is already an NgbSortHeaderIntl available, use that. Otherwise, provide a new one.
   provide: NgbSortHeaderIntl,
   deps: [[new Optional(), new SkipSelf(), NgbSortHeaderIntl]],
   useFactory: NG_SORT_HEADER_INTL_PROVIDER_FACTORY,

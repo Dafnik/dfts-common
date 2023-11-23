@@ -9,7 +9,8 @@
     "hook:commit-msg": "npx --no-install commitlint --edit \"$1\"",
     "start": "nx serve",
     "test": "nx test",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "generateIcons": "node ./tools/scripts/generateIcons.js && pnpm prettify"
   },
   "private": true,
   "dependencies": {
@@ -56,7 +57,7 @@
     "@types/node": "18.18.8",
     "@typescript-eslint/eslint-plugin": "6.10.0",
     "@typescript-eslint/parser": "6.10.0",
-    "bootstrap-icons": "^1.11.1",
+    "bootstrap-icons": "1.11.2",
     "eslint": "8.53.0",
     "eslint-config-prettier": "9.0.0",
     "fs-extra": "^11.1.1",

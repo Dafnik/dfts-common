@@ -22,14 +22,14 @@ const typeFile = `${generatedDestFolder}/icon-names.type.ts`;
 
 let exportAllString = `\nexport const allIcons = {\n`;
 
-let exportAllIconsList = `import {IconName} from './icon-names.type'\n\n`;
+let exportAllIconsList = `import {BiName} from './icon-names.type'\n\n`;
 exportAllIconsList += `/** List with all icons. */`;
-exportAllIconsList += `\nexport const IconNameList: IconName[] = [\n`;
+exportAllIconsList += `\nexport const BiNameList: BiName[] = [\n`;
 
 let exportTypeString = `/** Type for icon names. */`;
-exportTypeString += `\nexport type IconName =\n`;
+exportTypeString += `\nexport type BiName =\n`;
 let exportEnumString = `/** Enum with all icons. */`;
-exportEnumString += `\nexport enum IconNamesEnum {\n`;
+exportEnumString += `\nexport enum BiNamesEnum {\n`;
 
 fs.emptyDirSync(iconsDestFolder);
 fs.readdirSync(iconsSrcFolder).forEach((filename) => {

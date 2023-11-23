@@ -19,7 +19,7 @@ import { WINDOW } from 'dfx-helper';
       <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
         @for (icon of searchResults(); track icon) {
         <li class="col mb-4">
-          <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{ icon }}/">
+          <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
             <div class="px-3 py-5 mb-2 text-center rounded icon-block">
               @defer (on viewport, idle) {
               <bi [name]="icon" />

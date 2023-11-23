@@ -6,8 +6,9 @@
 [![NPM](https://img.shields.io/npm/dw/dfx-qrcode?logo=npm)](https://npmjs.org/package/dfx-qrcode)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfx-qrcode)
 
-- [Demo](https://qrcode-demo.dafnik.me)
+- [Demo](https://playground.dafnik.me/qrcode/)
 - [Installation](#installation)
+- [Version compatibility](#version-compatibility)
 - [Usage](#usage)
   - [Standalone Components](#standalone-components)
   - [Module](#module)
@@ -24,7 +25,7 @@
 - Tiny (~ 5.9kB minified + gzipped)
 - Accessible
 - Server Side Rendering (Angular Universal)
-- Standalone Component
+- Standalone Component API
 
 ## Version compatibility
 
@@ -102,6 +103,7 @@ import {
 
 @Component({
   // ...
+  standalone: true,
   imports: [QRCodeComponent],
   providers: [
     provideQRCode(
@@ -117,6 +119,7 @@ import {
       withSize(5),
     ),
   ],
+  template: ` <qrcode data="hello" /> `,
   // ...
 })
 export class AppComponent {}

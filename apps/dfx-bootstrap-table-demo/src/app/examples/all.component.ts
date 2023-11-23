@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from "@angular/core";
-import { UntypedFormControl } from "@angular/forms";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 
-import { NgbPaginator, NgbSort, NgbTableDataSource } from "dfx-bootstrap-table";
-import { Helper } from "../Helper";
+import { NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
+import { Helper } from '../Helper';
 
 @Component({
   selector: 'app-all',

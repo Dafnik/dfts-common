@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation } from '@angular/core';
 import {
   CDK_ROW_TEMPLATE,
   CdkFooterRow,
@@ -17,8 +17,8 @@ import {
   CdkNoDataRow,
   CdkRow,
   CdkRowDef,
-  CdkTable
-} from "@angular/cdk/table";
+  CdkTable,
+} from '@angular/cdk/table';
 
 /**
  * Header row definition for the ngb-table.

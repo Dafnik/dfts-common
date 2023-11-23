@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
-import { AsyncPipe, NgOptimizedImage } from "@angular/common";
-import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { debounceTime } from "rxjs";
-import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
+import { debounceTime } from 'rxjs';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
-import { cl_copy } from "dfts-helper";
-import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
-import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
-import { BiComponent, copy, provideIcons } from "dfx-bootstrap-icons";
-import { ThemePicker } from "playground-lib";
+import { cl_copy } from 'dfts-helper';
+import { ColorValueHex, QRCodeErrorCorrectionLevel } from 'dfts-qrcode';
+import { downloadQRCode, QRCodeComponent, QRCodeElementType } from 'dfx-qrcode';
+import { BiComponent, copy, provideIcons } from 'dfx-bootstrap-icons';
+import { ThemePicker } from 'playground-lib';
 
 @Component({
   standalone: true,
@@ -48,38 +48,38 @@ export class AppComponent {
     imageHeight: [80, [Validators.required]],
   });
 
-  public formValues = toSignal(this.form.valueChanges.pipe(debounceTime(400)), {initialValue: this.form.getRawValue()});
+  public formValues = toSignal(this.form.valueChanges.pipe(debounceTime(400)), { initialValue: this.form.getRawValue() });
 
   previewHTML = computed(() => {
-    const form = this.formValues()
+    const form = this.formValues();
     return `<qrcode [data]="'${form.data}'"
         [allowEmptyString]="${form.allowEmptyString}"
         [elementType]="'${form.elementType}'"
         [errorCorrectionLevel]="'${form.errorCorrectionLevel}'"${
-      form.stylingEnabled
-        ? `
+          form.stylingEnabled
+            ? `
         [cssClass]="'${form.cssClass}'"
         [colorDark]="'${form.colorDark}'"
         [colorLight]="'${form.colorLight}'"
         [margin]="${form.margin}"
         [size]="${form.size}"`
-        : ''
-    }${
-      form.accessibilityEnabled
-        ? `
+            : ''
+        }${
+          form.accessibilityEnabled
+            ? `
         [ariaLabel]="'${form.ariaLabel}'"
         [title]="'${form.title}'"
         [alt]="'${form.alt}'"`
-        : ''
-    }${
-      form.imageEnabled
-        ? `
+            : ''
+        }${
+          form.imageEnabled
+            ? `
         [imageSrc]="'${form.imageSrc}'"
         [imageWidth]="${form.imageWidth}"
         [imageHeight]="${form.imageHeight}"`
-        : ''
-    } />`
-  })
+            : ''
+        } />`;
+  });
 
   previewConfig = computed(() => {
     const form = this.formValues();
@@ -87,26 +87,26 @@ export class AppComponent {
       withAllowEmptyString(${form.allowEmptyString}),
       withElementType('${form.elementType}'),
       withErrorCorrectionLevel('${form.errorCorrectionLevel}'),${
-      form.stylingEnabled
-        ? `
+        form.stylingEnabled
+          ? `
       withCssClass('${form.cssClass}'),
       withColorDark('${form.colorDark}'),
       withColorLight('${form.colorLight}'),
       withMargin(${form.margin}),
       withSize(${form.size}),`
-        : ''
-    }${
-      form.imageEnabled
-        ? `
+          : ''
+      }${
+        form.imageEnabled
+          ? `
       withImage(
         withImageSrc('${form.imageSrc}'),
         withImageWidth(${form.imageWidth}),
         withImageHeight(${form.imageHeight})
       )`
-        : ''
-    }
-)`
-  })
+          : ''
+      }
+)`;
+  });
 
   constructor() {
     this.form.controls.accessibilityEnabled.valueChanges.pipe(takeUntilDestroyed()).subscribe((it) => {

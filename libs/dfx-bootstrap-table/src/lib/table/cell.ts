@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Directive, HostBinding, Input } from "@angular/core";
+import { Directive, HostBinding, Input } from '@angular/core';
 import {
   CdkCell,
   CdkCellDef,
@@ -16,8 +16,8 @@ import {
   CdkFooterCellDef,
   CdkHeaderCell,
   CdkHeaderCellDef,
-  CdkTable
-} from "@angular/cdk/table";
+  CdkTable,
+} from '@angular/cdk/table';
 
 /**
  * Cell definition for the ngb-table.

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
-import { BiComponent, BiName, circleHalf, moonStarsFill, provideIcons, sunFill } from "dfx-bootstrap-icons";
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BiComponent, BiName, circleHalf, moonStarsFill, provideIcons, sunFill } from 'dfx-bootstrap-icons';
 
 interface Theme {
   id: 'auto' | 'dark' | 'light';

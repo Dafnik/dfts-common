@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { AbstractConstructor, Constructor } from "./constructor";
+import { AbstractConstructor, Constructor } from './constructor';
 
 /** @docs-private */
 export interface CanDisable {

@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal, WritableSignal } from "@angular/core";
-import { NgOptimizedImage } from "@angular/common";
+import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
-import { BiComponent, BiName, BOOTSTRAP_ICONS_VERSION } from "dfx-bootstrap-icons";
-import { RouterLink, RouterOutlet } from "@angular/router";
-import { cl_copy } from "dfts-helper";
-import { delay, of } from "rxjs";
-import { ThemePicker } from "playground-lib";
+import { BiComponent, BiName, BOOTSTRAP_ICONS_VERSION } from 'dfx-bootstrap-icons';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { cl_copy } from 'dfts-helper';
+import { delay, of } from 'rxjs';
+import { ThemePicker } from 'playground-lib';
 
 @Component({
   template: `
@@ -18,7 +18,7 @@ import { ThemePicker } from "playground-lib";
         </a>
         <ul class="navbar-nav flex-row gap-2 me-auto">
           <li class="nav-item">
-            <a class="nav-link text-dark" routerLink="/usage">Usage</a>
+            <a class="nav-link text-dark" href="https://npmjs.com/dfx-bootstrap-icons#usage" target="_blank" rel="noopener">Usage</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" href="https://npmjs.com/dfx-bootstrap-icons" target="_blank" rel="noopener">NPM</a>

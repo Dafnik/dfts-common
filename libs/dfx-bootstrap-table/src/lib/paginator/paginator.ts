@@ -12,13 +12,13 @@ import {
   OnInit,
   Optional,
   Output,
-  ViewEncapsulation
-} from "@angular/core";
+  ViewEncapsulation,
+} from '@angular/core';
 
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 
-import { HasInitialized, mixinInitialized } from "../core/initialized";
-import { NgbPaginatorIntl } from "./paginator-intl.service";
+import { HasInitialized, mixinInitialized } from '../core/initialized';
+import { NgbPaginatorIntl } from './paginator-intl.service';
 
 export type PageEvent = {
   pageIndex: number;

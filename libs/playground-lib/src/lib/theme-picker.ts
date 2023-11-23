@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BiComponent, BiName, circleHalf, moonStarsFill, provideIcons, sunFill } from 'dfx-bootstrap-icons';
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BiComponent, BiName, circleHalf, moonStarsFill, provideIcons, sunFill } from "dfx-bootstrap-icons";
 
 interface Theme {
   id: 'auto' | 'dark' | 'light';
@@ -35,7 +35,7 @@ interface Theme {
   imports: [ReactiveFormsModule, BiComponent],
   providers: [provideIcons({ circleHalf, sunFill, moonStarsFill })],
 })
-export class ThemePickerComponent {
+export class ThemePicker {
   themes: Theme[] = [
     { id: 'auto', name: 'Auto', icon: 'circle-half' },
     { id: 'light', name: 'Light', icon: 'sun-fill' },

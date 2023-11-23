@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, signal, WritableSignal } from "@angular/core";
+import { NgOptimizedImage } from "@angular/common";
 
-import { BiComponent, BiName, BOOTSTRAP_ICONS_VERSION } from 'dfx-bootstrap-icons';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { cl_copy } from 'dfts-helper';
-import { delay, of } from 'rxjs';
-import { ThemePickerComponent } from './theme.component';
+import { BiComponent, BiName, BOOTSTRAP_ICONS_VERSION } from "dfx-bootstrap-icons";
+import { RouterLink, RouterOutlet } from "@angular/router";
+import { cl_copy } from "dfts-helper";
+import { delay, of } from "rxjs";
+import { ThemePicker } from "playground-lib";
 
 @Component({
   template: `
@@ -110,7 +110,7 @@ import { ThemePickerComponent } from './theme.component';
     }
   `,
   standalone: true,
-  imports: [NgOptimizedImage, RouterLink, RouterOutlet, BiComponent, ThemePickerComponent],
+  imports: [NgOptimizedImage, RouterLink, RouterOutlet, BiComponent, ThemePicker],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
 })

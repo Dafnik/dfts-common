@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
-import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from "@angular/core";
+import { AsyncPipe, NgIf, NgOptimizedImage } from "@angular/common";
+import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { debounceTime, of, startWith, switchMap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { debounceTime, of, startWith, switchMap } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { cl_copy } from 'dfts-helper';
-import { ColorValueHex, QRCodeErrorCorrectionLevel } from 'dfts-qrcode';
-import { downloadQRCode, QRCodeComponent, QRCodeElementType } from 'dfx-qrcode';
-import { ThemePickerComponent } from './theme.component';
-import { BiComponent, copy, provideIcons } from 'dfx-bootstrap-icons';
+import { cl_copy } from "dfts-helper";
+import { ColorValueHex, QRCodeErrorCorrectionLevel } from "dfts-qrcode";
+import { downloadQRCode, QRCodeComponent, QRCodeElementType } from "dfx-qrcode";
+import { BiComponent, copy, provideIcons } from "dfx-bootstrap-icons";
+import { ThemePicker } from "playground-lib";
 
 @Component({
   standalone: true,
@@ -23,7 +23,7 @@ import { BiComponent, copy, provideIcons } from 'dfx-bootstrap-icons';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePickerComponent, BiComponent],
+  imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, NgIf, ReactiveFormsModule, ThemePicker, BiComponent],
   providers: [provideIcons({ copy })],
 })
 export class AppComponent {

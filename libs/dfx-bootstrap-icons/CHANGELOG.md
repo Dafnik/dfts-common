@@ -1,3 +1,10 @@
+# [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-0.0.1-beta.0...dfx-bootstrap-icons-1.0.0) (2023-11-23)
+
+### Features
+
+- finish up dfx-bootstrap-icons README ([38d80f7](https://github.com/Dafnik/dfts-common/commit/38d80f72b44b217c41f44ff83c92d8e88cf6b4d1))
+- update to boostrap-icons v1.11.2 ([cf4d563](https://github.com/Dafnik/dfts-common/commit/cf4d563c3759ac0dfbce42523fe6f2b8e910f5b9))
+
 ## 0.0.1-beta.0 (2023-11-09)
 
 ### Features

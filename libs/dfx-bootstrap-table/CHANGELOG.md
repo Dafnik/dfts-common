@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0-beta.3...dfx-bootstrap-table-3.0.0) (2023-11-23)
+
+### Bug Fixes
+
+- sort error ([94de8be](https://github.com/Dafnik/dfts-common/commit/94de8beb8a20661d4d288acf20aa87059c0484bb))
+
+### Features
+
+- finish up dfx-bootstrap-icons README ([38d80f7](https://github.com/Dafnik/dfts-common/commit/38d80f72b44b217c41f44ff83c92d8e88cf6b4d1))
+
 # [3.0.0-beta.3](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0-beta.2...dfx-bootstrap-table-3.0.0-beta.3) (2023-11-20)
 
 ### Bug Fixes

@@ -1,3 +1,10 @@
+# [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.0.0-beta.0...dfx-qrcode-2.0.0) (2023-11-23)
+
+### Features
+
+- finish up dfx-bootstrap-icons README ([38d80f7](https://github.com/Dafnik/dfts-common/commit/38d80f72b44b217c41f44ff83c92d8e88cf6b4d1))
+- remove last occurrence of ngIf ([592b061](https://github.com/Dafnik/dfts-common/commit/592b061b776843a632c86b905402216d0cec1151))
+
 # [2.0.0-beta.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-1.0.1...dfx-qrcode-2.0.0-beta.0) (2023-11-09)
 
 ### Features

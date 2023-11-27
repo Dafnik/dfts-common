@@ -193,10 +193,6 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
     // of this single reference.
     super();
 
-    if (!this.id && this._columnDef) {
-      this.id = this._columnDef.name;
-    }
-
     if (defaultOptions?.arrowPosition) {
       this.arrowPosition = defaultOptions?.arrowPosition;
     }
@@ -205,6 +201,11 @@ export class NgbSortHeader extends _NgbSortHeaderBase implements CanDisable, Ngb
   }
 
   ngOnInit() {
+    if (!this.id && this._columnDef) {
+      this.id = this._columnDef.name.slice();
+      console.log(`const sort id "${this.id}"`)
+    }
+
     // Initialize the direction of the arrow and set the view state to be immediately that state.
     this._updateArrowDirection();
     this._setAnimationTransitionState({

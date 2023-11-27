@@ -68,7 +68,7 @@ const _NgbSortBase = mixinInitialized(mixinDisabled(class {}));
 @Directive({
   selector: '[ngb-sort]',
   exportAs: 'ngbSort',
-  host: { class: 'ngb--sort' },
+  host: { class: 'ngb-sort' },
   inputs: ['disabled: ngbSortDisabled'],
 })
 export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized, OnChanges, OnDestroy, OnInit {

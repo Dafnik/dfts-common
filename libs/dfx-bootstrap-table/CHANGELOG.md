@@ -1,3 +1,9 @@
+## [3.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0...dfx-bootstrap-table-3.0.1) (2023-11-27)
+
+### Bug Fixes
+
+- sort active always empty ([af87569](https://github.com/Dafnik/dfts-common/commit/af8756978a4d75d1c3bf12798cc4f1e42e9870c2))
+
 # [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0-beta.3...dfx-bootstrap-table-3.0.0) (2023-11-23)
 
 ### Bug Fixes

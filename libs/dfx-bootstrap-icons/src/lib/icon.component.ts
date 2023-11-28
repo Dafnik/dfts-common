@@ -11,8 +11,15 @@ import {
 } from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
-import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_PICKED } from './icons.config';
-import { ColorValueHex, IconsType } from './types';
+import {
+  DEFAULT_COLOR,
+  DEFAULT_ICON_SIZE,
+  ICON_COLOR,
+  ICON_HEIGHT,
+  ICON_WIDTH,
+  ICONS_LOADER,
+} from "./icons.config";
+import { ColorValueHex } from './types';
 import { toEscapedName } from './internal/toEscapedName';
 
 @Component({
@@ -38,8 +45,7 @@ export class BiComponent implements OnInit, OnChanges {
 
   private renderer = inject(Renderer2);
 
-  // icons are provided as an array of objects because of "multi: true"
-  readonly pickedIcons: IconsType = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType;
+  private iconsLoader = inject(ICONS_LOADER);
 
   ngOnInit(): void {
     this.renderIcon();
@@ -52,28 +58,28 @@ export class BiComponent implements OnInit, OnChanges {
   renderIcon(): void {
     const escapedName = toEscapedName(this.name);
 
-    let svg = this.pickedIcons[escapedName] || undefined;
+    this.iconsLoader(escapedName).subscribe((svg) => {
+      if (!svg) {
+        console.warn(`BiComponent: Icon ${this.name} not found, path: ${escapedName}`);
+        return;
+      }
 
-    if (!svg) {
-      console.warn(`BiComponent: Icon ${this.name} not found, path: ${escapedName}`);
-      return;
-    }
+      if (!this.clearDimensions) {
+        svg = setSize(svg, 'width', this.width);
+        svg = setSize(svg, 'height', this.height);
+      }
 
-    if (!this.clearDimensions) {
-      svg = setSize(svg, 'width', this.width);
-      svg = setSize(svg, 'height', this.height);
-    }
+      if (this.color) {
+        svg = setFillColor(svg, this.color);
+      }
 
-    if (this.color) {
-      svg = setFillColor(svg, this.color);
-    }
+      this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-label', this.ariaLabel ?? '');
+      if (this.ariaLabel) {
+        this.renderer.setAttribute(this.elementRef.nativeElement, 'role', 'img');
+      }
 
-    this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-label', this.ariaLabel ?? '');
-    if (this.ariaLabel) {
-      this.renderer.setAttribute(this.elementRef.nativeElement, 'role', 'img');
-    }
-
-    this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', svg);
+      this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', svg);
+    })
   }
 }
 

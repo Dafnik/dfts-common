@@ -18,7 +18,11 @@
         "assets": [
           "apps/dfx-bootstrap-icons-demo/src/favicon.ico",
           "apps/dfx-bootstrap-icons-demo/src/assets",
-          "apps/dfx-bootstrap-icons-demo/src/404.html"
+          {
+            "glob": "**/*",
+            "input": "./node_modules/bootstrap-icons/icons/",
+            "output": "./icons/"
+          }
         ],
         "styles": ["apps/dfx-bootstrap-icons-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
         "scripts": []

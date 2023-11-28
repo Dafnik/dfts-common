@@ -6,21 +6,13 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
   Renderer2,
 } from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
-import {
-  DEFAULT_COLOR,
-  DEFAULT_ICON_SIZE,
-  ICON_COLOR,
-  ICON_HEIGHT,
-  ICON_WIDTH,
-  ICONS_LOADER,
-} from "./icons.config";
+import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER } from './icons.config';
 import { ColorValueHex } from './types';
-import { toEscapedName } from './internal/toEscapedName';
+import { distinctUntilChanged, take } from "rxjs";
 
 @Component({
   selector: 'bi, *[bi]',
@@ -28,12 +20,14 @@ import { toEscapedName } from './internal/toEscapedName';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '',
 })
-export class BiComponent implements OnInit, OnChanges {
+export class BiComponent implements OnChanges {
   @Input({ required: true }) name!: BiName | BiNamesEnum;
 
   @Input() width: string = inject(ICON_WIDTH);
 
   @Input() height: string = inject(ICON_HEIGHT);
+
+  @Input() size?: string;
 
   @Input() color?: ColorValueHex = inject(ICON_COLOR);
 
@@ -47,26 +41,20 @@ export class BiComponent implements OnInit, OnChanges {
 
   private iconsLoader = inject(ICONS_LOADER);
 
-  ngOnInit(): void {
-    this.renderIcon();
-  }
-
   ngOnChanges(): void {
     this.renderIcon();
   }
 
   renderIcon(): void {
-    const escapedName = toEscapedName(this.name);
-
-    this.iconsLoader(escapedName).subscribe((svg) => {
+    this.iconsLoader(this.name).pipe(take(1), distinctUntilChanged()).subscribe((svg) => {
       if (!svg) {
-        console.warn(`BiComponent: Icon ${this.name} not found, path: ${escapedName}`);
+        console.warn(`BiComponent: Icon ${this.name} not found`);
         return;
       }
 
       if (!this.clearDimensions) {
-        svg = setSize(svg, 'width', this.width);
-        svg = setSize(svg, 'height', this.height);
+        svg = setSize(svg, 'width', this.size ?? this.width);
+        svg = setSize(svg, 'height', this.size ?? this.height);
       }
 
       if (this.color) {
@@ -79,7 +67,7 @@ export class BiComponent implements OnInit, OnChanges {
       }
 
       this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', svg);
-    })
+    });
   }
 }
 

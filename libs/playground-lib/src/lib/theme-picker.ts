@@ -1,6 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BiComponent, BiName, circleHalf, moonStarsFill, provideIcons, sunFill } from 'dfx-bootstrap-icons';
+import {
+  BiComponent,
+  BiName,
+  provideBi,
+  withCDN,
+  withColor,
+} from 'dfx-bootstrap-icons';
 
 interface Theme {
   id: 'auto' | 'dark' | 'light';
@@ -33,7 +39,7 @@ interface Theme {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, BiComponent],
-  providers: [provideIcons({ circleHalf, sunFill, moonStarsFill })],
+  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'), withColor('#0000FF'))],
 })
 export class ThemePicker {
   themes: Theme[] = [

@@ -14,6 +14,8 @@ import { FilteringComponent } from './examples/filtering.component';
 import { OrderingComponent } from './examples/ordering.component';
 import { PaginationComponent } from './examples/pagination.component';
 import { ThemePicker } from 'playground-lib';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 
 @NgModule({
   declarations: [AppComponent, AllComponent, SimpleComponent, FilteringComponent, OrderingComponent, PaginationComponent],
@@ -28,6 +30,7 @@ import { ThemePicker } from 'playground-lib';
     AppRoutingModule,
     ThemePicker,
   ],
+  providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -17,7 +17,7 @@ import { LoadIconComponent } from './load-icon.component';
         <div class="badge bg-secondary rounded-pill">Showing {{ searchResults().length }} of {{ IconNameList.length }}</div>
       </div>
 
-        <app-load-icon />
+      <app-load-icon />
 
       <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
         @for (icon of searchResults(); track icon) {

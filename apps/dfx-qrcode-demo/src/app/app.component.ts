@@ -8,7 +8,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { cl_copy } from 'dfts-helper';
 import { ColorValueHex, QRCodeErrorCorrectionLevel } from 'dfts-qrcode';
 import { downloadQRCode, QRCodeComponent, QRCodeElementType } from 'dfx-qrcode';
-import { BiComponent, copy, provideIcons } from 'dfx-bootstrap-icons';
+import { BiComponent, copy, provideBi, provideIcons, withIcons } from 'dfx-bootstrap-icons';
 import { ThemePicker } from 'playground-lib';
 
 @Component({
@@ -24,7 +24,7 @@ import { ThemePicker } from 'playground-lib';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage, QRCodeComponent, AsyncPipe, ReactiveFormsModule, ThemePicker, BiComponent],
-  providers: [provideIcons({ copy })],
+  providers: [provideBi(withIcons({ copy }))],
 })
 export class AppComponent {
   form = inject(FormBuilder).nonNullable.group({

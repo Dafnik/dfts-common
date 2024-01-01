@@ -64,6 +64,11 @@ export class BiComponent {
   pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType | undefined;
 
   setIcon(): void {
+    if (!this._name) {
+      this.renderIcon();
+      return;
+    }
+
     let svg = undefined;
     if (this.pickedIcons) {
       svg = this.pickedIcons[toEscapedName(this._name)] || undefined;

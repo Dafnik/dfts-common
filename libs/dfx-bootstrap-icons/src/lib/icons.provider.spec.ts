@@ -3,7 +3,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BiComponent } from './icon.component';
-import { provideBi, provideIcons, withColor, withHeight, withIcons, withWidth } from './icons.provider';
+import { provideBi, provideIcons, provideLocalIconsLoader, withColor, withHeight, withIcons, withWidth } from './icons.provider';
 import { allIcons, xCircleFill, zeroCircle } from './generated';
 import { IconFeatures } from './icons.feature';
 import { DEFAULT_ICON_SIZE, ICONS_PICKED } from './icons.config';
@@ -28,10 +28,9 @@ describe('IconFeatures ', () => {
   it('test withIcons', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill, zeroCircle }));
 
-    const pickedIcons = component.pickedIcons!;
-    expect(pickedIcons['xCircleFill']).toBeDefined();
-    expect(pickedIcons['zeroCircle']).toBeDefined();
-    expect(pickedIcons['xCircle']).toBeUndefined();
+    expect(component.iconLoader('xCircleFill')).toBeDefined();
+    expect(component.iconLoader('zeroCircle')).toBeDefined();
+    expect(component.iconLoader('xCircle')).toBeUndefined();
 
     component.name = 'x-circle-fill';
 
@@ -88,7 +87,7 @@ describe('IconFeatures ', () => {
   it('test provideIcons', () => {
     void TestBed.configureTestingModule({
       imports: [BiComponent],
-      providers: [provideIcons({ xCircleFill, zeroCircle })],
+      providers: [provideIcons({ xCircleFill, zeroCircle }), provideLocalIconsLoader()],
     }).compileComponents();
 
     const fixture = TestBed.createComponent(BiComponent) as ComponentFixture<BiComponent>;
@@ -96,9 +95,9 @@ describe('IconFeatures ', () => {
     const component = fixture.componentInstance,
       nativeElement = fixture.nativeElement as HTMLElement;
 
-    expect(component.pickedIcons!['xCircleFill']).toBeDefined();
-    expect(component.pickedIcons!['zeroCircle']).toBeDefined();
-    expect(component.pickedIcons!['xCircle']).toBeUndefined();
+    expect(component.iconLoader('xCircleFill')).toBeDefined();
+    expect(component.iconLoader('zeroCircle')).toBeDefined();
+    expect(component.iconLoader('xCircle')).toBeUndefined();
 
     component.name = 'x-circle-fill';
 
@@ -124,9 +123,9 @@ describe('IconFeatures ', () => {
     const component = fixture.componentInstance,
       nativeElement = fixture.nativeElement as HTMLElement;
 
-    expect(component.pickedIcons!['xCircleFill']).toBeDefined();
-    expect(component.pickedIcons!['zeroCircle']).toBeDefined();
-    expect(component.pickedIcons!['xCircle']).toBeUndefined();
+    expect(component.iconLoader('xCircleFill')).toBeDefined();
+    expect(component.iconLoader('zeroCircle')).toBeDefined();
+    expect(component.iconLoader('xCircle')).toBeUndefined();
 
     component.name = 'x-circle-fill';
 

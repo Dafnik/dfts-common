@@ -13,6 +13,7 @@ import { ColorValueHex, IconsType } from './types';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { ICON_CACHE_INTERCEPTOR } from './icons-cache.interceptor';
+import { toEscapedName } from './internal/toEscapedName';
 
 export function provideBi(...features: IconFeatures[]): Provider[] {
   return features.map((it) => it.providers);
@@ -20,6 +21,16 @@ export function provideBi(...features: IconFeatures[]): Provider[] {
 
 export function provideIcons(icons: IconsType): Provider {
   return { provide: ICONS_PICKED, multi: true, useValue: icons };
+}
+
+export function provideLocalIconsLoader(): Provider {
+  return {
+    provide: ICONS_LOADER,
+    useFactory: () => {
+      const pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType;
+      return (name: string) => pickedIcons[toEscapedName(name)];
+    },
+  };
 }
 
 export function provideCDNIconsLoader(...cdnUrls: string[]): Provider {
@@ -51,7 +62,7 @@ export function withCDN(...cdnUrls: string[]): IconCDNFeature {
 export function withIcons(icons: IconsType): IconPickFeature {
   return {
     kind: IconFeatureKind.ICON_PICK,
-    providers: [provideIcons(icons)],
+    providers: [provideIcons(icons), provideLocalIconsLoader()],
   };
 }
 

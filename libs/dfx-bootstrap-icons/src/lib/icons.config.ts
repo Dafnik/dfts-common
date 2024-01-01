@@ -8,9 +8,7 @@ export const ICONS_PICKED = new InjectionToken<IconsType>('DFX_ICONS_PICKED', {
   factory: () => ({}),
 });
 
-export const ICONS_LOADER = new InjectionToken<((name: string) => Observable<string | undefined>) | undefined>('DFX_ICONS_LOADER', {
-  factory: () => undefined,
-});
+export const ICONS_LOADER = new InjectionToken<(name: string) => Observable<string | undefined> | string | undefined>('DFX_ICONS_LOADER');
 
 export const DEFAULT_ICON_SIZE = '16';
 export const DEFAULT_COLOR = 'currentColor';

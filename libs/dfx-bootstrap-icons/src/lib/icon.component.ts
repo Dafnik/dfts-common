@@ -2,9 +2,8 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, injec
 
 import { BiName, BiNamesEnum } from './generated';
 import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED } from './icons.config';
-import { ColorValueHex, IconsType } from './types';
+import { ColorValueHex } from './types';
 import { take } from 'rxjs';
-import { toEscapedName } from './internal/toEscapedName';
 
 @Component({
   selector: 'bi, *[bi]',
@@ -59,9 +58,7 @@ export class BiComponent {
 
   private renderer = inject(Renderer2);
 
-  iconsLoader = inject(ICONS_LOADER);
-
-  pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType | undefined;
+  iconLoader = inject(ICONS_LOADER);
 
   setIcon(): void {
     if (!this._name) {
@@ -69,18 +66,14 @@ export class BiComponent {
       return;
     }
 
-    let svg = undefined;
-    if (this.pickedIcons) {
-      svg = this.pickedIcons[toEscapedName(this._name)] || undefined;
-    }
-    if (!svg && this.iconsLoader) {
-      this.iconsLoader(this._name)
-        .pipe(take(1))
-        .subscribe((it) => this.renderIcon(it));
+    const icon = this.iconLoader(this._name);
+
+    if (icon === undefined || typeof icon === 'string') {
+      this.renderIcon(icon);
       return;
     }
 
-    this.renderIcon(svg);
+    icon.pipe(take(1)).subscribe((it) => this.renderIcon(it));
   }
 
   private renderIcon(icon?: string) {

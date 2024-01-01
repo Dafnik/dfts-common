@@ -50,7 +50,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 ### Standalone Components
 
 ```typescript
-import { BiComponent, provideIcons, provideBi, exclamationOctagonFill } from 'dfx-bootstrap-icons';
+import { BiComponent, provideBi, withIcons, exclamationOctagonFill } from 'dfx-bootstrap-icons';
 
 @Component({
   standalone: true,
@@ -65,7 +65,7 @@ export class AppComponent {}
 ### Module
 
 ```typescript
-import { BiModule, exclamationOctagonFill } from 'dfx-bootstrap-icons';
+import { BiModule, withIcons, exclamationOctagonFill } from 'dfx-bootstrap-icons';
 
 @NgModule({
   declaration: [AppComponent],
@@ -153,30 +153,22 @@ export const ICONS = {
 // main.ts
 
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideBi, provideIcons } from 'dfx-bootstrap-icons';
+import { provideBi, withIcons } from 'dfx-bootstrap-icons';
 import { AppComponent } from './app/app.component';
 import { ICONS } from './app/icons.ts';
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    provideBi(withIcons(ICONS)),
-    // OR...
-    provideIcons(ICONS),
-  ],
+  providers: [provideBi(withIcons(ICONS))],
 }).catch((err) => console.error(err));
 ```
 
 ### Import all icons (not recommended)
 
 ```typescript
-import { provideBi, provideIcons, allIcons } from 'dfx-bootstrap-icons';
+import { provideBi, withIcons, allIcons } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    provideBi(withIcons(allIcons)),
-    // OR...
-    provideIcons(allIcons),
-  ],
+  providers: [provideBi(withIcons(allIcons))],
 }).catch((err) => console.error(err));
 ```
 

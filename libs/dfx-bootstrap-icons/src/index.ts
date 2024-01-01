@@ -8,3 +8,4 @@ export * from './lib/icons.config';
 export * from './lib/icons.feature';
 export * from './lib/icons.module';
 export * from './lib/icons.provider';
+export * from './lib/icons-cache.interceptor';

@@ -1,1 +1,1 @@
-export type ColorValueHex = `#${string}`;
+export type ColorValueHex = string;

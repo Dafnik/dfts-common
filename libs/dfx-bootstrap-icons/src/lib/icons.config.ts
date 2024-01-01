@@ -1,13 +1,16 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 import { ColorValueHex, IconsType } from './types';
-import { Observable } from "rxjs";
+import { Observable, of } from 'rxjs';
+import { factory } from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
 export const ICONS_PICKED = new InjectionToken<IconsType>('DFX_ICONS_PICKED', {
   factory: () => ({}),
 });
 
-export const ICONS_LOADER = new InjectionToken<(name: string) => Observable<string|undefined>>('DFX_ICONS_LOADER')
+export const ICONS_LOADER = new InjectionToken<((name: string) => Observable<string | undefined>) | undefined>('DFX_ICONS_LOADER', {
+  factory: () => undefined,
+});
 
 export const DEFAULT_ICON_SIZE = '16';
 export const DEFAULT_COLOR = 'currentColor';

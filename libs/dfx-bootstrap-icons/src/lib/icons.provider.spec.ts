@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
+// noinspection DuplicatedCode,ES6PreferShortImport
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BiComponent } from './icon.component';
 import { provideBi, provideIcons, withColor, withHeight, withIcons, withWidth } from './icons.provider';
 import { allIcons, xCircleFill, zeroCircle } from './generated';
 import { IconFeatures } from './icons.feature';
-import { DEFAULT_ICON_SIZE } from './icons.config';
+import { DEFAULT_ICON_SIZE, ICONS_PICKED } from './icons.config';
 import { toEscapedName } from './internal/toEscapedName';
 
 describe('IconFeatures ', () => {
@@ -27,9 +28,10 @@ describe('IconFeatures ', () => {
   it('test withIcons', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill, zeroCircle }));
 
-    expect(component.pickedIcons['xCircleFill']).toBeDefined();
-    expect(component.pickedIcons['zeroCircle']).toBeDefined();
-    expect(component.pickedIcons['xCircle']).toBeUndefined();
+    const pickedIcons = component.pickedIcons!;
+    expect(pickedIcons['xCircleFill']).toBeDefined();
+    expect(pickedIcons['zeroCircle']).toBeDefined();
+    expect(pickedIcons['xCircle']).toBeUndefined();
 
     component.name = 'x-circle-fill';
 
@@ -94,9 +96,9 @@ describe('IconFeatures ', () => {
     const component = fixture.componentInstance,
       nativeElement = fixture.nativeElement as HTMLElement;
 
-    expect(component.pickedIcons['xCircleFill']).toBeDefined();
-    expect(component.pickedIcons['zeroCircle']).toBeDefined();
-    expect(component.pickedIcons['xCircle']).toBeUndefined();
+    expect(component.pickedIcons!['xCircleFill']).toBeDefined();
+    expect(component.pickedIcons!['zeroCircle']).toBeDefined();
+    expect(component.pickedIcons!['xCircle']).toBeUndefined();
 
     component.name = 'x-circle-fill';
 
@@ -122,9 +124,9 @@ describe('IconFeatures ', () => {
     const component = fixture.componentInstance,
       nativeElement = fixture.nativeElement as HTMLElement;
 
-    expect(component.pickedIcons['xCircleFill']).toBeDefined();
-    expect(component.pickedIcons['zeroCircle']).toBeDefined();
-    expect(component.pickedIcons['xCircle']).toBeUndefined();
+    expect(component.pickedIcons!['xCircleFill']).toBeDefined();
+    expect(component.pickedIcons!['zeroCircle']).toBeDefined();
+    expect(component.pickedIcons!['xCircle']).toBeUndefined();
 
     component.name = 'x-circle-fill';
 

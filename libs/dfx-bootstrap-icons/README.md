@@ -57,11 +57,7 @@ import { BiComponent, provideIcons, provideBi, exclamationOctagonFill } from 'df
   selector: 'app-root',
   template: ` <bi name="exclamation-octagon-fill" /> `,
   imports: [BiComponent],
-  providers: [
-    provideIcons({ exclamationOctagonFill }),
-    // OR
-    provideBi(withIcons({ exclamationOctagonFill })),
-  ],
+  providers: [provideBi(withIcons({ exclamationOctagonFill }))],
 })
 export class AppComponent {}
 ```

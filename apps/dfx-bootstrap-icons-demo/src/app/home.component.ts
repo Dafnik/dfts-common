@@ -6,6 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
 import { BiComponent, BiNameList, toEscapedName } from 'dfx-bootstrap-icons';
 import { WINDOW } from 'dfx-helper';
+import { LoadIconComponent } from './load-icon.component';
 
 @Component({
   template: `
@@ -15,6 +16,8 @@ import { WINDOW } from 'dfx-helper';
       <div class="d-flex justify-content-end">
         <div class="badge bg-secondary rounded-pill">Showing {{ searchResults().length }} of {{ IconNameList.length }}</div>
       </div>
+
+      <app-load-icon />
 
       <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
         @for (icon of searchResults(); track icon) {
@@ -78,7 +81,7 @@ import { WINDOW } from 'dfx-helper';
 
   `,
   standalone: true,
-  imports: [BiComponent, ReactiveFormsModule, NgClass],
+  imports: [BiComponent, ReactiveFormsModule, NgClass, LoadIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-home',
 })

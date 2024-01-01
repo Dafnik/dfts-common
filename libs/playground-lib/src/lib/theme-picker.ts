@@ -1,12 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  BiComponent,
-  BiName,
-  provideBi,
-  withCDN,
-  withColor,
-} from 'dfx-bootstrap-icons';
+import { BiComponent, BiName, provideBi, withCDN, withColor } from 'dfx-bootstrap-icons';
 
 interface Theme {
   id: 'auto' | 'dark' | 'light';

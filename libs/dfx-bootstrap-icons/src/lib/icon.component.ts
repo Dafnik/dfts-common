@@ -1,18 +1,10 @@
-import {
-  booleanAttribute,
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  inject,
-  Input,
-  OnChanges,
-  Renderer2,
-} from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnChanges, Renderer2 } from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
-import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER } from './icons.config';
-import { ColorValueHex } from './types';
-import { distinctUntilChanged, take } from "rxjs";
+import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED } from './icons.config';
+import { ColorValueHex, IconsType } from './types';
+import { take } from 'rxjs';
+import { toEscapedName } from './internal/toEscapedName';
 
 @Component({
   selector: 'bi, *[bi]',
@@ -20,54 +12,93 @@ import { distinctUntilChanged, take } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '',
 })
-export class BiComponent implements OnChanges {
-  @Input({ required: true }) name!: BiName | BiNamesEnum;
+export class BiComponent {
+  @Input({ required: true }) set name(it: BiName | BiNamesEnum) {
+    this._name = it;
+    this.setIcon();
+  }
+  _name!: BiName | BiNamesEnum;
 
-  @Input() width: string = inject(ICON_WIDTH);
+  @Input() set width(it: string) {
+    this._width = it;
+    this.setIcon();
+  }
+  _width: string = inject(ICON_WIDTH);
 
-  @Input() height: string = inject(ICON_HEIGHT);
+  @Input() set height(it: string) {
+    this._height = it;
+    this.setIcon();
+  }
+  _height: string = inject(ICON_HEIGHT);
 
-  @Input() size?: string;
+  @Input() set size(it: string) {
+    this._size = it;
+    this.setIcon();
+  }
+  _size?: string;
 
-  @Input() color?: ColorValueHex = inject(ICON_COLOR);
+  @Input() set color(it: ColorValueHex) {
+    this._color = it;
+    this.setIcon();
+  }
+  _color?: ColorValueHex = inject(ICON_COLOR);
 
-  @Input({ transform: booleanAttribute }) clearDimensions = false;
+  @Input({ transform: booleanAttribute }) set clearDimensions(it: boolean) {
+    this._clearDimensions = it;
+    this.setIcon();
+  }
+  _clearDimensions = false;
 
-  @Input() ariaLabel?: string;
+  @Input() set ariaLabel(it: string) {
+    this._ariaLabel = it;
+    this.setIcon();
+  }
+  _ariaLabel?: string;
 
   private elementRef = inject(ElementRef);
 
   private renderer = inject(Renderer2);
 
-  private iconsLoader = inject(ICONS_LOADER);
+  iconsLoader = inject(ICONS_LOADER);
 
-  ngOnChanges(): void {
-    this.renderIcon();
+  pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType | undefined;
+
+  setIcon(): void {
+    let svg = undefined;
+    if (this.pickedIcons) {
+      svg = this.pickedIcons[toEscapedName(this._name)] || undefined;
+    }
+    if (!svg && this.iconsLoader) {
+      this.iconsLoader(this._name)
+        .pipe(take(1))
+        .subscribe((it) => this.renderIcon(it));
+      return;
+    }
+
+    this.renderIcon(svg);
   }
 
-  renderIcon(): void {
-    this.iconsLoader(this.name).pipe(take(1), distinctUntilChanged()).subscribe((svg) => {
-      if (!svg) {
-        console.warn(`BiComponent: Icon ${this.name} not found`);
-        return;
-      }
+  private renderIcon(icon?: string) {
+    if (!icon) {
+      console.warn(`BiComponent: Icon ${this._name} not found`);
+      return;
+    }
 
-      if (!this.clearDimensions) {
-        svg = setSize(svg, 'width', this.size ?? this.width);
-        svg = setSize(svg, 'height', this.size ?? this.height);
-      }
+    if (!this._clearDimensions) {
+      icon = setSize(icon, 'width', this.size ?? this._width);
+      icon = setSize(icon, 'height', this.size ?? this._height);
+    }
 
-      if (this.color) {
-        svg = setFillColor(svg, this.color);
-      }
+    if (this._color) {
+      icon = setFillColor(icon, this._color);
+    }
 
-      this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-label', this.ariaLabel ?? '');
-      if (this.ariaLabel) {
-        this.renderer.setAttribute(this.elementRef.nativeElement, 'role', 'img');
-      }
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-label', this._ariaLabel ?? '');
+    if (this._ariaLabel) {
+      this.renderer.setAttribute(this.elementRef.nativeElement, 'role', 'img');
+    }
 
-      this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', svg);
-    });
+    this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', icon);
   }
 }
 

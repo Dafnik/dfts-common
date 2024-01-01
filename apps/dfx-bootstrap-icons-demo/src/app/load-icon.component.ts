@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { BiComponent, provideBi, withCDN } from 'dfx-bootstrap-icons';
+import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons';
 
 @Component({
   template: `
@@ -12,7 +12,7 @@ import { BiComponent, provideBi, withCDN } from 'dfx-bootstrap-icons';
   `,
   standalone: true,
   imports: [BiComponent],
-  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
+  providers: [provideBi(withIcons({}), withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-load-icon',
 })

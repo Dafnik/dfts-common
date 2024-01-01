@@ -22,14 +22,14 @@ describe('SVG Icons', () => {
     nativeElement = fixture.nativeElement as HTMLElement;
   });
 
-  // for (const name of BiNameList) {
-  //   it(`load right svg for ${name} icon`, () => {
-  //     component.name = name;
-  //     fixture.detectChanges();
-  //     // @ts-ignore
-  //     expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName(name)]);
-  //   });
-  // }
+  for (const name of BiNameList) {
+    it(`load right svg for ${name} icon`, () => {
+      component.name = name;
+      fixture.detectChanges();
+      // @ts-ignore
+      expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName(name)]);
+    });
+  }
 
   it(`load right svg changes`, () => {
     component.name = 'x-circle-fill';

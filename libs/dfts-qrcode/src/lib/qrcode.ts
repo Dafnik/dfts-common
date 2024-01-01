@@ -978,6 +978,7 @@ export function generateQrCodeCanvas$(
         );
         resolve(canvasElement);
       };
+      centerImage.onerror = () => resolve(canvasElement);
     } else {
       return resolve(canvasElement);
     }

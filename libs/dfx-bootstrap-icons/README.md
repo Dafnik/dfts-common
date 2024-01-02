@@ -17,15 +17,19 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 - [Configuration](#configuration)
   - [Standalone Components](#standalone-components-1)
   - [Module](#module-1)
+  - [Configuration parameters](#configuration-parameters)
+  - [Component](#component)
   - [Component parameters](#parameters)
+  - [CDN](#cdn)
 - [Examples](#examples)
   - [Provide imported icons application wide](#provide-imported-icons-application-wide)
   - [Import all icons (not recommended)](#import-all-icons-not-recommended)
 
 ## Features
 
-- Accessible
 - Server Side Rendering (Angular Universal)
+- Accessible
+- CDN icon loading
 - Standalone Component API
 
 ## Version compatibility
@@ -50,7 +54,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 ### Standalone Components
 
 ```typescript
-import { BiComponent, provideBi, withIcons, exclamationOctagonFill } from 'dfx-bootstrap-icons';
+import { BiComponent, provideBi, withIcons, exclamationOctagonFill, xCircleFill } from 'dfx-bootstrap-icons';
 
 @Component({
   standalone: true,
@@ -110,7 +114,17 @@ import { BiModule, withIcons, withWidth, withHeight, withColor, exclamationOctag
 export class AppModule {}
 ```
 
-### On component usage
+### Configuration parameters
+
+| **Name**   | **Type**                    | **Description**                           | **Example**                                                     |
+| ---------- | --------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
+| withIcons  | `{ [key: string]: string }` | Icons you want to include in your bundle. | `withIcons({ exclamationOctagonFill, xCircleFill })`            |
+| withCDN    | `...string[]`               | Name of the icon.                         | `withCDN('https://playground.dafnik.me/bootstrap-icons/icons')` |
+| withWidth  | `string`                    | Width of the icon.                        | `withWidth('24')`                                               |
+| withHeight | `string`                    | Height of the icon.                       | `withHeight('24')`                                              |
+| withColor  | `string`                    | Color of the icon.                        | `withColor('#0000FF')`                                          |
+
+### Component
 
 ```typescript
 @Component({
@@ -124,14 +138,31 @@ export class AppComponent {}
 
 ### Parameters
 
-| **Name**        | **Type**                | **Default value** | **Description**                                   |
-| --------------- | ----------------------- | ----------------- | ------------------------------------------------- |
-| name            | `BiName \| BiNamesEnum` |                   | Name of the icon.                                 |
-| width           | `string`                | `16`              | Width of the icon.                                |
-| height          | `string`                | `16`              | Height of the icon.                               |
-| color           | `#${string}`            | `correntColor`    | Color of the icon.                                |
-| clearDimensions | `boolean`               | `false`           | Clears dimensions (width, height) set via config. |
-| ariaLabel       | `string`                | `undefined`       | aria-label which is set on the icon.              |
+| **Name**        | **Type**                | **Description**                                   | **Default value** |
+| --------------- | ----------------------- | ------------------------------------------------- | ----------------- |
+| name            | `BiName \| BiNamesEnum` | Name of the icon.                                 |                   |
+| width           | `string`                | Width of the icon.                                | `16`              |
+| height          | `string`                | Height of the icon.                               | `16`              |
+| color           | `string`                | Color of the icon.                                | `currentColor`    |
+| clearDimensions | `boolean`               | Clears dimensions (width, height) set via config. | `false`           |
+| ariaLabel       | `string`                | aria-label which is set on the icon.              | `undefined`       |
+
+### CDN
+
+You are not required to include every used icon in your bundle.
+Instead, you have the option to utilize a CDN URL, allowing you to load your icons dynamically at runtime, either exclusively or in addition to bundling them.
+
+When providing multiple URLs, dfx-bootstrap-icons is going to pick a single one randomly at app start.
+
+Configure a pool of CDN URLs:
+
+```typescript
+import { provideBi, withCDN } from 'dfx-bootstrap-icons';
+
+bootstrapApplication(AppComponent, {
+  providers: [provideBi(withCDN('https://test.url.1', 'https://test.url.2'))],
+}).catch((err) => console.error(err));
+```
 
 ## Examples
 

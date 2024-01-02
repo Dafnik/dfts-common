@@ -31,14 +31,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/dfx-bootstrap-icons/**/*.ts",
-          "libs/dfx-bootstrap-icons/**/*.html",
-          "libs/dfx-bootstrap-icons/package.json"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "version": {
       "executor": "@jscutlery/semver:version",

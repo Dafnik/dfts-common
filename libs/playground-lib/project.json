@@ -31,10 +31,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/playground-lib/**/*.ts", "libs/playground-lib/**/*.html", "libs/playground-lib/package.json"]
-      }
+      "outputs": ["{options.outputFile}"]
     }
   }
 }

@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-1.0.0...dfx-bootstrap-icons-1.1.0) (2024-01-02)
+
+### Bug Fixes
+
+- **bootstrap-icons:** name undefined ([fef8d80](https://github.com/Dafnik/dfts-common/commit/fef8d80fd4c7513f0876af660aac8da0aa1af2a1))
+
+### Features
+
+- **bootstrap-icons:** add cdn and fix tests ([ef4b21f](https://github.com/Dafnik/dfts-common/commit/ef4b21ff3ba35e1c2bae0a80921e68837ce6fdf5))
+- **bootstrap-icons:** extract into icon loader ([41bd6a1](https://github.com/Dafnik/dfts-common/commit/41bd6a1dabd6aa97f0376795ba558906048296d2))
+- **icons:** add cdn functionality ([ea992a6](https://github.com/Dafnik/dfts-common/commit/ea992a64e8c4c749f6e6180b7121a11381c0b323))
+- **icons:** add cdn functionality ([33821a3](https://github.com/Dafnik/dfts-common/commit/33821a3eb3852be07553df351a18937c0c136fe5))
+
 # [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-0.0.1-beta.0...dfx-bootstrap-icons-1.0.0) (2023-11-23)
 
 ### Features

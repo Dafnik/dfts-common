@@ -1,3 +1,13 @@
+## [1.0.1](https://github.com/Dafnik/dfts-common/compare/dfts-qrcode-1.0.0...dfts-qrcode-1.0.1) (2024-01-02)
+
+### Bug Fixes
+
+- **dfts-qrcode:** qrcode is not generated ([da596c2](https://github.com/Dafnik/dfts-common/commit/da596c29c8dd5cdca5e9ec4c9eb8f3a8f79ea178))
+
+### Features
+
+- update to angular 17 ([05f67d3](https://github.com/Dafnik/dfts-common/commit/05f67d3dd9e2798357c6e429fa3a84b99abed42a))
+
 # [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfts-qrcode-0.0.1...dfts-qrcode-1.0.0) (2023-10-30)
 
 ### Features

@@ -1,9 +1,10 @@
 'use strict';
 
+const { composePlugins, withNx } = require('@nx/webpack');
 const { merge } = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = (config, context) => {
+module.exports = composePlugins(withNx(), (config, { options, context }) => {
   return merge(config, {
     output: {
       publicPath: '',
@@ -29,4 +30,4 @@ module.exports = (config, context) => {
     target: 'web',
     externalsPresets: { node: true },
   });
-};
+});

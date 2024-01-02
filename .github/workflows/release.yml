@@ -55,7 +55,7 @@ jobs:
       - name: zip ${{ inputs.lib }}
         run: cd ./dist/libs/ && zip -r "${{ inputs.lib }}.zip" ./${{ inputs.lib }} && cd -
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         name: create ${{ inputs.lib }} artifact
         with:
           name: ${{ inputs.lib }}
@@ -72,7 +72,7 @@ jobs:
       - name: setup Node.js
         uses: actions/setup-node@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.lib }}
           path: ./dist
@@ -114,7 +114,7 @@ jobs:
       - name: setup Node.js
         uses: actions/setup-node@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.lib }}
           path: ./dist
@@ -154,7 +154,7 @@ jobs:
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v2
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.lib }}
           path: ./dist

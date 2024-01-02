@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.0.0...dfx-qrcode-2.0.1) (2024-01-02)
+
+### Features
+
+- **dfx-qrcode:** bump dfts-qrcode to 1.0.1 ([c163b6c](https://github.com/Dafnik/dfts-common/commit/c163b6c02285b7d0c082bcbc9e607c8b64ec8b20))
+
 # [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.0.0-beta.0...dfx-qrcode-2.0.0) (2023-11-23)
 
 ### Features

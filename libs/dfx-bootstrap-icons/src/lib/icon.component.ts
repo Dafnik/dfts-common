@@ -1,7 +1,7 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnChanges, Renderer2 } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, inject, Input, Renderer2 } from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
-import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED } from './icons.config';
+import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER } from './icons.config';
 import { ColorValueHex } from './types';
 import { take } from 'rxjs';
 
@@ -83,8 +83,8 @@ export class BiComponent {
     }
 
     if (!this._clearDimensions) {
-      icon = setSize(icon, 'width', this.size ?? this._width);
-      icon = setSize(icon, 'height', this.size ?? this._height);
+      icon = setSize(icon, 'width', this._size ?? this._width);
+      icon = setSize(icon, 'height', this._size ?? this._height);
     }
 
     if (this._color) {

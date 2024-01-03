@@ -107,6 +107,20 @@ describe('IconComponent', () => {
     expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'viewBox')).toBe(`0 0 16 16`);
   });
 
+
+  it('test size attribute', () => {
+    const value = '32';
+    component.name = 'x-circle-fill';
+
+    component['size'] = value;
+    component['height'] = '48';
+    component['width'] = '48';
+    fixture.detectChanges();
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'width')).toBe(value);
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'height')).toBe(value);
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'viewBox')).toBe(`0 0 16 16`);
+  });
+
   it('test width & height attribute', () => {
     const value = '32';
     component.name = 'x-circle-fill';

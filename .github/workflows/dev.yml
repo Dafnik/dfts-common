@@ -178,6 +178,8 @@ jobs:
     needs: [ build-apps ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/download-artifact@v4
         name: Download table-demo
         with:
@@ -211,7 +213,9 @@ jobs:
           mkdir dist/bootstrap-table
           mkdir dist/bootstrap-icons
           mkdir dist/qrcode
+          mkdir dist/base64-pdf-converter
           mv playground/* dist/
+          mv base64-pdf-converter/* dist/ base64-pdf-converter/
           mv dfx-bootstrap-table-demo/* dist/bootstrap-table/
           mv dfx-bootstrap-icons-demo/* dist/bootstrap-icons/
           mv dfx-qrcode-demo/* dist/qrcode/

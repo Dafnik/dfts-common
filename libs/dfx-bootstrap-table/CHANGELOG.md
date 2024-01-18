@@ -1,3 +1,9 @@
+# [3.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.1...dfx-bootstrap-table-3.1.0) (2024-01-18)
+
+### Bug Fixes
+
+- remove debugging log ([6a22fd4](https://github.com/Dafnik/dfts-common/commit/6a22fd46b7a701fd6fdd5e3e2b11cf678c0e9b1a))
+
 ## [3.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.0...dfx-bootstrap-table-3.0.1) (2023-11-27)
 
 ### Bug Fixes

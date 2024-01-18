@@ -1,13 +1,9 @@
-<!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="Dafnik" />
-    <title>playground.dafnik.me</title>
-  </head>
-  <body class="d-flex text-center text-bg-dark" style="min-height: 100vh">
+import { Component } from '@angular/core';
+
+@Component({
+  standalone: true,
+  selector: 'app-root',
+  template: `
     <div class="container container-lg d-flex w-100 h-100 p-3 mx-auto flex-column">
       <main class="px-3 pt-5">
         <h1 class="f0">playground</h1>
@@ -52,5 +48,6 @@
         <p>by <a href="https://dafnik.me" class="text-white">Dafnik</a></p>
       </footer>
     </div>
-  </body>
-</html>
+  `
+})
+export class HomeComponent {}

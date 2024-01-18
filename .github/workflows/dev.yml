@@ -214,7 +214,7 @@ jobs:
           mkdir dist/bootstrap-icons
           mkdir dist/qrcode
           mkdir dist/base64-pdf-converter
-          mv apps/base64-pdf-converter/* dist/ base64-pdf-converter/
+          mv apps/base64-pdf-converter/* dist/base64-pdf-converter/
           mv playground/* dist/
           mv dfx-bootstrap-table-demo/* dist/bootstrap-table/
           mv dfx-bootstrap-icons-demo/* dist/bootstrap-icons/

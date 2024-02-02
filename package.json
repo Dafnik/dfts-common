@@ -54,7 +54,7 @@
     "@nx/workspace": "17.3.1",
     "@schematics/angular": "17.1.1",
     "@types/jest": "29.5.11",
-    "@types/node": "18.19.14",
+    "@types/node": "20.11.10",
     "@typescript-eslint/eslint-plugin": "6.20.0",
     "@typescript-eslint/parser": "6.20.0",
     "autoprefixer": "^10.4.0",

@@ -1,4 +1,4 @@
-export function downloadQRCode(dataURL: string, filename = 'qrcode') {
+export function downloadQRCode(dataURL: string, type: 'png' | 'svg', filename = 'qrcode') {
   // split into two parts
   const parts = dataURL.split(';base64,');
   // hold the content type
@@ -15,7 +15,7 @@ export function downloadQRCode(dataURL: string, filename = 'qrcode') {
   const blobData = new Blob([uInt8Array], { type: imageType });
 
   // saves as image
-  const blob = new Blob([blobData], { type: 'image/png' });
+  const blob = new Blob([blobData], { type: `image/${type === 'png' ? 'png' : 'svg+xml'}` });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

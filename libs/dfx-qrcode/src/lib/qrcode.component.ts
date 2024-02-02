@@ -31,10 +31,10 @@ import {
   generateMatrixOptions,
   generateOptions,
   generateQrCodeCanvas$,
-  generateQrCodeImage$,
+  generateQrCodeImage$, generateQrCodeSVG$,
   generateWithAccessibleOptions,
-  generateWithImageOptions,
-} from 'dfts-qrcode';
+  generateWithImageOptions
+} from "dfts-qrcode";
 
 @Component({
   selector: 'qrcode',
@@ -131,6 +131,17 @@ export class QRCodeComponent implements OnInit, OnChanges {
           generateQrCodeImage$(this.data!, config, this.renderer.createElement('canvas'), this.renderer.createElement('img')).then(
             ({ image, dataUrl }) => {
               this.renderElement(image);
+              this.qrCodeDataUrl.emit(dataUrl);
+            },
+          );
+
+          break;
+        }
+
+        case 'svg': {
+          generateQrCodeSVG$(this.data!, config).then(
+            ({svg, dataUrl}) => {
+              this.renderElement(svg);
               this.qrCodeDataUrl.emit(dataUrl);
             },
           );

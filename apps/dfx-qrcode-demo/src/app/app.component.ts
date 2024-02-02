@@ -159,7 +159,7 @@ export class AppComponent {
     if (!this.dataURL) {
       return;
     }
-    downloadQRCode(this.dataURL);
+    downloadQRCode(this.dataURL, this.form.controls.elementType.value === 'svg' ? 'svg' : 'png');
   }
 
   copy(it: string): void {

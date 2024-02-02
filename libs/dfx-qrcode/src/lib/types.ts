@@ -1,1 +1,1 @@
-export type QRCodeElementType = 'img' | 'canvas';
+export type QRCodeElementType = 'img' | 'canvas' | 'svg';

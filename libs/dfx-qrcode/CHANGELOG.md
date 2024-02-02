@@ -1,3 +1,9 @@
+# [2.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.0.1...dfx-qrcode-2.1.0) (2024-02-02)
+
+### Features
+
+- add svg qrcode ([05641da](https://github.com/Dafnik/dfts-common/commit/05641da2f0d1bf1140cc6592f792c9ece62b9b6c))
+
 ## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.0.0...dfx-qrcode-2.0.1) (2024-01-02)
 
 ### Features

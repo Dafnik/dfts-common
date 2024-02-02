@@ -903,6 +903,82 @@ export function generateQrCodeMatrix(data: string | number, options: generateMat
   return generate(newData, ver, mode, ecclevel, mask);
 }
 
+export function generateQrCodeSVGString(
+  data: string | number,
+  options: generateOptions & generateWithAccessibleOptions = {},
+): string {
+  const matrix = generateQrCodeMatrix(data, options);
+  const modsize = options.size ?? 5;
+  const margin = options.margin ?? 4;
+  const fgColor = options.colors?.colorLight ?? '#ffffff';
+  const bgColor = options.colors?.colorDark ?? '#000000';
+  const n = matrix.length;
+  const size = modsize * (n + 2 * margin);
+
+  const xmls = ['<svg xmlns="http://www.w3.org/2000/svg"', `width="${size}" height="${size}" ${options.alt ? `alt="${options.alt}"` : '' } ${options.ariaLabel ? `aria-label="${options.ariaLabel}"` : ''} ${options.title ? `title="${options.title}"` : '' }>`];
+  xmls.push(`<rect width="${size}" height="${size}" fill="${fgColor}" />`);
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (matrix[i][j]) {
+        xmls.push(`<rect x="${modsize * (margin + j)}" y="${modsize * (margin + i)}" width="${modsize + 0.3}" height="${modsize + 0.3}" fill="${bgColor}" />`);
+      }
+    }
+  }
+
+  xmls.push('</svg>');
+
+  return xmls.join('\n');
+}
+
+const parser = new DOMParser();
+export function generateQrCodeSVG(
+  data: string | number,
+  options: generateOptions & generateWithAccessibleOptions = {},
+): {svg: HTMLElement, dataUrl: string} {
+  const svg = generateQrCodeSVGString(data, options);
+  const base64Svg = btoa(svg);
+  return {svg: parser.parseFromString(svg, "image/svg+xml").documentElement, dataUrl: `data:image/svg+xml;base64,${base64Svg}` }
+}
+
+export function generateQrCodeSVG$(
+  data: string | number,
+  options: generateOptions & generateWithAccessibleOptions & generateWithImageOptions = {},
+): Promise<{svg: HTMLElement, dataUrl: string}> {
+  const {svg, dataUrl} = generateQrCodeSVG(data, options)
+
+  return new Promise((resolve, reject) => {
+    if (options.image?.src) {
+      const centerImageWidth = options.image.width ?? 40;
+      const centerImageHeight = options.image.height ?? 40;
+      const centerImage = new Image(centerImageWidth, centerImageHeight);
+      centerImage.src = options.image.src;
+      centerImage.onload = () => {
+        const svgWidth = svg.getAttribute('width')!;
+        const svgHeight = svg.getAttribute('height')!;
+
+        // Calculate the position to center the image within the SVG
+        const x = (parseInt(svgWidth) - centerImage.width) / 2;
+        const y = (parseInt(svgHeight) - centerImage.height) / 2;
+
+        const imageElement = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        imageElement.setAttributeNS(null, 'x', x.toString());
+        imageElement.setAttributeNS(null, 'y', y.toString());
+        imageElement.setAttributeNS(null, 'width', centerImage.width.toString());
+        imageElement.setAttributeNS(null, 'height', centerImage.height.toString());
+        imageElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', options.image!.src!);
+
+        svg.appendChild(imageElement);
+
+        resolve({svg, dataUrl: `data:image/svg+xml;base64,${btoa(new XMLSerializer().serializeToString(svg))}`});
+      };
+      centerImage.onerror = () => resolve({svg, dataUrl});
+    } else {
+      return resolve({svg, dataUrl});
+    }
+  });
+}
+
 const generateQrCodeCanvasElement = () => document.createElement('canvas');
 
 export function generateQrCodeCanvas(
@@ -943,7 +1019,7 @@ export function generateQrCodeImage(
   options: generateOptions & generateWithAccessibleOptions = {},
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
   image: HTMLImageElement = generateQrCodeImageElement(),
-) {
+): {image: HTMLImageElement, dataUrl: string} {
   const dataUrl = generateQrCodeCanvas(data, options, canvas).toDataURL();
   image.setAttribute('src', dataUrl);
 
@@ -964,8 +1040,8 @@ export function generateQrCodeCanvas$(
 
   return new Promise((resolve) => {
     if (options.image?.src) {
-      const centerImageWidth = options.image?.width ?? 40;
-      const centerImageHeight = options.image?.height ?? 40;
+      const centerImageWidth = options.image.width ?? 40;
+      const centerImageHeight = options.image.height ?? 40;
       const centerImage = new Image(centerImageWidth, centerImageHeight);
       centerImage.src = options.image.src;
       centerImage.onload = () => {
@@ -990,7 +1066,7 @@ export async function generateQrCodeImage$(
   options: generateOptions & generateWithAccessibleOptions & generateWithImageOptions = {},
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
   image: HTMLImageElement = generateQrCodeImageElement(),
-) {
+): Promise<{image: HTMLImageElement, dataUrl: string}> {
   const dataUrl = (await generateQrCodeCanvas$(data, options, canvas)).toDataURL();
   image.setAttribute('src', dataUrl);
 

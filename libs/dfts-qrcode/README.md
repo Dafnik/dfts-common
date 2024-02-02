@@ -10,7 +10,8 @@ Fully type-safe and esm module compatible.
 - [Installation](#installation)
 - [Usage](#usage)
   - [HTMLImageElement](#htmlimageelement)
-  - [HTMLCanvasElemtn](#htmlcanvaselement)
+  - [HTMLCanvasElement](#htmlcanvaselement)
+  - [SVG](#svg)
 - [Error Correction Level](#error-correction-level)
 - [QR Code capacity](#qr-code-capacity)
 - [Encoding modes](#encoding-modes)
@@ -81,7 +82,7 @@ Options:
 ```typescript
 import { generateQrCodeCanvas$ } from 'dfts-qrcode';
 
-generateQrCodeCanvas$('data', {image: {src: './assets/logo.png'}}).then((qrCode) => {
+generateQrCodeCanvas$('data', {image: {src: './assets/logo.png'}}).then((qrcode) => {
   ...
 })
 ```
@@ -89,6 +90,50 @@ generateQrCodeCanvas$('data', {image: {src: './assets/logo.png'}}).then((qrCode)
 Options:
 
 - `generateOptions`
+- `generateWithImageOptions`
+
+### SVG
+
+#### Without center image
+
+```typescript
+import { generateQrCodeSVG } from 'dfts-qrcode';
+
+const { svg, dataUrl } = generateQrCodeSVG('data');
+```
+
+Options:
+
+- `generateOptions`
+- `generateWithAccessibleOptions`
+
+#### Without center image as string
+
+```typescript
+import { generateQrCodeSVGString } from 'dfts-qrcode';
+
+const svgString = generateQrCodeSVGString('data');
+```
+
+Options:
+
+- `generateOptions`
+- `generateWithAccessibleOptions`
+
+#### With center image
+
+```typescript
+import { generateQrCodeSVG$ } from 'dfts-qrcode';
+
+generateQrCodeSVG$('data', {image: {src: './assets/logo.png'}}).then(({ svg, dataUrl }) => {
+  ...
+})
+```
+
+Options:
+
+- `generateOptions`
+- `generateWithAccessibleOptions`
 - `generateWithImageOptions`
 
 ### QR-Code Matrix

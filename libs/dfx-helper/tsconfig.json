@@ -4,17 +4,17 @@
     "target": "es2020",
     "declaration": true,
     "declarationMap": true,
-    "inlineSources": true
+    "inlineSources": true,
   },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.lib.json"
+      "path": "./tsconfig.lib.json",
     },
     {
-      "path": "./tsconfig.spec.json"
-    }
+      "path": "./tsconfig.spec.json",
+    },
   ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -24,6 +24,6 @@
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true,
-    "enableResourceInlining": true
-  }
+    "enableResourceInlining": true,
+  },
 }

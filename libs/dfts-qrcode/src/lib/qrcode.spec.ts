@@ -1,5 +1,9 @@
-import { generateQrCodeMatrix, generateQrCodeSVGString } from './qrcode';
-import { s_stripWhitespace } from 'dfts-helper';
+import { generateQrCodeImage, generateQrCodeMatrix, generateQrCodeSVGString } from './qrcode';
+import fs from 'fs/promises';
+import fss from 'fs';
+import { a_shuffle, s_stripWhitespace } from 'dfts-helper';
+import Jimp from 'jimp';
+import jsQR from 'jsqr';
 
 describe('QRCode', () => {
   it('generate correct Numeric qrcode svg', () => {
@@ -385,3 +389,46 @@ describe('QRCode', () => {
     ]);
   });
 });
+
+describe('Automated random test', () => {
+  const ids = a_shuffle(readTestStrings()).slice(0, 1000);
+
+  console.info(`Ids to test: ${ids.length}`);
+  for (let i = 0; i < ids.length; i++) {
+    const id = ids[i];
+    it(`test ${i} with "${id}"`, async () => {
+      expect(id).toBe(await testQrCodeGeneratorWithFile(id));
+    });
+  }
+});
+
+// Function to read the JSON file and parse it back to an array
+function readTestStrings(): string[] {
+  return JSON.parse(fss.readFileSync('spec/randomStrings.json', 'utf8')) as string[];
+}
+
+async function testQrCodeGeneratorWithFile(input: string): Promise<string> {
+  await fs.writeFile('spec/image.png', generateQrCodeImage(input).dataUrl.replace(/^data:image\/png;base64,/, ''), { encoding: 'base64' });
+
+  return await decodeQR();
+}
+
+async function decodeQR(): Promise<string> {
+  // Load the image with Jimp
+  const image = await Jimp.read('spec/image.png');
+
+  // Get the image data
+  const imageData = {
+    data: new Uint8ClampedArray(image.bitmap.data),
+    width: image.bitmap.width,
+    height: image.bitmap.height,
+  };
+
+  // Use jsQR to decode the QR code
+  const decodedQR = jsQR(imageData.data, imageData.width, imageData.height);
+
+  if (!decodedQR) {
+    throw new Error('QR code not found in the image.');
+  }
+  return decodedQR.data;
+}

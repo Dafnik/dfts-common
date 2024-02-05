@@ -41,3 +41,4 @@ Thumbs.db
 .angular
 
 .nx/cache
+/libs/dfts-qrcode/spec/image.png

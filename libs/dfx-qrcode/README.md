@@ -21,8 +21,8 @@
 
 ## Features
 
-- ESM Module based
-- Tiny (~ 5.9kB minified + gzipped)
+- ESM based
+- Tiny (~ 10.2kB minified + gzipped)
 - Accessible
 - Server Side Rendering (Angular Universal)
 - Standalone Component API

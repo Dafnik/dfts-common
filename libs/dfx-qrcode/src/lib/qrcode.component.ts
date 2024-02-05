@@ -2,15 +2,15 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
   EventEmitter,
   inject,
-  Input,
+  input,
   numberAttribute,
-  OnChanges,
-  OnInit,
   Output,
   Renderer2,
+  signal,
   ViewChild,
 } from '@angular/core';
 import {
@@ -41,117 +41,122 @@ import {
   selector: 'qrcode',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  template: `<div #qrcElement [class]="cssClass"></div>`,
+  template: `<div #qrcElement [class]="cssClass()"></div>`,
 })
-export class QRCodeComponent implements OnInit, OnChanges {
-  @Input({ transform: booleanAttribute }) public allowEmptyString = inject(QRCODE_ALLOW_EMPTY_STRING);
-  @Input() public colorDark = inject(QRCODE_COLOR_DARK);
-  @Input() public colorLight = inject(QRCODE_COLOR_LIGHT);
-  @Input() public cssClass = inject(QRCODE_CSS_CLASS);
-  @Input() public elementType = inject(QRCODE_ELEMENT_TYPE);
-  @Input() public errorCorrectionLevel = inject(QRCODE_ERROR_CORRECTION_LEVEL);
-  @Input({ transform: numberAttribute }) public version = inject(QRCODE_VERSION);
-  @Input({ transform: numberAttribute }) public size = inject(QRCODE_SIZE);
-  @Input({ transform: numberAttribute }) public margin = inject(QRCODE_MARGIN);
+export class QRCodeComponent {
+  allowEmptyString = input(inject(QRCODE_ALLOW_EMPTY_STRING), { transform: booleanAttribute });
+  public colorDark = input(inject(QRCODE_COLOR_DARK));
+  public colorLight = input(inject(QRCODE_COLOR_LIGHT));
+  public cssClass = input(inject(QRCODE_CSS_CLASS));
+  public elementType = input(inject(QRCODE_ELEMENT_TYPE));
+  public errorCorrectionLevel = input(inject(QRCODE_ERROR_CORRECTION_LEVEL));
+  public version = input(inject(QRCODE_VERSION), { transform: numberAttribute });
+  public size = input(inject(QRCODE_SIZE), { transform: numberAttribute });
+  public margin = input(inject(QRCODE_MARGIN), { transform: numberAttribute });
 
-  @Input() public imageSrc = inject(QRCODE_IMAGE_SRC);
-  @Input({ transform: numberAttribute }) public imageHeight? = inject(QRCODE_IMAGE_HEIGHT);
-  @Input({ transform: numberAttribute }) public imageWidth? = inject(QRCODE_IMAGE_WIDTH);
+  public imageSrc = input(inject(QRCODE_IMAGE_SRC));
+  public imageHeight = input(inject(QRCODE_IMAGE_HEIGHT), { transform: numberAttribute });
+  public imageWidth = input(inject(QRCODE_IMAGE_WIDTH), { transform: numberAttribute });
 
-  @Input() public alt?: string;
-  @Input() public ariaLabel?: string;
-  @Input() public title?: string;
+  public alt = input<string>();
+  public ariaLabel = input<string>();
+  public title = input<string>();
 
-  @Input() public data: null | undefined | string = '';
+  public data = input<null | undefined | string>('');
 
   @Output() qrCodeDataUrl = new EventEmitter<string>();
 
-  @ViewChild('qrcElement', { static: true }) public qrcElement!: ElementRef;
+  viewChild = signal<ElementRef | undefined>(undefined);
+
+  @ViewChild('qrcElement', { static: true }) set qrcElement(it: ElementRef) {
+    this.viewChild.set(it);
+  }
 
   private renderer = inject(Renderer2);
 
-  public ngOnInit(): void {
-    this.createQRCode();
-  }
+  constructor() {
+    effect(() => {
+      const viewChild = this.viewChild();
 
-  public ngOnChanges(): void {
-    this.createQRCode();
+      if (!viewChild) {
+        return;
+      }
+
+      let data = this.data();
+      const validQrData = this.isValidQrCodeText(data);
+      if (!this.allowEmptyString() && !validQrData) {
+        console.error('[dfx-qrcode] Field `data` is empty, set \'allowEmptyString="true"\' to overwrite this behaviour.');
+        return;
+      } else if (this.allowEmptyString() && !validQrData) {
+        data = ' ';
+      }
+
+      try {
+        const config = {
+          errorCorrectionLevel: this.errorCorrectionLevel(),
+          version: this.version(),
+          size: this.size(),
+          alt: this.alt(),
+          title: this.title(),
+          ariaLabel: this.ariaLabel(),
+          margin: this.margin(),
+          colors: {
+            colorLight: this.colorLight(),
+            colorDark: this.colorDark(),
+          },
+          image: {
+            src: this.imageSrc(),
+            width: this.imageWidth(),
+            height: this.imageHeight(),
+          },
+        } as generateMatrixOptions & generateOptions & generateWithImageOptions & generateWithAccessibleOptions;
+
+        switch (this.elementType()) {
+          case 'canvas': {
+            generateQrCodeCanvas$(data!, config, this.renderer.createElement('canvas')).then((element) => {
+              this.renderElement(viewChild, element);
+              this.qrCodeDataUrl.emit(element.toDataURL());
+            });
+
+            break;
+          }
+
+          case 'img': {
+            generateQrCodeImage$(data!, config, this.renderer.createElement('canvas'), this.renderer.createElement('img')).then(
+              ({ image, dataUrl }) => {
+                this.renderElement(viewChild, image);
+                this.qrCodeDataUrl.emit(dataUrl);
+              },
+            );
+
+            break;
+          }
+
+          case 'svg': {
+            generateQrCodeSVG$(data!, config).then(({ svg, dataUrl }) => {
+              this.renderElement(viewChild, svg);
+              this.qrCodeDataUrl.emit(dataUrl);
+            });
+
+            break;
+          }
+          default:
+            console.error(`[dfx-qrcode] Error: Unknown elementType "${this.elementType()}"`);
+        }
+      } catch (e: unknown) {
+        console.error('[dfx-qrcode] Error generating QR Code:', e);
+      }
+    });
   }
 
   protected isValidQrCodeText(data: string | null | undefined): boolean {
     return data !== null && data !== undefined && data.length > 0;
   }
 
-  private renderElement(element: Element): void {
-    for (const node of this.qrcElement.nativeElement.childNodes) {
-      this.renderer.removeChild(this.qrcElement.nativeElement, node);
+  private renderElement(viewChild: ElementRef, element: Element): void {
+    for (const node of viewChild.nativeElement.childNodes) {
+      this.renderer.removeChild(viewChild.nativeElement, node);
     }
-    this.renderer.appendChild(this.qrcElement.nativeElement, element);
-  }
-
-  private createQRCode(): void {
-    const validQrData = this.isValidQrCodeText(this.data);
-    if (!this.allowEmptyString && !validQrData) {
-      console.error('[dfx-qrcode] Field `data` is empty, set \'allowEmptyString="true"\' to overwrite this behaviour.');
-      return;
-    } else if (this.allowEmptyString && !validQrData) {
-      this.data = ' ';
-    }
-
-    try {
-      const config = {
-        errorCorrectionLevel: this.errorCorrectionLevel,
-        version: this.version,
-        size: this.size,
-        alt: this.alt,
-        title: this.title,
-        ariaLabel: this.ariaLabel,
-        margin: this.margin,
-        colors: {
-          colorLight: this.colorLight,
-          colorDark: this.colorDark,
-        },
-        image: {
-          src: this.imageSrc,
-          width: this.imageWidth,
-          height: this.imageHeight,
-        },
-      } as generateMatrixOptions & generateOptions & generateWithImageOptions & generateWithAccessibleOptions;
-
-      switch (this.elementType) {
-        case 'canvas': {
-          generateQrCodeCanvas$(this.data!, config, this.renderer.createElement('canvas')).then((element) => {
-            this.renderElement(element);
-            this.qrCodeDataUrl.emit(element.toDataURL());
-          });
-
-          break;
-        }
-
-        case 'img': {
-          generateQrCodeImage$(this.data!, config, this.renderer.createElement('canvas'), this.renderer.createElement('img')).then(
-            ({ image, dataUrl }) => {
-              this.renderElement(image);
-              this.qrCodeDataUrl.emit(dataUrl);
-            },
-          );
-
-          break;
-        }
-
-        case 'svg': {
-          generateQrCodeSVG$(this.data!, config).then(({ svg, dataUrl }) => {
-            this.renderElement(svg);
-            this.qrCodeDataUrl.emit(dataUrl);
-          });
-
-          break;
-        }
-        default:
-          console.error(`[dfx-qrcode] Error: Unknown elementType "${this.elementType}"`);
-      }
-    } catch (e: unknown) {
-      console.error('[dfx-qrcode] Error generating QR Code:', e);
-    }
+    this.renderer.appendChild(viewChild.nativeElement, element);
   }
 }

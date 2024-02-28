@@ -16,7 +16,6 @@ describe('dfx-bootstrap-table', () => {
     fixture = TestBed.createComponent(NgbRow);
     component = fixture.componentInstance;
 
-
     fixture.detectChanges();
   });
 

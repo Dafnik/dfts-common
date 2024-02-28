@@ -34,7 +34,7 @@ export * from './lib/pipes/string/strip-whitespace';
 export * from './lib/pipes/string/truncate';
 export * from './lib/pipes/string/upper-case-first-letter';
 
-export * from './lib/pipes/currency.pipe'
+export * from './lib/pipes/currency.pipe';
 export * from './lib/pipes/implode';
 export * from './lib/pipes/name-map';
 export * from './lib/pipes/pluck';

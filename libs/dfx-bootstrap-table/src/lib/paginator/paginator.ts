@@ -49,9 +49,9 @@ const _NgbPaginatorMixinBase = mixinInitialized(class {});
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styles: `
-  .ws-nowrap {
-    white-space: nowrap
-  }
+    .ws-nowrap {
+      white-space: nowrap;
+    }
   `,
 })
 export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDestroy, HasInitialized {

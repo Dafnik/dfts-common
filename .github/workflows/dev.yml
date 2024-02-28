@@ -121,7 +121,7 @@ jobs:
 
   deploy-lib:
     name: Deploy ${{ matrix.lib }} dev
-    needs: [ build-lib, test, changes ]
+    needs: [build-lib, test, changes]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     strategy:
@@ -175,7 +175,7 @@ jobs:
 
   bundle-apps:
     name: Bundle app artifacts into one
-    needs: [ build-apps ]
+    needs: [build-apps]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -236,8 +236,8 @@ jobs:
     needs: bundle-apps
     permissions:
       actions: read
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

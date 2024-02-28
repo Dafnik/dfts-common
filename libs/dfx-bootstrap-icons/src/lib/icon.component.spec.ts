@@ -107,7 +107,6 @@ describe('IconComponent', () => {
     expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'viewBox')).toBe(`0 0 16 16`);
   });
 
-
   it('test size attribute', () => {
     const value = '32';
     component.name = 'x-circle-fill';

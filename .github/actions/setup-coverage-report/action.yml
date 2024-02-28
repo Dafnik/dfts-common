@@ -1,5 +1,5 @@
-name: "Setup coverage report"
-description: "Setup coverage report"
+name: 'Setup coverage report'
+description: 'Setup coverage report'
 
 inputs:
   path:
@@ -7,7 +7,7 @@ inputs:
     description: Path to covertura coverage path
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Copy Coverage to predictable Location
       run: cp ${{ inputs.path }} coverage/coverage.cobertura.xml

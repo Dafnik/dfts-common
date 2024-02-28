@@ -1,11 +1,12 @@
-import { generateQrCodeMatrix, generateQrCodeSVGString } from "./qrcode";
-import { s_stripWhitespace } from "dfts-helper";
+import { generateQrCodeMatrix, generateQrCodeSVGString } from './qrcode';
+import { s_stripWhitespace } from 'dfts-helper';
 
 describe('QRCode', () => {
   it('generate correct Numeric qrcode svg', () => {
-    const test = generateQrCodeSVGString('123456798', { mode: 'numeric' })
-    console.log(test)
-    expect(s_stripWhitespace(test)).toEqual(s_stripWhitespace(`<svg xmlns="http://www.w3.org/2000/svg"
+    const test = generateQrCodeSVGString('123456798', { mode: 'numeric' });
+    console.log(test);
+    expect(s_stripWhitespace(test)).toEqual(
+      s_stripWhitespace(`<svg xmlns="http://www.w3.org/2000/svg"
     width="145" height="145"   >
     <rect width="145" height="145" fill="#ffffff" />
     <rect x="20" y="20" width="5.3" height="5.3" fill="#000000" />
@@ -230,7 +231,8 @@ describe('QRCode', () => {
     <rect x="110" y="120" width="5.3" height="5.3" fill="#000000" />
     <rect x="115" y="120" width="5.3" height="5.3" fill="#000000" />
     <rect x="120" y="120" width="5.3" height="5.3" fill="#000000" />
-    </svg>`));
+    </svg>`),
+    );
   });
   it('generate correct Numeric qrcode matrix', () => {
     expect(generateQrCodeMatrix('123456798', { mode: 'numeric' })).toStrictEqual([

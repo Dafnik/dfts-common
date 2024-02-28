@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from "@angular/router";
 
 @Component({
   standalone: true,
-  selector: "app-root",
+  selector: 'app-root',
   template: `
     <div class="container container-lg d-flex w-100 h-100 p-3 mx-auto flex-column">
       <main class="px-3 pt-5">
@@ -49,6 +48,6 @@ import { RouterOutlet } from "@angular/router";
         <p>by <a href="https://dafnik.me" class="text-white">Dafnik</a></p>
       </footer>
     </div>
-  `
+  `,
 })
 export class AppComponent {}

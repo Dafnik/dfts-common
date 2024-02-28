@@ -16,18 +16,18 @@ interface Theme {
       </label>
       <select class="rounded-3 px-2" name="theme" id="theme" (change)="setTheme($any($event.target).value)">
         @for (theme of themes; track theme.id) {
-        <option [class.active]="theme.id === currentTheme().id" [value]="theme.id">
-          <bi [name]="theme.icon" />
-          {{ theme.name }}
-        </option>
+          <option [class.active]="theme.id === currentTheme().id" [value]="theme.id">
+            <bi [name]="theme.icon" />
+            {{ theme.name }}
+          </option>
         }
       </select>
     </div>
   `,
   styles: `
-  a {
-    text-decoration: none;
-  }
+    a {
+      text-decoration: none;
+    }
   `,
   selector: 'theme-picker',
   standalone: true,

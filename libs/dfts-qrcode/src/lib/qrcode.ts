@@ -903,10 +903,7 @@ export function generateQrCodeMatrix(data: string | number, options: generateMat
   return generate(newData, ver, mode, ecclevel, mask);
 }
 
-export function generateQrCodeSVGString(
-  data: string | number,
-  options: generateOptions & generateWithAccessibleOptions = {},
-): string {
+export function generateQrCodeSVGString(data: string | number, options: generateOptions & generateWithAccessibleOptions = {}): string {
   const matrix = generateQrCodeMatrix(data, options);
   const modsize = options.size ?? 5;
   const margin = options.margin ?? 4;
@@ -915,13 +912,18 @@ export function generateQrCodeSVGString(
   const n = matrix.length;
   const size = modsize * (n + 2 * margin);
 
-  const xmls = ['<svg xmlns="http://www.w3.org/2000/svg"', `width="${size}" height="${size}" ${options.alt ? `alt="${options.alt}"` : '' } ${options.ariaLabel ? `aria-label="${options.ariaLabel}"` : ''} ${options.title ? `title="${options.title}"` : '' }>`];
+  const xmls = [
+    '<svg xmlns="http://www.w3.org/2000/svg"',
+    `width="${size}" height="${size}" ${options.alt ? `alt="${options.alt}"` : ''} ${options.ariaLabel ? `aria-label="${options.ariaLabel}"` : ''} ${options.title ? `title="${options.title}"` : ''}>`,
+  ];
   xmls.push(`<rect width="${size}" height="${size}" fill="${fgColor}" />`);
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       if (matrix[i][j]) {
-        xmls.push(`<rect x="${modsize * (margin + j)}" y="${modsize * (margin + i)}" width="${modsize + 0.3}" height="${modsize + 0.3}" fill="${bgColor}" />`);
+        xmls.push(
+          `<rect x="${modsize * (margin + j)}" y="${modsize * (margin + i)}" width="${modsize + 0.3}" height="${modsize + 0.3}" fill="${bgColor}" />`,
+        );
       }
     }
   }
@@ -935,17 +937,17 @@ const parser = new DOMParser();
 export function generateQrCodeSVG(
   data: string | number,
   options: generateOptions & generateWithAccessibleOptions = {},
-): {svg: HTMLElement, dataUrl: string} {
+): { svg: HTMLElement; dataUrl: string } {
   const svg = generateQrCodeSVGString(data, options);
   const base64Svg = btoa(svg);
-  return {svg: parser.parseFromString(svg, "image/svg+xml").documentElement, dataUrl: `data:image/svg+xml;base64,${base64Svg}` }
+  return { svg: parser.parseFromString(svg, 'image/svg+xml').documentElement, dataUrl: `data:image/svg+xml;base64,${base64Svg}` };
 }
 
 export function generateQrCodeSVG$(
   data: string | number,
   options: generateOptions & generateWithAccessibleOptions & generateWithImageOptions = {},
-): Promise<{svg: HTMLElement, dataUrl: string}> {
-  const {svg, dataUrl} = generateQrCodeSVG(data, options)
+): Promise<{ svg: HTMLElement; dataUrl: string }> {
+  const { svg, dataUrl } = generateQrCodeSVG(data, options);
 
   return new Promise((resolve, reject) => {
     if (options.image?.src) {
@@ -970,11 +972,11 @@ export function generateQrCodeSVG$(
 
         svg.appendChild(imageElement);
 
-        resolve({svg, dataUrl: `data:image/svg+xml;base64,${btoa(new XMLSerializer().serializeToString(svg))}`});
+        resolve({ svg, dataUrl: `data:image/svg+xml;base64,${btoa(new XMLSerializer().serializeToString(svg))}` });
       };
-      centerImage.onerror = () => resolve({svg, dataUrl});
+      centerImage.onerror = () => resolve({ svg, dataUrl });
     } else {
-      return resolve({svg, dataUrl});
+      return resolve({ svg, dataUrl });
     }
   });
 }
@@ -1019,7 +1021,7 @@ export function generateQrCodeImage(
   options: generateOptions & generateWithAccessibleOptions = {},
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
   image: HTMLImageElement = generateQrCodeImageElement(),
-): {image: HTMLImageElement, dataUrl: string} {
+): { image: HTMLImageElement; dataUrl: string } {
   const dataUrl = generateQrCodeCanvas(data, options, canvas).toDataURL();
   image.setAttribute('src', dataUrl);
 
@@ -1066,7 +1068,7 @@ export async function generateQrCodeImage$(
   options: generateOptions & generateWithAccessibleOptions & generateWithImageOptions = {},
   canvas: HTMLCanvasElement = generateQrCodeCanvasElement(),
   image: HTMLImageElement = generateQrCodeImageElement(),
-): Promise<{image: HTMLImageElement, dataUrl: string}> {
+): Promise<{ image: HTMLImageElement; dataUrl: string }> {
   const dataUrl = (await generateQrCodeCanvas$(data, options, canvas)).toDataURL();
   image.setAttribute('src', dataUrl);
 

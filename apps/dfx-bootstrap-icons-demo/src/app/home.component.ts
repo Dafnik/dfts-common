@@ -21,30 +21,30 @@ import { LoadIconComponent } from './load-icon.component';
 
       <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
         @for (icon of searchResults(); track icon) {
-        <li class="col mb-4">
-          <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
-            <div class="px-3 py-5 mb-2 text-center rounded icon-block">
-              @defer (on viewport, idle) {
-              <bi [name]="icon" />
-              } @placeholder (minimum 500ms) {
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+          <li class="col mb-4">
+            <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
+              <div class="px-3 py-5 mb-2 text-center rounded icon-block">
+                @defer (on viewport, idle) {
+                  <bi [name]="icon" />
+                } @placeholder (minimum 500ms) {
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                }
               </div>
-              }
-            </div>
-            <div class="name text-muted text-decoration-none text-center pt-1">
-              <strong>{{ icon }}</strong>
-            </div>
-            <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
-          </a>
-        </li>
+              <div class="name text-muted text-decoration-none text-center pt-1">
+                <strong>{{ icon }}</strong>
+              </div>
+              <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
+            </a>
+          </li>
         } @empty {
-        <li class="d-flex w-100 justify-content-center">
-          <div class="d-flex align-items-center gap-2">
-            <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
-            <span>Nothing found.</span>
-          </div>
-        </li>
+          <li class="d-flex w-100 justify-content-center">
+            <div class="d-flex align-items-center gap-2">
+              <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
+              <span>Nothing found.</span>
+            </div>
+          </li>
         }
       </ul>
     </div>
@@ -57,28 +57,27 @@ import { LoadIconComponent } from './load-icon.component';
     </div>
   `,
   styles: `
-  .icon-block {
-    background-color: var(--bs-tertiary-bg);
-    color: var(--bs-body-color);
-    transition-duration: 0.3s;
-  }
-  .icon-block:hover {
-    transition-duration: 0.4s;
-    background-color: var(--bs-secondary-bg);
-  }
-  .to-top {
-    bottom: 0;
-    margin: 0 8px 12px 0;
-    position: fixed;
-    right: 0;
-    opacity: 0;
-  }
+    .icon-block {
+      background-color: var(--bs-tertiary-bg);
+      color: var(--bs-body-color);
+      transition-duration: 0.3s;
+    }
+    .icon-block:hover {
+      transition-duration: 0.4s;
+      background-color: var(--bs-secondary-bg);
+    }
+    .to-top {
+      bottom: 0;
+      margin: 0 8px 12px 0;
+      position: fixed;
+      right: 0;
+      opacity: 0;
+    }
 
-  .show-scrollTop {
-    opacity: 1 !important;
-    transition: all 0.2s ease-in-out;
-  }
-
+    .show-scrollTop {
+      opacity: 1 !important;
+      transition: all 0.2s ease-in-out;
+    }
   `,
   standalone: true,
   imports: [BiComponent, ReactiveFormsModule, NgClass, LoadIconComponent],

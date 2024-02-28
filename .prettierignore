@@ -1,11 +1,9 @@
 # Add files here to ignore them from prettier formatting
 
+/node_modules
 /dist
 /coverage
+/.nx/cache
+.angular
 package.json
 pnpm-lock.yaml
-.gitlab-ci.yml
-.github/
-.angular
-
-/.nx/cache

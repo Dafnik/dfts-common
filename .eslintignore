@@ -1,1 +1,7 @@
 libs/dfx-translate/cli/webpack.config.js
+
+.angular
+package.json
+pnpm-lock.yaml
+dist/
+node_modules/

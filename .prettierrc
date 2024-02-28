@@ -1,5 +1,19 @@
 {
   "printWidth": 140,
   "singleQuote": true,
-  "bracketSpacing": true
+  "bracketSpacing": false,
+  "overrides": [
+    {
+      "files": ["*.component.html"],
+      "options": {
+        "parser": "angular"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
 }

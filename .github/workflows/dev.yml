@@ -183,7 +183,7 @@ jobs:
       - name: dist lookup
         run: |
           cd dist
-          mv ${{ matrix.lib }}.zip ../${{ matrix.lib }}-dev.zip
+          mv ${{ matrix.lib }}.zip ./${{ matrix.lib }}-dev.zip
           ls -la
           cd -
 

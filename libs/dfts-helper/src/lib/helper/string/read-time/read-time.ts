@@ -10,7 +10,7 @@ const IMAGE_READ_TIME = 12; // in seconds
  * @param {number} [imageCounter=0] - The number of images in the text.
  * @returns {string} - The estimated time it takes to read the text, in the format "Xm" where X is the number of minutes.
  */
-export const s_readTime = (text: string, imageCounter: number = 0): string =>
+export const s_readTime = (text: string, imageCounter = 0): string =>
   n_humanizeTime(imageReadTime(imageCounter) + calculateWordsReadTime(text.trim()));
 
 /**

@@ -9,7 +9,7 @@ import { CurrencyPipe } from '@angular/common';
 export class DfxCurrencyCentPipe extends CurrencyPipe implements PipeTransform {
   constructor(
     @Inject(LOCALE_ID) _locale: string,
-    @Inject(DEFAULT_CURRENCY_CODE) private __defaultCurrencyCode: string = 'USD',
+    @Inject(DEFAULT_CURRENCY_CODE) private __defaultCurrencyCode = 'USD',
   ) {
     super(_locale, __defaultCurrencyCode);
   }

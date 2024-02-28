@@ -138,6 +138,7 @@ export class NgbTableDataSource<T, P extends NgbPaginator = NgbPaginator> extend
    * @param sortHeaderId The name of the column that represents the data.
    */
   sortingDataAccessor: (data: T, sortHeaderId: string) => string | number = (data: T, sortHeaderId: string): string | number => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const value = (data as unknown as Record<string, any>)[sortHeaderId];
 
     if (_isNumberValue(value)) {
@@ -220,6 +221,7 @@ export class NgbTableDataSource<T, P extends NgbPaginator = NgbPaginator> extend
    */
   filterPredicate: (data: T, filter: string) => boolean = (data: T, filter: string): boolean => {
     // Transform the data into a lowercase string of all property values.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const dataStr = Object.keys(data as unknown as Record<string, any>)
       .reduce((currentTerm: string, key: string) => {
         // Use an obscure Unicode character to delimit the words in the concatenated string.
@@ -228,6 +230,7 @@ export class NgbTableDataSource<T, P extends NgbPaginator = NgbPaginator> extend
         // that has a very low chance of being typed in by somebody in a text field. This one in
         // particular is "White up-pointing triangle with dot" from
         // https://en.wikipedia.org/wiki/List_of_Unicode_characters
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return currentTerm + (data as unknown as Record<string, any>)[key] + '◬';
       }, '')
       .toLowerCase();

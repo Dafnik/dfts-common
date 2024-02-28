@@ -7,8 +7,8 @@
     "prepare": "husky",
     "start": "nx serve",
     "test": "nx test",
-    "lint": "eslint '**/*.{js,ts,html,json,md}' --fix",
-    "lint:check": "eslint '**/*.{js,ts,html,json,md}'",
+    "lint": "nx run-many --parallel 10 --target lint --all --fix",
+    "lint:check": "nx run-many --parallel 10 --target lint --all --",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "generateIcons": "node ./tools/scripts/generateIcons.js && pnpm prettify"

@@ -29,6 +29,7 @@ export function mixinDisabled<T extends Constructor<{}>>(base: T): CanDisableCto
       this._disabled = it;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
     }

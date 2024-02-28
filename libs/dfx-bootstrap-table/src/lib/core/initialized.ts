@@ -57,6 +57,7 @@ export function mixinInitialized<T extends Constructor<{}>>(base: T): HasInitial
       }
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
       super(...args);
     }

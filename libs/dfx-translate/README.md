@@ -147,12 +147,10 @@ If you want to change the folder where your default language is searched, you ca
 
 ```json
 {
-  ...
   "scripts": {
     "start": "translate-cli generateTypes && ng serve",
     "prepare": "translate-cli generateTypes"
   },
-  ...
 }
 ```
 

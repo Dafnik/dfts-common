@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { serviceStub, TRANSLATE_SET_LANGUAGE_FN } from '../test-helper';
 import { provideDfxTranslate } from '../translate.provider';
-import { TranslateStore } from '../service/translate.store';
 import { dfxTranslateSetLanguage } from '../service/set-language';
 import { DfxTrA } from './tra';
 import { dfxTranslateSetLanguageFn } from '../types';
@@ -21,7 +20,6 @@ describe('TranslateAutoDirective', () => {
   let component: TestTranslateDirectiveComponent;
   let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
   let nativeElement: HTMLElement;
-  let translateStore: TranslateStore;
   let setLanguage: dfxTranslateSetLanguageFn;
 
   beforeEach(() => {
@@ -40,7 +38,6 @@ describe('TranslateAutoDirective', () => {
       ],
     }).compileComponents();
 
-    translateStore = TestBed.inject(TranslateStore);
     setLanguage = TestBed.inject(TRANSLATE_SET_LANGUAGE_FN);
 
     fixture = TestBed.createComponent(TestTranslateDirectiveComponent) as typeof fixture;

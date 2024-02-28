@@ -87,7 +87,7 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   get pageSize(): number {
     return this._pageSize;
   }
-  private _pageSize: number = 10;
+  private _pageSize = 10;
 
   /** The set of provided page size options to display to the user. */
   @Input()
@@ -100,9 +100,9 @@ export class NgbPaginator extends _NgbPaginatorMixinBase implements OnInit, OnDe
   }
   private _pageSizeOptions: number[] = [];
 
-  @Input({ transform: booleanAttribute }) hidePageSize: boolean = false;
-  @Input({ transform: booleanAttribute }) showFirstLastButtons: boolean = false;
-  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+  @Input({ transform: booleanAttribute }) hidePageSize = false;
+  @Input({ transform: booleanAttribute }) showFirstLastButtons = false;
+  @Input({ transform: booleanAttribute }) disabled = false;
 
   /**
    * The paginator display size.

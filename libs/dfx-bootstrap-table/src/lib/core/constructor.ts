@@ -7,10 +7,12 @@
  */
 
 /** @docs-private */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Constructor<T> = new (...args: any[]) => T;
 
 /**
  * This is a permissive type for abstract class constructors.
  * @docs-private
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AbstractConstructor<T = object> = abstract new (...args: any[]) => T;

@@ -183,15 +183,25 @@ jobs:
       - name: dist lookup
         run: cd dist && ls -la && cd -
 
-      - name: copy build to release server
-        uses: garygrossgarten/github-action-scp@release
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
         with:
-          local: ./dist/${{ matrix.lib }}.zip
-          remote: /var/www/share/releases/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
           host: ${{ secrets.RELEASES_SSH_HOST }}
-          port: ${{ secrets.RELEASES_SSH_PORT }}
           username: ${{ secrets.RELEASES_SSH_USER }}
-          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+          key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.RELEASES_SSH_PORT }}
+          source: ./dist/${{ matrix.lib }}.zip
+          target: /var/www/share/releases/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
+
+#      - name: copy build to release server
+#        uses: garygrossgarten/github-action-scp@release
+#        with:
+#          local: ./dist/${{ matrix.lib }}.zip
+#          remote: /var/www/share/releases/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
+#          host: ${{ secrets.RELEASES_SSH_HOST }}
+#          port: ${{ secrets.RELEASES_SSH_PORT }}
+#          username: ${{ secrets.RELEASES_SSH_USER }}
+#          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
 
   build-apps:
     name: Build ${{ matrix.app }}

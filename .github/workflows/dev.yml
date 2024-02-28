@@ -195,7 +195,7 @@ jobs:
           key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
           source: ./dist/${{ matrix.lib }}-dev.zip
-          target: /var/www/share/releases/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
+          target: /var/www/share/releases/${{ matrix.lib }}
           overwrite: true
 
   #      - name: copy build to release server

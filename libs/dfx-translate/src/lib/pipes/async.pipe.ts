@@ -1,16 +1,8 @@
-import { ChangeDetectorRef, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {ChangeDetectorRef, DestroyRef, inject} from '@angular/core';
 
 export class AsyncTranslatePipe {
   translation?: string;
-  translationSubscription?: Subscription;
 
   ref = inject(ChangeDetectorRef);
-
-  unsubscribe(): void {
-    this.translation = undefined;
-    if (this.translationSubscription) {
-      this.translationSubscription.unsubscribe();
-    }
-  }
+  destroyRef = inject(DestroyRef);
 }

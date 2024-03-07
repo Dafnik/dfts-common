@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { first, map, Observable, of, switchMap } from 'rxjs';
 import { TranslateStore } from './translate.store';
 import { autoTranslationResponse } from '../types';
-import { TRANSLATE_DEFAULT_LANGUAGE } from '../features/default-language/default-language';
-import { TRANSLATE_DEFAULT_UNDEFINED_KEY_TO } from '../features/default-undefined-key-to/default-undefined-key-to';
-import { TRANSLATE_LIBRE_TRANSLATE_INSTANCE_URL } from '../features/libre-translate/libre-translate';
+import { TRANSLATE_DEFAULT_LANGUAGE, TRANSLATE_DEFAULT_UNDEFINED_KEY_TO, TRANSLATE_LIBRE_TRANSLATE_INSTANCE_URL } from '../features';
 
 export function dfxAutoTranslate$(): (key: string) => Observable<string> {
   const httpClient = inject(HttpClient);

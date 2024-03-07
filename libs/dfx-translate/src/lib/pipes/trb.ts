@@ -1,14 +1,15 @@
-import { inject, OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
 import { dfxTranslate$ } from '../service/rx-translate';
 import { AsyncTranslatePipe } from './async.pipe';
 import { TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO } from '../features/default-undefined-boolean-to/default-undefined-boolean-to';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Pipe({
   name: 'trb',
   standalone: true,
   pure: false,
 })
-export class DfxTrB extends AsyncTranslatePipe implements PipeTransform, OnDestroy {
+export class DfxTrB extends AsyncTranslatePipe implements PipeTransform {
   defaultUndefinedOrNullBooleanTo = inject(TRANSLATE_DEFAULT_UNDEFINED_OR_NULL_BOOLEAN_TO);
 
   translate = dfxTranslate$();
@@ -25,16 +26,12 @@ export class DfxTrB extends AsyncTranslatePipe implements PipeTransform, OnDestr
     }
 
     if (!this.translation) {
-      this.translationSubscription = this.translate(key).subscribe((translation) => {
+      this.translate(key).pipe(takeUntilDestroyed(this.destroyRef)).subscribe((translation) => {
         this.translation = translation;
         this.ref.markForCheck();
       });
     }
 
     return this.translation ?? '';
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe();
   }
 }

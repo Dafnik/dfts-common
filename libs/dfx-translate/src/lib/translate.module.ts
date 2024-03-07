@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DfxTr } from './pipes/tr';
-import { DfxTrB } from './pipes/trb';
-import { DfxTrA } from './pipes/tra';
+import { DfxTr, DfxTrB, DfxTrA } from './pipes';
 
 @NgModule({
   imports: [DfxTr, DfxTrB, DfxTrA],

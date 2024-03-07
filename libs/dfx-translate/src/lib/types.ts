@@ -1,7 +1,4 @@
-import { dfxTranslate$ } from './service/rx-translate';
-import { dfxTranslateSetLanguage } from './service/set-language';
-import { dfxAutoTranslate$ } from './service/rx-auto-translate';
-import { dfxTranslate } from './service/translate';
+import { dfxTranslate, dfxAutoTranslate$, dfxTranslateSetLanguage, dfxTranslate$ } from './service';
 
 export type translationFile = { [key: string]: string | undefined };
 export type autoTranslationResponse = { translatedText: string };

@@ -3,16 +3,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BiComponent } from './icon.component';
-import {
-  provideBi,
-  provideIcons,
-  provideLocalIconsLoader,
-  withColor,
-  withHeight,
-  withIcons,
-  withSize,
-  withWidth
-} from './icons.provider';
+import { provideBi, provideIcons, provideLocalIconsLoader, withColor, withHeight, withIcons, withSize, withWidth } from './icons.provider';
 import { allIcons, xCircleFill, zeroCircle } from './generated';
 import { IconFeatures } from './icons.feature';
 import { DEFAULT_ICON_SIZE } from './icons.config';
@@ -21,7 +12,7 @@ import { toEscapedName } from './internal/toEscapedName';
 describe('IconFeatures ', () => {
   it('test defaults', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }));
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -41,7 +32,7 @@ describe('IconFeatures ', () => {
     expect(component.iconLoader('zeroCircle')).toBeDefined();
     expect(component.iconLoader('xCircle')).toBeUndefined();
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -57,7 +48,7 @@ describe('IconFeatures ', () => {
   it('test withWidth', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withWidth('32'));
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -70,7 +61,7 @@ describe('IconFeatures ', () => {
   it('test withHeight', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withHeight('32'));
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -83,7 +74,7 @@ describe('IconFeatures ', () => {
   it('test withSize', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withSize('32'), withWidth('48'));
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -96,7 +87,7 @@ describe('IconFeatures ', () => {
   it('test withColor', () => {
     const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withColor('#123456'));
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -121,7 +112,7 @@ describe('IconFeatures ', () => {
     expect(component.iconLoader('zeroCircle')).toBeDefined();
     expect(component.iconLoader('xCircle')).toBeUndefined();
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 
@@ -149,7 +140,7 @@ describe('IconFeatures ', () => {
     expect(component.iconLoader('zeroCircle')).toBeDefined();
     expect(component.iconLoader('xCircle')).toBeUndefined();
 
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
 

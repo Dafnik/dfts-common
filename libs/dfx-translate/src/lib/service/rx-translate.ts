@@ -1,4 +1,4 @@
-import {inject, InjectionToken} from '@angular/core';
+import { inject, InjectionToken } from '@angular/core';
 import { combineLatest, map, Observable, of, switchMap } from 'rxjs';
 import { TranslateStore } from './translate.store';
 import { translationKeys } from '../translationKeys';
@@ -22,9 +22,9 @@ function _dfxTranslate$(): (key: translationKeys) => Observable<string> {
 
 const DFX_TRANSLATE$ = new InjectionToken('dfxTranslate$', {
   providedIn: 'root',
-  factory: () => _dfxTranslate$()
+  factory: () => _dfxTranslate$(),
 });
 
 export function dfxTranslate$(): ReturnType<typeof _dfxTranslate$> {
-  return inject(DFX_TRANSLATE$)
+  return inject(DFX_TRANSLATE$);
 }

@@ -22,7 +22,7 @@ describe('SVG Icons', () => {
 
   for (const name of BiNameList) {
     it(`load right svg for ${name} icon`, () => {
-      fixture.componentRef.setInput('name', name)
+      fixture.componentRef.setInput('name', name);
       fixture.detectChanges();
       // @ts-ignore
       expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName(name)]);
@@ -30,7 +30,7 @@ describe('SVG Icons', () => {
   }
 
   it(`load right svg changes`, () => {
-    fixture.componentRef.setInput('name', 'x-circle-fill')
+    fixture.componentRef.setInput('name', 'x-circle-fill');
     fixture.detectChanges();
     // @ts-ignore
     expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle-fill')]);
@@ -38,7 +38,7 @@ describe('SVG Icons', () => {
     fixture.componentRef.setInput('name', 'x-circle');
     fixture.detectChanges();
     // @ts-ignore
-    expect(nativeElement.querySelector("svg")?.outerHTML).toBe(allIcons[toEscapedName("x-circle")]);
+    expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle')]);
   });
 });
 

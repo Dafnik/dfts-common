@@ -11,9 +11,7 @@ export class IsMobileService {
 
   #checkIsMobile = () => this.#viewportRuler.getViewportSize().width <= this.#isMobileBreakpoint;
 
-  #_isMobile$ =  this.#viewportRuler
-    .change(50)
-    .pipe(map(this.#checkIsMobile), startWith(this.#checkIsMobile()), distinctUntilChanged())
+  #_isMobile$ = this.#viewportRuler.change(50).pipe(map(this.#checkIsMobile), startWith(this.#checkIsMobile()), distinctUntilChanged());
 
   isMobile = toSignal(this.#_isMobile$, {
     initialValue: this.#checkIsMobile(),

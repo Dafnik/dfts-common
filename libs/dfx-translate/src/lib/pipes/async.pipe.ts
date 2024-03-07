@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, DestroyRef, inject} from '@angular/core';
+import { ChangeDetectorRef, DestroyRef, inject } from '@angular/core';
 
 export class AsyncTranslatePipe {
   translation?: string;

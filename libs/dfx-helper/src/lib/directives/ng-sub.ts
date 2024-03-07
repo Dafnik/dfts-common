@@ -59,7 +59,7 @@ export class NgSubContext<T> {
 })
 export class NgSub<T> implements OnInit {
   #viewContainer = inject(ViewContainerRef);
-  #templateRef: TemplateRef<NgSubContext<T>> = inject(TemplateRef)
+  #templateRef: TemplateRef<NgSubContext<T>> = inject(TemplateRef);
   #changeDetector = inject(ChangeDetectorRef);
   #destroyRef = inject(DestroyRef);
 

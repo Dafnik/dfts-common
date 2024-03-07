@@ -6,7 +6,7 @@ export enum IconFeatureKind {
   WIDTH,
   HEIGHT,
   COLOR,
-  SIZE
+  SIZE,
 }
 
 declare interface IconFeature<KindT extends IconFeatureKind> {
@@ -21,4 +21,10 @@ export declare type IconHeightFeature = IconFeature<IconFeatureKind.HEIGHT>;
 export declare type IconColorFeature = IconFeature<IconFeatureKind.COLOR>;
 export declare type IconSizeFeature = IconFeature<IconFeatureKind.SIZE>;
 
-export declare type IconFeatures = IconPickFeature | IconCDNFeature | IconWidthFeature | IconHeightFeature | IconColorFeature | IconSizeFeature;
+export declare type IconFeatures =
+  | IconPickFeature
+  | IconCDNFeature
+  | IconWidthFeature
+  | IconHeightFeature
+  | IconColorFeature
+  | IconSizeFeature;

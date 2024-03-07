@@ -1,24 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component, computed, effect,
-  ElementRef,
-  inject, Injector, input,
-  Renderer2,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, Renderer2 } from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
-import {
-  DEFAULT_COLOR,
-  DEFAULT_ICON_SIZE,
-  ICON_COLOR,
-  ICON_HEIGHT,
-  ICON_SIZE,
-  ICON_WIDTH,
-  ICONS_LOADER
-} from './icons.config';
+import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER } from './icons.config';
 import { ColorValueHex } from './types';
 import { take } from 'rxjs';
-import {toSignal} from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'bi, *[bi]',
@@ -27,9 +13,9 @@ import {toSignal} from '@angular/core/rxjs-interop';
   template: '',
 })
 export class BiComponent {
-  name = input.required<BiName | BiNamesEnum>()
+  name = input.required<BiName | BiNamesEnum>();
 
-  width= input<string>(inject(ICON_WIDTH));
+  width = input<string>(inject(ICON_WIDTH));
 
   height = input<string>(inject(ICON_HEIGHT));
 
@@ -50,7 +36,7 @@ export class BiComponent {
   icon = computed(() => {
     const icon = this.iconLoader(this.name());
 
-    if (icon === undefined ) {
+    if (icon === undefined) {
       console.warn(`BiComponent: Icon ${this.name()} not found`);
       return icon;
     }
@@ -59,8 +45,8 @@ export class BiComponent {
       return icon;
     }
 
-    return toSignal(icon.pipe(take(1)), {injector: this.#injector})();
-  })
+    return toSignal(icon.pipe(take(1)), { injector: this.#injector })();
+  });
 
   constructor() {
     effect(() => {

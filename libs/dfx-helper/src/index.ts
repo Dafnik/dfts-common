@@ -2,13 +2,13 @@
  * Public API Surface of dfx-helper
  */
 
-export * from './lib/directives'
+export * from './lib/directives';
 
 export * from './lib/entities/entities-service.interface';
 
-export * from './lib/interceptor'
+export * from './lib/interceptor';
 
-export * from './lib/pipes'
+export * from './lib/pipes';
 
 export * from './lib/services/is-mobile';
 

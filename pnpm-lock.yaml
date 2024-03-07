@@ -130,9 +130,6 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: 7.1.0
     version: 7.1.0(eslint@8.57.0)(typescript@5.3.3)
-  autoprefixer:
-    specifier: ^10.4.0
-    version: 10.4.16(postcss@8.4.35)
   bootstrap-icons:
     specifier: 1.11.3
     version: 1.11.3
@@ -5167,22 +5164,6 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.33
       postcss-value-parser: 4.2.0
-
-  /autoprefixer@10.4.16(postcss@8.4.35):
-    resolution: {integrity: sha512-7vd3UC6xKp0HLfua5IjZlcXvGAGy7cBAXTg2lyQ/8WpNhd6SiZ8Be+xm3FyBSYJx5GKcpRCzBh7RH4/0dnY+uQ==}
-    engines: {node: ^10 || ^12 || >=14}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.1.0
-    dependencies:
-      browserslist: 4.22.2
-      caniuse-lite: 1.0.30001579
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.0.0
-      postcss: 8.4.35
-      postcss-value-parser: 4.2.0
-    dev: true
 
   /autoprefixer@10.4.17(postcss@8.4.35):
     resolution: {integrity: sha512-/cpVNRLSfhOtcGflT13P2794gVSgmPgTR+erw5ifnMLZb0UnSlkK4tquLmkd3BhA+nLo5tX8Cu0upUsGKvKbmg==}

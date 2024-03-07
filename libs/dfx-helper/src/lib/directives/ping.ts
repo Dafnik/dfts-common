@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { catchError, distinctUntilChanged, map, of, switchMap, timer } from 'rxjs';
 import { interceptorByPass } from '../interceptor/by-pass-interceptor.builder';
-import { ADirective } from '../components/abstract-directive';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: '[hideIfPingSucceeds]',
@@ -11,7 +11,7 @@ import { ADirective } from '../components/abstract-directive';
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DfxHideIfPingSucceeds extends ADirective {
+export class DfxHideIfPingSucceeds {
   @Input() url!: string;
 
   /**
@@ -28,23 +28,21 @@ export class DfxHideIfPingSucceeds extends ADirective {
   private isOffline = false;
 
   constructor(httpClient: HttpClient, changeDetectorRef: ChangeDetectorRef) {
-    super();
-    this.unsubscribe(
-      timer(0, this.refreshTime * 1000)
-        .pipe(
-          switchMap(() =>
-            httpClient.get(this.url, this.byPassLoggingInterceptor).pipe(
-              map(() => false),
-              catchError(() => of(true)),
-            ),
+    timer(0, this.refreshTime * 1000)
+      .pipe(
+        takeUntilDestroyed(),
+        switchMap(() =>
+          httpClient.get(this.url, this.byPassLoggingInterceptor).pipe(
+            map(() => false),
+            catchError(() => of(true)),
           ),
-          distinctUntilChanged(),
-        )
-        .subscribe((isOffline) => {
-          this.isOffline = isOffline;
-          changeDetectorRef.markForCheck();
-        }),
-    );
+        ),
+        distinctUntilChanged(),
+      )
+      .subscribe((isOffline) => {
+        this.isOffline = isOffline;
+        changeDetectorRef.markForCheck();
+      });
   }
 }
 

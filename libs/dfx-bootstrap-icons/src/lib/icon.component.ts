@@ -1,9 +1,24 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, inject, Input, Renderer2 } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component, computed, effect,
+  ElementRef,
+  inject, Injector, input,
+  Renderer2,
+} from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
-import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER } from './icons.config';
+import {
+  DEFAULT_COLOR,
+  DEFAULT_ICON_SIZE,
+  ICON_COLOR,
+  ICON_HEIGHT,
+  ICON_SIZE,
+  ICON_WIDTH,
+  ICONS_LOADER
+} from './icons.config';
 import { ColorValueHex } from './types';
 import { take } from 'rxjs';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'bi, *[bi]',
@@ -12,91 +27,67 @@ import { take } from 'rxjs';
   template: '',
 })
 export class BiComponent {
-  @Input({ required: true }) set name(it: BiName | BiNamesEnum) {
-    this._name = it;
-    this.setIcon();
-  }
-  _name!: BiName | BiNamesEnum;
+  name = input.required<BiName | BiNamesEnum>()
 
-  @Input() set width(it: string) {
-    this._width = it;
-    this.setIcon();
-  }
-  _width: string = inject(ICON_WIDTH);
+  width= input<string>(inject(ICON_WIDTH));
 
-  @Input() set height(it: string) {
-    this._height = it;
-    this.setIcon();
-  }
-  _height: string = inject(ICON_HEIGHT);
+  height = input<string>(inject(ICON_HEIGHT));
 
-  @Input() set size(it: string) {
-    this._size = it;
-    this.setIcon();
-  }
-  _size?: string;
+  size = input<string | undefined>(inject(ICON_SIZE));
 
-  @Input() set color(it: ColorValueHex) {
-    this._color = it;
-    this.setIcon();
-  }
-  _color?: ColorValueHex = inject(ICON_COLOR);
+  color = input<ColorValueHex | undefined>(inject(ICON_COLOR));
 
-  @Input({ transform: booleanAttribute }) set clearDimensions(it: boolean) {
-    this._clearDimensions = it;
-    this.setIcon();
-  }
-  _clearDimensions = false;
+  clearDimensions = input(false);
 
-  @Input() set ariaLabel(it: string) {
-    this._ariaLabel = it;
-    this.setIcon();
-  }
-  _ariaLabel?: string;
+  ariaLabel = input<string>();
 
-  private elementRef = inject(ElementRef);
-
-  private renderer = inject(Renderer2);
+  #elementRef = inject(ElementRef);
+  #renderer = inject(Renderer2);
+  #injector = inject(Injector);
 
   iconLoader = inject(ICONS_LOADER);
 
-  setIcon(): void {
-    if (!this._name) {
-      this.renderIcon();
-      return;
+  icon = computed(() => {
+    const icon = this.iconLoader(this.name());
+
+    if (icon === undefined ) {
+      console.warn(`BiComponent: Icon ${this.name()} not found`);
+      return icon;
     }
 
-    const icon = this.iconLoader(this._name);
-
-    if (icon === undefined || typeof icon === 'string') {
-      this.renderIcon(icon);
-      return;
+    if (typeof icon === 'string') {
+      return icon;
     }
 
-    icon.pipe(take(1)).subscribe((it) => this.renderIcon(it));
-  }
+    return toSignal(icon.pipe(take(1)), {injector: this.#injector})();
+  })
 
-  private renderIcon(icon?: string) {
-    if (!icon) {
-      console.warn(`BiComponent: Icon ${this._name} not found`);
-      return;
-    }
+  constructor() {
+    effect(() => {
+      let icon = this.icon();
 
-    if (!this._clearDimensions) {
-      icon = setSize(icon, 'width', this._size ?? this._width);
-      icon = setSize(icon, 'height', this._size ?? this._height);
-    }
+      if (!icon) {
+        return;
+      }
 
-    if (this._color) {
-      icon = setFillColor(icon, this._color);
-    }
+      if (!this.clearDimensions()) {
+        icon = setSize(icon, 'width', this.size() ?? this.width());
+        icon = setSize(icon, 'height', this.size() ?? this.height());
+      }
 
-    this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-label', this._ariaLabel ?? '');
-    if (this._ariaLabel) {
-      this.renderer.setAttribute(this.elementRef.nativeElement, 'role', 'img');
-    }
+      const color = this.color();
+      if (color) {
+        icon = setFillColor(icon, color);
+      }
 
-    this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', icon);
+      const ariaLabel = this.ariaLabel();
+      this.#renderer.setAttribute(this.#elementRef.nativeElement, 'aria-label', ariaLabel ?? '');
+      if (ariaLabel) {
+        this.#renderer.setAttribute(this.#elementRef.nativeElement, 'role', 'img');
+      }
+
+      this.#renderer.setProperty(this.#elementRef.nativeElement, 'innerHTML', icon);
+    });
   }
 }
 

@@ -1,8 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 import { ColorValueHex, IconsType } from './types';
-import { Observable, of } from 'rxjs';
-import { factory } from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
+import { Observable } from 'rxjs';
 
 export const ICONS_PICKED = new InjectionToken<IconsType>('DFX_ICONS_PICKED', {
   factory: () => ({}),
@@ -22,5 +21,9 @@ export const ICON_HEIGHT = new InjectionToken<string>('DFX_ICONS_HEIGHT', {
 });
 
 export const ICON_COLOR = new InjectionToken<ColorValueHex | undefined>('DFX_ICONS_COLOR', {
+  factory: () => undefined,
+});
+
+export const ICON_SIZE = new InjectionToken<string | undefined>('DFX_ICONS_SIZE', {
   factory: () => undefined,
 });

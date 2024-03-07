@@ -6,9 +6,10 @@ import {
   IconFeatures,
   IconHeightFeature,
   IconPickFeature,
-  IconWidthFeature,
+  IconSizeFeature,
+  IconWidthFeature
 } from './icons.feature';
-import { ICON_COLOR, ICON_HEIGHT, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED } from './icons.config';
+import {ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED} from './icons.config';
 import { ColorValueHex, IconsType } from './types';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
@@ -84,5 +85,12 @@ export function withColor(color: ColorValueHex): IconColorFeature {
   return {
     kind: IconFeatureKind.COLOR,
     providers: [{ provide: ICON_COLOR, useValue: color }],
+  };
+}
+
+export function withSize(size: string): IconSizeFeature {
+  return {
+    kind: IconFeatureKind.SIZE,
+    providers: [{ provide: ICON_SIZE, useValue: size }],
   };
 }

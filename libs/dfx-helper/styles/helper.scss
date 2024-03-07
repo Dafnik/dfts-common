@@ -28,6 +28,10 @@ a:hover {
   user-select: none;
 }
 
+.ws-nowrap {
+  white-space: nowrap;
+}
+
 @keyframes btnSpinner {
   to {
     transform: rotate(360deg);

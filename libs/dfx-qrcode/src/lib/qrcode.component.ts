@@ -45,45 +45,45 @@ import {
 })
 export class QRCodeComponent {
   allowEmptyString = input(inject(QRCODE_ALLOW_EMPTY_STRING), { transform: booleanAttribute });
-  public colorDark = input(inject(QRCODE_COLOR_DARK));
-  public colorLight = input(inject(QRCODE_COLOR_LIGHT));
-  public cssClass = input(inject(QRCODE_CSS_CLASS));
-  public elementType = input(inject(QRCODE_ELEMENT_TYPE));
-  public errorCorrectionLevel = input(inject(QRCODE_ERROR_CORRECTION_LEVEL));
-  public version = input(inject(QRCODE_VERSION), { transform: numberAttribute });
-  public size = input(inject(QRCODE_SIZE), { transform: numberAttribute });
-  public margin = input(inject(QRCODE_MARGIN), { transform: numberAttribute });
+  colorDark = input(inject(QRCODE_COLOR_DARK));
+  colorLight = input(inject(QRCODE_COLOR_LIGHT));
+  cssClass = input(inject(QRCODE_CSS_CLASS));
+  elementType = input(inject(QRCODE_ELEMENT_TYPE));
+  errorCorrectionLevel = input(inject(QRCODE_ERROR_CORRECTION_LEVEL));
+  version = input(inject(QRCODE_VERSION), { transform: numberAttribute });
+  size = input(inject(QRCODE_SIZE), { transform: numberAttribute });
+  margin = input(inject(QRCODE_MARGIN), { transform: numberAttribute });
 
-  public imageSrc = input(inject(QRCODE_IMAGE_SRC));
-  public imageHeight = input(inject(QRCODE_IMAGE_HEIGHT), { transform: numberAttribute });
-  public imageWidth = input(inject(QRCODE_IMAGE_WIDTH), { transform: numberAttribute });
+  imageSrc = input(inject(QRCODE_IMAGE_SRC));
+  imageHeight = input(inject(QRCODE_IMAGE_HEIGHT), { transform: numberAttribute });
+  imageWidth = input(inject(QRCODE_IMAGE_WIDTH), { transform: numberAttribute });
 
-  public alt = input<string>();
-  public ariaLabel = input<string>();
-  public title = input<string>();
+  alt = input<string>();
+  ariaLabel = input<string>();
+  title = input<string>();
 
-  public data = input<null | undefined | string>('');
+  data = input<null | undefined | string>('');
 
   @Output() qrCodeDataUrl = new EventEmitter<string>();
 
-  viewChild = signal<ElementRef | undefined>(undefined);
+  #viewChild = signal<ElementRef | undefined>(undefined);
 
   @ViewChild('qrcElement', { static: true }) set qrcElement(it: ElementRef) {
-    this.viewChild.set(it);
+    this.#viewChild.set(it);
   }
 
-  private renderer = inject(Renderer2);
+  #renderer = inject(Renderer2);
 
   constructor() {
     effect(() => {
-      const viewChild = this.viewChild();
+      const viewChild = this.#viewChild();
 
       if (!viewChild) {
         return;
       }
 
       let data = this.data();
-      const validQrData = this.isValidQrCodeText(data);
+      const validQrData = this.#isValidQrCodeText(data);
       if (!this.allowEmptyString() && !validQrData) {
         console.error('[dfx-qrcode] Field `data` is empty, set \'allowEmptyString="true"\' to overwrite this behaviour.');
         return;
@@ -113,8 +113,8 @@ export class QRCodeComponent {
 
         switch (this.elementType()) {
           case 'canvas': {
-            generateQrCodeCanvas$(data!, config, this.renderer.createElement('canvas')).then((element) => {
-              this.renderElement(viewChild, element);
+            generateQrCodeCanvas$(data!, config, this.#renderer.createElement('canvas')).then((element) => {
+              this.#renderElement(viewChild, element);
               this.qrCodeDataUrl.emit(element.toDataURL());
             });
 
@@ -122,9 +122,9 @@ export class QRCodeComponent {
           }
 
           case 'img': {
-            generateQrCodeImage$(data!, config, this.renderer.createElement('canvas'), this.renderer.createElement('img')).then(
+            generateQrCodeImage$(data!, config, this.#renderer.createElement('canvas'), this.#renderer.createElement('img')).then(
               ({ image, dataUrl }) => {
-                this.renderElement(viewChild, image);
+                this.#renderElement(viewChild, image);
                 this.qrCodeDataUrl.emit(dataUrl);
               },
             );
@@ -134,7 +134,7 @@ export class QRCodeComponent {
 
           case 'svg': {
             generateQrCodeSVG$(data!, config).then(({ svg, dataUrl }) => {
-              this.renderElement(viewChild, svg);
+              this.#renderElement(viewChild, svg);
               this.qrCodeDataUrl.emit(dataUrl);
             });
 
@@ -149,14 +149,14 @@ export class QRCodeComponent {
     });
   }
 
-  protected isValidQrCodeText(data: string | null | undefined): boolean {
+  #isValidQrCodeText(data: string | null | undefined): boolean {
     return data !== null && data !== undefined && data.length > 0;
   }
 
-  private renderElement(viewChild: ElementRef, element: Element): void {
+  #renderElement(viewChild: ElementRef, element: Element): void {
     for (const node of viewChild.nativeElement.childNodes) {
-      this.renderer.removeChild(viewChild.nativeElement, node);
+      this.#renderer.removeChild(viewChild.nativeElement, node);
     }
-    this.renderer.appendChild(viewChild.nativeElement, element);
+    this.#renderer.appendChild(viewChild.nativeElement, element);
   }
 }

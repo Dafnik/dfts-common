@@ -1,3 +1,14 @@
+ 
+# [7.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-7.0.0-beta.0...dfx-helper-7.0.0) (2024-03-07)
+
+
+### Features
+
+* finish up dfx-bootstrap-icons README ([38d80f7](https://github.com/Dafnik/dfts-common/commit/38d80f72b44b217c41f44ff83c92d8e88cf6b4d1))
+* imploder updates ([e85e245](https://github.com/Dafnik/dfts-common/commit/e85e245787fee88a2bdb5941ead95fea0d8ad2c8))
+
+
+
 # [7.0.0-beta.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-6.1.0...dfx-helper-7.0.0-beta.0) (2023-11-09)
 
 ### Bug Fixes

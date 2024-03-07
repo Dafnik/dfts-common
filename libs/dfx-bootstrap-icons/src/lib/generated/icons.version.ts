@@ -1,1 +1,1 @@
-export const BOOTSTRAP_ICONS_VERSION = '1.11.2';
+export const BOOTSTRAP_ICONS_VERSION = '1.11.3';

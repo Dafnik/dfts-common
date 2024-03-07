@@ -10,7 +10,7 @@
     "lint:check": "nx run-many --parallel 10 --target lint --all --",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "generateIcons": "node ./tools/scripts/generateIcons.js && pnpm prettify"
+    "generateIcons": "node ./tools/scripts/generateIcons.js && pnpm format libs/dfx-bootstrap-icons/src/lib/generated"
   },
   "private": true,
   "dependencies": {

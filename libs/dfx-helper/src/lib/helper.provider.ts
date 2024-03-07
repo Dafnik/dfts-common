@@ -17,7 +17,7 @@ import {
   WindowFeature,
 } from './features';
 import { provideIsMobileService } from './services/is-mobile';
-import { provideWindow } from './windows-provider';
+import { provideWindow } from './window-provider';
 
 export function provideDfxHelper(...features: HelperFeatures[]): EnvironmentProviders {
   console.log(getLogMessage('INFO', 'provideDfxHelper', 'setup', 'Features'), features);

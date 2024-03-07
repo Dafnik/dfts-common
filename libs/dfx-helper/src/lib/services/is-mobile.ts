@@ -6,18 +6,20 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable()
 export class IsMobileService {
-  private readonly isMobileBreakpoint = inject(HELPER_MOBILE_BREAKPOINT);
-  private readonly viewportRuler = inject(ViewportRuler);
+  readonly #isMobileBreakpoint = inject(HELPER_MOBILE_BREAKPOINT);
+  readonly #viewportRuler = inject(ViewportRuler);
 
-  private checkIsMobile = () => this.viewportRuler.getViewportSize().width <= this.isMobileBreakpoint;
+  #checkIsMobile = () => this.#viewportRuler.getViewportSize().width <= this.#isMobileBreakpoint;
 
-  public isMobile = toSignal(this.viewportRuler.change(50).pipe(map(this.checkIsMobile), distinctUntilChanged()), {
-    initialValue: this.checkIsMobile(),
+  #_isMobile$ =  this.#viewportRuler
+    .change(50)
+    .pipe(map(this.#checkIsMobile), startWith(this.#checkIsMobile()), distinctUntilChanged())
+
+  isMobile = toSignal(this.#_isMobile$, {
+    initialValue: this.#checkIsMobile(),
   });
 
-  public isMobile$ = this.viewportRuler
-    .change(50)
-    .pipe(map(this.checkIsMobile), startWith(this.checkIsMobile()), distinctUntilChanged(), shareReplay(1));
+  isMobile$ = this.#_isMobile$.pipe(shareReplay(1));
 }
 
 export function injectIsMobile$(): Observable<boolean> {

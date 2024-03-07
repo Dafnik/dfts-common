@@ -1,6 +1,6 @@
 import { booleanAttribute, Directive, ElementRef, HostListener, inject, Input, numberAttribute } from '@angular/core';
 import { s_from } from 'dfts-helper';
-import { injectWindow } from '../windows-provider';
+import { injectWindow } from '../window-provider';
 
 @Directive({
   selector: '[countUp]',

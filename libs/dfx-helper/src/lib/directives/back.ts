@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Directive, HostListener, inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { injectWindow } from '../windows-provider';
+import { injectWindow } from '../window-provider';
 
 @Directive({
   selector: '[back]',

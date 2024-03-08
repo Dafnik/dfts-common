@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Directive, HostListener, inject, Input } from '@angular/core';
+import { Directive, HostListener, inject, input } from "@angular/core";
 import { Router } from '@angular/router';
 import { injectWindow } from '../window-provider';
 
@@ -12,7 +12,7 @@ export class DfxBackDirective {
   router = inject(Router);
   window = injectWindow();
 
-  @Input() fallbackUrl = '/';
+  fallbackUrl = input('/');
 
   @HostListener('click')
   goBack(): void {
@@ -23,7 +23,7 @@ export class DfxBackDirective {
         this.window?.close();
       }
     } else {
-      void this.router.navigateByUrl(this.fallbackUrl);
+      void this.router.navigateByUrl(this.fallbackUrl());
     }
   }
 }

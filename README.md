@@ -37,14 +37,6 @@ Angular Library with tons of utility tools helping in all projects.
 [![NPM](https://img.shields.io/npm/dw/dfx-helper?logo=npm)](https://npmjs.org/package/dfx-helper)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
 
-### dfx-translate
-
-A simple translation package for Angular 4 - 12.
-
-[![npm version](https://badge.fury.io/js/dfx-translate.svg)](https://npmjs.org/package/dfx-translate)
-[![NPM](https://img.shields.io/npm/dw/dfx-translate?logo=npm)](https://npmjs.org/package/dfx-translate)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-translate?cacheSeconds=86400)](https://npmjs.org/package/dfx-translate)
-
 ### dfx-bootstrap-table
 
 Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.

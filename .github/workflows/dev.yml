@@ -101,11 +101,6 @@ jobs:
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
-            dfx-translate:
-              - 'libs/dfx-translate/**'
-              - '{package,nx,migrations,tsconfig.base}.json'
-              - 'pnpm-lock.yaml'
-              - '.github/**'
             dfx-bootstrap-icons:
               - 'libs/dfx-bootstrap-icons/**'
               - '{package,nx,migrations,tsconfig.base}.json'

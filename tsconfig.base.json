@@ -21,7 +21,6 @@
       "dfx-bootstrap-table": ["libs/dfx-bootstrap-table/src/index.ts"],
       "dfx-helper": ["libs/dfx-helper/src/index.ts"],
       "dfx-qrcode": ["libs/dfx-qrcode/src/index.ts"],
-      "dfx-translate": ["libs/dfx-translate/src/index.ts"],
       "playground-lib": ["libs/playground-lib/src/index.ts"]
     },
     "esModuleInterop": true,

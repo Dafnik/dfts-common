@@ -8,8 +8,8 @@ import {
   inject,
   Injector,
   input,
-  Renderer2
-} from "@angular/core";
+  Renderer2,
+} from '@angular/core';
 
 import { BiName, BiNamesEnum } from './generated';
 import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER } from './icons.config';
@@ -34,7 +34,7 @@ export class BiComponent {
 
   color = input<ColorValueHex | undefined>(inject(ICON_COLOR));
 
-  clearDimensions = input(false, {transform: booleanAttribute});
+  clearDimensions = input(false, { transform: booleanAttribute });
 
   ariaLabel = input<string>();
 

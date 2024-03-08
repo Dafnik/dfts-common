@@ -2,28 +2,29 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  HostBinding, inject,
+  HostBinding,
+  inject,
   input,
   NgModule,
-  numberAttribute
-} from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+  numberAttribute,
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { catchError, combineLatest, distinctUntilChanged, map, of, switchMap, timer } from "rxjs";
-import { interceptorByPass } from "../interceptor";
-import { takeUntilDestroyed, toObservable } from "@angular/core/rxjs-interop";
+import { catchError, combineLatest, distinctUntilChanged, map, of, switchMap, timer } from 'rxjs';
+import { interceptorByPass } from '../interceptor';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: "[hideIfPingSucceeds]",
+  selector: '[hideIfPingSucceeds]',
   standalone: true,
-  template: "<ng-content></ng-content>",
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DfxHideIfPingSucceeds {
-  #httpClient = inject(HttpClient)
+  #httpClient = inject(HttpClient);
   #changeDetectorRef = inject(ChangeDetectorRef);
 
-  url = input.required<string>()
+  url = input.required<string>();
   #url$ = toObservable(this.url);
 
   /**
@@ -32,7 +33,7 @@ export class DfxHideIfPingSucceeds {
   refreshTime = input(10, { transform: numberAttribute });
   #refreshTime$ = toObservable(this.refreshTime);
 
-  @HostBinding("hidden")
+  @HostBinding('hidden')
   get hidden(): boolean {
     return !this.isOffline;
   }
@@ -41,33 +42,33 @@ export class DfxHideIfPingSucceeds {
   private isOffline = false;
 
   constructor() {
-    combineLatest([this.#refreshTime$, this.#url$]).pipe(
-      takeUntilDestroyed(),
-      switchMap(([refreshTime, url]) => combineLatest([
-        of(url),
-        timer(0, refreshTime * 1000)
-      ])),
-      switchMap(([url]) => this.#httpClient.get(url, this.byPassLoggingInterceptor).pipe(
-          map(() => false),
-          catchError(() => of(true))
-        )
-      ),
-      distinctUntilChanged()
-    ).subscribe((isOffline) => {
-      this.isOffline = isOffline;
-      this.#changeDetectorRef.markForCheck();
-    });
+    combineLatest([this.#refreshTime$, this.#url$])
+      .pipe(
+        takeUntilDestroyed(),
+        switchMap(([refreshTime, url]) => combineLatest([of(url), timer(0, refreshTime * 1000)])),
+        switchMap(([url]) =>
+          this.#httpClient.get(url, this.byPassLoggingInterceptor).pipe(
+            map(() => false),
+            catchError(() => of(true)),
+          ),
+        ),
+        distinctUntilChanged(),
+      )
+      .subscribe((isOffline) => {
+        this.isOffline = isOffline;
+        this.#changeDetectorRef.markForCheck();
+      });
   }
 }
 
 @Component({
-  selector: "[hideIfPingFails]",
+  selector: '[hideIfPingFails]',
   standalone: true,
-  template: "<ng-content></ng-content>",
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DfxHideIfPingFails extends DfxHideIfPingSucceeds {
-  @HostBinding("hidden")
+  @HostBinding('hidden')
   override get hidden(): boolean {
     return !super.hidden;
   }
@@ -75,7 +76,6 @@ export class DfxHideIfPingFails extends DfxHideIfPingSucceeds {
 
 @NgModule({
   imports: [DfxHideIfPingSucceeds, DfxHideIfPingFails],
-  exports: [DfxHideIfPingSucceeds, DfxHideIfPingFails]
+  exports: [DfxHideIfPingSucceeds, DfxHideIfPingFails],
 })
-export class DfxHideIfPingModule {
-}
+export class DfxHideIfPingModule {}

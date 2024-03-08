@@ -4,4 +4,4 @@ export * from './count-up';
 export * from './ng-sub';
 export * from './online-offline';
 export * from './ping';
-export * from './stop-propagation'
+export * from './stop-propagation';

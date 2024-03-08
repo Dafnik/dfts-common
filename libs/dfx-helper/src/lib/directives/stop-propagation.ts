@@ -1,11 +1,11 @@
-import { booleanAttribute, Directive, HostListener, input } from "@angular/core";
+import { booleanAttribute, Directive, HostListener, input } from '@angular/core';
 
 @Directive({
   selector: '[stopPropagation]',
   standalone: true,
 })
 export class StopPropagationDirective {
-  stopPropagation = input(true, {transform: booleanAttribute})
+  stopPropagation = input(true, { transform: booleanAttribute });
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {

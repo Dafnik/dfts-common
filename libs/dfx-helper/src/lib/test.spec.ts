@@ -1,4 +1,4 @@
-import { DfxCutPipe } from "./pipes";
+import { DfxCutPipe } from './pipes';
 
 describe('Test', () => {
   const cutPipe = new DfxCutPipe();

@@ -1,5 +1,8 @@
+import { DfxCutPipe } from "./pipes";
+
 describe('Test', () => {
+  const cutPipe = new DfxCutPipe();
   it('placeholder test', () => {
-    expect(5 + 1).toBe(6);
+    expect(cutPipe.transform('test', 2)).toBe('te...');
   });
 });

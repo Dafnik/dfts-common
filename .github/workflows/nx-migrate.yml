@@ -76,4 +76,4 @@ jobs:
           BRANCH="update-nx-workspace-${LAST_VERSION}"
           git checkout -b ${BRANCH}
           git push -f --set-upstream origin ${BRANCH}
-          gh pr view ${BRANCH} || gh pr create -t "Update @nx/workspace to ${BRANCH}" -b "Update @nx/workspace dependencies to ${LAST_VERSION}."
+          gh pr view ${BRANCH} || gh pr create -t "Update @nx/workspace to ${LAST_VERSION}" -b "Update @nx/workspace dependencies to ${LAST_VERSION}."

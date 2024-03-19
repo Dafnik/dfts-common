@@ -9,6 +9,8 @@ on:
 jobs:
   nx-migrate:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
 
     steps:
       - uses: actions/checkout@v4
@@ -52,9 +54,7 @@ jobs:
         id: test
         if: steps.nx-workspace-outdated.outputs.outdated == 'true'
         continue-on-error: true
-        uses: ./.github/actions/test
-        with:
-          codecov_token: ${{ secrets.CODECOV_TOKEN }}
+        run: pnpm test
 
       - name: Commit changes
         if: steps.nx-workspace-outdated.outputs.outdated == 'true'

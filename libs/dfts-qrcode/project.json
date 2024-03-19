@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dfts-qrcode/src",
   "projectType": "library",
+  "implicitDependencies": ["!dfts-helper"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",

@@ -193,16 +193,6 @@ jobs:
           target: /var/www/share/releases/${{ matrix.lib }}
           overwrite: true
 
-  #      - name: copy build to release server
-  #        uses: garygrossgarten/github-action-scp@release
-  #        with:
-  #          local: ./dist/${{ matrix.lib }}.zip
-  #          remote: /var/www/share/releases/${{ matrix.lib }}/${{ matrix.lib }}-dev.zip
-  #          host: ${{ secrets.RELEASES_SSH_HOST }}
-  #          port: ${{ secrets.RELEASES_SSH_PORT }}
-  #          username: ${{ secrets.RELEASES_SSH_USER }}
-  #          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
-
   build-apps:
     name: Build ${{ matrix.app }}
     runs-on: ubuntu-latest

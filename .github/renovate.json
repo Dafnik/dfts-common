@@ -15,12 +15,18 @@
   "labels": ["dependencies"],
   "assignees": ["Dafnik"],
   "ignorePaths": ["**/libs/**"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "branch",
+    "commitMessageAction": "lock file maintenance",
+    "semanticCommitType": "build"
+  },
   "packageRules": [
     {
-      "matchPackageNames": ["@schematics/angular"],
-      "matchPackagePrefixes": ["@angular/", "@angular-devkit"],
-      "groupName": "angular monorepo",
-      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+      "matchPackagePatterns": ["^@angular/", "^@nx/", "^@angular-devkit/", "nx"],
+      "groupName": "nx workspace",
+      "enabled": false
     },
     {
       "matchPackageNames": ["eslint"],
@@ -32,18 +38,13 @@
       "groupName": "bootstrap dependency"
     },
     {
-      "matchPackageNames": ["nx"],
-      "matchPackagePrefixes": ["@nx/"],
-      "groupName": "nx dependencies"
-    },
-    {
       "matchPackageNames": ["typescript", "tslib"],
       "groupName": "typescript dependencies"
     },
     {
       "matchPackagePatterns": ["*"],
-      "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "@schematics/angular", "bootstrap"],
-      "excludePackagePatterns": ["@angular/", "@angular-devkit", "@angular-eslint/", "@typescript-eslint/", "@nx/"],
+      "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "bootstrap"],
+      "excludePackagePatterns": ["@angular-eslint/", "@typescript-eslint/", "^@angular/", "^@nx/", "^@angular-devkit/", "nx"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minor-updates"
     },

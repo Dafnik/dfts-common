@@ -9,6 +9,7 @@
     "test": "nx run-many --parallel 10 --target test --all --",
     "lint": "nx run-many --parallel 10 --target lint --all --fix",
     "lint:check": "nx run-many --parallel 10 --target lint --all --",
+    "graph": "nx graph",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "generateIcons": "node ./tools/scripts/generateIcons.js && pnpm format libs/dfx-bootstrap-icons/src/lib/generated"

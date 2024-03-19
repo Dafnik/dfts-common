@@ -6,7 +6,6 @@ import { debounceTime } from 'rxjs';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
 import { cl_copy } from 'dfts-helper';
-import { ColorValueHex, QRCodeErrorCorrectionLevel } from 'dfts-qrcode';
 import { downloadQRCode, QRCodeComponent, QRCodeElementType } from 'dfx-qrcode';
 import { BiComponent, copy, provideBi, withIcons } from 'dfx-bootstrap-icons';
 import { ThemePicker } from 'playground-lib';
@@ -31,11 +30,11 @@ export class AppComponent {
     data: ['https://github.com/Dafnik/dfts-common', [Validators.required]],
     allowEmptyString: [true, [Validators.required]],
     elementType: ['img' as QRCodeElementType, [Validators.required]],
-    errorCorrectionLevel: ['M' as QRCodeErrorCorrectionLevel, [Validators.required]],
+    errorCorrectionLevel: ['M' as const, [Validators.required]],
     stylingEnabled: [true, [Validators.required]],
     cssClass: ['qrcode', [Validators.required]],
-    colorDark: ['#000000' as ColorValueHex, [Validators.required]],
-    colorLight: ['#FFFFFF' as ColorValueHex, [Validators.required]],
+    colorDark: ['#000000' as const, [Validators.required]],
+    colorLight: ['#FFFFFF' as const, [Validators.required]],
     margin: [0, [Validators.required]],
     size: [9, [Validators.required]],
     accessibilityEnabled: [true, [Validators.required]],

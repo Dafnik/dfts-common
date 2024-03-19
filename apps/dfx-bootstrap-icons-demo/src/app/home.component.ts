@@ -5,8 +5,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { debounceTime } from 'rxjs';
 import { BiComponent, BiNameList, toEscapedName } from 'dfx-bootstrap-icons';
-import { WINDOW } from 'dfx-helper';
 import { LoadIconComponent } from './load-icon.component';
+import { injectWindow } from 'dfx-helper';
 
 @Component({
   template: `
@@ -85,7 +85,7 @@ import { LoadIconComponent } from './load-icon.component';
   selector: 'app-home',
 })
 export class HomeComponent implements OnInit {
-  window = inject(WINDOW);
+  window = injectWindow();
   windowScrolled = signal(false);
 
   ngOnInit() {
@@ -109,8 +109,5 @@ export class HomeComponent implements OnInit {
 
   escapedName = (it: string) => toEscapedName(it);
 
-  searchResultsEmpty = computed(() => this.searchResults().length === 0);
-
   protected readonly IconNameList = BiNameList;
-  protected readonly toEscapedName = toEscapedName;
 }

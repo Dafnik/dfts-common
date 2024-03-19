@@ -153,7 +153,10 @@ jobs:
         run: pnpm exec nx build ${{ matrix.lib }}
 
       - name: zip ${{ matrix.lib }}
-        run: cd ./dist/libs/ && zip -r "${{ matrix.lib }}.zip" ./${{ matrix.lib }} && cd -
+        run: |
+          cd ./dist/libs/
+          zip -r "${{ matrix.lib }}.zip" ./${{ matrix.lib }}
+          cd -
 
       - uses: actions/upload-artifact@v4
         name: create ${{ matrix.lib }} artifact
@@ -212,7 +215,10 @@ jobs:
         run: pnpm exec nx build ${{ matrix.app }}
 
       - name: zip ${{ matrix.app }}
-        run: cd ./dist/apps/ && zip -r "${{ matrix.app }}.zip" ./${{ matrix.app }} && cd -
+        run: |
+          cd ./dist/apps/
+          zip -r "${{ matrix.app }}.zip" ./${{ matrix.app }}
+          cd -
 
       - uses: actions/upload-artifact@v4
         name: create ${{ matrix.app }} artifact
@@ -266,7 +272,11 @@ jobs:
           mv dfx-qrcode-demo/* dist/qrcode/
 
       - name: dist lookup
-        run: cd dist && ls -la && du -hs && cd -
+        run: |
+          cd dist
+          ls -la
+          du -hs
+          cd -
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

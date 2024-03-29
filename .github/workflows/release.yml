@@ -104,6 +104,7 @@ jobs:
           port: ${{ secrets.RELEASES_SSH_PORT }}
           source: releases/*
           target: /var/www/share/releases/${{ inputs.lib }}
+          overwrite: true
 
   release-github:
     name: Release zip to github releases

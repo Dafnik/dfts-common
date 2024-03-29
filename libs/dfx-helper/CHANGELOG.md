@@ -1,3 +1,21 @@
+ 
+# [7.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-7.0.0...dfx-helper-7.1.0) (2024-03-29)
+
+
+### Bug Fixes
+
+* add dummy test to not fail ci ([e229a19](https://github.com/Dafnik/dfts-common/commit/e229a198a60bf92acf259d9548599e655f931e53))
+* add dummy test to not fail ci ([da2d948](https://github.com/Dafnik/dfts-common/commit/da2d9481a2b98e5b7787d6e86a404e7103935bca))
+* **dfx-helper:** btn spinner animation ([8540493](https://github.com/Dafnik/dfts-common/commit/8540493d6e574b8778af39ec07559cb30127389f))
+* format ([734acf9](https://github.com/Dafnik/dfts-common/commit/734acf97a16ec3be93466c4c3d0a2195000096c7))
+
+
+### Features
+
+* **dfx-helper:** add stopPropagation directive ([4d61391](https://github.com/Dafnik/dfts-common/commit/4d6139140cbc3022b8446ffedc3aff1b86cf3986))
+
+
+
 # [7.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-7.0.0-beta.0...dfx-helper-7.0.0) (2024-03-07)
 
 ### Features

@@ -43,8 +43,7 @@ const EXPORTED_DECLARATIONS = [
 ];
 
 @NgModule({
-  imports: [CdkTableModule],
+  imports: [CdkTableModule, ...EXPORTED_DECLARATIONS],
   exports: [EXPORTED_DECLARATIONS],
-  declarations: EXPORTED_DECLARATIONS,
 })
 export class DfxTableModule {}

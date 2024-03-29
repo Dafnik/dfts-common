@@ -9,7 +9,7 @@ import { Helper } from '../Helper';
   template: `
     <h1>Simple</h1>
 
-    <table ngb-table [dataSource]="dataSource" #table="ngbTable">
+    <table ngb-table [dataSource]="dataSource" #table="ngbTable" striped>
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell>#</th>
         <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.id }}</td>

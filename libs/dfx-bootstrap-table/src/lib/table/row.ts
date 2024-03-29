@@ -7,9 +7,9 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
 import {
-  CDK_ROW_TEMPLATE,
+  CdkCellOutlet,
   CdkFooterRow,
   CdkFooterRowDef,
   CdkHeaderRow,
@@ -17,8 +17,10 @@ import {
   CdkNoDataRow,
   CdkRow,
   CdkRowDef,
-  CdkTable,
 } from '@angular/cdk/table';
+
+// We can't reuse `CDK_ROW_TEMPLATE` because it's incompatible with local compilation mode.
+const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
 
 /**
  * Header row definition for the ngb-table.
@@ -27,7 +29,11 @@ import {
 @Directive({
   selector: '[ngbHeaderRowDef]',
   providers: [{ provide: CdkHeaderRowDef, useExisting: NgbHeaderRowDef }],
-  inputs: ['columns: ngbHeaderRowDef'],
+  inputs: [
+    { name: 'columns', alias: 'ngbHeaderRowDef' },
+    { name: 'sticky', alias: 'ngbHeaderRowDefSticky', transform: booleanAttribute },
+  ],
+  standalone: true,
 })
 export class NgbHeaderRowDef extends CdkHeaderRowDef {}
 
@@ -38,7 +44,11 @@ export class NgbHeaderRowDef extends CdkHeaderRowDef {}
 @Directive({
   selector: '[ngbFooterRowDef]',
   providers: [{ provide: CdkFooterRowDef, useExisting: NgbFooterRowDef }],
-  inputs: ['columns: ngbFooterRowDef'],
+  inputs: [
+    { name: 'columns', alias: 'ngbFooterRowDef' },
+    { name: 'sticky', alias: 'ngbFooterRowDefSticky', transform: booleanAttribute },
+  ],
+  standalone: true,
 })
 export class NgbFooterRowDef extends CdkFooterRowDef {}
 
@@ -50,52 +60,65 @@ export class NgbFooterRowDef extends CdkFooterRowDef {}
 @Directive({
   selector: '[ngbRowDef]',
   providers: [{ provide: CdkRowDef, useExisting: NgbRowDef }],
-  inputs: ['columns: ngbRowDefColumns', 'when: ngbRowDefWhen'],
+  inputs: [
+    { name: 'columns', alias: 'ngbRowDefColumns' },
+    { name: 'when', alias: 'ngbRowDefWhen' },
+  ],
+  standalone: true,
 })
-export class NgbRowDef<T> extends CdkRowDef<T> {
-  @Input() ngbRowDefTable?: CdkTable<T>;
-
-  static ngTemplateContextGuard<T>(dir: NgbRowDef<T>, ctx: unknown): ctx is { $implicit: T; index: number } {
-    return true;
-  }
-}
+export class NgbRowDef<T> extends CdkRowDef<T> {}
 
 /** Header template container that contains the cell outlet. Adds the right class and role. */
 @Component({
   selector: 'ngb-header-row, tr[ngb-header-row]',
-  template: CDK_ROW_TEMPLATE,
+  template: ROW_TEMPLATE,
+  host: {
+    role: 'row',
+  },
   // See note on CdkTable for explanation on why this uses the default change detection strategy.
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbHeaderRow',
   providers: [{ provide: CdkHeaderRow, useExisting: NgbHeaderRow }],
+  standalone: true,
+  imports: [CdkCellOutlet],
 })
 export class NgbHeaderRow extends CdkHeaderRow {}
 
 /** Footer template container that contains the cell outlet. Adds the right class and role. */
 @Component({
   selector: 'ngb-footer-row, tr[ngb-footer-row]',
-  template: CDK_ROW_TEMPLATE,
+  template: ROW_TEMPLATE,
+  host: {
+    role: 'row',
+  },
   // See note on CdkTable for explanation on why this uses the default change detection strategy.
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbFooterRow',
   providers: [{ provide: CdkFooterRow, useExisting: NgbFooterRow }],
+  standalone: true,
+  imports: [CdkCellOutlet],
 })
 export class NgbFooterRow extends CdkFooterRow {}
 
 /** Data row template container that contains the cell outlet. Adds the right class and role. */
 @Component({
   selector: 'ngb-row, tr[ngb-row]',
-  template: CDK_ROW_TEMPLATE,
+  template: ROW_TEMPLATE,
+  host: {
+    role: 'row',
+  },
   // See note on CdkTable for explanation on why this uses the default change detection strategy.
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbRow',
   providers: [{ provide: CdkRow, useExisting: NgbRow }],
+  standalone: true,
+  imports: [CdkCellOutlet],
 })
 export class NgbRow extends CdkRow {}
 
@@ -103,6 +126,7 @@ export class NgbRow extends CdkRow {}
 @Directive({
   selector: 'ng-template[ngbNoDataRow]',
   providers: [{ provide: CdkNoDataRow, useExisting: NgbNoDataRow }],
+  standalone: true,
 })
 export class NgbNoDataRow extends CdkNoDataRow {
   override _contentClassName = 'ngb-no-data-row';

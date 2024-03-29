@@ -17,7 +17,7 @@ import { Helper } from '../Helper';
       </div>
     </form>
 
-    <table ngb-table [dataSource]="dataSource" ngb-sort #table="ngbTable">
+    <table ngb-table [dataSource]="dataSource" ngb-sort #table="ngbTable" hover>
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>#</th>
         <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.id }}</td>

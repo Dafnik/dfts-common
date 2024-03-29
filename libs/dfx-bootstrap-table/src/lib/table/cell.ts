@@ -26,6 +26,7 @@ import {
 @Directive({
   selector: '[ngbCellDef]',
   providers: [{ provide: CdkCellDef, useExisting: NgbCellDef }],
+  standalone: true,
 })
 export class NgbCellDef<T> extends CdkCellDef {
   // leveraging syntactic-sugar syntax when we use *matCellDef
@@ -44,8 +45,13 @@ export class NgbCellDef<T> extends CdkCellDef {
 @Directive({
   selector: '[ngbHeaderCellDef]',
   providers: [{ provide: CdkHeaderCellDef, useExisting: NgbHeaderCellDef }],
+  standalone: true,
 })
-export class NgbHeaderCellDef extends CdkHeaderCellDef {}
+export class NgbHeaderCellDef extends CdkHeaderCellDef {
+  @HostBinding('style.white-space')
+  @Input()
+  whiteSpace = 'nowrap';
+}
 
 /**
  * Footer cell definition for the ngb-table.
@@ -54,8 +60,13 @@ export class NgbHeaderCellDef extends CdkHeaderCellDef {}
 @Directive({
   selector: '[ngbFooterCellDef]',
   providers: [{ provide: CdkFooterCellDef, useExisting: NgbFooterCellDef }],
+  standalone: true,
 })
-export class NgbFooterCellDef extends CdkFooterCellDef {}
+export class NgbFooterCellDef extends CdkFooterCellDef {
+  @HostBinding('style.white-space')
+  @Input()
+  whiteSpace = 'nowrap';
+}
 
 /**
  * Column definition for the ngb-table.
@@ -67,6 +78,7 @@ export class NgbFooterCellDef extends CdkFooterCellDef {}
     { provide: CdkColumnDef, useExisting: NgbColumnDef },
     { provide: 'NGB_SORT_HEADER_COLUMN_DEF', useExisting: NgbColumnDef },
   ],
+  standalone: true,
 })
 export class NgbColumnDef extends CdkColumnDef {
   /** Unique name for this column. */
@@ -83,18 +95,24 @@ export class NgbColumnDef extends CdkColumnDef {
 /** Header cell template container that adds the right classes and role. */
 @Directive({
   selector: 'ngb-header-cell, th[ngb-header-cell]',
+  host: {
+    role: 'columnheader',
+  },
+  standalone: true,
 })
 export class NgbHeaderCell extends CdkHeaderCell {}
 
 /** Footer cell template container that adds the right classes and role. */
 @Directive({
   selector: 'ngb-footer-cell, td[ngb-footer-cell]',
+  standalone: true,
 })
 export class NgbFooterCell extends CdkFooterCell {}
 
 /** Cell template container that adds the right classes and role. */
 @Directive({
   selector: 'ngb-cell, td[ngb-cell]',
+  standalone: true,
 })
 export class NgbCell extends CdkCell {
   @HostBinding('style.white-space')

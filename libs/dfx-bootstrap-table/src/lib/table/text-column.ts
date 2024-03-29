@@ -9,6 +9,7 @@
 
 import { CdkTextColumn } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { NgbCell, NgbCellDef, NgbColumnDef, NgbHeaderCell, NgbHeaderCellDef } from './cell';
 
 /**
  * Column that simply shows text content for the header and row cells. Assumes that the table
@@ -39,5 +40,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   // an ExpressionChangedAfterItHasBeenCheckedError).
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [NgbColumnDef, NgbHeaderCellDef, NgbHeaderCell, NgbCellDef, NgbCell],
 })
 export class NgbTextColumn<T> extends CdkTextColumn<T> {}

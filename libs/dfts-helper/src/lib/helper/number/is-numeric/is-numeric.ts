@@ -1,11 +1,9 @@
-import { StringOrNumber } from '../../../types';
-
 /**
  * Checks if object is <code>numeric</code>
  * @param {unknown} obj
  * @return boolean Returns <code>true</code> if object is <code>numeric</code>, else <code>false</code>
  */
-export const n_isNumeric = (obj: unknown): obj is StringOrNumber => {
+export const n_isNumeric = (obj: unknown): obj is string | number => {
   if (typeof obj == 'number') {
     return true;
   }

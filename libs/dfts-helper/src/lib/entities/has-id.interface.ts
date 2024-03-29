@@ -1,5 +1,3 @@
-import { StringOrNumber } from '../types';
-
 /**
  * @since 3.2.5
  */
@@ -17,4 +15,4 @@ export type IHasNumberID = IHasID<number>;
  */
 export type IHasStringID = IHasID<string>;
 
-export type IHasStringOrNumberID = IHasID<StringOrNumber>;
+export type IHasStringOrNumberID = IHasID<string | number>;

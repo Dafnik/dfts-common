@@ -80,14 +80,11 @@ export { s_isUrl, s_isNoUrl } from './lib/helper/string/url/url';
 
 export { i_complete, i_cookieEnabled, i_screenSize, i_mobile, BrowserInfo } from './lib/helper/browser';
 export { cl_copy, cl_read } from './lib/helper/clipboard';
-export { c_nullToUndefined, c_undefinedToNull, c_unchecked } from './lib/helper/converter/converter';
 export { Stopwatch } from './lib/helper/stopwatch/stopwatch';
 export { notNull, notNullAndUndefined } from './lib/helper/filter';
 export { thr_sleep, thr_block } from './lib/helper/thread';
 
 export { getLogMessage } from './lib/logger/log.header';
 export { loggerOf, Logger, LogHelper } from './lib/logger/logger';
-
-export { IGenericImplTrait } from './lib/traits/generic-impl-trait';
 
 export * from './lib/types';

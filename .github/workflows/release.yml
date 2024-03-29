@@ -90,17 +90,20 @@ jobs:
           cp "./dist/${{ inputs.lib }}.zip" "./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip"
 
       - name: releases lookup
-        run: cd releases && ls -la && du -hs && cd -
+        run: |
+          cd releases
+          ls -la
+          cd -
 
       - name: move zips to release server
-        uses: garygrossgarten/github-action-scp@release
+        uses: appleboy/scp-action@v0.1.7
         with:
-          local: ./releases
-          remote: /var/www/share/releases/${{ inputs.lib }}
           host: ${{ secrets.RELEASES_SSH_HOST }}
-          port: ${{ secrets.RELEASES_SSH_PORT }}
           username: ${{ secrets.RELEASES_SSH_USER }}
-          privateKey: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+          key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.RELEASES_SSH_PORT }}
+          source: releases/*
+          target: /var/www/share/releases/${{ inputs.lib }}
 
   release-github:
     name: Release zip to github releases
@@ -139,7 +142,7 @@ jobs:
           cat RELEASE_CHANGELOG.md
 
       - name: create ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }} release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           body_path: ./RELEASE_CHANGELOG.md
           files: ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip

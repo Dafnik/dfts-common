@@ -1,3 +1,13 @@
+ 
+# [3.2.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.1.0...dfx-bootstrap-table-3.2.0) (2024-03-29)
+
+
+### Features
+
+* **dfx-bootstrap-table:** standalone API ([49dc71b](https://github.com/Dafnik/dfts-common/commit/49dc71b241f519631f5296c13821897379796943))
+
+
+
 # [3.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.0.1...dfx-bootstrap-table-3.1.0) (2024-01-18)
 
 ### Bug Fixes

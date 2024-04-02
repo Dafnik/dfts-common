@@ -45,7 +45,7 @@
     },
     {
       "files": ["*.md"],
-      "extends": ["plugin:markdown/recommended", "prettier"],
+      "extends": ["plugin:markdown/recommended-legacy", "prettier"],
       "rules": {}
     }
   ]

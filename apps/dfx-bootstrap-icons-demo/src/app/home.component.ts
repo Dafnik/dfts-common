@@ -22,21 +22,23 @@ import { injectWindow } from 'dfx-helper';
       <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
         @for (icon of searchResults(); track icon) {
           <li class="col mb-4">
-            <a class="d-block text-decoration-none" href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
-              <div class="px-3 py-5 mb-2 text-center rounded icon-block">
-                @defer (on viewport, idle) {
-                  <bi [name]="icon" />
-                } @placeholder (minimum 500ms) {
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                }
-              </div>
+            <div class="d-block text-decoration-none">
+              <a href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
+                <div class="px-3 py-5 mb-2 text-center rounded icon-block">
+                  @defer (on viewport, idle) {
+                    <bi [name]="icon" />
+                  } @placeholder (minimum 500ms) {
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  }
+                </div>
+              </a>
               <div class="name text-muted text-decoration-none text-center pt-1">
                 <strong>{{ icon }}</strong>
               </div>
               <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
-            </a>
+            </div>
           </li>
         } @empty {
           <li class="d-flex w-100 justify-content-center">

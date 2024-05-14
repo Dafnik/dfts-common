@@ -11,8 +11,8 @@ import {
 } from './icons.feature';
 import { ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED } from './icons.config';
 import { ColorValueHex, IconsType } from './types';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, of } from 'rxjs';
+import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ICON_CACHE_INTERCEPTOR } from './icons-cache.interceptor';
 import { toEscapedName } from './internal/toEscapedName';
 
@@ -42,12 +42,22 @@ export function provideCDNIconsLoader(...cdnUrls: string[]): Provider {
       const httpClient = inject(HttpClient);
 
       return (name: string): Observable<string | undefined> => {
-        return httpClient.get<string>(`${randomCDNUrl}/${name}.svg`, {
-          headers: new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8'),
-          context: new HttpContext().set(ICON_CACHE_INTERCEPTOR, true),
-          // @ts-expect-error Weird angular things
-          responseType: 'text',
-        }) as unknown as Observable<string | undefined>;
+        return httpClient
+          .get<string>(`${randomCDNUrl}/${name}.svg`, {
+            headers: new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8'),
+            context: new HttpContext().set(ICON_CACHE_INTERCEPTOR, true),
+            // @ts-expect-error Weird angular things
+            responseType: 'text',
+          })
+          .pipe(
+            catchError((error: HttpErrorResponse) => {
+              console.error(error);
+              if (error.status === 404) {
+                console.warn(`BiComponent: Icon ${name} not found`);
+              }
+              return of(undefined);
+            }),
+          ) as unknown as Observable<string | undefined>;
       };
     },
   };

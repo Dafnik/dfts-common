@@ -11,7 +11,7 @@ import { toEscapedName } from './internal/toEscapedName';
 
 describe('IconFeatures ', () => {
   it('test defaults', () => {
-    const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }));
+    const { fixture, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }));
     fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
@@ -46,7 +46,7 @@ describe('IconFeatures ', () => {
   });
 
   it('test withWidth', () => {
-    const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withWidth('32'));
+    const { fixture, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withWidth('32'));
 
     fixture.componentRef.setInput('name', 'x-circle-fill');
 
@@ -59,7 +59,7 @@ describe('IconFeatures ', () => {
   });
 
   it('test withHeight', () => {
-    const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withHeight('32'));
+    const { fixture, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withHeight('32'));
 
     fixture.componentRef.setInput('name', 'x-circle-fill');
 
@@ -71,8 +71,22 @@ describe('IconFeatures ', () => {
     expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'fill')).toBe('currentColor');
   });
 
+  it('test withWidth and withHeight with size input', () => {
+    const { fixture, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withHeight('48'), withWidth('48'));
+
+    fixture.componentRef.setInput('name', 'x-circle-fill');
+    fixture.componentRef.setInput('size', '36');
+
+    fixture.detectChanges();
+
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'width')).toBe('36');
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'height')).toBe('36');
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'viewBox')).toBe('0 0 16 16');
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'fill')).toBe('currentColor');
+  });
+
   it('test withSize', () => {
-    const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withSize('32'), withWidth('48'));
+    const { fixture, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withSize('32'), withWidth('48'));
 
     fixture.componentRef.setInput('name', 'x-circle-fill');
 
@@ -85,7 +99,7 @@ describe('IconFeatures ', () => {
   });
 
   it('test withColor', () => {
-    const { fixture, component, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withColor('#123456'));
+    const { fixture, nativeElement } = getNewConfiguration(withIcons({ xCircleFill }), withColor('#123456'));
 
     fixture.componentRef.setInput('name', 'x-circle-fill');
 

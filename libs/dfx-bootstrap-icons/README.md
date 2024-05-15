@@ -4,9 +4,9 @@ Straightforward, state-of-the-art Angular icon library.
 
 Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons in a bundle-size friendly way.
 
-[![npm version](https://badge.fury.io/js/dfx-bootstrap-icons.svg)](https://npmjs.org/package/dfx-bootstrap-icons)
-[![NPM](https://img.shields.io/npm/dw/dfx-bootstrap-icons?logo=npm)](https://npmjs.org/package/dfx-bootstrap-icons)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-icons?cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm version](https://img.shields.io/npm/v/dfx-bootstrap-icons?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-bootstrap-icons?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-icons?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
 
 - [Demo](https://playground.dafnik.me/bootstrap-icons/)
 - [Installation](#installation)

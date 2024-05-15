@@ -1,11 +1,11 @@
 # dfts-qrcode
 
 `dfts-qrcode` is a tiny and simple-to-use Javascript / TypeScript QR-Code generator library.
-Fully type-safe and esm module compatible.
+Fully type-safe and ES modules compatible.
 
-[![npm version](https://badge.fury.io/js/dfts-qrcode.svg)](https://npmjs.org/package/dfts-qrcode)
-[![NPM](https://img.shields.io/npm/dw/dfts-qrcode?logo=npm)](https://npmjs.org/package/dfts-qrcode)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm version](https://img.shields.io/npm/v/dfts-qrcode?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfts-qrcode?logo=npm&color=%237469B6)](https://npmjs.org/package/dfts-qrcode)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-qrcode?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -312,3 +312,5 @@ A list of supported modes are shown in the table below:
 | Numeric      | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9                               | 3 characters are represented by 10 bits   |
 | Alphanumeric | 0–9, A–Z (upper-case only), space, $, %, \*, +, -, ., /, : | 2 characters are represented by 11 bits   |
 | Byte         | Characters from the ISO/IEC 8859-1 character set           | Each characters are represented by 8 bits |
+
+By [Dafnik](https://dafnik.me)

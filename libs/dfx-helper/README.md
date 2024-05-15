@@ -2,9 +2,9 @@
 
 Angular Library with tons of utility tools helping in all projects.
 
-[![npm version](https://badge.fury.io/js/dfx-helper.svg)](https://npmjs.org/package/dfx-helper)
-[![NPM](https://img.shields.io/npm/dw/dfx-helper?logo=npm)](https://npmjs.org/package/dfx-helper)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
+[![npm version](https://img.shields.io/npm/v/dfx-helper?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-helper?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-helper)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
 
 ## Version compatibility
 

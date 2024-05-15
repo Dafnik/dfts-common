@@ -1,5 +1,7 @@
 # dfts-common
 
+[![combined downloads](https://img.shields.io/npm-stat/dw/dafnik?label=combined%20downloads&color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
+
 The collection of collections.
 
 ## Useful commands
@@ -17,41 +19,46 @@ The collection of collections.
 
 TypeScript Library with tons of utility tools helping in all projects.
 
-[![npm version](https://badge.fury.io/js/dfts-helper.svg)](https://npmjs.org/package/dfts-helper)
-[![NPM](https://img.shields.io/npm/dw/dfts-helper?logo=npm)](https://npmjs.org/package/dfts-helper)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-helper?cacheSeconds=86400)](https://npmjs.org/package/dfts-helper)
+[![npm version](https://img.shields.io/npm/v/dfts-helper?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-helper)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfts-helper?logo=npm&color=%237469B6)](https://npmjs.org/package/dfts-helper)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-helper?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-helper)
+[![npm license](https://img.shields.io/npm/l/dfts-helper?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
 
 ### dfts-qrcode
 
-`dfts-qrcode` is a tiny and simple-to-use Javascript QR-Code generator library. Fully type-safe and esm module compatible.
+`dfts-qrcode` is a tiny and simple-to-use Javascript QR-Code generator library. Fully type-safe and ES module compatible.
 
-[![npm version](https://badge.fury.io/js/dfts-qrcode.svg)](https://npmjs.org/package/dfts-qrcode)
-[![NPM](https://img.shields.io/npm/dw/dfts-qrcode?logo=npm)](https://npmjs.org/package/dfts-qrcode)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm version](https://img.shields.io/npm/v/dfts-qrcode?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfts-qrcode?logo=npm&color=%237469B6)](https://npmjs.org/package/dfts-qrcode)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-qrcode?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm license](https://img.shields.io/npm/l/dfts-qrcode?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
 
 ### dfx-helper
 
 Angular Library with tons of utility tools helping in all projects.
 
-[![npm version](https://badge.fury.io/js/dfx-helper.svg)](https://npmjs.org/package/dfx-helper)
-[![NPM](https://img.shields.io/npm/dw/dfx-helper?logo=npm)](https://npmjs.org/package/dfx-helper)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
+[![npm version](https://img.shields.io/npm/v/dfx-helper?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-helper?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-helper)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-helper?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-helper)
+[![npm license](https://img.shields.io/npm/l/dfx-helper?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
 
 ### dfx-bootstrap-table
 
 Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.
 
-[![npm version](https://badge.fury.io/js/dfx-bootstrap-table.svg)](https://npmjs.org/package/dfx-bootstrap-table)
-[![NPM](https://img.shields.io/npm/dw/dfx-bootstrap-table?logo=npm)](https://npmjs.org/package/dfx-bootstrap-table)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-table?cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm version](https://img.shields.io/npm/v/dfx-bootstrap-table?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-bootstrap-table?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-table?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-table)
+[![npm license](https://img.shields.io/npm/l/dfx-bootstrap-table?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
 
 ### dfx-qrcode
 
 `dfx-qrcode` is a tiny and simple-to-use Angular QrCode generator library.
 
-[![npm version](https://badge.fury.io/js/dfx-qrcode.svg)](https://npmjs.org/package/dfx-qrcode)
-[![NPM](https://img.shields.io/npm/dw/dfx-qrcode?logo=npm)](https://npmjs.org/package/dfx-qrcode)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-qrcode?cacheSeconds=86400)](https://npmjs.org/package/dfx-qrcode)
+[![npm version](https://img.shields.io/npm/v/dfx-qrcode?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-qrcode)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-qrcode?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-qrcode)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-qrcode?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-qrcode)
+[![npm license](https://img.shields.io/npm/l/dfx-qrcode?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
 
 ### dfx-bootstrap-icons
 
@@ -59,6 +66,7 @@ Straightforward, state-of-the-art Angular icon library.
 
 Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons in a bundle-size friendly way.
 
-[![npm version](https://badge.fury.io/js/dfx-bootstrap-icons.svg)](https://npmjs.org/package/dfx-bootstrap-icons)
-[![NPM](https://img.shields.io/npm/dw/dfx-bootstrap-icons?logo=npm)](https://npmjs.org/package/dfx-bootstrap-icons)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-icons?cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm version](https://img.shields.io/npm/v/dfx-bootstrap-icons?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-bootstrap-icons?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-icons?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
+[![npm license](https://img.shields.io/npm/l/dfx-bootstrap-icons?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)

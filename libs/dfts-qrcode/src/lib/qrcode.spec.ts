@@ -1,5 +1,6 @@
-import { generateQrCodeMatrix, generateQrCodeSVGString } from './qrcode';
 import { s_stripWhitespace } from 'dfts-helper';
+import { generateQrCodeSVGString } from './svg';
+import { generateQrCodeMatrix } from './matrix';
 
 describe('QRCode', () => {
   it('generate correct Numeric qrcode svg', () => {

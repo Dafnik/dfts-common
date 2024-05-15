@@ -163,20 +163,19 @@ bootstrapApplication(AppComponent, {
   providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons', 'https://test.url.at'))],
 }).catch((err) => console.error(err));
 ```
+
 Don't forget to add the `HttpClient` and `biCacheInterceptor`
 
 #### HttpClient Interceptor
+
 When using CDNs you can use the `biCacheInterceptor` to prevent the duplicate fetching of icons.
 
 ```typescript
 import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
-providers: [
-  provideHttpClient(withInterceptors([biCacheInterceptor])),
-]
+providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))];
 ```
-
 
 ## Examples
 

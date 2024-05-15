@@ -17,4 +17,4 @@ const isUrlRegEx = new RegExp(
  */
 export const s_isUrl = (url?: UndefinedOrNullOr<string>): boolean => isUrlRegEx.test(url ?? '');
 
-export const s_isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => !isUrlRegEx.test(url ?? '');
+export const s_isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => !s_isUrl(url)

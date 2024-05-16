@@ -85,9 +85,9 @@ export function generateQrCodeMatrix(data: string | number, options: generateMat
  * @returns {number[][]} The fully encoded QR code matrix.
  */
 function generate(data: string | number[], version: number, mode: number, eccLevel: number, mask: number): number[][] {
-  const v = VERSIONS[version];
+  const v = VERSIONS[version] ?? [[-100]];
   let buffer = encode(version, mode, data, getNumberOfAvailableBitsForData(version, eccLevel) >> 3);
-  buffer = augmentECCs(buffer, v![1][eccLevel], GF256_GEN_POLY[v![0][eccLevel]]);
+  buffer = augmentECCs(buffer, v[1][eccLevel], GF256_GEN_POLY[v[0][eccLevel]]);
 
   const result = createBaseMatrix(version),
     matrix = result.matrix,

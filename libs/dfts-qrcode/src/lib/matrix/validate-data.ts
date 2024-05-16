@@ -12,6 +12,7 @@ import { ALPHANUMERIC_REGEXP, MODE_ALPHANUMERIC, MODE_NUMERIC, MODE_OCTET, NUMER
  * @returns {string | number[] | undefined} The validated and converted data, or undefined if not valid.
  */
 export function validateData(mode: number, data: string | number): string | number[] | undefined {
+  const stringData = data as string;
   switch (mode) {
     case MODE_NUMERIC:
       if (typeof data === 'number') return data.toString();
@@ -19,12 +20,10 @@ export function validateData(mode: number, data: string | number): string | numb
       return data;
 
     case MODE_ALPHANUMERIC:
-      const stringData = data as string;
       if (!stringData.match(ALPHANUMERIC_REGEXP)) return undefined;
       return stringData.toUpperCase();
 
     case MODE_OCTET: {
-      const stringData = data as string;
       const newData: number[] = [];
       for (let i = 0; i < stringData.length; i++) {
         const char = stringData.charCodeAt(i);

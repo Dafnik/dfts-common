@@ -41,12 +41,12 @@ export function getNumberOfAvailableBitsByVersion(version: number): number {
    *   if any, but 10m-20 (= 2(m-2)x5) of them overlaps with
    *   timing patterns.
    */
-  const v = VERSIONS[version];
+  const v = VERSIONS[version] ?? [[-100]];
   let numberOfBits = 16 * version * version + 128 * version + 64; // finder, timing and format info.
   if (needsVersionInfo(version)) numberOfBits -= 36; // version information
-  if (v![2].length) {
+  if (v[2].length) {
     // alignment patterns
-    numberOfBits -= 25 * v![2].length * v![2].length - 10 * v![2].length - 55;
+    numberOfBits -= 25 * v[2].length * v[2].length - 10 * v[2].length - 55;
   }
   return numberOfBits;
 }

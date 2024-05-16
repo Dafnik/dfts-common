@@ -8,12 +8,12 @@ export function generateQrCodeCanvas(
   canvasElement: HTMLCanvasElement = generateQrCodeCanvasElement(),
 ): HTMLCanvasElement {
   const matrix = generateQrCodeMatrix(data, options);
-  const modsize = options.size ?? 5;
+  const modSize = options.size ?? 5;
   const margin = options.margin ?? 4;
   const fgColor = options.colors?.colorLight ?? '#ffffff';
   const bgColor = options.colors?.colorDark ?? '#000000';
   const n = matrix.length;
-  const size = modsize * (n + 2 * margin);
+  const size = modSize * (n + 2 * margin);
 
   canvasElement.width = canvasElement.height = size;
   const context = canvasElement.getContext('2d');
@@ -25,7 +25,7 @@ export function generateQrCodeCanvas(
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       if (matrix[i][j]) {
-        context.fillRect(modsize * (margin + j), modsize * (margin + i), modsize, modsize);
+        context.fillRect(modSize * (margin + j), modSize * (margin + i), modSize, modSize);
       }
     }
   }
@@ -39,7 +39,11 @@ export function generateQrCodeCanvas$(
   canvasElement: HTMLCanvasElement = generateQrCodeCanvasElement(),
 ): Promise<HTMLCanvasElement> {
   canvasElement = generateQrCodeCanvas(data, options, canvasElement);
-  const context = canvasElement.getContext('2d')!;
+  const context = canvasElement.getContext('2d');
+
+  if (!context) {
+    throw 'QrCode: canvas support is needed for PNG and canvas output';
+  }
 
   return new Promise((resolve) => {
     if (options.image?.src) {

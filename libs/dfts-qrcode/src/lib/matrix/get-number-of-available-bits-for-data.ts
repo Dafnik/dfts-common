@@ -11,7 +11,7 @@ import { VERSIONS } from './const';
  */
 export function getNumberOfAvailableBitsForData(version: number, eccLevel: number): number {
   let numberOfAvailableBits = getNumberOfAvailableBitsByVersion(version) & ~7; // no sub-octet code words
-  const v = VERSIONS[version];
-  numberOfAvailableBits -= 8 * v![0][eccLevel] * v![1][eccLevel]; // ecc bits
+  const v = VERSIONS[version] ?? [[-100]];
+  numberOfAvailableBits -= 8 * v[0][eccLevel] * v[1][eccLevel]; // ecc bits
   return numberOfAvailableBits;
 }

@@ -16,7 +16,7 @@ import { augmentBCH } from './augment-bch';
  * @returns {{ matrix: number[][], reserved: number[][] }} The base matrix and the reserved portion matrix.
  */
 export function createBaseMatrix(version: number): { matrix: number[][]; reserved: number[][] } {
-  const v = VERSIONS[version],
+  const v = VERSIONS[version] ?? [[-100]],
     sizeOfVersion = getSizeByVersion(version),
     matrix: number[][] = [],
     reserved: number[][] = [];
@@ -48,8 +48,9 @@ export function createBaseMatrix(version: number): { matrix: number[][]; reserve
   }
 
   // alignment patterns
-  const alignmentPatterns = v![2],
+  const alignmentPatterns = v[2],
     m = alignmentPatterns.length;
+
   for (let i = 0; i < m; i++) {
     const minJ = i == 0 || i == m - 1 ? 1 : 0,
       maxJ = i == 0 ? m - 1 : m;

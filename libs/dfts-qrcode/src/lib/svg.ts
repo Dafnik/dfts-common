@@ -48,15 +48,15 @@ export function generateQrCodeSVG$(
 ): Promise<{ svg: HTMLElement; dataUrl: string }> {
   const { svg, dataUrl } = generateQrCodeSVG(data, options);
 
-  return new Promise((resolve, reject) => {
-    if (options.image?.src) {
+  return new Promise((resolve) => {
+    if (options.image && options.image.src) {
       const centerImageWidth = options.image.width ?? 40;
       const centerImageHeight = options.image.height ?? 40;
       const centerImage = new Image(centerImageWidth, centerImageHeight);
       centerImage.src = options.image.src;
       centerImage.onload = () => {
-        const svgWidth = svg.getAttribute('width')!;
-        const svgHeight = svg.getAttribute('height')!;
+        const svgWidth = svg.getAttribute('width') ?? '-100';
+        const svgHeight = svg.getAttribute('height') ?? '-100';
 
         // Calculate the position to center the image within the SVG
         const x = (parseInt(svgWidth) - centerImage.width) / 2;
@@ -67,7 +67,9 @@ export function generateQrCodeSVG$(
         imageElement.setAttributeNS(null, 'y', y.toString());
         imageElement.setAttributeNS(null, 'width', centerImage.width.toString());
         imageElement.setAttributeNS(null, 'height', centerImage.height.toString());
-        imageElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', options.image!.src!);
+
+        // @ts-expect-error Dumb typescript does not even understand the if
+        imageElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', options.image.src);
 
         svg.appendChild(imageElement);
 

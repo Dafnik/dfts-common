@@ -20,6 +20,7 @@ import { filter, Observable, Subscription } from 'rxjs';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[style.display]': '"inline-block"',
     '[style.width]': '(size() ?? width() ?? injectedSize ?? injectedWidth) + "px"',

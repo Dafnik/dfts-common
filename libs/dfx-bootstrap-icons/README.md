@@ -20,6 +20,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
   - [Configuration parameters](#configuration-parameters)
   - [Component](#component)
   - [Component parameters](#parameters)
+  - [Width, height and size](#width-height-and-size)
   - [CDN](#cdn)
 - [Examples](#examples)
   - [Provide imported icons application wide](#provide-imported-icons-application-wide)
@@ -116,13 +117,14 @@ export class AppModule {}
 
 ### Configuration parameters
 
-| **Name**   | **Type**                    | **Description**                           | **Example**                                                     |
-| ---------- | --------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| withIcons  | `{ [key: string]: string }` | Icons you want to include in your bundle. | `withIcons({ exclamationOctagonFill, xCircleFill })`            |
-| withCDN    | `...string[]`               | Name of the icon.                         | `withCDN('https://playground.dafnik.me/bootstrap-icons/icons')` |
-| withWidth  | `string`                    | Width of the icon.                        | `withWidth('24')`                                               |
-| withHeight | `string`                    | Height of the icon.                       | `withHeight('24')`                                              |
-| withColor  | `string`                    | Color of the icon.                        | `withColor('#0000FF')`                                          |
+| **Name**   | **Type**                    | **Description**                                             | **Example**                                                     | **Default value** |
+| ---------- | --------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- | ----------------- |
+| withIcons  | `{ [key: string]: string }` | Icons you want to include in your bundle.                   | `withIcons({ exclamationOctagonFill, xCircleFill })`            |                   |
+| withCDN    | `...string[]`               | Bootstrap Icons CDN URLs.                                   | `withCDN('https://playground.dafnik.me/bootstrap-icons/icons')` |                   |
+| withSize   | `string`                    | Size of the icon. (overrides injected `width` and `height`) | `withSize('24')`                                                | `undefined`       |
+| withWidth  | `string`                    | Width of the icon.                                          | `withWidth('24')`                                               | `16`              |
+| withHeight | `string`                    | Height of the icon.                                         | `withHeight('24')`                                              | `16`              |
+| withColor  | `string`                    | Color of the icon.                                          | `withColor('#0000FF')`                                          | `currentColor`    |
 
 ### Component
 
@@ -138,14 +140,24 @@ export class AppComponent {}
 
 ### Parameters
 
-| **Name**        | **Type**                | **Description**                                   | **Default value** |
-| --------------- | ----------------------- | ------------------------------------------------- | ----------------- |
-| name            | `BiName \| BiNamesEnum` | Name of the icon.                                 |                   |
-| width           | `string`                | Width of the icon.                                | `16`              |
-| height          | `string`                | Height of the icon.                               | `16`              |
-| color           | `string`                | Color of the icon.                                | `currentColor`    |
-| clearDimensions | `boolean`               | Clears dimensions (width, height) set via config. | `false`           |
-| ariaLabel       | `string`                | aria-label which is set on the icon.              | `undefined`       |
+| **Name**        | **Type**                | **Description**                                                | **Default value** | **Required** |
+| --------------- | ----------------------- | -------------------------------------------------------------- | ----------------- | ------------ |
+| name            | `BiName \| BiNamesEnum` | Name of the icon.                                              |                   | X            |
+| size            | `string`                | Size of the icon. (overrides passed `width` and `height`)      |                   |              |
+| width           | `string`                | Width of the icon.                                             |                   |              |
+| height          | `string`                | Height of the icon.                                            |                   |              |
+| color           | `string`                | Color of the icon.                                             |                   |              |
+| clearDimensions | `boolean`               | Clears dimensions (width, height) set via params or injection. | `false`           |              |
+| ariaLabel       | `string`                | aria-label which is set on the icon.                           |                   |              |
+
+### Width, height and size??
+
+`BiComponent` picks the size for the icon in the following order based on which params you inject and pass.
+
+```typescript
+const width = Input_Size ?? Input_Width ?? Injected_Size ?? Injected_Width;
+const height = Input_Size ?? Input_Height ?? Injected_Size ?? Injected_Height;
+```
 
 ### CDN
 
@@ -160,7 +172,7 @@ Configure a pool of CDN URLs:
 import { provideBi, withCDN } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
-  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons', 'https://test.url.at'))],
+  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
 }).catch((err) => console.error(err));
 ```
 

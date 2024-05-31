@@ -5,6 +5,7 @@
   "private": false,
   "license": "MIT",
   "homepage": "https://playground.dafnik.me/qrcode/",
+  "sideEffects": false,
   "keywords": [
     "ng",
     "ngx",
@@ -18,17 +19,25 @@
     "small",
     "esm",
     "modules",
-    "esm modules"
+    "esm modules",
+    "universal",
+    "ssr"
   ],
   "author": {
     "name": "Dafnik",
     "email": "contact@dafnik.me",
     "url": "https://dafnik.me"
   },
-  "funding": {
-    "type": "liberapay",
-    "url": "https://liberapay.com/Dafnik"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/Dafnik"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/Dafnik"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Dafnik/dfts-common/issues"
   },
@@ -45,6 +54,5 @@
   "dependencies": {
     "dfts-qrcode": "1.1.0",
     "tslib": "^2"
-  },
-  "sideEffects": false
+  }
 }

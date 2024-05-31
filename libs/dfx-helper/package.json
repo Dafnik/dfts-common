@@ -17,10 +17,16 @@
     "email": "contact@dafnik.me",
     "url": "https://dafnik.me"
   },
-  "funding": {
-    "type": "liberapay",
-    "url": "https://liberapay.com/Dafnik"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/Dafnik"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/Dafnik"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Dafnik/dfts-common/issues"
   },

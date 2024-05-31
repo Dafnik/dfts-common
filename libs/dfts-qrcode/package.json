@@ -2,10 +2,11 @@
   "name": "dfts-qrcode",
   "version": "1.1.0",
   "description": "tiny and simple-to-use Javascript / TypeScript QR-Code generator library. Fully type-safe and esm module compatible",
-  "private": false,
   "type": "module",
+  "private": false,
+  "sideEffects": false,
   "license": "MIT",
-  "homepage": "https://dafnik.me",
+  "homepage": "https://github.com/Dafnik/dfts-common",
   "keywords": [
     "typescript",
     "qrcode",
@@ -22,10 +23,16 @@
     "email": "contact@dafnik.me",
     "url": "https://dafnik.me"
   },
-  "funding": {
-    "type": "liberapay",
-    "url": "https://liberapay.com/Dafnik"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/Dafnik"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/Dafnik"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Dafnik/dfts-common/issues"
   },
@@ -33,6 +40,5 @@
     "type": "git",
     "url": "git@github.com:Dafnik/dfts-common.git",
     "directory": "libs/dfts-qrcode"
-  },
-  "sideEffects": false
+  }
 }

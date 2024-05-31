@@ -1,24 +1,41 @@
 {
   "name": "dfx-bootstrap-icons",
   "version": "1.2.0",
-  "peerDependencies": {
-    "@angular/common": "17",
-    "@angular/core": "17"
-  },
-  "dependencies": {
-    "tslib": "^2"
-  },
   "description": "Straightforward, state-of-the-art Angular icon library. Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons in a bundle-size friendly way.",
   "private": false,
+  "sideEffects": false,
+  "license": "MIT",
+  "homepage": "https://playground.dafnik.me/bootstrap-icons/",
+  "keywords": [
+    "ng",
+    "ngx",
+    "angular2",
+    "angular",
+    "typescript",
+    "icons",
+    "bootstrap",
+    "bootstrap icons",
+    "esm",
+    "modules",
+    "esm modules",
+    "universal",
+    "ssr"
+  ],
   "author": {
     "name": "Dafnik",
     "email": "contact@dafnik.me",
     "url": "https://dafnik.me"
   },
-  "funding": {
-    "type": "liberapay",
-    "url": "https://liberapay.com/Dafnik"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/Dafnik"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/Dafnik"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Dafnik/dfts-common/issues"
   },
@@ -27,7 +44,11 @@
     "url": "git@github.com:Dafnik/dfts-common.git",
     "directory": "libs/dfx-boostrap-icons"
   },
-  "license": "MIT",
-  "homepage": "https://playground.dafnik.me/bootstrap-icons/",
-  "sideEffects": false
+  "peerDependencies": {
+    "@angular/common": "17",
+    "@angular/core": "17"
+  },
+  "dependencies": {
+    "tslib": "^2"
+  }
 }

@@ -1,3 +1,23 @@
+ 
+# [1.2.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-1.1.0...dfx-bootstrap-icons-1.2.0) (2024-05-31)
+
+
+### Bug Fixes
+
+* add transform to boolean input ([f453e46](https://github.com/Dafnik/dfts-common/commit/f453e4602a47d5ce7f1d56116afbf9b764b2aab1))
+* **bootstrap-icons:** size not working ([2037e93](https://github.com/Dafnik/dfts-common/commit/2037e93d66c98649c3bb48e5d20b51921e0b7100))
+* **dfx-bootstrap-icons:** signal conversion bug ([6c4f074](https://github.com/Dafnik/dfts-common/commit/6c4f074b3f1c23bd6bf04b4fd171e98c8f1c55a2))
+* **dfx-bootstrap-icons:** Signal read not in effect & host component not having right dimensions ([322c945](https://github.com/Dafnik/dfts-common/commit/322c94589f8005d8bd07a75cf188407bac4566fb))
+* format ([734acf9](https://github.com/Dafnik/dfts-common/commit/734acf97a16ec3be93466c4c3d0a2195000096c7))
+* lint ([da39bb7](https://github.com/Dafnik/dfts-common/commit/da39bb712d19f2070436a15e21865e28619aa88e))
+
+
+### Features
+
+* update icons to v1.11.3 ([ecc07c0](https://github.com/Dafnik/dfts-common/commit/ecc07c04326e5a87b0c40bf5da03f114d8e0b670))
+
+
+
 # [1.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-1.0.0...dfx-bootstrap-icons-1.1.0) (2024-01-02)
 
 ### Bug Fixes

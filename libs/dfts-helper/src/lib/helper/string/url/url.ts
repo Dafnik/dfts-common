@@ -1,9 +1,7 @@
 import { UndefinedOrNullOr } from '../../../types';
 
 const isUrlRegEx =
-  // eslint-disable-next-line no-useless-escape
   /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
-
 /**
  * Returns <code>true</code> if the given string is an url, <code>false</code> if not
  * @param {string} url

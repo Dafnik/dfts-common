@@ -19,9 +19,9 @@ import { injectWindow } from 'dfx-helper';
 
       <app-load-icon />
 
-      <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 g-2 g-lg-3 list-unstyled list m-0">
+      <ul class="d-flex flex-wrap justify-content-between gap-2 list-unstyled list m-0">
         @for (icon of searchResults(); track icon) {
-          <li class="col mb-4">
+          <li class="mb-4" style="min-width: 110px">
             <div class="d-block text-decoration-none">
               <a href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
                 <div class="px-3 py-5 mb-2 text-center rounded icon-block">
@@ -71,8 +71,8 @@ import { injectWindow } from 'dfx-helper';
     .to-top {
       bottom: 0;
       margin: 0 8px 12px 0;
-      position: fixed;
       right: 0;
+      position: fixed;
       opacity: 0;
     }
 

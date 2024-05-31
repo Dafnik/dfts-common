@@ -76,7 +76,7 @@ import { ThemePicker } from 'playground-lib';
             </div>
           </div>
           <div class="col-12 col-lg-4 d-flex justify-content-center">
-            <img ngSrc="assets/header.png" priority alt="" width="400" height="300" />
+            <img ngSrc="assets/header.png" priority alt="" width="360" height="270" />
           </div>
         </header>
       </div>

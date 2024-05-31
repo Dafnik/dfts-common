@@ -20,19 +20,25 @@ import { filter, Observable, Subscription } from 'rxjs';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '',
+  host: {
+    '[style.display]': '"inline-block"',
+    '[style.width]': '(size() ?? width() ?? injectedSize ?? injectedWidth) + "px"',
+    '[style.height]': '(size() ?? height() ?? injectedSize ?? injectedHeight) + "px"',
+  },
 })
 export class BiComponent {
+  injectedWidth = inject(ICON_WIDTH);
+  injectedHeight = inject(ICON_HEIGHT);
+  injectedSize = inject(ICON_SIZE);
+
   name = input.required<BiName | BiNamesEnum>();
 
-  width = input<string>(inject(ICON_WIDTH));
-
-  height = input<string>(inject(ICON_HEIGHT));
-
-  size = input<string | undefined>(inject(ICON_SIZE));
+  width = input<string>();
+  height = input<string>();
+  size = input<string>();
+  clearDimensions = input(false, { transform: booleanAttribute });
 
   color = input<ColorValueHex | undefined>(inject(ICON_COLOR));
-
-  clearDimensions = input(false, { transform: booleanAttribute });
 
   ariaLabel = input<string>();
 
@@ -48,6 +54,12 @@ export class BiComponent {
     });
 
     effect(() => {
+      const width = this.width();
+      const height = this.height();
+      const size = this.size();
+      const color = this.color();
+      const ariaLabel = this.ariaLabel();
+
       const name = this.name();
 
       const icon = this.#getIcon(name);
@@ -57,13 +69,15 @@ export class BiComponent {
       }
 
       if (typeof icon === 'string') {
-        this.#renderIcon(icon);
+        this.#renderIcon(icon, width, height, size, color, ariaLabel);
         return;
       }
 
       this.#iconSubscription?.unsubscribe();
 
-      this.#iconSubscription = icon.pipe(filter((icon): icon is string => !!icon)).subscribe((icon) => this.#renderIcon(icon));
+      this.#iconSubscription = icon
+        .pipe(filter((iconString): iconString is string => !!iconString))
+        .subscribe((iconString) => this.#renderIcon(iconString, width, height, size, color, ariaLabel));
     });
   }
 
@@ -80,19 +94,17 @@ export class BiComponent {
     return icon;
   }
 
-  #renderIcon(icon: string): void {
+  #renderIcon(icon: string, width?: string, height?: string, size?: string, color?: string, ariaLabel?: string): void {
     if (!this.clearDimensions()) {
-      icon = setSize(icon, 'width', this.size() ?? this.width());
-      icon = setSize(icon, 'height', this.size() ?? this.height());
+      icon = setSize(icon, 'width', size ?? width ?? this.injectedSize ?? this.injectedWidth);
+      icon = setSize(icon, 'height', size ?? height ?? this.injectedSize ?? this.injectedHeight);
     }
 
-    const color = this.color();
     if (color) {
       icon = setFillColor(icon, color);
     }
 
-    const ariaLabel = this.ariaLabel();
-    this.#renderer.setAttribute(this.#elementRef.nativeElement, 'aria-label', ariaLabel ?? '');
+    this.#renderer.setAttribute(this.#elementRef.nativeElement, 'aria-label', ariaLabel ?? 'Icon');
     if (ariaLabel) {
       this.#renderer.setAttribute(this.#elementRef.nativeElement, 'role', 'img');
     }

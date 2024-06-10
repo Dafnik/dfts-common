@@ -22,7 +22,7 @@ import { filter, Observable, Subscription } from 'rxjs';
   template: '',
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    '[style.display]': '"inline-block"',
+    '[style.display]': '"inline-flex"',
     '[style.width]': '(size() ?? width() ?? injectedSize ?? injectedWidth) + "px"',
     '[style.height]': '(size() ?? height() ?? injectedSize ?? injectedHeight) + "px"',
   },

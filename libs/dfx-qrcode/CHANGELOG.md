@@ -1,3 +1,8 @@
+ 
+# [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.1.0...dfx-qrcode-3.0.0) (2024-06-10)
+
+
+
 # [2.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.0.1...dfx-qrcode-2.1.0) (2024-02-02)
 
 ### Features

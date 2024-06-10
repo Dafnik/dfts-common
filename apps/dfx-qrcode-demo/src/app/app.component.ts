@@ -12,7 +12,7 @@ import { ThemePicker } from 'playground-lib';
 
 @Component({
   standalone: true,
-  selector: 'dfx-qrcode-demo-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styles: [
     `

@@ -8,3 +8,5 @@
 package.json
 pnpm-lock.yaml
 **/CHANGELOG.md
+
+/.nx/workspace-data

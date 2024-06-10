@@ -10,6 +10,7 @@ Angular Library with tons of utility tools helping in all projects.
 
 | Angular | dfx-helper |
 | ------- | ---------- |
+| 18.x.x  | 8.x.x      |
 | 17.x.x  | 7.x.x      |
 | 16.x.x  | 6.1.x      |
 | 15.x.x  | 6.0.x      |

@@ -26,17 +26,11 @@ We only fix vulnerability in the code distributed through our main source code r
 | 1.x.x   | :white_check_mark: |
 | < 1.0   | :x:                |
 
-### dfts-qrcode
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.x.x   | :white_check_mark: |
-| < 1.0   | :x:                |
-
 ### dfx-helper
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 8.x.x   | :white_check_mark: |
 | 7.x.x   | :white_check_mark: |
 | 6.x.x   | :white_check_mark: |
 | < 6.0   | :x:                |
@@ -45,6 +39,7 @@ We only fix vulnerability in the code distributed through our main source code r
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 3.x.x   | :white_check_mark: |
 | 2.x.x   | :white_check_mark: |
 | < 2.0   | :x:                |
 
@@ -52,6 +47,7 @@ We only fix vulnerability in the code distributed through our main source code r
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 4.x.x   | :white_check_mark: |
 | 3.x.x   | :white_check_mark: |
 | 2.x.x   | :white_check_mark: |
 | < 2.0   | :x:                |
@@ -60,5 +56,6 @@ We only fix vulnerability in the code distributed through our main source code r
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 2.x.x   | :white_check_mark: |
 | 1.x.x   | :white_check_mark: |
 | < 1.0   | :x:                |

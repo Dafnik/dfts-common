@@ -37,6 +37,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 
 | Angular | dfx-bootstrap-icons |
 | ------- | ------------------- |
+| 18.x.x  | 2.x.x               |
 | 17.x.x  | 1.x.x               |
 
 ## Installation

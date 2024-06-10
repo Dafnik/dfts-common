@@ -48,11 +48,6 @@
       "files": ["*.json"],
       "extends": ["plugin:jsonc/recommended-with-jsonc", "prettier"],
       "rules": {}
-    },
-    {
-      "files": ["*.md"],
-      "extends": ["plugin:markdown/recommended-legacy", "prettier"],
-      "rules": {}
     }
   ]
 }

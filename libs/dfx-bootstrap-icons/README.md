@@ -62,7 +62,7 @@ import { BiComponent, provideBi, withIcons, exclamationOctagonFill, xCircleFill 
   selector: 'app-root',
   template: ` <bi name="exclamation-octagon-fill" /> `,
   imports: [BiComponent],
-  providers: [provideBi(withIcons({ exclamationOctagonFill }))],
+  providers: [provideBi(withIcons({ exclamationOctagonFill, xCircleFill }))],
 })
 export class AppComponent {}
 ```
@@ -186,7 +186,9 @@ When using CDNs you can use the `biCacheInterceptor` to prevent the duplicate fe
 import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
-providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))];
+bootstrapApplication(AppComponent, {
+  providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))],
+}).catch((err) => console.error(err));
 ```
 
 ## Examples

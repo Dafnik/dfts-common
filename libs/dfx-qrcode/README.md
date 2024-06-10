@@ -51,7 +51,7 @@
 ### Standalone Components
 
 ```typescript
-import { QrCodeComponent } from 'dfx-qrcode';
+import { QRCodeComponent } from 'dfx-qrcode';
 
 @Component({
   standalone: true,

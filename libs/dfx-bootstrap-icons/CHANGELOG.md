@@ -1,4 +1,14 @@
  
+## [1.2.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-1.2.0...dfx-bootstrap-icons-1.2.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* **dfx-bootstrap-icons:** display set to inline-flex ([7e6790f](https://github.com/Dafnik/dfts-common/commit/7e6790f0fe4f8b3624f4694af1e6ef74068e3e2e))
+* **dfx-bootstrap-icons:** use default size for injection ([19423d5](https://github.com/Dafnik/dfts-common/commit/19423d5bf9ea43f2c174c567034a5f6aa4b3f8c6))
+
+
+
 # [1.2.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-1.1.0...dfx-bootstrap-icons-1.2.0) (2024-05-31)
 
 

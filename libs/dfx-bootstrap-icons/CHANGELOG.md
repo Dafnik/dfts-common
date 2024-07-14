@@ -1,4 +1,13 @@
  
+## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-2.0.0...dfx-bootstrap-icons-2.0.1) (2024-07-14)
+
+
+### Bug Fixes
+
+* **dfx-bootstrap-icons:** bump Angular to v18 ([d313379](https://github.com/Dafnik/dfts-common/commit/d313379a9de037f3b5e10523a88ecb5d454ba6b1))
+
+
+
 # [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-1.2.1...dfx-bootstrap-icons-2.0.0) (2024-06-10)
 
 

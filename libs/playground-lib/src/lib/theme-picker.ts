@@ -10,8 +10,8 @@ interface Theme {
 
 @Component({
   template: `
-    <div class="d-flex gap-2">
-      <label for="theme">
+    <div class="d-flex align-items-center gap-2">
+      <label for="theme" style="padding-top: 4px">
         <bi width="16" height="16" [name]="currentTheme().icon" class="text-white" />
       </label>
       <select class="rounded-3 px-2" name="theme" id="theme" (change)="setTheme($any($event.target).value)">

@@ -7,13 +7,12 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/playground",
         "index": "apps/playground/src/index.html",
-        "main": "apps/playground/src/main.ts",
-        "polyfills": ["zone.js"],
+        "browser": "apps/playground/src/main.ts",
         "tsConfig": "apps/playground/tsconfig.app.json",
         "assets": ["apps/playground/src/favicon.ico", "apps/playground/src/assets"],
         "styles": ["apps/playground/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
@@ -36,9 +35,7 @@
           "outputHashing": "all"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true

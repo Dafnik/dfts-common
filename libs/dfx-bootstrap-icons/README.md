@@ -29,6 +29,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 ## Features
 
 - Server Side Rendering (Angular Universal)
+- zone-less support
 - Accessible
 - CDN icon loading
 - Standalone Component API

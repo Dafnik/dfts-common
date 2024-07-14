@@ -1,6 +1,6 @@
 {
   "name": "dfx-bootstrap-table",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.",
   "private": false,
   "sideEffects": false,

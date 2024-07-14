@@ -1,4 +1,13 @@
  
+## [4.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-4.0.0...dfx-bootstrap-table-4.0.1) (2024-07-14)
+
+
+### Bug Fixes
+
+* **dfx-bootstrap-table:** bump Angular to v18 ([956ded0](https://github.com/Dafnik/dfts-common/commit/956ded034995725c33c289151b0de0b2c0104968))
+
+
+
 # [4.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-3.2.0...dfx-bootstrap-table-4.0.0) (2024-06-10)
 
 

@@ -5,13 +5,13 @@
   "sourceRoot": "apps/dfx-bootstrap-table-demo/src",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dfx-bootstrap-table-demo",
         "index": "apps/dfx-bootstrap-table-demo/src/index.html",
-        "main": "apps/dfx-bootstrap-table-demo/src/main.ts",
-        "polyfills": ["zone.js", "@angular/localize/init"],
+        "browser": "apps/dfx-bootstrap-table-demo/src/main.ts",
+        "polyfills": ["@angular/localize/init"],
         "tsConfig": "apps/dfx-bootstrap-table-demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/dfx-bootstrap-table-demo/src/favicon.ico", "apps/dfx-bootstrap-table-demo/src/assets"],
@@ -36,9 +36,7 @@
           "baseHref": "/bootstrap-table/"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true

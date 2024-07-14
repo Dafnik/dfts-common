@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { ThemePicker } from 'playground-lib';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   template: `
     <div class="p-5">
       <div class="d-flex gap-3 align-items-center mb-4">
@@ -18,5 +21,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <router-outlet />
     </div>
   `,
+  imports: [RouterLink, ThemePicker, RouterOutlet],
 })
 export class AppComponent {}

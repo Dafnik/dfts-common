@@ -1,12 +1,15 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, signal, viewChild } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
+import { DfxPaginationModule, DfxSortModule, DfxTableModule, NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
 import { Helper } from '../Helper';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-all',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [DfxTableModule, DfxSortModule, DfxPaginationModule, ReactiveFormsModule],
   template: `
     <h1>Everything (filtering, sorting and pagination)</h1>
 
@@ -17,15 +20,15 @@ import { Helper } from '../Helper';
       </div>
     </form>
 
-    <table ngb-table [dataSource]="dataSource" ngb-sort #table="ngbTable" hover>
+    <table ngb-table [dataSource]="dataSource()" ngb-sort hover>
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>#</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.id }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.id }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="name">
         <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>Name and something long</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.name }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.name }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="actions">
@@ -36,32 +39,32 @@ import { Helper } from '../Helper';
         </td>
       </ng-container>
 
-      <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
-      <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
+      <tr *ngbHeaderRowDef="columnsToDisplay()" ngb-header-row></tr>
+      <tr *ngbRowDef="let event; columns: columnsToDisplay()" ngb-row></tr>
     </table>
-    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource.data.length" showFirstLastButtons />
+    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource().data.length" showFirstLastButtons />
   `,
 })
-export class AllComponent implements AfterViewInit {
+export class AllComponent {
   // Filtering
-  public filter = new UntypedFormControl();
+  filter = new FormControl<string>('');
+  filterChanges = toSignal(this.filter.valueChanges, { initialValue: null });
 
   // Sorting
-  @ViewChild(NgbSort) sort?: NgbSort;
+  sort = viewChild.required(NgbSort);
 
   // Pagination
-  @ViewChild(NgbPaginator) pagination?: NgbPaginator;
+  paginator = viewChild.required(NgbPaginator);
 
-  public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource = new NgbTableDataSource(Helper.getTestData(250));
+  columnsToDisplay = signal(['id', 'name', 'actions']);
 
-  ngAfterViewInit(): void {
-    // Sort has to be set after template initializing
-    this.dataSource.paginator = this.pagination;
-    this.dataSource.sort = this.sort;
+  dataSource = computed(() => {
+    const source = new NgbTableDataSource(Helper.getTestData(250));
 
-    this.filter.valueChanges.subscribe((value: string) => {
-      this.dataSource.filter = value;
-    });
-  }
+    source.sort = this.sort();
+    source.paginator = this.paginator();
+    source.filter = this.filterChanges() ?? '';
+
+    return source;
+  });
 }

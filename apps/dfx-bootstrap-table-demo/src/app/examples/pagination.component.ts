@@ -1,23 +1,25 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal, viewChild } from '@angular/core';
 
-import { NgbPaginator, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { EventType, Helper } from '../Helper';
+import { DfxPaginationModule, DfxTableModule, NgbPaginator, NgbTableDataSource } from 'dfx-bootstrap-table';
+import { Helper } from '../Helper';
 
 @Component({
   selector: 'app-paginator',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [DfxTableModule, DfxPaginationModule],
   template: `
     <h1>Pagination</h1>
 
-    <table ngb-table [dataSource]="dataSource" #table="ngbTable">
+    <table ngb-table [dataSource]="dataSource()">
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell>#</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.id }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.id }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="name">
         <th *ngbHeaderCellDef ngb-header-cell>Name</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.name }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.name }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="actions">
@@ -28,21 +30,23 @@ import { EventType, Helper } from '../Helper';
         </td>
       </ng-container>
 
-      <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
-      <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
+      <tr *ngbHeaderRowDef="columnsToDisplay()" ngb-header-row></tr>
+      <tr *ngbRowDef="let event; columns: columnsToDisplay()" ngb-row></tr>
     </table>
-    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource.data.length" showFirstLastButtons />
+    <ngb-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="dataSource().data.length" showFirstLastButtons />
   `,
 })
-export class PaginationComponent implements AfterViewInit {
+export class PaginationComponent {
   // Pagination
-  @ViewChild(NgbPaginator) paginator?: NgbPaginator;
+  paginator = viewChild.required(NgbPaginator);
 
-  public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource = new NgbTableDataSource<EventType>(Helper.getTestData(250));
+  columnsToDisplay = signal(['id', 'name', 'actions']);
 
-  ngAfterViewInit(): void {
-    // Pagination has to be set after template initializing
-    this.dataSource.paginator = this.paginator;
-  }
+  dataSource = computed(() => {
+    const source = new NgbTableDataSource(Helper.getTestData(250));
+
+    source.paginator = this.paginator();
+
+    return source;
+  });
 }

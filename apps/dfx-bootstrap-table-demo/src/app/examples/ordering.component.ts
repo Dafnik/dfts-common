@@ -1,23 +1,25 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal, viewChild } from '@angular/core';
 
-import { NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
+import { DfxSortModule, DfxTableModule, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
 import { Helper } from '../Helper';
 
 @Component({
   selector: 'app-all',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [DfxTableModule, DfxSortModule],
   template: `
     <h1>Ordering</h1>
 
-    <table ngb-table [dataSource]="dataSource" ngb-sort #table="ngbTable">
+    <table ngb-table [dataSource]="dataSource()" ngb-sort>
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>#</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.id }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.id }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="name">
         <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>Name</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.name }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.name }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="actions">
@@ -28,20 +30,22 @@ import { Helper } from '../Helper';
         </td>
       </ng-container>
 
-      <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
-      <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
+      <tr *ngbHeaderRowDef="columnsToDisplay()" ngb-header-row></tr>
+      <tr *ngbRowDef="let event; columns: columnsToDisplay()" ngb-row></tr>
     </table>
   `,
 })
-export class OrderingComponent implements AfterViewInit {
+export class OrderingComponent {
   // Sorting
-  @ViewChild(NgbSort) sort?: NgbSort;
+  sort = viewChild.required(NgbSort);
 
-  public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource = new NgbTableDataSource(Helper.getTestData(250));
+  columnsToDisplay = signal(['id', 'name', 'actions']);
 
-  ngAfterViewInit(): void {
-    // Sort has to be set after template initializing
-    this.dataSource.sort = this.sort;
-  }
+  dataSource = computed(() => {
+    const source = new NgbTableDataSource(Helper.getTestData(250));
+
+    source.sort = this.sort();
+
+    return source;
+  });
 }

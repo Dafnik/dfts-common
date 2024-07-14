@@ -1,12 +1,15 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { NgbTableDataSource } from 'dfx-bootstrap-table';
+import { DfxTableModule, NgbTableDataSource } from 'dfx-bootstrap-table';
 import { Helper } from '../Helper';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-filtering',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [DfxTableModule, ReactiveFormsModule],
   template: `
     <h1>Everything (filtering, sorting and pagination)</h1>
 
@@ -17,15 +20,15 @@ import { Helper } from '../Helper';
       </div>
     </form>
 
-    <table ngb-table [dataSource]="dataSource" #table="ngbTable">
+    <table ngb-table [dataSource]="dataSource()">
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell>#</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.id }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.id }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="name">
         <th *ngbHeaderCellDef ngb-header-cell>Name</th>
-        <td *ngbCellDef="let event; table: table" ngb-cell>{{ event.name }}</td>
+        <td *ngbCellDef="let event" ngb-cell>{{ event.name }}</td>
       </ng-container>
 
       <ng-container ngbColumnDef="actions">
@@ -36,21 +39,23 @@ import { Helper } from '../Helper';
         </td>
       </ng-container>
 
-      <tr *ngbHeaderRowDef="columnsToDisplay" ngb-header-row></tr>
-      <tr *ngbRowDef="let event; columns: columnsToDisplay" ngb-row></tr>
+      <tr *ngbHeaderRowDef="columnsToDisplay()" ngb-header-row></tr>
+      <tr *ngbRowDef="let event; columns: columnsToDisplay()" ngb-row></tr>
     </table>
   `,
 })
-export class FilteringComponent implements AfterViewInit {
+export class FilteringComponent {
   // Filtering
-  public filter = new UntypedFormControl();
+  filter = new FormControl<string>('');
+  filterChanges = toSignal(this.filter.valueChanges, { initialValue: null });
 
-  public columnsToDisplay = ['id', 'name', 'actions'];
-  public dataSource = new NgbTableDataSource(Helper.getTestData(250));
+  columnsToDisplay = signal(['id', 'name', 'actions']);
 
-  ngAfterViewInit(): void {
-    this.filter.valueChanges.subscribe((value: string) => {
-      this.dataSource.filter = value;
-    });
-  }
+  dataSource = computed(() => {
+    const source = new NgbTableDataSource(Helper.getTestData(250));
+
+    source.filter = this.filterChanges() ?? '';
+
+    return source;
+  });
 }

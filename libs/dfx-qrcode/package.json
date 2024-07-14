@@ -47,9 +47,9 @@
     "directory": "libs/dfx-qrcode"
   },
   "peerDependencies": {
-    "@angular/common": "17",
-    "@angular/core": "17",
-    "@angular/platform-browser": "17"
+    "@angular/common": "18",
+    "@angular/core": "18",
+    "@angular/platform-browser": "18"
   },
   "dependencies": {
     "dfts-qrcode": "1.1.0",

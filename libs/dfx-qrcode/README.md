@@ -25,6 +25,7 @@
 - Tiny (~ 10.2kB minified + gzipped)
 - Accessible
 - Server Side Rendering (Angular Universal)
+- zone-less support
 - Standalone Component API
 - Supports Canvas, PNG and SVG
 

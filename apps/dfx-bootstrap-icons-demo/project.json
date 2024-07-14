@@ -7,13 +7,12 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dfx-bootstrap-icons-demo",
         "index": "apps/dfx-bootstrap-icons-demo/src/index.html",
-        "main": "apps/dfx-bootstrap-icons-demo/src/main.ts",
-        "polyfills": ["zone.js"],
+        "browser": "apps/dfx-bootstrap-icons-demo/src/main.ts",
         "tsConfig": "apps/dfx-bootstrap-icons-demo/tsconfig.app.json",
         "assets": [
           "apps/dfx-bootstrap-icons-demo/src/favicon.ico",
@@ -45,9 +44,7 @@
           "baseHref": "/bootstrap-icons/"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
@@ -56,7 +53,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "dfx-bootstrap-icons-demo:build:production"

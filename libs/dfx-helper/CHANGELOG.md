@@ -1,4 +1,13 @@
  
+## [8.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-8.0.0...dfx-helper-8.0.1) (2024-07-14)
+
+
+### Bug Fixes
+
+* **dfx-helper:** bump Angular to v18 ([555d4c9](https://github.com/Dafnik/dfts-common/commit/555d4c90f1624aaac228e73afd32bc18ee13899e))
+
+
+
 # [8.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-7.1.0...dfx-helper-8.0.0) (2024-06-10)
 
 

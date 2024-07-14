@@ -1,4 +1,13 @@
  
+## [3.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-3.0.0...dfx-qrcode-3.0.1) (2024-07-14)
+
+
+### Bug Fixes
+
+* **dfx-qrcode:** bump Angular to v18 ([a137522](https://github.com/Dafnik/dfts-common/commit/a1375228b12c9b1b7521ae0b84763a65d9c55db4))
+
+
+
 # [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-2.1.0...dfx-qrcode-3.0.0) (2024-06-10)
 
 

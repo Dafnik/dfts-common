@@ -176,9 +176,10 @@ jobs:
       - name: dist lookup
         run: |
           cd dist
-          mv ${{ matrix.lib }}.zip ./${{ matrix.lib }}-dev.zip
+          mv ${{ matrix.lib }}.zip ../${{ matrix.lib }}-dev.zip
           ls -la
           cd -
+          ls -la
 
       - name: copy build to release server
         uses: appleboy/scp-action@v0.1.7
@@ -187,7 +188,7 @@ jobs:
           username: ${{ secrets.RELEASES_SSH_USER }}
           key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
-          source: dist/*
+          source: ${{ matrix.lib }}-dev.zip
           target: /var/www/share/releases/${{ matrix.lib }}
           overwrite: true
 

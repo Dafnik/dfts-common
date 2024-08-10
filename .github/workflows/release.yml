@@ -104,7 +104,7 @@ jobs:
           username: ${{ secrets.RELEASES_SSH_USER }}
           key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
           port: ${{ secrets.RELEASES_SSH_PORT }}
-          source: "${{ inputs.lib }}-latest.zip, ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip"
+          source: '${{ inputs.lib }}-latest.zip, ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip'
           target: /var/www/share/releases/${{ inputs.lib }}
           overwrite: true
 

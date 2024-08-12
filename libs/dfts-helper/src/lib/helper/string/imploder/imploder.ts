@@ -67,6 +67,6 @@ export class ImploderBuilder {
     if (this._maxLength && joinedSource.length > this._maxLength) {
       return `${joinedSource.slice(0, this._maxLength)}${this._suffix ?? ''}`;
     }
-    return `${joinedSource}${this._forceSuffix ? this._suffix ?? '' : ''}`;
+    return `${joinedSource}${this._forceSuffix ? (this._suffix ?? '') : ''}`;
   }
 }

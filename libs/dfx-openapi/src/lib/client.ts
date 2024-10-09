@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   FilterKeys,
   HttpMethod,
@@ -53,7 +54,7 @@ type MaybeOptionalInit<Params, Location extends keyof Params> =
 // Note: the addition MUST happen after all the inference happens (otherwise TS can’t infer if init is required or not).
 type InitParam<Init> = RequiredKeysOf<Init> extends never ? [(Init & { [key: string]: unknown })?] : [Init & { [key: string]: unknown }];
 
-type ClientMethod<Paths extends Record<string, Record<HttpMethod, any>>, Method extends HttpMethod, Media extends MediaType> = <
+type ClientMethod<Paths extends Record<string, Record<HttpMethod, unknown>>, Method extends HttpMethod, Media extends MediaType> = <
   Path extends PathsWithMethod<Paths, Method>,
   Init extends MaybeOptionalInit<Paths[Path], Method>,
 >(
@@ -93,25 +94,28 @@ export type QuerySerializerOptions = {
   allowReserved?: boolean;
 };
 
-export class ApiClient<Paths extends Record<string, any>, Media extends MediaType = MediaType> {
+export interface OpenAPIHttpClientOptions {
+  baseUrl: string;
+  querySerializer?: QuerySerializer<unknown> | QuerySerializerOptions;
+}
+
+export function createOpenAPIHttpClient<Paths extends Record<string, any>>(httpClient: HttpClient, options: OpenAPIHttpClientOptions) {
+  return new OpenAPIHttpClient<Paths>(httpClient, options);
+}
+
+export class OpenAPIHttpClient<Paths extends Record<string, any>, Media extends MediaType = MediaType> {
   private readonly baseUrl: string;
   private readonly querySerializer?: QuerySerializer<unknown> | QuerySerializerOptions;
 
   constructor(
     private http: HttpClient,
-    {
-      baseUrl,
-      querySerializer,
-    }: {
-      baseUrl: string;
-      querySerializer?: QuerySerializer<unknown> | QuerySerializerOptions;
-    },
+    { baseUrl, querySerializer }: OpenAPIHttpClientOptions,
   ) {
     this.baseUrl = removeTrailingSlash(baseUrl);
     this.querySerializer = querySerializer;
   }
 
-  core<Path extends PathsWithMethod<Paths, Method>, Method extends HttpMethod, Init extends MaybeOptionalInit<Paths[Path], Method>>(
+  core<Path extends PathsWithMethod<Paths, Method>, Init extends MaybeOptionalInit<Paths[Path], Method>, Method extends HttpMethod>(
     method: Method,
     path: Path,
     options: InitParam<Init>,
@@ -153,8 +157,6 @@ export class ApiClient<Paths extends Record<string, any>, Media extends MediaTyp
         return this.http.head<HttpClientResponse<Paths[typeof path][Method], Media>>(finalUrl, { headers });
       case 'patch':
         return this.http.patch<HttpClientResponse<Paths[typeof path][Method], Media>>(finalUrl, body, { headers });
-      case 'trace':
-        throw 'Unknown method';
       default:
         throw 'Unknown method';
     }
@@ -162,6 +164,30 @@ export class ApiClient<Paths extends Record<string, any>, Media extends MediaTyp
 
   get: ClientMethod<Paths, 'get', Media> = (path, ...options) => {
     return this.core('get', path, options);
+  };
+
+  put: ClientMethod<Paths, 'put', Media> = (path, ...options) => {
+    return this.core('put', path, options);
+  };
+
+  post: ClientMethod<Paths, 'post', Media> = (path, ...options) => {
+    return this.core('post', path, options);
+  };
+
+  delete: ClientMethod<Paths, 'delete', Media> = (path, ...options) => {
+    return this.core('delete', path, options);
+  };
+
+  options: ClientMethod<Paths, 'options', Media> = (path, ...options) => {
+    return this.core('options', path, options);
+  };
+
+  head: ClientMethod<Paths, 'head', Media> = (path, ...options) => {
+    return this.core('head', path, options);
+  };
+
+  patch: ClientMethod<Paths, 'patch', Media> = (path, ...options) => {
+    return this.core('patch', path, options);
   };
 }
 
@@ -223,7 +249,7 @@ function serializeObjectParam(
   }
   const values = [];
   const joiner =
-    // @ts-ignore
+    // @ts-expect-error JS syntax valid
     {
       simple: ',',
       label: '.',
@@ -233,7 +259,7 @@ function serializeObjectParam(
   // explode: false
   if (options.style !== 'deepObject' && !options.explode) {
     for (const k in value) {
-      // @ts-ignore
+      // @ts-expect-error Type issue
       values.push(k, options.allowReserved === true ? value[k] : encodeURIComponent(value[k]));
     }
     const final = values.join(','); // note: values are always joined by comma in explode: false (but joiner can prefix)
@@ -256,7 +282,7 @@ function serializeObjectParam(
   // explode: true
   for (const k in value) {
     const finalName = options.style === 'deepObject' ? `${name}[${k}]` : k;
-    // @ts-ignore
+    // @ts-expect-error Type issue
     values.push(serializePrimitiveParam(finalName, value[k], options));
   }
   const final = values.join(joiner);
@@ -283,14 +309,14 @@ function serializeArrayParam(
   // explode: false
   if (!options.explode) {
     const joiner =
-      // @ts-ignore
+      // @ts-expect-error JS syntax valid
       {
         form: ',',
         spaceDelimited: '%20',
         pipeDelimited: '|',
       }[options.style] || ','; // note: for arrays, joiners vary wildly based on style + explode behavior
 
-    // @ts-ignore
+    // @ts-expect-error Type issue
     const final = (options.allowReserved === true ? value : value.map((v) => encodeURIComponent(v))).join(joiner);
     switch (options.style) {
       case 'simple': {
@@ -311,15 +337,15 @@ function serializeArrayParam(
   }
 
   // explode: true
-  // @ts-ignore
+  // @ts-expect-error JS syntax valid
   const joiner = { simple: ',', label: '.', matrix: ';' }[options.style] || '&';
   const values = [];
   for (const v of value) {
     if (options.style === 'simple' || options.style === 'label') {
-      // @ts-ignore
+      // @ts-expect-error Type issue
       values.push(options.allowReserved === true ? v : encodeURIComponent(v));
     } else {
-      // @ts-ignore
+      // @ts-expect-error Type issue
       values.push(serializePrimitiveParam(name, v, options));
     }
   }
@@ -351,7 +377,7 @@ export function createQuerySerializer<T = unknown>(options?: QuerySerializerOpti
         }
         if (typeof value === 'object') {
           search.push(
-            // @ts-ignore
+            // @ts-expect-error Type issue
             serializeObjectParam(name, value, {
               style: 'deepObject',
               explode: true,
@@ -362,7 +388,7 @@ export function createQuerySerializer<T = unknown>(options?: QuerySerializerOpti
           continue;
         }
 
-        // @ts-ignore
+        // @ts-expect-error Type issue
         search.push(serializePrimitiveParam(name, value, options));
       }
     }
@@ -401,16 +427,16 @@ function defaultPathSerializer(pathname: string, pathParams: Record<string, unkn
       continue;
     }
     if (typeof value === 'object') {
-      // @ts-ignore
+      // @ts-expect-error Type issue
       nextURL = nextURL.replace(match, serializeObjectParam(name, value, { style, explode }));
       continue;
     }
     if (style === 'matrix') {
-      // @ts-ignore
+      // @ts-expect-error Type issue
       nextURL = nextURL.replace(match, `;${serializePrimitiveParam(name, value)}`);
       continue;
     }
-    // @ts-ignore
+    // @ts-expect-error Type issue
     nextURL = nextURL.replace(match, style === 'label' ? `.${encodeURIComponent(value)}` : encodeURIComponent(value));
   }
   return nextURL;

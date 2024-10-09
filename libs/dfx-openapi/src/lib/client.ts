@@ -54,7 +54,7 @@ type MaybeOptionalInit<Params, Location extends keyof Params> =
 // Note: the addition MUST happen after all the inference happens (otherwise TS can’t infer if init is required or not).
 type InitParam<Init> = RequiredKeysOf<Init> extends never ? [(Init & { [key: string]: unknown })?] : [Init & { [key: string]: unknown }];
 
-type ClientMethod<Paths extends Record<string, Record<HttpMethod, unknown>>, Method extends HttpMethod, Media extends MediaType> = <
+type ClientMethod<Paths extends Record<string, Record<HttpMethod, any>>, Method extends HttpMethod, Media extends MediaType> = <
   Path extends PathsWithMethod<Paths, Method>,
   Init extends MaybeOptionalInit<Paths[Path], Method>,
 >(

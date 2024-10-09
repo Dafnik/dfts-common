@@ -20,6 +20,7 @@
       "dfx-bootstrap-icons": ["libs/dfx-bootstrap-icons/src/index.ts"],
       "dfx-bootstrap-table": ["libs/dfx-bootstrap-table/src/index.ts"],
       "dfx-helper": ["libs/dfx-helper/src/index.ts"],
+      "dfx-openapi": ["libs/dfx-openapi/src/index.ts"],
       "dfx-qrcode": ["libs/dfx-qrcode/src/index.ts"],
       "playground-lib": ["libs/playground-lib/src/index.ts"]
     },

@@ -1,11 +1,11 @@
 # dfx-openapi
 
-[![npm version](https://img.shields.io/npm/v/dfx-openapi?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
-[![npm downloads per week](https://img.shields.io/npm/dw/dfx-openapi?logo=npm&color=%237469B6)](https://npmjs.org/package/dfts-qrcode)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-openapi?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm version](https://img.shields.io/npm/v/dfx-openapi?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-openapi)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-openapi?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-openapi)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-openapi?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-openapi)
 
 `dfx-openapi` is a type-safe Angular HttpClient that pulls in your OpenAPI schema.
-It has virtually zero runtime and is fully compatible with Http Interceptors.
+It has virtually zero runtime and is fully compatible with Http interceptors.
 
 The syntax is inspired by openapi-fetch.
 
@@ -76,7 +76,7 @@ npm i -D openapi-typescript
 >
 > Enable [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig/#noUncheckedIndexedAccess) in your `tsconfig.json` ([docs](https://openapi-ts.dev/advanced#enable-nouncheckedindexedaccess-in-tsconfig))
 
-Next, generate TypeScript types from your OpenAPI schema using openapi-typescript:
+Next, generate TypeScript types from your OpenAPI schema using [openapi-typescript](https://openapi-ts.dev/):
 
 ```shell
 npx openapi-typescript ./path/to/api/v1.yaml -o ./src/app/api/v1.d.ts
@@ -84,8 +84,8 @@ npx openapi-typescript ./path/to/api/v1.yaml -o ./src/app/api/v1.d.ts
 
 ## Basic usage
 
-The best part about using dfx-openapi over oldschool codegen is no documentation needed.
-dfx-openapi encourages using your existing OpenAPI documentation rather than trying to find what function to import, or what parameters that function wants:
+The best part about using `dfx-openapi` over oldschool codegen is no documentation needed.
+`dfx-openapi` encourages using your existing OpenAPI documentation rather than trying to find what function to import, or what parameters that function wants:
 
 ```typescript
 import { inject, Injectable } from '@angular/core';

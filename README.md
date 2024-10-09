@@ -70,3 +70,13 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 [![npm downloads per week](https://img.shields.io/npm/dw/dfx-bootstrap-icons?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-bootstrap-icons)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-bootstrap-icons?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-bootstrap-icons)
 [![npm license](https://img.shields.io/npm/l/dfx-bootstrap-icons?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)
+
+### dfx-openapi
+
+`dfx-openapi` is a type-safe Angular HttpClient that pulls in your OpenAPI schema.
+It has virtually zero runtime and is fully compatible with Http Interceptors.
+
+[![npm version](https://img.shields.io/npm/v/dfx-openapi?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-openapi)
+[![npm downloads per week](https://img.shields.io/npm/dw/dfx-openapi?logo=npm&color=%237469B6)](https://npmjs.org/package/dfx-openapi)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/dfx-openapi?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfx-openapi)
+[![npm license](https://img.shields.io/npm/l/dfx-openapi?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)

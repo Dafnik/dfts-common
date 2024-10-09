@@ -31,6 +31,13 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "push": true,
+        "changelogHeader": " "
+      }
     }
   }
 }

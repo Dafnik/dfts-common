@@ -1,6 +1,6 @@
 {
   "name": "dfx-openapi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dfx-openapi is a type-safe Angular HttpClient that pulls in your OpenAPI schema. It has virtually zero runtime and is fully compatible with Http Interceptors.",
   "private": false,
   "license": "MIT",

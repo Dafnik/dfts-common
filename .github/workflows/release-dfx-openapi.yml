@@ -1,0 +1,13 @@
+name: release dfx-openapi
+
+on:
+  push:
+    tags:
+      - 'dfx-openapi*'
+
+jobs:
+  dfx-qrcode:
+    uses: dafnik/dfts-common/.github/workflows/release.yml@main
+    with:
+      lib: dfx-openapi
+    secrets: inherit

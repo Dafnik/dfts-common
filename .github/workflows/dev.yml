@@ -101,6 +101,11 @@ jobs:
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
+            dfx-openapi:
+              - 'libs/dfx-openapi/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+              - '.github/**'
 
   test:
     name: Test ${{ matrix.lib }}

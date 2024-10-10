@@ -1,3 +1,18 @@
+## [1.1.2](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.1.1...dfts-helper-1.1.2) (2024-10-10)
+
+### Bug Fixes
+
+* **dfts-helper:** read time use trim instead of strip whitespace ([1b2eb30](https://github.com/Dafnik/dfts-common/commit/1b2eb3058d418304f4684fd9b308d1bad4ebaa1e))
+* **dfts-helper:** strip whitespace ([3c944fa](https://github.com/Dafnik/dfts-common/commit/3c944fa2dd40f544568e6709bf0a8e13bda7e783))
+* lint ([da39bb7](https://github.com/Dafnik/dfts-common/commit/da39bb712d19f2070436a15e21865e28619aa88e))
+* make dfts-helper browser info utility SSR compatible ([b6462c9](https://github.com/Dafnik/dfts-common/commit/b6462c9b0cedb9b48ce7c947bd49adc85e99cc45))
+
+### Features
+
+* add more options to imploder ([bc1fc83](https://github.com/Dafnik/dfts-common/commit/bc1fc839d515306962bba03f395c85d2819ce19f))
+* imploder updates ([e85e245](https://github.com/Dafnik/dfts-common/commit/e85e245787fee88a2bdb5941ead95fea0d8ad2c8))
+
+
 ## [1.1.1](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.1.0...dfts-helper-1.1.1) (2023-07-07)
 
 # [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-0.0.11...dfts-helper-1.0.0) (2023-05-29)

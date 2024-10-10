@@ -1,6 +1,6 @@
 {
   "name": "dfts-helper",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Typescript Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",

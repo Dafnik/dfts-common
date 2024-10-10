@@ -2,7 +2,12 @@ import { st_isAvailable } from './storage/common';
 
 export type BrowserInfo = ReturnType<typeof i_complete>;
 
-export const i_screenSize = `${screen.width ?? ''} x ${screen.height ?? ''}`;
+export function i_screenSize(): string {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+  return `${window?.screen?.width ?? ''} x ${window?.screen?.height ?? ''}`;
+}
 
 export const i_cookieEnabled = () => {
   let cookieEnabled = navigator.cookieEnabled;
@@ -14,7 +19,12 @@ export const i_cookieEnabled = () => {
   return cookieEnabled;
 };
 
-export const i_mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion);
+export function i_mobile(): boolean {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  return /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion);
+}
 
 /**
  * @return {screenSize: string, name: string, version: string, majorVersion: number, mobile: boolean, os: string, osVersion: string, cookies: boolean, localStorage: boolean}
@@ -36,7 +46,7 @@ export const i_complete = (): {
   const nAgt = navigator.userAgent;
   let browser = 'Netscape';
   let version = '4.0';
-  let majorVersion = 4;
+  let majorVersion: number;
   let nameOffset, verOffset, ix;
 
   // Opera
@@ -177,11 +187,11 @@ export const i_complete = (): {
   }
 
   return {
-    screenSize: i_screenSize,
+    screenSize: i_screenSize(),
     name: browser,
     version: version,
     majorVersion: majorVersion,
-    mobile: i_mobile,
+    mobile: i_mobile(),
     os: os,
     osVersion: osVersion,
     cookies: i_cookieEnabled(),

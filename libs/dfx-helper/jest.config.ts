@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
   displayName: 'dfx-helper',
-  coverageDirectory: '../../coverage/libs/dfx-bootstrap-table',
+  coverageDirectory: '../../coverage/libs/dfx-helper',
   coverageReporters: ['cobertura', 'html'],
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],

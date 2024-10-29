@@ -65,49 +65,6 @@ jobs:
           path: ./dist/libs/${{ inputs.lib }}.zip
           retention-days: 1
 
-  release-zip:
-    name: Release zip to release server
-    needs: [build, test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: setup Node.js
-        uses: actions/setup-node@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: ${{ inputs.lib }}
-          path: ./dist
-
-      - name: get ${{ inputs.lib }} version
-        id: get-version
-        shell: bash
-        run: echo "VERSION=$(node -p "require('./libs/${{ inputs.lib }}/package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: set to versioned zip ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip and ${{ inputs.lib }}-latest.zip
-        shell: bash
-        run: |
-          mkdir releases
-          cp "./dist/${{ inputs.lib }}.zip" "./${{ inputs.lib }}-latest.zip"
-          cp "./dist/${{ inputs.lib }}.zip" "./${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip"
-
-      - name: releases lookup
-        run: |
-          ls -la
-          du -hs
-
-      - name: move zips to release server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.RELEASES_SSH_HOST }}
-          username: ${{ secrets.RELEASES_SSH_USER }}
-          key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
-          port: ${{ secrets.RELEASES_SSH_PORT }}
-          source: '${{ inputs.lib }}-latest.zip, ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip'
-          target: /var/www/share/releases/${{ inputs.lib }}
-          overwrite: true
-
   release-github:
     name: Release zip to github releases
     needs: [build, test]

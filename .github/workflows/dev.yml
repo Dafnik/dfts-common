@@ -164,39 +164,6 @@ jobs:
           path: ./dist/libs/${{ matrix.lib }}.zip
           retention-days: 1
 
-  deploy-lib:
-    name: Deploy ${{ matrix.lib }} dev
-    needs: [build-lib, test, changes]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    strategy:
-      matrix:
-        lib: ${{ fromJSON(needs.changes.outputs.libs) }}
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: ${{ matrix.lib }}
-          path: ./dist
-
-      - name: dist lookup
-        run: |
-          cd dist
-          mv ${{ matrix.lib }}.zip ../${{ matrix.lib }}-dev.zip
-          ls -la
-          cd -
-          ls -la
-
-      - name: copy build to release server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.RELEASES_SSH_HOST }}
-          username: ${{ secrets.RELEASES_SSH_USER }}
-          key: ${{ secrets.RELEASES_SSH_PRIVATE_KEY }}
-          port: ${{ secrets.RELEASES_SSH_PORT }}
-          source: ${{ matrix.lib }}-dev.zip
-          target: /var/www/share/releases/${{ matrix.lib }}
-          overwrite: true
-
   build-apps:
     name: Build ${{ matrix.app }}
     runs-on: ubuntu-latest

@@ -1,6 +1,7 @@
-/* eslint-disable */
 export default {
   displayName: 'dfx-qrcode',
+  coverageDirectory: '../../coverage/libs/dfx-qrcode',
+  coverageReporters: ['cobertura', 'html'],
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   transform: {

@@ -1,9 +1,10 @@
 /* eslint-disable */
 export default {
   displayName: 'dfx-bootstrap-icons',
+  coverageDirectory: '../../coverage/libs/dfx-bootstrap-icons',
+  coverageReporters: ['cobertura', 'html'],
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/dfx-bootstrap-icons',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

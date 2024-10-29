@@ -1,7 +1,6 @@
 {
   "name": "dfx-bootstrap-table",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "prefix": "lib",
   "projectType": "library",
   "sourceRoot": "libs/dfx-bootstrap-table/src",
   "tags": [],

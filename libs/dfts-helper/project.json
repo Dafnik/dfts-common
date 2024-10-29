@@ -1,7 +1,6 @@
 {
   "name": "dfts-helper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "prefix": "lib",
   "projectType": "library",
   "sourceRoot": "libs/dfts-helper/src",
   "tags": [],

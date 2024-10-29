@@ -1,8 +1,9 @@
 export default {
   displayName: 'dfx-openapi',
+  coverageDirectory: '../../coverage/libs/dfx-openapi',
+  coverageReporters: ['cobertura', 'html'],
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/dfx-openapi',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

@@ -23,7 +23,6 @@
       "defaultConfiguration": "production"
     },
     "test": {
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}", "{projectRoot}/coverage"],
       "options": {
         "passWithNoTests": true
       },
@@ -37,7 +36,8 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "push": true,
+        "push": false,
+        "skipCommit": true,
         "changelogHeader": " "
       }
     }

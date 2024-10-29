@@ -36,7 +36,8 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "push": true,
+        "push": false,
+        "skipCommit": true,
         "changelogHeader": " "
       }
     }

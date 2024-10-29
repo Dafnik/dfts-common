@@ -125,7 +125,7 @@ jobs:
           install-ignore-scripts: true
 
       - name: test ${{ matrix.lib }}
-        run: pnpm exec nx test ${{ matrix.lib }} --configuration=ci --coverageReporters=cobertura --coverageDirectory="coverage/libs/${{ matrix.lib }}"
+        run: pnpm exec nx test ${{ matrix.lib }} --configuration=ci --coverageReporters=cobertura
 
       - name: setup coverage report
         uses: ./.github/actions/setup-coverage-report

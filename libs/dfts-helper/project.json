@@ -17,7 +17,6 @@
       }
     },
     "test": {
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}", "{projectRoot}/coverage"],
       "options": {
         "passWithNoTests": true
       },

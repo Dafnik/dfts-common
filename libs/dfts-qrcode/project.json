@@ -1,8 +1,9 @@
 {
   "name": "dfts-qrcode",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/dfts-qrcode/src",
+  "prefix": "lib",
   "projectType": "library",
+  "sourceRoot": "libs/dfts-qrcode/src",
   "tags": [],
   "implicitDependencies": ["!dfts-helper"],
   "targets": {

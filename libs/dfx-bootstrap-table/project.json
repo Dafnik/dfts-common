@@ -1,12 +1,13 @@
 {
   "name": "dfx-bootstrap-table",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "lib",
   "projectType": "library",
   "sourceRoot": "libs/dfx-bootstrap-table/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/angular:package",
+      "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/dfx-bootstrap-table/ng-package.json"

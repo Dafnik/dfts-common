@@ -1,9 +1,9 @@
 {
   "name": "dfx-openapi",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/dfx-openapi/src",
   "prefix": "lib",
   "projectType": "library",
+  "sourceRoot": "libs/dfx-openapi/src",
   "tags": [],
   "targets": {
     "build": {

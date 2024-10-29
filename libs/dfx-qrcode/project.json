@@ -1,13 +1,13 @@
 {
   "name": "dfx-qrcode",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/dfx-qrcode/src",
-  "prefix": "dfts-common",
+  "prefix": "lib",
   "projectType": "library",
+  "sourceRoot": "libs/dfx-qrcode/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/angular:package",
+      "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/dfx-qrcode/ng-package.json"

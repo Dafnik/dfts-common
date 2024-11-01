@@ -83,5 +83,6 @@
         "targetName": "test"
       }
     }
-  ]
+  ],
+  "useLegacyCache": true
 }

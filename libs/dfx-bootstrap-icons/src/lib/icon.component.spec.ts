@@ -3,7 +3,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BiComponent } from './icon.component';
 import { provideBi, withIcons } from './icons.provider';
-import { allIcons, BiNameList } from './generated';
+import { allIcons, BiNameList } from './generated-index';
 import { toEscapedName } from './internal/toEscapedName';
 
 describe('SVG Icons', () => {

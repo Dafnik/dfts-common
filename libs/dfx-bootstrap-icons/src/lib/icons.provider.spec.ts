@@ -4,7 +4,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BiComponent } from './icon.component';
 import { provideBi, provideIcons, provideLocalIconsLoader, withColor, withHeight, withIcons, withSize, withWidth } from './icons.provider';
-import { allIcons, xCircleFill, zeroCircle } from './generated';
+import { allIcons, xCircleFill, zeroCircle } from './generated-index';
 import { IconFeatures } from './icons.feature';
 import { DEFAULT_ICON_SIZE } from './icons.config';
 import { toEscapedName } from './internal/toEscapedName';

@@ -10,6 +10,7 @@ const iconsSrcFolder = './node_modules/bootstrap-icons/icons';
 const generatedDestFolder = `${libFolder}/generated`;
 // type output folder
 const iconsDestFolder = `${generatedDestFolder}/icons`;
+const iconsAssetsDestFolder = 'libs/dfx-bootstrap-icons/assets/icons';
 // template for icons
 const iconTemplate = fs.readFileSync('tools/tmpl/icon.ts.tmpl', 'utf-8');
 
@@ -30,6 +31,9 @@ let exportTypeString = `/** Type for icon names. */`;
 exportTypeString += `\nexport type BiName =\n`;
 let exportEnumString = `/** Enum with all icons. */`;
 exportEnumString += `\nexport enum BiNamesEnum {\n`;
+
+fs.emptyDirSync(iconsAssetsDestFolder);
+fs.copySync(iconsSrcFolder, iconsAssetsDestFolder);
 
 fs.emptyDirSync(iconsDestFolder);
 fs.readdirSync(iconsSrcFolder).forEach((filename) => {

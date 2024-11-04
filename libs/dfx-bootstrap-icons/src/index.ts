@@ -1,4 +1,4 @@
-export * from './lib/generated';
+export * from './lib/generated-index';
 
 export * from './lib/internal/toEscapedName';
 export * from './lib/types';

@@ -10,7 +10,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { BiName, BiNamesEnum } from './generated';
+import { BiName, BiNamesEnum } from './generated-index';
 import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER } from './icons.config';
 import { ColorValueHex } from './types';
 import { filter, Observable, Subscription } from 'rxjs';

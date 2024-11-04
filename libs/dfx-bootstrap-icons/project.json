@@ -5,6 +5,12 @@
   "sourceRoot": "libs/dfx-bootstrap-icons/src",
   "tags": [],
   "targets": {
+    "generate-icons": {
+      "command": "node ./tools/scripts/generateIcons.js && pnpm format libs/dfx-bootstrap-icons",
+      "options": {
+        "cwd": "."
+      }
+    },
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -19,7 +25,8 @@
           "tsConfig": "libs/dfx-bootstrap-icons/tsconfig.lib.json"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "dependsOn": ["generate-icons"]
     },
     "test": {
       "options": {

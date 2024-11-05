@@ -62,7 +62,10 @@ type ClientMethod<Paths extends Record<string, Record<HttpMethod, any>>, Method 
   ...init: InitParam<Init>
 ) => Observable<HttpClientResponse<Paths[Path][Method], Media>>;
 
-export type HttpClientResponse<T, Media extends MediaType> = SuccessResponse<ResponseObjectMap<T>, Media>;
+export type HttpClientResponse<T extends Record<string | number, any>, Media extends MediaType> = SuccessResponse<
+  ResponseObjectMap<T>,
+  Media
+>;
 
 export type QuerySerializer<T> = (
   query: T extends { parameters: any } ? NonNullable<T['parameters']['query']> : Record<string, unknown>,

@@ -37,7 +37,8 @@
           "ci": true,
           "coverage": true
         }
-      }
+      },
+      "dependsOn": ["generate-icons"]
     },
     "version": {
       "executor": "@jscutlery/semver:version",

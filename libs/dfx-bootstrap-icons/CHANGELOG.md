@@ -1,4 +1,10 @@
  
+# [2.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-2.0.1...dfx-bootstrap-icons-2.1.0) (2024-11-05)
+
+### Features
+* Add svg icons into release bundle
+
+
 ## [2.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-2.0.0...dfx-bootstrap-icons-2.0.1) (2024-07-14)
 
 

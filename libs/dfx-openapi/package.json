@@ -44,6 +44,6 @@
   "peerDependencies": {
     "@angular/common": "18",
     "rxjs": "7",
-    "openapi-typescript-helpers": ">=0.0.13"
+    "openapi-typescript-helpers": ">=0.0.15"
   }
 }

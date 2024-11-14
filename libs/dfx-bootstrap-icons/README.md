@@ -193,6 +193,36 @@ bootstrapApplication(AppComponent, {
 }).catch((err) => console.error(err));
 ```
 
+#### Using your `assets` folder as the CDN
+
+You can bundle all icons into your `assets` folder so they will be included in your bundle but not get loaded unless you use actually them.
+
+```typescript
+// main.ts
+
+import { provideBi, withCDN } from 'dfx-bootstrap-icons';
+
+bootstrapApplication(AppComponent, {
+  providers: [provideBi(withCDN('/assets/bootstrap-icons'))],
+}).catch((err) => console.error(err));
+```
+
+```json
+// angular.json, project.json or nx.json
+
+{
+  "options": {
+    "assets": [
+      {
+        "glob": "*",
+        "input": "node_modules/dfx-bootstrap-icons/icons",
+        "output": "/assets/bootstrap-icons"
+      }
+    ]
+  }
+}
+```
+
 ## Examples
 
 ### Provide imported icons application wide

@@ -1,3 +1,5 @@
+import { s_from } from '../from/from';
+
 export function s_imploder(): ImploderBuilder {
   return new ImploderBuilder();
 }
@@ -23,6 +25,18 @@ export class ImploderBuilder {
       } else {
         throw 'mapFn required on none string arrays';
       }
+    }
+    return this;
+  }
+
+  /**
+   * @DEPRECATED Please use .source([], (it: T) => string)
+   */
+  mappedSource<T>(source?: T[] | null, mapFn?: (it: T) => string): this {
+    if (mapFn && source) {
+      this._source = source.map(mapFn);
+    } else if (source && source.every((it: T) => typeof it === 'string' || typeof it === 'boolean' || typeof it === 'number')) {
+      this._source = source.map((it) => s_from(it as string | boolean | number));
     }
     return this;
   }

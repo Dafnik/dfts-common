@@ -43,8 +43,8 @@ export function isValidMask(mask: number): boolean {
  * @param  {Number|String} value        Mask pattern value
  * @return {Number}                     Valid mask pattern or undefined
  */
-export function toMask(value: number): number | undefined {
-  return isValidMask(value) ? value : undefined;
+export function toMask(value: number | undefined): number | undefined {
+  return value ? (isValidMask(value) ? value : undefined) : undefined;
 }
 
 /**
@@ -196,7 +196,7 @@ function getMaskAt(maskPattern: number, i: number, j: number): boolean {
  * @param  {Number}    pattern Pattern reference number
  * @param  {BitMatrix} data    BitMatrix data
  */
-export function applyMask(pattern: number, data: BitMatrix) {
+export function applyMask(pattern: number, data: BitMatrix): void {
   const size = data.size;
 
   for (let col = 0; col < size; col++) {
@@ -214,7 +214,7 @@ export function applyMask(pattern: number, data: BitMatrix) {
  * @param setupFormatFunc
  * @return {Number} Mask pattern reference number
  */
-export function getBestMask(data: BitMatrix, setupFormatFunc: (p: number) => void) {
+export function getBestMask(data: BitMatrix, setupFormatFunc: (p: number) => void): number {
   const numPatterns = Object.keys(exports.Patterns).length;
   let bestPattern = 0;
   let lowerPenalty = Infinity;

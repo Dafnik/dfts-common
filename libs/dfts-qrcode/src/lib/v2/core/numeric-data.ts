@@ -5,7 +5,7 @@ import { NUMERIC } from './mode';
 export class NumericData extends AbstractData {
   private readonly data: string;
 
-  constructor(data: number) {
+  constructor(data: string) {
     super(NUMERIC);
 
     this.data = data.toString();

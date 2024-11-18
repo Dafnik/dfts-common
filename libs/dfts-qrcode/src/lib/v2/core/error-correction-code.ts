@@ -27,7 +27,7 @@ const EC_CODEWORDS_TABLE = [
  * @param  {Number} errorCorrectionLevel Error correction level
  * @return {Number}                      Number of error correction blocks
  */
-export function getBlocksCount(version: number, errorCorrectionLevel: ErrorCorrectionLevel): number | undefined {
+export function getBlocksCount(version: number, errorCorrectionLevel: ErrorCorrectionLevel): number {
   switch (errorCorrectionLevel) {
     case L:
       // noinspection PointlessArithmeticExpressionJS
@@ -39,7 +39,7 @@ export function getBlocksCount(version: number, errorCorrectionLevel: ErrorCorre
     case H:
       return EC_BLOCKS_TABLE[(version - 1) * 4 + 3];
     default:
-      return undefined;
+      throw Error(`Unknown error correction level ${errorCorrectionLevel.bit}`);
   }
 }
 
@@ -51,7 +51,7 @@ export function getBlocksCount(version: number, errorCorrectionLevel: ErrorCorre
  * @param  {Number} errorCorrectionLevel Error correction level
  * @return {Number}                      Number of error correction codewords
  */
-export function getTotalCodewordsCount(version: number, errorCorrectionLevel: ErrorCorrectionLevel): number | undefined {
+export function getTotalCodewordsCount(version: number, errorCorrectionLevel: ErrorCorrectionLevel): number {
   switch (errorCorrectionLevel) {
     case L:
       // noinspection PointlessArithmeticExpressionJS
@@ -63,6 +63,6 @@ export function getTotalCodewordsCount(version: number, errorCorrectionLevel: Er
     case H:
       return EC_CODEWORDS_TABLE[(version - 1) * 4 + 3];
     default:
-      return undefined;
+      throw Error(`Unknown error correction level ${errorCorrectionLevel.bit}`);
   }
 }

@@ -1,6 +1,6 @@
 export class BitBuffer {
   constructor(
-    private buffer: number[],
+    public buffer: number[] = [],
     private length = 0,
   ) {}
 

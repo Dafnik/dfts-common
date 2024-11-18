@@ -144,75 +144,73 @@ class PriorityQueue {
   }
 }
 
-export const dijkstra = {
-  single_source_shortest_paths: function (
-    graph: { [nodeID: string]: { [neighborID: string]: number } },
-    s: string,
-    d?: string,
-  ): { [nodeID: string]: string } {
-    const predecessors: { [nodeID: string]: string } = {};
-    const costs: { [nodeID: string]: number } = {};
-    costs[s] = 0;
+export function dijkstra_singleSourceShortestPaths(
+  graph: { [nodeID: string]: { [neighborID: string]: number } },
+  s: string,
+  d?: string,
+): { [nodeID: string]: string } {
+  const predecessors: { [nodeID: string]: string } = {};
+  const costs: { [nodeID: string]: number } = {};
+  costs[s] = 0;
 
-    const open = new PriorityQueue();
-    open.push(s, 0);
+  const open = new PriorityQueue();
+  open.push(s, 0);
 
-    let closest: { value: string; cost: number };
-    let u: string;
-    let v: string;
-    let cost_of_s_to_u: number;
-    let adjacent_nodes: { [neighborID: string]: number };
-    let cost_of_e: number;
-    let cost_of_s_to_u_plus_cost_of_e: number;
-    let cost_of_s_to_v: number | undefined;
-    let first_visit: boolean;
+  let closest: { value: string; cost: number };
+  let u: string;
+  let v: string;
+  let cost_of_s_to_u: number;
+  let adjacent_nodes: { [neighborID: string]: number };
+  let cost_of_e: number;
+  let cost_of_s_to_u_plus_cost_of_e: number;
+  let cost_of_s_to_v: number | undefined;
+  let first_visit: boolean;
 
-    while (!open.empty()) {
-      closest = open.pop();
-      u = closest.value;
-      cost_of_s_to_u = closest.cost;
+  while (!open.empty()) {
+    closest = open.pop();
+    u = closest.value;
+    cost_of_s_to_u = closest.cost;
 
-      adjacent_nodes = graph[u] || {};
+    adjacent_nodes = graph[u] || {};
 
-      for (v in adjacent_nodes) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (adjacent_nodes.hasOwnProperty(v)) {
-          cost_of_e = adjacent_nodes[v];
-          cost_of_s_to_u_plus_cost_of_e = cost_of_s_to_u + cost_of_e;
+    for (v in adjacent_nodes) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (adjacent_nodes.hasOwnProperty(v)) {
+        cost_of_e = adjacent_nodes[v];
+        cost_of_s_to_u_plus_cost_of_e = cost_of_s_to_u + cost_of_e;
 
-          cost_of_s_to_v = costs[v];
-          first_visit = typeof cost_of_s_to_v === 'undefined';
+        cost_of_s_to_v = costs[v];
+        first_visit = typeof cost_of_s_to_v === 'undefined';
 
-          if (first_visit || cost_of_s_to_v! > cost_of_s_to_u_plus_cost_of_e) {
-            costs[v] = cost_of_s_to_u_plus_cost_of_e;
-            open.push(v, cost_of_s_to_u_plus_cost_of_e);
-            predecessors[v] = u;
-          }
+        if (first_visit || cost_of_s_to_v! > cost_of_s_to_u_plus_cost_of_e) {
+          costs[v] = cost_of_s_to_u_plus_cost_of_e;
+          open.push(v, cost_of_s_to_u_plus_cost_of_e);
+          predecessors[v] = u;
         }
       }
     }
+  }
 
-    if (typeof d !== 'undefined' && typeof costs[d] === 'undefined') {
-      const msg = `Could not find a path from ${s} to ${d}.`;
-      throw new Error(msg);
-    }
+  if (typeof d !== 'undefined' && typeof costs[d] === 'undefined') {
+    const msg = `Could not find a path from ${s} to ${d}.`;
+    throw new Error(msg);
+  }
 
-    return predecessors;
-  },
+  return predecessors;
+}
 
-  extract_shortest_path_from_predecessor_list: function (predecessors: { [nodeID: string]: string }, d: string): string[] {
-    const nodes: string[] = [];
-    let u: string | undefined = d;
-    while (u) {
-      nodes.push(u);
-      u = predecessors[u];
-    }
-    nodes.reverse();
-    return nodes;
-  },
+export function dijkstra_extractShortestPathFromPredecessorList(predecessors: { [nodeID: string]: string }, d: string): string[] {
+  const nodes: string[] = [];
+  let u: string | undefined = d;
+  while (u) {
+    nodes.push(u);
+    u = predecessors[u];
+  }
+  nodes.reverse();
+  return nodes;
+}
 
-  find_path: function (graph: { [nodeID: string]: { [neighborID: string]: number } }, s: string, d: string): string[] {
-    const predecessors = this.single_source_shortest_paths(graph, s, d);
-    return this.extract_shortest_path_from_predecessor_list(predecessors, d);
-  },
-};
+export function dijkstra_findPath(graph: { [nodeID: string]: { [neighborID: string]: number } }, s: string, d: string): string[] {
+  const predecessors = dijkstra_singleSourceShortestPaths(graph, s, d);
+  return dijkstra_extractShortestPathFromPredecessorList(predecessors, d);
+}

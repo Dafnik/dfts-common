@@ -2,7 +2,7 @@ import { Mode } from './mode';
 import { BitBuffer } from './bit-buffer';
 
 export abstract class AbstractData {
-  protected constructor(protected mode: Mode) {}
+  protected constructor(public mode: Mode) {}
 
   abstract getLength(): number;
 

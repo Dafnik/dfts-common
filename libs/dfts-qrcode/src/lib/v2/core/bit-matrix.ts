@@ -1,4 +1,4 @@
-type BitType = 0 | 1;
+export type BitType = 0 | 1;
 
 export class BitMatrix {
   public readonly data: Uint8Array;

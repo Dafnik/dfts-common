@@ -36,7 +36,10 @@ export function isValidErrorCorrectionLevel(level: ErrorCorrectionLevel | string
   return !!level && typeof level !== 'string' && level.bit >= 0 && level.bit < 4;
 }
 
-export function from(value: ErrorCorrectionLevel | string | undefined | null, defaultValue: ErrorCorrectionLevel): ErrorCorrectionLevel {
+export function fromErrorCorrectionLevel(
+  value: ErrorCorrectionLevel | string | undefined | null,
+  defaultValue: ErrorCorrectionLevel,
+): ErrorCorrectionLevel {
   if (isValidErrorCorrectionLevel(value)) {
     return value;
   }

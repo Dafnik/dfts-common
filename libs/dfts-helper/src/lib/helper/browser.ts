@@ -10,6 +10,9 @@ export function i_screenSize(): string {
 }
 
 export const i_cookieEnabled = () => {
+  if (typeof document === 'undefined') {
+    return false;
+  }
   let cookieEnabled = navigator.cookieEnabled;
 
   if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {

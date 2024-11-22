@@ -7,7 +7,6 @@ export * from './lib/decorators/delay/delay';
 export * from './lib/decorators/measure-time/measure-time';
 export * from './lib/decorators/once/once';
 export * from './lib/decorators/remember-result/remember-result';
-export * from './lib/decorators/run-outside-change-detection';
 export * from './lib/decorators/throttle';
 
 export * from './lib/entities/has-id.interface';

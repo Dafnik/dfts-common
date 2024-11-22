@@ -6,11 +6,6 @@ body {
   padding: 0;
 }
 
-a {
-  text-decoration: none;
-  color: #2196f3;
-}
-
 a:hover {
   cursor: pointer;
 }
@@ -30,26 +25,4 @@ a:hover {
 
 .ws-nowrap {
   white-space: nowrap;
-}
-
-@keyframes btnSpinner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.btnSpinner:before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -9px;
-  margin-left: -10px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  border-top-color: #000000;
-  animation: btnSpinner 0.8s linear infinite;
 }

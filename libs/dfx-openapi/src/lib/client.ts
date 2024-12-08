@@ -368,6 +368,9 @@ export function createQuerySerializer<T = unknown>(options?: QuerySerializerOpti
           continue;
         }
         if (Array.isArray(value)) {
+          if (value.length === 0) {
+            continue;
+          }
           search.push(
             serializeArrayParam(name, value, {
               style: 'form',

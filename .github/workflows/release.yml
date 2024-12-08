@@ -7,14 +7,6 @@ on:
         required: true
         type: string
     secrets:
-      RELEASES_SSH_HOST:
-        required: true
-      RELEASES_SSH_PORT:
-        required: true
-      RELEASES_SSH_USER:
-        required: true
-      RELEASES_SSH_PRIVATE_KEY:
-        required: true
       NPM_PUBLISH_TOKEN:
         required: true
 

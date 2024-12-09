@@ -2,8 +2,8 @@
   "name": "playground-lib",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "18",
-    "@angular/forms": "18",
+    "@angular/core": "19",
+    "@angular/forms": "19",
     "dfx-bootstrap-icons": "*"
   },
   "dependencies": {},

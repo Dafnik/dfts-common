@@ -106,7 +106,7 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
 
   /** Whether the sortable is disabled. */
   @Input({ alias: 'ngbSortDisabled', transform: booleanAttribute })
-  disabled: boolean = false;
+  disabled = false;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   // eslint-disable-next-line @angular-eslint/no-output-rename
@@ -168,7 +168,7 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
 
     // Get the sort direction cycle with the potential sortable overrides.
     const disableClear = sortable?.disableClear ?? this.disableClear ?? !!this._defaultOptions?.disableClear;
-    let sortDirectionCycle = getSortDirectionCycle(sortable.start || this.start, disableClear);
+    const sortDirectionCycle = getSortDirectionCycle(sortable.start || this.start, disableClear);
 
     // Get and return the next direction in the cycle
     let nextDirectionIndex = sortDirectionCycle.indexOf(this.direction) + 1;
@@ -193,7 +193,7 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */
 function getSortDirectionCycle(start: SortDirection, disableClear: boolean): SortDirection[] {
-  let sortOrder: SortDirection[] = ['asc', 'desc'];
+  const sortOrder: SortDirection[] = ['asc', 'desc'];
   if (start == 'desc') {
     sortOrder.reverse();
   }

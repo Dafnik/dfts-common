@@ -97,7 +97,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
 
   /** whether the sort header is disabled. */
   @Input({ transform: booleanAttribute })
-  disabled: boolean = false;
+  disabled = false;
 
   /**
    * Description applied to NgbSortHeader's button element with aria-describedby. This text should
@@ -113,7 +113,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
   // Default the action description to "Sort" because it's better than nothing.
   // Without a description, the button's label comes from the sort header text content,
   // which doesn't give any indication that it performs a sorting operation.
-  private _sortActionDescription: string = 'Sort';
+  private _sortActionDescription = 'Sort';
 
   /** Overrides the disable clear value of the containing NgbSort for this NgbSortable. */
   @Input({ transform: booleanAttribute })

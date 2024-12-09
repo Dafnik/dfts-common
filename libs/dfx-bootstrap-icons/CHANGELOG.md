@@ -1,4 +1,14 @@
  
+# [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-2.1.0...dfx-bootstrap-icons-3.0.0) (2024-12-09)
+
+
+### Features
+
+* angular 19 update ([c3dd6c3](https://github.com/Dafnik/dfts-common/commit/c3dd6c3ff92ceb701fafae3f65eee559b686f7dc))
+* **dfx-bootstrap-icons:** upgrade to Angular 19 ([7e4f8f1](https://github.com/Dafnik/dfts-common/commit/7e4f8f1778b04d1f12a911faaf18d19405b5dfee))
+
+
+
 # [2.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-2.0.1...dfx-bootstrap-icons-2.1.0) (2024-11-05)
 
 ### Features

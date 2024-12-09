@@ -57,7 +57,7 @@ export interface NgbSortDefaultOptions {
 }
 
 /** Injection token to be used to override the default options for `ngb-sort`. */
-export const NGB_SORT_DEFAULT_OPTIONS = new InjectionToken<NgbSortDefaultOptions>('MAT_SORT_DEFAULT_OPTIONS');
+export const NGB_SORT_DEFAULT_OPTIONS = new InjectionToken<NgbSortDefaultOptions>('NGB_SORT_DEFAULT_OPTIONS');
 
 /** Container for NgbSortable to manage the sort state and provide default sort parameters. */
 @Directive({
@@ -83,8 +83,8 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
    */
   @Input('ngbSortStart') start: SortDirection = 'asc';
 
-  /** The sort direction of the currently active MatSortable. */
-  @Input('matSortDirection')
+  /** The sort direction of the currently active NgbSortable. */
+  @Input('ngbSortDirection')
   get direction(): SortDirection {
     return this._direction;
   }
@@ -122,8 +122,8 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
   ) {}
 
   /**
-   * Register function to be used by the contained MatSortables. Adds the MatSortable to the
-   * collection of MatSortables.
+   * Register function to be used by the contained NgbSortables. Adds the NgbSortable to the
+   * collection of NgbSortables.
    */
   register(sortable: NgbSortable): void {
     // @ts-expect-error ngDevMode not existing

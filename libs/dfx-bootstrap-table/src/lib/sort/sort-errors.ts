@@ -1,16 +1,16 @@
 /** @docs-private */
 export function getSortDuplicateSortableIdError(id: string): Error {
-  return Error(`Cannot have two MatSortables with the same id (${id}).`);
+  return Error(`Cannot have two NgbSortables with the same id (${id}).`);
 }
 
 /** @docs-private */
 export function getSortHeaderNotContainedWithinSortError(): Error {
-  return Error(`MatSortHeader must be placed within a parent element with the MatSort directive.`);
+  return Error(`NgbSortHeader must be placed within a parent element with the NgbSort directive.`);
 }
 
 /** @docs-private */
 export function getSortHeaderMissingIdError(): Error {
-  return Error(`MatSortHeader must be provided with a unique id.`);
+  return Error(`NgbSortHeader must be provided with a unique id.`);
 }
 
 /** @docs-private */

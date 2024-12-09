@@ -92,7 +92,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
   /** Sets the position of the arrow that displays when sorted. */
   @Input() arrowPosition: SortHeaderArrowPosition = 'after';
 
-  /** Overrides the sort start value of the containing NgbSort for this MatSortable. */
+  /** Overrides the sort start value of the containing NgbSort for this NgbSortable. */
   @Input() start!: SortDirection;
 
   /** whether the sort header is disabled. */
@@ -100,7 +100,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
   disabled: boolean = false;
 
   /**
-   * Description applied to MatSortHeader's button element with aria-describedby. This text should
+   * Description applied to NgbSortHeader's button element with aria-describedby. This text should
    * describe the action that will occur when the user clicks the sort header.
    */
   @Input()
@@ -126,10 +126,6 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
       optional: true,
     });
 
-    // Note that we use a string token for the `_columnDef`, because the value is provided both by
-    // `material/table` and `cdk/table` and we can't have the CDK depending on Material,
-    // and we want to avoid having the sort header depending on the CDK table because
-    // of this single reference.
     // @ts-expect-error ngDevMode not existing
     if (!this._sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSortHeaderNotContainedWithinSortError();
@@ -147,7 +143,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
 
     this._sort.register(this);
     this._renderChanges = merge(this._sort._stateChanges, this._sort.sortChange).subscribe(() => this._changeDetectorRef.markForCheck());
-    this._sortButton = this._elementRef.nativeElement.querySelector('.mat-sort-header-container')!;
+    this._sortButton = this._elementRef.nativeElement.querySelector('.ngb-sort-header-container')!;
     this._updateSortActionDescription(this._sortActionDescription);
   }
 
@@ -184,7 +180,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
     }
   }
 
-  /** Whether this MatSortHeader is currently sorted in either ascending or descending order. */
+  /** Whether this NgbSortHeader is currently sorted in either ascending or descending order. */
   _isSorted() {
     return this._sort.active == this.id && (this._sort.direction === 'asc' || this._sort.direction === 'desc');
   }

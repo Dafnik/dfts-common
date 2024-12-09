@@ -63,6 +63,14 @@ This eliminates all of the following:
 - ✅ Eliminates any types that hide bugs
 - ✅ Also eliminates as type overrides that can also hide bugs
 
+### Version compatibility
+
+| Angular | dfx-bootstrap-table | openapi-typescript-helpers |
+| ------- | ------------------- | -------------------------- |
+| 19.x.x  | 0.1.0               | \>=0.0.15                  |
+| 18.x.x  | 0.0.3               | \>=0.0.15                  |
+| 18.x.x  | 0.0.2               | 0.0.13                     |
+
 ## Setup
 
 Install this library along with [openapi-typescript](https://openapi-ts.dev/introduction):
@@ -154,10 +162,3 @@ The `get()` request shown needed the `params` object that groups [parameters by 
 If a required param is missing, or the wrong type, a type error will be thrown.
 
 The `post()` and `put()` request required a `body` object that provided all necessary requestBody data.
-
-## Support
-
-| Platform                   | Support   |
-| -------------------------- | --------- |
-| Angular                    | \>=18.0   |
-| openapi-typescript-helpers | \>=0.0.13 |

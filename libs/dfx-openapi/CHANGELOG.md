@@ -1,4 +1,8 @@
  
+## [0.1.1](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.1.0...dfx-openapi-0.1.1) (2024-12-09)
+
+
+
 # [0.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.0.3...dfx-openapi-0.1.0) (2024-12-09)
 
 

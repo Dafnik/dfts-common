@@ -10,7 +10,6 @@ import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons'
       }
     </div>
   `,
-  standalone: true,
   imports: [BiComponent],
   providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
   changeDetection: ChangeDetectionStrategy.OnPush,

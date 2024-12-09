@@ -81,7 +81,6 @@ import { injectWindow } from 'dfx-helper';
       transition: all 0.2s ease-in-out;
     }
   `,
-  standalone: true,
   imports: [BiComponent, ReactiveFormsModule, NgClass, LoadIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-home',

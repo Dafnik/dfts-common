@@ -40,7 +40,6 @@ import { NgbCell, NgbCellDef, NgbColumnDef, NgbHeaderCell, NgbHeaderCellDef } fr
   // an ExpressionChangedAfterItHasBeenCheckedError).
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
   imports: [NgbColumnDef, NgbHeaderCellDef, NgbHeaderCell, NgbCellDef, NgbCell],
 })
 export class NgbTextColumn<T> extends CdkTextColumn<T> {}

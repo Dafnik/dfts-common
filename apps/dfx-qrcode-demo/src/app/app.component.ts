@@ -11,7 +11,6 @@ import { BiComponent, copy, provideBi, withIcons } from 'dfx-bootstrap-icons';
 import { ThemePicker } from 'playground-lib';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styles: [

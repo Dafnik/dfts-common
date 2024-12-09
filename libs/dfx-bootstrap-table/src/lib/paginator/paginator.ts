@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 
 import { HasInitialized, mixinInitialized } from '../core/initialized';
 import { NgbPaginatorIntl } from './paginator-intl.service';
+import { FormsModule } from '@angular/forms';
 
 export type PageEvent = {
   pageIndex: number;
@@ -48,6 +49,7 @@ const _NgbPaginatorMixinBase = mixinInitialized(class {});
   templateUrl: './paginator.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [FormsModule],
   styles: `
     .ws-nowrap {
       white-space: nowrap;

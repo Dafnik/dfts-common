@@ -6,7 +6,6 @@ import { Helper } from '../Helper';
 @Component({
   selector: 'app-simple',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [DfxTableModule],
   template: `
     <h1>Simple</h1>

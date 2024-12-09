@@ -6,7 +6,6 @@ import { Helper } from '../Helper';
 @Component({
   selector: 'app-paginator',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [DfxTableModule, DfxPaginationModule],
   template: `
     <h1>Pagination</h1>

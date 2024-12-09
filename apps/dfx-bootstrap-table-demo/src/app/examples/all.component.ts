@@ -8,7 +8,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-all',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [DfxTableModule, DfxSortModule, DfxPaginationModule, ReactiveFormsModule],
   template: `
     <h1>Everything (filtering, sorting and pagination)</h1>

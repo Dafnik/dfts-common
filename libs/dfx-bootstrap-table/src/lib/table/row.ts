@@ -81,7 +81,6 @@ export class NgbRowDef<T> extends CdkRowDef<T> {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbHeaderRow',
   providers: [{ provide: CdkHeaderRow, useExisting: NgbHeaderRow }],
-  standalone: true,
   imports: [CdkCellOutlet],
 })
 export class NgbHeaderRow extends CdkHeaderRow {}
@@ -99,7 +98,6 @@ export class NgbHeaderRow extends CdkHeaderRow {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbFooterRow',
   providers: [{ provide: CdkFooterRow, useExisting: NgbFooterRow }],
-  standalone: true,
   imports: [CdkCellOutlet],
 })
 export class NgbFooterRow extends CdkFooterRow {}
@@ -117,7 +115,6 @@ export class NgbFooterRow extends CdkFooterRow {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngbRow',
   providers: [{ provide: CdkRow, useExisting: NgbRow }],
-  standalone: true,
   imports: [CdkCellOutlet],
 })
 export class NgbRow extends CdkRow {}

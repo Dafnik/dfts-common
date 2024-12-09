@@ -109,7 +109,6 @@ import { ThemePicker } from 'playground-lib';
       --bs-btn-hover-border-color: var(--bs-btn-hover-bg);
     }
   `,
-  standalone: true,
   imports: [NgOptimizedImage, RouterLink, RouterOutlet, BiComponent, ThemePicker],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',

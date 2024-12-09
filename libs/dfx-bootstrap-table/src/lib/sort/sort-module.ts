@@ -13,10 +13,11 @@ import { NgbSort } from './sort';
 import { NGB_SORT_HEADER_INTL_PROVIDER } from './sort-header-intl';
 import { CommonModule } from '@angular/common';
 
+const EXPORTED_DECLARATIONS = [NgbSort, NgbSortHeader];
+
 @NgModule({
-  imports: [CommonModule],
-  exports: [NgbSort, NgbSortHeader],
-  declarations: [NgbSort, NgbSortHeader],
+  imports: EXPORTED_DECLARATIONS,
+  exports: EXPORTED_DECLARATIONS,
   providers: [NGB_SORT_HEADER_INTL_PROVIDER],
 })
 export class DfxSortModule {}

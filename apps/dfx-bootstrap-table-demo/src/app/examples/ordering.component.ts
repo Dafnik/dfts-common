@@ -6,7 +6,6 @@ import { Helper } from '../Helper';
 @Component({
   selector: 'app-all',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [DfxTableModule, DfxSortModule],
   template: `
     <h1>Ordering</h1>

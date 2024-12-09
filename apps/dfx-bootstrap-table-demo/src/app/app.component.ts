@@ -5,7 +5,6 @@ import { ThemePicker } from 'playground-lib';
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   template: `
     <div class="p-5">
       <div class="d-flex gap-3 align-items-center mb-4">

@@ -30,7 +30,6 @@ interface Theme {
     }
   `,
   selector: 'theme-picker',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, BiComponent],
   providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'), withColor('#0000FF'))],

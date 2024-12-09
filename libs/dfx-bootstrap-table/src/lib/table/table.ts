@@ -28,7 +28,6 @@ import { _DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEA
 @Directive({
   selector: 'ngb-table[recycleRows], table[ngb-table][recycleRows]',
   providers: [{ provide: _VIEW_REPEATER_STRATEGY, useClass: _RecycleViewRepeaterStrategy }],
-  standalone: true,
 })
 export class NgbRecycleRows {}
 
@@ -84,7 +83,6 @@ export class NgbRecycleRows {}
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
   imports: [HeaderRowOutlet, DataRowOutlet, NoDataRowOutlet, FooterRowOutlet],
-  standalone: true,
 })
 export class NgbTable<T> extends CdkTable<T> {
   /** Overrides the need to add position: sticky on every sticky cell element in `CdkTable`. */

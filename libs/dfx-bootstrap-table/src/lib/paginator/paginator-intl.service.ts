@@ -3,7 +3,7 @@ import { Injectable, Optional, SkipSelf } from '@angular/core';
 import { Subject } from 'rxjs';
 
 /**
- * To modify the labels and text displayed, create a new instance of MatPaginatorIntl and
+ * To modify the labels and text displayed, create a new instance of NgbPaginatorIntl and
  * include it in a custom provider
  */
 @Injectable({ providedIn: 'root' })

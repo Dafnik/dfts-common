@@ -1,38 +1,42 @@
 <div
-  class="d-flex flex-column-reverse flex-lg-row justify-content-center justify-content-lg-end align-items-end align-items-lg-center gap-2 gap-lg-0"
+  class="d-flex flex-column-reverse flex-lg-row justify-content-center justify-content-lg-end align-items-end align-items-lg-center gap-3 gap-lg-5"
 >
   @if (!hidePageSize) {
   <div class="d-inline-flex gap-2 align-items-center">
-    @if (_displayedPageSizeOptions.length <= 1) {
-    <small>{{ _intl.itemsPerPageLabel }} {{ pageSize }}</small>
-    } @else {
-    <small class="ws-nowrap">{{ _intl.itemsPerPageLabel }}</small>
+    <small class="ws-nowrap" [attr.id]="_pageSizeLabelId"> {{ _intl.itemsPerPageLabel }} </small>
+
+    @if (_displayedPageSizeOptions.length > 1) {
     <select
       class="form-select form-select-sm"
       name="pageSize"
       [ngModel]="pageSize"
-      (ngModelChange)="_changePageSize($any($event))"
       [disabled]="disabled"
+      [attr.aria-labelledby]="_pageSizeLabelId"
+      (ngModelChange)="_changePageSize($any($event))"
     >
       @for (pageSizeOption of _displayedPageSizeOptions; track pageSizeOption) {
       <option [ngValue]="pageSizeOption">{{ pageSizeOption }}</option>
       }
     </select>
+    } @if (_displayedPageSizeOptions.length <= 1) {
+    <small>{{pageSize}}</small>
     }
   </div>
   }
 
-  <div class="d-inline-flex align-items-center">
-    <small class="ms-4 me-3">{{ _intl.getRangeLabel(pageIndex, pageSize, length) }}</small>
+  <div class="d-inline-flex align-items-center gap-3 gap-lg-5">
+    <small aria-live="polite">{{ _intl.getRangeLabel(pageIndex, pageSize, length) }}</small>
+
     <ul [class]="'my-0 pagination' + (size ? ' pagination-' + size : '')">
       @if (showFirstLastButtons) {
       <li class="page-item" [class.disabled]="_previousButtonsDisabled()">
         <button
-          [attr.aria-label]="_intl.firstPageLabel"
+          type="button"
           class="page-link"
           (click)="firstPage()"
+          [disabled]="_previousButtonsDisabled()"
+          [attr.aria-label]="_intl.firstPageLabel"
           [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null"
-          [attr.aria-disabled]="_previousButtonsDisabled() ? 'true' : null"
         >
           <span aria-hidden="true"> &laquo;&laquo;</span>
         </button>
@@ -41,23 +45,24 @@
 
       <li class="page-item" [class.disabled]="_previousButtonsDisabled()">
         <button
-          [attr.aria-label]="_intl.previousPageLabel"
+          type="button"
           class="page-link"
-          href
           (click)="previousPage()"
+          [disabled]="_previousButtonsDisabled()"
+          [attr.aria-label]="_intl.previousPageLabel"
           [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null"
-          [attr.aria-disabled]="_previousButtonsDisabled() ? 'true' : null"
         >
           <span aria-hidden="true">&laquo;</span>
         </button>
       </li>
       <li class="page-item" [class.disabled]="_nextButtonsDisabled()">
         <button
-          [attr.aria-label]="_intl.nextPageLabel"
+          type="button"
           class="page-link"
           (click)="nextPage()"
+          [disabled]="_nextButtonsDisabled()"
+          [attr.aria-label]="_intl.nextPageLabel"
           [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null"
-          [attr.aria-disabled]="_nextButtonsDisabled() ? 'true' : null"
         >
           <span aria-hidden="true">&raquo;</span>
         </button>
@@ -66,11 +71,12 @@
       @if(showFirstLastButtons) {
       <li class="page-item" [class.disabled]="_nextButtonsDisabled()">
         <button
-          [attr.aria-label]="_intl.lastPageLabel"
+          type="button"
           class="page-link"
           (click)="lastPage()"
+          [disabled]="_nextButtonsDisabled()"
+          [attr.aria-label]="_intl.lastPageLabel"
           [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null"
-          [attr.aria-disabled]="_nextButtonsDisabled() ? 'true' : null"
         >
           <span aria-hidden="true">&raquo;&raquo;</span>
         </button>

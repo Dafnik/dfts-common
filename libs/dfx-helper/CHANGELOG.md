@@ -1,4 +1,14 @@
  
+# [9.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-8.0.1...dfx-helper-9.0.0) (2024-12-09)
+
+
+### Features
+
+* angular 19 update ([c3dd6c3](https://github.com/Dafnik/dfts-common/commit/c3dd6c3ff92ceb701fafae3f65eee559b686f7dc))
+* **dfx-helper:** upgrade to Angular 19 ([fa9a514](https://github.com/Dafnik/dfts-common/commit/fa9a514d46d90f431115c13585f268a89630ea47))
+
+
+
 ## [8.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-8.0.0...dfx-helper-8.0.1) (2024-07-14)
 
 

@@ -1,4 +1,14 @@
  
+# [5.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-4.0.1...dfx-bootstrap-table-5.0.0) (2024-12-09)
+
+
+### Features
+
+* angular 19 update ([c3dd6c3](https://github.com/Dafnik/dfts-common/commit/c3dd6c3ff92ceb701fafae3f65eee559b686f7dc))
+* **dfx-bootstrap-table:** upgrade to Angular 19 ([f92fb9d](https://github.com/Dafnik/dfts-common/commit/f92fb9de0fb4c5078f80b4d2249ffbac9751bff9))
+
+
+
 ## [4.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-4.0.0...dfx-bootstrap-table-4.0.1) (2024-07-14)
 
 

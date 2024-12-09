@@ -10,6 +10,7 @@ Angular Library with tons of utility tools helping in all projects.
 
 | Angular | dfx-helper |
 | ------- | ---------- |
+| 19.x.x  | 9.x.x      |
 | 18.x.x  | 8.x.x      |
 | 17.x.x  | 7.x.x      |
 | 16.x.x  | 6.1.x      |
@@ -29,46 +30,33 @@ npm install @angular/cdk
 
 ### Useful classes:
 
-- **Components**
-  - `ABlock` - Building block from ui stuff
-  - `AComponent`
-  - `ADirective`
-- **Decorator**/**Annotations**
-  - `RunOutesideChangeDetection`
 - **Directives**
+  - `autofocus`
+  - `back`
   - `hideIfOnline` & `hideIfOffline`
-  - `hideIfPingSucceeds` & `hideIfPingFails`
-  - `print`
-- **Helper**
-  - `ArrayHelper`
-  - `BrowserHelper`
-  - `ClipboradHelper`
-  - `Converter`
-  - `DateHelper`
-  - `Generator`
-  - `Logger` / `LoggerFactory`
-  - `Stopwatch`
-  - `StorageHelper`
-  - `StringHelper`
-  - `Thread`
-  - `TypeHelper`
-  - `UIHelper`
-- **Entities**
-  - `HasID` & `HasName`
-  - `IEntity` & `IEntityWithName`
+  - `stop-propagation`
 - **Interceptors**
   - `BaseUrlInterceptor`
   - `LoggingInterceptor`
   - `PostPutJsonContentTypeInterceptor`
 - **Pipes**
-  - `cut`
+  - `currency`
   - `implode` & `implodeMapped`
+  - `pluck`
+  - `timeleft`
   - `timespan`
+  - `cut`
+  - `is-email`
+  - `is-url`
+  - `lower-case-expect-first-letters`
+  - `strip-whitepsace`
   - `truncate`
+  - `upper-case-first-letter`
 - **Services**
   - `IsMobileService`
 - **Strategies**
-  - `AbstractTitleStrategy`
   - `DfxPreloadStrategy`
+- **Providers**
+  - `WindowProvider`
 
 By [Dafnik](https://dafnik.me)

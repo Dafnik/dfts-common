@@ -29,7 +29,7 @@ import {
   standalone: true,
 })
 export class NgbCellDef<T> extends CdkCellDef {
-  // leveraging syntactic-sugar syntax when we use *matCellDef
+  // leveraging syntactic-sugar syntax when we use *ngbCellDef
   @Input() ngbCellDefTable?: CdkTable<T>;
 
   // ngTemplateContextGuard flag to help with the Language Service

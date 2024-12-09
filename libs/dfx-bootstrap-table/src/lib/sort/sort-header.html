@@ -5,12 +5,18 @@
   be focusable, and have screen readers read out its `aria-sort` state. We prefer this approach
   over having a button with an `aria-label` inside the header, because the button's `aria-label`
   will be read out as the user is navigating the table's cell (see #13012).
+
   The approach is based off of: https://dequeuniversity.com/library/aria/tables/sf-sortable-grid
 -->
 <div
-  class="ngb-sort-header-container"
+  class="ngb-sort-header-container ngb-focus-indicator"
   [class.ngb-sort-header-sorted]="_isSorted()"
   [class.ngb-sort-header-position-before]="arrowPosition === 'before'"
+  [class.ngb-sort-header-descending]="this._sort.direction === 'desc'"
+  [class.ngb-sort-header-ascending]="this._sort.direction === 'asc'"
+  [class.ngb-sort-header-recently-cleared-ascending]="_recentlyCleared() === 'asc'"
+  [class.ngb-sort-header-recently-cleared-descending]="_recentlyCleared() === 'desc'"
+  [class.ngb-sort-header-animations-disabled]="_animationModule === 'NoopAnimations'"
   [attr.tabindex]="_isDisabled() ? null : 0"
   [attr.role]="_isDisabled() ? null : 'button'"
 >
@@ -25,20 +31,11 @@
   </div>
 
   <!-- Disable animations while a current animation is running -->
-  <div
-    class="ngb-sort-header-arrow"
-    *ngIf="_renderArrow()"
-    [@arrowOpacity]="_getArrowViewState()"
-    [@arrowPosition]="_getArrowViewState()"
-    [@allowChildren]="_getArrowDirectionState()"
-    (@arrowPosition.start)="_disableViewStateAnimation = true"
-    (@arrowPosition.done)="_disableViewStateAnimation = false"
-  >
-    <div class="ngb-sort-header-stem"></div>
-    <div class="ngb-sort-header-indicator" [@indicator]="_getArrowDirectionState()">
-      <div class="ngb-sort-header-pointer-left" [@leftPointer]="_getArrowDirectionState()"></div>
-      <div class="ngb-sort-header-pointer-right" [@rightPointer]="_getArrowDirectionState()"></div>
-      <div class="ngb-sort-header-pointer-middle"></div>
-    </div>
+  @if (_renderArrow()) {
+  <div class="ngb-sort-header-arrow">
+    <svg viewBox="0 -960 960 960" focusable="false" aria-hidden="true">
+      <path d="M440-240v-368L296-464l-56-56 240-240 240 240-56 56-144-144v368h-80Z" />
+    </svg>
   </div>
+  }
 </div>

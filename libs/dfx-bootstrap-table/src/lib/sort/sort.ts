@@ -20,10 +20,9 @@ import {
   Optional,
   Output,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { SortDirection } from './sort-direction';
-import { HasInitialized, mixinInitialized } from '../core/initialized';
-import { CanDisable, mixinDisabled } from '../core/disabled';
+import { getSortDuplicateSortableIdError, getSortHeaderMissingIdError, getSortInvalidDirectionError } from './sort-errors';
 
 /** Position of the arrow that displays when sorted. */
 export type SortHeaderArrowPosition = 'before' | 'after';
@@ -60,18 +59,15 @@ export interface NgbSortDefaultOptions {
 /** Injection token to be used to override the default options for `ngb-sort`. */
 export const NGB_SORT_DEFAULT_OPTIONS = new InjectionToken<NgbSortDefaultOptions>('MAT_SORT_DEFAULT_OPTIONS');
 
-// Boilerplate for applying mixins to NgbSort.
-/** @docs-private */
-const _NgbSortBase = mixinInitialized(mixinDisabled(class {}));
-
 /** Container for NgbSortable to manage the sort state and provide default sort parameters. */
 @Directive({
   selector: '[ngb-sort]',
   exportAs: 'ngbSort',
   host: { class: 'ngb-sort' },
-  inputs: ['disabled: ngbSortDisabled'],
 })
-export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized, OnChanges, OnDestroy, OnInit {
+export class NgbSort implements OnChanges, OnDestroy, OnInit {
+  private _initializedStream = new ReplaySubject<void>(1);
+
   /** Collection of all registered sortables that this directive manages. */
   sortables = new Map<string, NgbSortable>();
 
@@ -87,9 +83,19 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
    */
   @Input('ngbSortStart') start: SortDirection = 'asc';
 
-  /** The sort direction of the currently active NgbSortable. */
-  @Input('ngbSortDirection')
-  direction: SortDirection = '';
+  /** The sort direction of the currently active MatSortable. */
+  @Input('matSortDirection')
+  get direction(): SortDirection {
+    return this._direction;
+  }
+  set direction(direction: SortDirection) {
+    // @ts-expect-error ngDevMode not existing
+    if (direction && direction !== 'asc' && direction !== 'desc' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+      throw getSortInvalidDirectionError(direction);
+    }
+    this._direction = direction;
+  }
+  private _direction: SortDirection = '';
 
   /**
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
@@ -98,23 +104,39 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   @Input({ alias: 'ngbSortDisableClear', transform: booleanAttribute })
   disableClear = false;
 
+  /** Whether the sortable is disabled. */
+  @Input({ alias: 'ngbSortDisabled', transform: booleanAttribute })
+  disabled: boolean = false;
+
   /** Event emitted when the user changes either the active sort or sort direction. */
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('ngbSortChange') readonly sortChange: EventEmitter<Sort> = new EventEmitter<Sort>();
+
+  /** Emits when the paginator is initialized. */
+  initialized: Observable<void> = this._initializedStream;
 
   constructor(
     @Optional()
     @Inject(NGB_SORT_DEFAULT_OPTIONS)
     private _defaultOptions?: NgbSortDefaultOptions,
-  ) {
-    super();
-  }
+  ) {}
 
   /**
-   * Register function to be used by the contained NgbSortable. Adds the NgbSortable to the
-   * collection of NgbSortable.
+   * Register function to be used by the contained MatSortables. Adds the MatSortable to the
+   * collection of MatSortables.
    */
   register(sortable: NgbSortable): void {
+    // @ts-expect-error ngDevMode not existing
+    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+      if (!sortable.id) {
+        throw getSortHeaderMissingIdError();
+      }
+
+      if (this.sortables.has(sortable.id)) {
+        throw getSortDuplicateSortableIdError(sortable.id);
+      }
+    }
+
     this.sortables.set(sortable.id, sortable);
   }
 
@@ -146,7 +168,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
 
     // Get the sort direction cycle with the potential sortable overrides.
     const disableClear = sortable?.disableClear ?? this.disableClear ?? !!this._defaultOptions?.disableClear;
-    const sortDirectionCycle = getSortDirectionCycle(sortable.start || this.start, disableClear);
+    let sortDirectionCycle = getSortDirectionCycle(sortable.start || this.start, disableClear);
 
     // Get and return the next direction in the cycle
     let nextDirectionIndex = sortDirectionCycle.indexOf(this.direction) + 1;
@@ -157,7 +179,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
   }
 
   ngOnInit(): void {
-    this._markInitialized();
+    this._initializedStream.next();
   }
 
   ngOnChanges(): void {
@@ -171,7 +193,7 @@ export class NgbSort extends _NgbSortBase implements CanDisable, HasInitialized,
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */
 function getSortDirectionCycle(start: SortDirection, disableClear: boolean): SortDirection[] {
-  const sortOrder: SortDirection[] = ['asc', 'desc'];
+  let sortOrder: SortDirection[] = ['asc', 'desc'];
   if (start == 'desc') {
     sortOrder.reverse();
   }

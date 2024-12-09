@@ -1,4 +1,14 @@
  
+# [4.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-3.0.1...dfx-qrcode-4.0.0) (2024-12-09)
+
+
+### Features
+
+* angular 19 update ([c3dd6c3](https://github.com/Dafnik/dfts-common/commit/c3dd6c3ff92ceb701fafae3f65eee559b686f7dc))
+* **dfx-qrcode:** upgrade to Angular 19 ([24efc3e](https://github.com/Dafnik/dfts-common/commit/24efc3edc242300eab6308d390204f030ff0533e))
+
+
+
 ## [3.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-3.0.0...dfx-qrcode-3.0.1) (2024-07-14)
 
 

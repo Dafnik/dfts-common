@@ -1,4 +1,14 @@
  
+# [0.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.0.3...dfx-openapi-0.1.0) (2024-12-09)
+
+
+### Features
+
+* angular 19 update ([c3dd6c3](https://github.com/Dafnik/dfts-common/commit/c3dd6c3ff92ceb701fafae3f65eee559b686f7dc))
+* **dfx-openapi:** upgrade to Angular 19 ([016e830](https://github.com/Dafnik/dfts-common/commit/016e830b86417c1230d29b4259a6455596f99a24))
+
+
+
 ## [0.0.3](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.0.2...dfx-openapi-0.0.3) (2024-12-08)
 
 

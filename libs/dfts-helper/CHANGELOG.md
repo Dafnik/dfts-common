@@ -1,3 +1,33 @@
+ 
+# [1.2.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.1.1...dfts-helper-1.2.0) (2024-12-13)
+
+
+### Bug Fixes
+
+* **dfts-helper:** cookies throwing on server rendered code ([5e97986](https://github.com/Dafnik/dfts-common/commit/5e97986ab2dc49c5131cf3cdda089217e0c49b67))
+* **dfts-helper:** read time use trim instead of strip whitespace ([1b2eb30](https://github.com/Dafnik/dfts-common/commit/1b2eb3058d418304f4684fd9b308d1bad4ebaa1e))
+* **dfts-helper:** strip whitespace ([3c944fa](https://github.com/Dafnik/dfts-common/commit/3c944fa2dd40f544568e6709bf0a8e13bda7e783))
+* **dfts-helper:** unwanted breaking change ([3b4e958](https://github.com/Dafnik/dfts-common/commit/3b4e958e8f584b15312f83394d7765dd3a37979b))
+* lint ([da39bb7](https://github.com/Dafnik/dfts-common/commit/da39bb712d19f2070436a15e21865e28619aa88e))
+* make dfts-helper browser info utility SSR compatible ([f796c6c](https://github.com/Dafnik/dfts-common/commit/f796c6c867510569bb0802dfafc2708b06a805e4))
+
+
+### Features
+
+* add more options to imploder ([bc1fc83](https://github.com/Dafnik/dfts-common/commit/bc1fc839d515306962bba03f395c85d2819ce19f))
+* **dfts-helper:** add a_chunk and a_hashFrom ([0d1ca47](https://github.com/Dafnik/dfts-common/commit/0d1ca4768d95b970b16695ad7ad2cab989a5aa5d))
+* finish up dfx-bootstrap-icons README ([38d80f7](https://github.com/Dafnik/dfts-common/commit/38d80f72b44b217c41f44ff83c92d8e88cf6b4d1))
+* imploder updates ([e85e245](https://github.com/Dafnik/dfts-common/commit/e85e245787fee88a2bdb5941ead95fea0d8ad2c8))
+* update README.md's ([ba21cbb](https://github.com/Dafnik/dfts-common/commit/ba21cbb6c9baa00accc1c17f7211dc2d0deed9e4))
+* update to angular 17 ([05f67d3](https://github.com/Dafnik/dfts-common/commit/05f67d3dd9e2798357c6e429fa3a84b99abed42a))
+
+
+### Reverts
+
+* Revert "chore(dfts-helper): fix isUrlRegex eslint" ([4e25c56](https://github.com/Dafnik/dfts-common/commit/4e25c56c594d555aa061969fa0f0d1f517c64d26))
+
+
+
 ## [1.1.2](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.1.1...dfts-helper-1.1.2) (2024-10-10)
 
 ### Bug Fixes

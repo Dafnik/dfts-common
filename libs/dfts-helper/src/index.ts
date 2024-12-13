@@ -23,7 +23,9 @@ export { a_pushIf } from './lib/helper/array/push-if';
 export { a_pushIfAbsent } from './lib/helper/array/push-if-absent/push-if-absent';
 export { a_remove } from './lib/helper/array/remove/remove';
 export { a_removeIf } from './lib/helper/array/remove-if';
+export { a_chunk } from './lib/helper/array/chunk/chunk';
 export { a_shuffle } from './lib/helper/array/shuffle';
+export { a_hashFrom } from './lib/helper/array/hash/hash';
 
 export { b_from } from './lib/helper/boolean/from/from';
 export { b_fromStorage } from './lib/helper/boolean/from-storage/from-storage';

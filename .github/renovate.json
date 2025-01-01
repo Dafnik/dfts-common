@@ -24,13 +24,21 @@
   },
   "packageRules": [
     {
-      "matchPackagePatterns": ["^@angular/", "^@nx/", "^@angular-devkit/", "nx"],
       "groupName": "nx workspace",
-      "enabled": false
+      "enabled": false,
+      "matchPackageNames": [
+        "/^@angular//",
+        "/^@nx//",
+        "/^@angular-devkit//",
+        "/nx/"
+      ]
     },
     {
-      "matchPackageNames": ["eslint"],
-      "matchPackagePrefixes": ["@angular-eslint/", "@typescript-eslint/"],
+      "matchPackageNames": [
+        "eslint",
+        "@angular-eslint/{/,}**",
+        "@typescript-eslint/{/,}**"
+      ],
       "groupName": "eslint dependencies"
     },
     {
@@ -42,16 +50,34 @@
       "groupName": "typescript dependencies"
     },
     {
-      "matchPackagePatterns": ["*"],
-      "excludePackageNames": ["typescript", "tslib", "eslint", "nx", "bootstrap"],
-      "excludePackagePatterns": ["@angular-eslint/", "@typescript-eslint/", "^@angular/", "^@nx/", "^@angular-devkit/", "nx"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "groupName": "minor-updates"
+      "groupName": "minor-updates",
+      "matchPackageNames": [
+        "*",
+        "!typescript",
+        "!tslib",
+        "!eslint",
+        "!nx",
+        "!bootstrap",
+        "!/@angular-eslint//",
+        "!/@typescript-eslint//",
+        "!/^@angular//",
+        "!/^@nx//",
+        "!/^@angular-devkit//",
+        "!/nx/"
+      ]
     },
     {
       "matchUpdateTypes": ["major"],
       "groupName": "major-update"
     }
   ],
-  "extends": ["config:base", ":pinVersions", ":unpublishSafe", ":prNotPending", ":preserveSemverRanges", ":rebaseStalePrs"]
+  "extends": [
+    "config:recommended",
+    ":pinVersions",
+    "npm:unpublishSafe",
+    ":prNotPending",
+    ":preserveSemverRanges",
+    ":rebaseStalePrs"
+  ]
 }

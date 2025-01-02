@@ -26,19 +26,10 @@
     {
       "groupName": "nx workspace",
       "enabled": false,
-      "matchPackageNames": [
-        "/^@angular//",
-        "/^@nx//",
-        "/^@angular-devkit//",
-        "/nx/"
-      ]
+      "matchPackageNames": ["/^@angular//", "/^@nx//", "/^@angular-devkit//", "/nx/"]
     },
     {
-      "matchPackageNames": [
-        "eslint",
-        "@angular-eslint/{/,}**",
-        "@typescript-eslint/{/,}**"
-      ],
+      "matchPackageNames": ["eslint", "@angular-eslint/{/,}**", "@typescript-eslint/{/,}**"],
       "groupName": "eslint dependencies"
     },
     {
@@ -72,12 +63,5 @@
       "groupName": "major-update"
     }
   ],
-  "extends": [
-    "config:recommended",
-    ":pinVersions",
-    "npm:unpublishSafe",
-    ":prNotPending",
-    ":preserveSemverRanges",
-    ":rebaseStalePrs"
-  ]
+  "extends": ["config:recommended", ":pinVersions", "npm:unpublishSafe", ":prNotPending", ":preserveSemverRanges", ":rebaseStalePrs"]
 }

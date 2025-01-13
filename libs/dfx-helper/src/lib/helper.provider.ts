@@ -6,7 +6,6 @@ import {
   HELPER_MOBILE_BREAKPOINT,
   HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS,
 } from './config';
-import { getLogMessage } from 'dfts-helper';
 import {
   BaseUrlInterceptorFeature,
   HelperFeatureKind,
@@ -20,7 +19,6 @@ import { provideIsMobileService } from './services/is-mobile';
 import { provideWindow } from './window-provider';
 
 export function provideDfxHelper(...features: HelperFeatures[]): EnvironmentProviders {
-  console.log(getLogMessage('INFO', 'provideDfxHelper', 'setup', 'Features'), features);
   return makeEnvironmentProviders([features.map((it) => it.providers)]);
 }
 

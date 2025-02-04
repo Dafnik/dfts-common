@@ -19,7 +19,6 @@ import { IconFeatures } from './icons.feature';
 import { DEFAULT_ICON_SIZE } from './icons.config';
 import { toEscapedName } from './internal/toEscapedName';
 import { provideHttpClient } from '@angular/common/http';
-import { thr_sleep } from 'dfts-helper';
 import { isPlatformBrowser } from '@angular/common';
 import { inject, PLATFORM_ID } from '@angular/core';
 
@@ -68,7 +67,7 @@ describe('IconFeatures ', () => {
 
     fixture.detectChanges();
 
-    await thr_sleep(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // @ts-ignore
     expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle-fill')]);
@@ -96,7 +95,7 @@ describe('IconFeatures ', () => {
 
     fixture.detectChanges();
 
-    await thr_sleep(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // @ts-ignore
     expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle-fill')]);

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   template: `
@@ -11,7 +12,17 @@ import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons'
     </div>
   `,
   imports: [BiComponent],
-  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
+  providers: [
+    provideBi(
+      withCDN(() => {
+        const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+        console.log('injection test', isBrowser);
+
+        return 'https://playground.dafnik.me/bootstrap-icons/icons';
+      }),
+    ),
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-load-icon',
 })

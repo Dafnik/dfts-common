@@ -3,11 +3,25 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BiComponent } from './icon.component';
-import { provideBi, provideIcons, provideLocalIconsLoader, withColor, withHeight, withIcons, withSize, withWidth } from './icons.provider';
+import {
+  provideBi,
+  provideIcons,
+  provideLocalIconsLoader,
+  withCDN,
+  withColor,
+  withHeight,
+  withIcons,
+  withSize,
+  withWidth,
+} from './icons.provider';
 import { allIcons, xCircleFill, zeroCircle } from './generated-index';
 import { IconFeatures } from './icons.feature';
 import { DEFAULT_ICON_SIZE } from './icons.config';
 import { toEscapedName } from './internal/toEscapedName';
+import { provideHttpClient } from '@angular/common/http';
+import { thr_sleep } from 'dfts-helper';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, PLATFORM_ID } from '@angular/core';
 
 describe('IconFeatures ', () => {
   it('test defaults', () => {
@@ -35,6 +49,54 @@ describe('IconFeatures ', () => {
     fixture.componentRef.setInput('name', 'x-circle-fill');
 
     fixture.detectChanges();
+
+    // @ts-ignore
+    expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle-fill')]);
+
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'width')).toBe(DEFAULT_ICON_SIZE);
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'height')).toBe(DEFAULT_ICON_SIZE);
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'viewBox')).toBe('0 0 16 16');
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'fill')).toBe('currentColor');
+  });
+
+  it('test withCDN string', async () => {
+    const { fixture, component, nativeElement } = getNewConfiguration(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'));
+
+    expect(component.iconLoader).toBeDefined();
+
+    fixture.componentRef.setInput('name', 'x-circle-fill');
+
+    fixture.detectChanges();
+
+    await thr_sleep(1000);
+
+    // @ts-ignore
+    expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle-fill')]);
+
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'width')).toBe(DEFAULT_ICON_SIZE);
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'height')).toBe(DEFAULT_ICON_SIZE);
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'viewBox')).toBe('0 0 16 16');
+    expect(getAttributeValue(nativeElement.querySelector('svg')?.outerHTML, 'fill')).toBe('currentColor');
+  });
+
+  it('test withCDN function', async () => {
+    const { fixture, component, nativeElement } = getNewConfiguration(
+      withCDN(() => {
+        const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+        console.log('injection test', isBrowser);
+
+        return 'https://playground.dafnik.me/bootstrap-icons/icons';
+      }),
+    );
+
+    expect(component.iconLoader).toBeDefined();
+
+    fixture.componentRef.setInput('name', 'x-circle-fill');
+
+    fixture.detectChanges();
+
+    await thr_sleep(1000);
 
     // @ts-ignore
     expect(nativeElement.querySelector('svg')?.outerHTML).toBe(allIcons[toEscapedName('x-circle-fill')]);
@@ -176,7 +238,7 @@ function getAttributeValue(text: string | undefined, attributeName: string): str
 function getNewConfiguration(...features: IconFeatures[]) {
   void TestBed.configureTestingModule({
     imports: [BiComponent],
-    providers: [provideBi(...features)],
+    providers: [provideHttpClient(), provideBi(...features)],
   }).compileComponents();
 
   const fixture = TestBed.createComponent(BiComponent) as ComponentFixture<BiComponent>;

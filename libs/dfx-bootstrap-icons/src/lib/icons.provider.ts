@@ -34,16 +34,28 @@ export function provideLocalIconsLoader(): Provider {
   };
 }
 
-export function provideCDNIconsLoader(...cdnUrls: string[]): Provider {
-  const randomCDNUrl = cdnUrls[Math.floor(Math.random() * cdnUrls.length)];
+type URLFactory = () => string;
+
+export function provideCDNIconsLoader(cdnUrlsOrFactories: URLFactory): Provider;
+export function provideCDNIconsLoader(...cdnUrlsOrFactories: string[]): Provider;
+export function provideCDNIconsLoader(...cdnUrlsOrFactories: (string | URLFactory)[]): Provider;
+export function provideCDNIconsLoader(...cdnUrlsOrFactories: (string | URLFactory)[]): Provider {
   return {
     provide: ICONS_LOADER,
     useFactory: (): ((name: string) => Observable<string | undefined>) => {
       const httpClient = inject(HttpClient);
 
+      let url: string;
+      const first = cdnUrlsOrFactories[0];
+      if (typeof first === 'string') {
+        url = cdnUrlsOrFactories[Math.floor(Math.random() * cdnUrlsOrFactories.length)] as string;
+      } else {
+        url = first();
+      }
+
       return (name: string): Observable<string | undefined> => {
         return httpClient
-          .get<string>(`${randomCDNUrl}/${name}.svg`, {
+          .get<string>(`${url}/${name}.svg`, {
             headers: new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8'),
             context: new HttpContext().set(ICON_CACHE_INTERCEPTOR, true),
             // @ts-expect-error Weird angular things
@@ -51,9 +63,9 @@ export function provideCDNIconsLoader(...cdnUrls: string[]): Provider {
           })
           .pipe(
             catchError((error: HttpErrorResponse) => {
-              console.error(error);
+              console.warn(`BiComponent: Failed loading icon "${name}"`, error);
               if (error.status === 404) {
-                console.warn(`BiComponent: Icon ${name} not found`);
+                console.warn(`BiComponent: Icon "${name}" not found`);
               }
               return of(undefined);
             }),
@@ -63,10 +75,12 @@ export function provideCDNIconsLoader(...cdnUrls: string[]): Provider {
   };
 }
 
-export function withCDN(...cdnUrls: string[]): IconCDNFeature {
+export function withCDN(cdnUrlsOrFactories: URLFactory): IconCDNFeature;
+export function withCDN(...cdnUrlsOrFactories: string[]): IconCDNFeature;
+export function withCDN(...cdnUrlsOrFactories: (string | URLFactory)[]): IconCDNFeature {
   return {
     kind: IconFeatureKind.ICON_CDN,
-    providers: [provideCDNIconsLoader(...cdnUrls)],
+    providers: [provideCDNIconsLoader(...cdnUrlsOrFactories)],
   };
 }
 

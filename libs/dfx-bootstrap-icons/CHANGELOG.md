@@ -1,4 +1,13 @@
  
+## [3.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-3.0.0...dfx-bootstrap-icons-3.0.1) (2025-02-04)
+
+
+### Features
+
+* **dfx-bootstrap-icons:** add withCDN url function ([641cbb9](https://github.com/Dafnik/dfts-common/commit/641cbb960a3b83b7b8853a751c4ab2cf7b92ee6d))
+
+
+
 # [3.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-2.1.0...dfx-bootstrap-icons-3.0.0) (2024-12-09)
 
 

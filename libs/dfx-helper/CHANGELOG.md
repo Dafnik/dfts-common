@@ -1,4 +1,14 @@
  
+## [9.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-9.0.0...dfx-helper-9.0.1) (2025-02-04)
+
+
+### Features
+
+* **dfx-helper:** add sanitize-html pipe ([2708dc1](https://github.com/Dafnik/dfts-common/commit/2708dc13d2229b8df255b1da5a8c51f9e3f6137b))
+* **dfx-helper:** remove helper provider console log ([e484673](https://github.com/Dafnik/dfts-common/commit/e484673cfd4109700e2e6354ae03290f3280c0e1))
+
+
+
 # [9.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-8.0.1...dfx-helper-9.0.0) (2024-12-09)
 
 

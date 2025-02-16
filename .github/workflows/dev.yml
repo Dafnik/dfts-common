@@ -4,9 +4,8 @@ on:
   pull_request:
   push:
     branches:
-      - '*' # matches every branch that doesn't contain a '/'
-      - '*/*' # matches every branch containing a single '/'
-      - '**' # matches every branch
+      - main
+      - develop
 
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:

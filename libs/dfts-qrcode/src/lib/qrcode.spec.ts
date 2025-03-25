@@ -1,6 +1,7 @@
-import { s_stripWhitespace } from 'dfts-helper';
 import { generateQrCodeSVGString } from './svg';
 import { generateQrCodeMatrix } from './matrix';
+
+export const s_stripWhitespace = (text: string): string => text.trim().replace(/\s/g, '') ?? '';
 
 describe('QRCode', () => {
   it('generate correct Numeric qrcode svg', () => {

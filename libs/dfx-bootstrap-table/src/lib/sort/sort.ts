@@ -89,7 +89,6 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
     return this._direction;
   }
   set direction(direction: SortDirection) {
-    // @ts-expect-error ngDevMode not existing
     if (direction && direction !== 'asc' && direction !== 'desc' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSortInvalidDirectionError(direction);
     }
@@ -126,7 +125,6 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
    * collection of NgbSortables.
    */
   register(sortable: NgbSortable): void {
-    // @ts-expect-error ngDevMode not existing
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       if (!sortable.id) {
         throw getSortHeaderMissingIdError();

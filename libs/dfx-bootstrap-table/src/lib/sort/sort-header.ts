@@ -126,7 +126,6 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
       optional: true,
     });
 
-    // @ts-expect-error ngDevMode not existing
     if (!this._sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSortHeaderNotContainedWithinSortError();
     }

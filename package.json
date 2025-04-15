@@ -27,7 +27,7 @@
     "@angular/platform-browser-dynamic": "19.2.4",
     "@angular/router": "19.2.4",
     "@nx/angular": "20.7.0",
-    "bootstrap": "5.3.3",
+    "bootstrap": "5.3.5",
     "openapi-typescript-helpers": "0.0.15",
     "rxjs": "7.8.2",
     "tslib": "2.6.3",

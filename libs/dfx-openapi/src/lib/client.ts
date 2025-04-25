@@ -67,6 +67,16 @@ export type HttpClientResponse<T extends Record<string | number, any>, Media ext
   Media
 >;
 
+export type ClientRequestMethod<Paths extends Record<string, Record<HttpMethod, any>>, Media extends MediaType> = <
+  Method extends HttpMethod,
+  Path extends PathsWithMethod<Paths, Method>,
+  Init extends MaybeOptionalInit<Paths[Path], Method>,
+>(
+  method: Method,
+  url: Path,
+  ...init: InitParam<Init>
+) => Observable<HttpClientResponse<Paths[Path][Method], Media>>;
+
 export type QuerySerializer<T> = (
   query: T extends { parameters: any } ? NonNullable<T['parameters']['query']> : Record<string, unknown>,
 ) => string;
@@ -164,6 +174,10 @@ export class OpenAPIHttpClient<Paths extends Record<string, any>, Media extends 
         throw 'Unknown method';
     }
   }
+
+  request: ClientRequestMethod<Paths, Media> = (method, path, ...options) => {
+    return this.core(method, path, options);
+  };
 
   get: ClientMethod<Paths, 'get', Media> = (path, ...options) => {
     return this.core('get', path, options);

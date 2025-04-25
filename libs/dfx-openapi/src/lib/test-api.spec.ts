@@ -19,6 +19,20 @@ describe('OpenAPIHttpClient type tests', () => {
 
   it('check get type with query params', () => {
     api
+      .request('get', '/v1/team', {
+        params: {
+          query: {
+            page: 1,
+            size: 1,
+            sort: ['name', 'desc'],
+          },
+        },
+      })
+      .subscribe((response) => {
+        const numberOfItems = response.numberOfItems;
+        const numberOfPages = response.numberOfPages;
+      });
+    api
       .get('/v1/team', {
         params: {
           query: {

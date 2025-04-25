@@ -1,4 +1,13 @@
  
+## [0.1.2](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.1.1...dfx-openapi-0.1.2) (2025-04-25)
+
+
+### Features
+
+* **dfx-openapi:** arbitrary method ([f4cf76a](https://github.com/Dafnik/dfts-common/commit/f4cf76a9165c7583d24990783bf0956c8ed6654f))
+
+
+
 ## [0.1.1](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.1.0...dfx-openapi-0.1.1) (2024-12-09)
 
 

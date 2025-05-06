@@ -30,7 +30,7 @@
     "bootstrap": "5.3.5",
     "openapi-typescript-helpers": "0.0.15",
     "rxjs": "7.8.2",
-    "tslib": "2.6.3",
+    "tslib": "2.8.1",
     "zone.js": "0.15.0"
   },
   "devDependencies": {
@@ -79,6 +79,6 @@
     "terser-webpack-plugin": "5.3.14",
     "ts-jest": "29.3.2",
     "ts-node": "10.9.2",
-    "typescript": "5.7.3"
+    "typescript": "5.8.3"
   }
 }

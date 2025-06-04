@@ -1,5 +1,3 @@
-import { UndefinedOrNullOr } from '../../types';
-
 /**
  * Extracts the values of a specific property from an array of objects.
  *
@@ -10,6 +8,6 @@ import { UndefinedOrNullOr } from '../../types';
  * @returns {T[keyType][]} An array of the extracted values.
  */
 export function a_pluck<T, keyType extends keyof T>(array: T[], key: keyType): T[keyType][];
-export function a_pluck<T, keyType extends keyof T>(array: UndefinedOrNullOr<T[]>, key: keyType): T[keyType][] | undefined {
+export function a_pluck<T, keyType extends keyof T>(array: T[] | undefined | null, key: keyType): T[keyType][] | undefined {
   return array?.map((item) => item[key]);
 }

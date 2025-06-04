@@ -1,12 +1,10 @@
-import { UndefinedOrNullOr } from '../../../types';
-
 /**
  * Converts string or number to boolean
  * @param {string|number|boolean} value Value to convert
  * @return {boolean} Returns <code>true</code> if value is <code>"1"</code>, <code>1</code> or <code>"true"</code>,
  * <code>false</code> if not
  */
-export const b_from = (value: UndefinedOrNullOr<string | number | boolean>): boolean => {
+export const b_from = (value: string | number | boolean | undefined | null): boolean => {
   if (value == null) {
     return false;
   }

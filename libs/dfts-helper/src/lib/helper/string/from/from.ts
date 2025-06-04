@@ -1,11 +1,9 @@
-import { UndefinedOrNullOr } from '../../../types';
-
 /**
  * Converts nearly everything to string
  * @param {boolean|number|null|undefined|string} value Value to convert
  * @return {string}
  */
-export const s_from = (value: UndefinedOrNullOr<string | number | boolean>): string => {
+export const s_from = (value: string | number | boolean | undefined | null): string => {
   if (value == null) {
     return '';
   }

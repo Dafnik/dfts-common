@@ -1,11 +1,6 @@
-import { d_formatWithHoursMinutesAndSeconds } from '../helper/date/format-date-with-hours-minutes-seconds/format-date-with-hours-minutes-seconds';
 import { LogType, maxClassNameLength, maxMethodeNameLength } from './loggerInfo';
 
 export function getLogMessage(logType: LogType, className: string, methodeName: string, description: string): string {
-  const date = new Date();
-  const milli = date.getMilliseconds();
-  const milliS = milli > 99 ? milli : milli > 9 ? milli + ' ' : milli + '  ';
-
   let logText = 'Unknown ';
   switch (logType) {
     case 'LOG':
@@ -34,5 +29,18 @@ export function getLogMessage(logType: LogType, className: string, methodeName: 
     methodeName += ' ';
   }
 
-  return `${d_formatWithHoursMinutesAndSeconds(date)}:${milliS} | ${logText} | ${className} | ${methodeName} | ${description}`;
+  return `${logHeaderDateFormatter()} | ${logText} | ${className} | ${methodeName} | ${description}`;
+}
+
+function logHeaderDateFormatter(): string {
+  const d = new Date();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const year = d.getFullYear();
+  const hour = d.getHours().toString().padStart(2, '0');
+  const minutes = d.getMinutes().toString().padStart(2, '0');
+  const seconds = d.getSeconds().toString().padStart(2, '0');
+  const millis = d.getMilliseconds().toString().padStart(2, '0');
+
+  return `${[year, month, day].join('-')} ${[hour, minutes, seconds].join(':')}:${millis}`;
 }

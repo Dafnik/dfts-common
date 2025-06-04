@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { UndefinedOrNullOr, s_isUrl } from 'dfts-helper';
+import { s_isUrl } from 'dfts-helper';
 
 @Pipe({
   name: 's_isUrl',
@@ -8,7 +8,7 @@ import { UndefinedOrNullOr, s_isUrl } from 'dfts-helper';
   pure: true,
 })
 export class DfxIsUrlPipe implements PipeTransform {
-  transform(text: UndefinedOrNullOr<string>): boolean {
+  transform(text: string | undefined | null): boolean {
     return s_isUrl(text);
   }
 }

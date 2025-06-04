@@ -1,5 +1,3 @@
-import { UndefinedOrNullOr } from '../../../types';
-
 const isUrlRegEx = new RegExp(
   '^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -15,6 +13,6 @@ const isUrlRegEx = new RegExp(
  * @param {string} url
  * @return boolean
  */
-export const s_isUrl = (url?: UndefinedOrNullOr<string>): boolean => isUrlRegEx.test(url ?? '');
+export const s_isUrl = (url?: string | undefined | null): boolean => isUrlRegEx.test(url ?? '');
 
-export const s_isNoUrl = (url?: UndefinedOrNullOr<string>): boolean => !s_isUrl(url);
+export const s_isNoUrl = (url?: string | undefined | null): boolean => !s_isUrl(url);

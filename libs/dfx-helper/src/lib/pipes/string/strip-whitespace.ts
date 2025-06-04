@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { UndefinedOrNullOr, s_stripWhitespace } from 'dfts-helper';
+import { s_stripWhitespace } from 'dfts-helper';
 
 @Pipe({
   name: 's_stripWhitespace',
@@ -8,7 +8,7 @@ import { UndefinedOrNullOr, s_stripWhitespace } from 'dfts-helper';
   pure: true,
 })
 export class DfxStripWhitespacePipe implements PipeTransform {
-  transform(text: UndefinedOrNullOr<string>): string {
+  transform(text: string | undefined | null): string {
     return s_stripWhitespace(text);
   }
 }

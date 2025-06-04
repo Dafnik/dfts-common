@@ -1,4 +1,3 @@
-import { UndefinedOrNullOr } from '../../types';
 import { b_is } from '../boolean/is/is';
 import { d_is } from '../date/is/is';
 import { n_is } from '../number/is/is';
@@ -12,7 +11,7 @@ import { st_remove } from './remove';
  * @param {unknown} value
  * @param {number | undefined} ttl Time to live in seconds (no guarantee it is going to be deleted on time)
  */
-export function st_set(key: string, value: UndefinedOrNullOr<string | object | Date | boolean | number | unknown>, ttl?: number): void {
+export function st_set(key: string, value: string | object | Date | boolean | number | unknown | undefined | null, ttl?: number): void {
   if (value == null) {
     st_remove(key);
     return;

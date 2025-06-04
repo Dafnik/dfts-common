@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { IHasName, UndefinedOrNullOr } from 'dfts-helper';
+import { IHasName } from 'dfts-helper';
 
 @Pipe({
   name: 'a_mapName',
@@ -8,7 +8,7 @@ import { IHasName, UndefinedOrNullOr } from 'dfts-helper';
   pure: true,
 })
 export class DfxArrayMapNamePipe implements PipeTransform {
-  transform(it: UndefinedOrNullOr<IHasName[]>): string[] | undefined {
+  transform(it: IHasName[] | undefined | null): string[] | undefined {
     return it?.map((it) => it.name);
   }
 }
@@ -19,7 +19,7 @@ export class DfxArrayMapNamePipe implements PipeTransform {
   pure: true,
 })
 export class DfxMapNamePipe implements PipeTransform {
-  transform(it: UndefinedOrNullOr<IHasName>): string {
+  transform(it: IHasName | undefined | null): string {
     return it?.name ?? '';
   }
 }

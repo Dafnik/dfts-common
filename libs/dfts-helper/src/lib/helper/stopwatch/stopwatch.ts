@@ -1,5 +1,3 @@
-import { UndefinedOr } from '../../types';
-
 /**
  * Stopwatch - Stops the time
  * <br> Use <code>start()</code> to start it and <code>stop()</code> to stop it. You can also reset it via
@@ -14,7 +12,7 @@ import { UndefinedOr } from '../../types';
 export class Stopwatch {
   private startedAt: Date | undefined;
   private endedAt: Date | undefined;
-  private laps: Map<number, UndefinedOr<string>> = new Map<number, UndefinedOr<string>>();
+  private laps: Map<number, string | undefined> = new Map<number, string | undefined>();
 
   constructor(start = false) {
     if (start) {
@@ -101,7 +99,7 @@ export class Stopwatch {
   reset(): void {
     this.startedAt = undefined;
     this.endedAt = undefined;
-    this.laps = new Map<number, UndefinedOr<string>>();
+    this.laps = new Map<number, string | undefined>();
   }
 
   /**
@@ -155,9 +153,9 @@ export class Stopwatch {
 
   /**
    * Returns all laps
-   * @return {Map<number, UndefinedOr<string>>} All laps
+   * @return {Map<number, string | undefined>} All laps
    */
-  getLaps(): Map<number, UndefinedOr<string>> {
+  getLaps(): Map<number, string | undefined> {
     return this.laps;
   }
 

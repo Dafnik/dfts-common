@@ -1,0 +1,7 @@
+ignoredBuiltDependencies:
+  - lmdb
+onlyBuiltDependencies:
+  - esbuild
+  - nx
+patchedDependencies:
+  '@nx/devkit': patches/@nx__devkit.patch

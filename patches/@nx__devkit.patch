@@ -1,0 +1,13 @@
+diff --git a/src/utils/config-utils.js b/src/utils/config-utils.js
+index 312787dacade3c1c9929a340ce73a6cfe24f7b04..7f3d6a442ea1a1f981ada7057158bd7960f6be09 100644
+--- a/src/utils/config-utils.js
++++ b/src/utils/config-utils.js
+@@ -88,7 +88,7 @@ async function load(path) {
+     try {
+         // Try using `require` first, which works for CJS modules.
+         // Modules are CJS unless it is named `.mjs` or `package.json` sets type to "module".
+-        return loadCommonJS(path);
++        return await loadCommonJS(path);
+     }
+     catch (e) {
+         if (e.code === 'ERR_REQUIRE_ESM') {

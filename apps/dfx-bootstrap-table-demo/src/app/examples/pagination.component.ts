@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal, viewChild } from '@angular/core';
 
 import { DfxPaginationModule, DfxTableModule, NgbPaginator, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { Helper } from '../Helper';
+import { Helper } from '../helper';
 
 @Component({
   selector: 'app-paginator',

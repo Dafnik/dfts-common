@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { DfxTableModule, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { Helper } from '../Helper';
+import { Helper } from '../helper';
 
 @Component({
   selector: 'app-simple',

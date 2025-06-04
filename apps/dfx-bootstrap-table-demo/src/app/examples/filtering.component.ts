@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { DfxTableModule, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { Helper } from '../Helper';
+import { Helper } from '../helper';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

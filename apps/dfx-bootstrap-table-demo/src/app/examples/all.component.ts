@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, signal, viewChild } from 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { DfxPaginationModule, DfxSortModule, DfxTableModule, NgbPaginator, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
-import { Helper } from '../Helper';
+import { Helper } from '../helper';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

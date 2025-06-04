@@ -65,11 +65,11 @@ This eliminates all of the following:
 
 ### Version compatibility
 
-| Angular | dfx-bootstrap-table | openapi-typescript-helpers |
-| ------- | ------------------- | -------------------------- |
-| 19.x.x  | 0.1.0               | \>=0.0.15                  |
-| 18.x.x  | 0.0.3               | \>=0.0.15                  |
-| 18.x.x  | 0.0.2               | 0.0.13                     |
+| Angular | dfx-openapi | openapi-typescript-helpers |
+| ------- | ----------- | -------------------------- |
+| 19.x.x  | 0.1.0       | \>=0.0.15                  |
+| 18.x.x  | 0.0.3       | \>=0.0.15                  |
+| 18.x.x  | 0.0.2       | 0.0.13                     |
 
 ## Setup
 

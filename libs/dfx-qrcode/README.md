@@ -24,7 +24,6 @@
 - ES-module based
 - Tiny (~10.2kB minified + gzipped)
 - Accessible
-- Supports Server-Side Rendering (Angular Universal)
 - Supports Standalone Component API
 - Supports Canvas, PNG, and SVG
 - Works with zone-less applications

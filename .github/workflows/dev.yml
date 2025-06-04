@@ -183,9 +183,9 @@ jobs:
           path: ./dist/apps/playground/browser/
           retention-days: 1
 
-  deploy-apps:
+  deploy-playground:
     if: github.ref == 'refs/heads/main'
-    name: Deploy apps
+    name: Deploy playground
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

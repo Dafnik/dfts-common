@@ -4,6 +4,8 @@
   "peerDependencies": {
     "@angular/core": "19",
     "@angular/forms": "19",
+    "@angular/common": "19",
+    "dfx-helper": "*",
     "dfx-bootstrap-icons": "*"
   },
   "dependencies": {},

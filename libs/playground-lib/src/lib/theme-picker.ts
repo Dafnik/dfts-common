@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BiComponent, BiName, provideBi, withCDN, withColor } from 'dfx-bootstrap-icons';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { injectWindow } from 'dfx-helper';
 
 interface Theme {
   id: 'auto' | 'dark' | 'light';
@@ -44,14 +46,18 @@ export class ThemePicker {
 
   currentTheme = signal<Theme>(this.themes[0]);
 
+  private document = inject(DOCUMENT);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private window = injectWindow();
+
   constructor() {
-    const theme = this.themes.find((t) => t.id === localStorage.getItem('theme'));
+    const theme = this.isBrowser ? this.themes.find((t) => t.id === localStorage.getItem('theme')) : undefined;
     if (theme) {
       this.currentTheme.set(theme);
     }
     this.setTheme(this.getPreferredTheme().id);
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    this.window?.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       if (this.currentTheme().id !== 'light' || this.currentTheme().id !== 'dark') {
         this.setTheme(this.getPreferredTheme().id);
       }
@@ -61,7 +67,7 @@ export class ThemePicker {
   getPreferredTheme(): Theme {
     if (this.currentTheme) {
       return this.currentTheme();
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    } else if (this.window?.matchMedia('(prefers-color-scheme: dark)').matches) {
       return this.themes.find((t) => t.id === 'dark')!;
     } else {
       return this.themes.find((t) => t.id === 'light')!;
@@ -71,11 +77,13 @@ export class ThemePicker {
   setTheme(id: Theme['id']): void {
     const theme = this.themes.find((t) => t.id === id)!;
     this.currentTheme.set(theme);
-    localStorage.setItem('theme', theme.id);
-    if (theme.id === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-bs-theme', 'dark');
+    if (this.isBrowser) {
+      localStorage.setItem('theme', theme.id);
+    }
+    if (theme.id === 'auto' && this.window?.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.document.documentElement.setAttribute('data-bs-theme', 'dark');
     } else {
-      document.documentElement.setAttribute('data-bs-theme', theme.id);
+      this.document.documentElement.setAttribute('data-bs-theme', theme.id);
     }
   }
 }

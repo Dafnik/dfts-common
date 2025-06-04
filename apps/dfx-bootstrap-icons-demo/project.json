@@ -13,6 +13,11 @@
         "outputPath": "dist/apps/dfx-bootstrap-icons-demo",
         "index": "apps/dfx-bootstrap-icons-demo/src/index.html",
         "browser": "apps/dfx-bootstrap-icons-demo/src/main.ts",
+        "outputMode": "server",
+        "server": "apps/dfx-bootstrap-icons-demo/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/dfx-bootstrap-icons-demo/src/server.ts"
+        },
         "tsConfig": "apps/dfx-bootstrap-icons-demo/tsconfig.app.json",
         "assets": [
           "apps/dfx-bootstrap-icons-demo/src/favicon.ico",

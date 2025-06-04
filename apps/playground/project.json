@@ -13,6 +13,11 @@
         "outputPath": "dist/apps/playground",
         "index": "apps/playground/src/index.html",
         "browser": "apps/playground/src/main.ts",
+        "outputMode": "server",
+        "server": "apps/playground/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/playground/src/server.ts"
+        },
         "tsConfig": "apps/playground/tsconfig.app.json",
         "assets": ["apps/playground/src/favicon.ico", "apps/playground/src/assets"],
         "styles": ["apps/playground/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],

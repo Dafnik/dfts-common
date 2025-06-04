@@ -1,4 +1,10 @@
-import { inject, Provider } from '@angular/core';
+import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Provider, inject } from '@angular/core';
+
+import { Observable, catchError, of } from 'rxjs';
+
+import { ICON_CACHE_INTERCEPTOR } from './icons-cache.interceptor';
+import { ICONS_LOADER, ICONS_PICKED, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH } from './icons.config';
 import {
   IconCDNFeature,
   IconColorFeature,
@@ -9,12 +15,8 @@ import {
   IconSizeFeature,
   IconWidthFeature,
 } from './icons.feature';
-import { ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER, ICONS_PICKED } from './icons.config';
-import { ColorValueHex, IconsType } from './types';
-import { catchError, Observable, of } from 'rxjs';
-import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { ICON_CACHE_INTERCEPTOR } from './icons-cache.interceptor';
 import { toEscapedName } from './internal/toEscapedName';
+import { ColorValueHex, IconsType } from './types';
 
 export function provideBi(...features: IconFeatures[]): Provider[] {
   return features.map((it) => it.providers);

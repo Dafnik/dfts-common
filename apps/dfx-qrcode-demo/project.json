@@ -1,61 +1,61 @@
 {
-  "name": "dfx-qrcode-demo",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
+  "name": "dfx-qrcode-demo",
   "prefix": "dfx-qrcode-demo",
+  "projectType": "application",
   "sourceRoot": "apps/dfx-qrcode-demo/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "browser": "apps/dfx-qrcode-demo/src/main.ts",
-        "outputPath": "dist/apps/dfx-qrcode-demo",
-        "index": "apps/dfx-qrcode-demo/src/index.html",
-        "tsConfig": "apps/dfx-qrcode-demo/tsconfig.app.json",
-        "assets": ["apps/dfx-qrcode-demo/src/favicon.ico", "apps/dfx-qrcode-demo/src/assets"],
-        "styles": ["apps/dfx-qrcode-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
-        "scripts": []
-      },
       "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true
+        },
         "production": {
+          "baseHref": "/qrcode/",
           "budgets": [
             {
-              "type": "initial",
+              "maximumError": "1mb",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "type": "initial"
             },
             {
-              "type": "anyComponentStyle",
+              "maximumError": "4kb",
               "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "type": "anyComponentStyle"
             }
           ],
-          "outputHashing": "all",
-          "baseHref": "/qrcode/"
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
+          "outputHashing": "all"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "assets": ["apps/dfx-qrcode-demo/src/favicon.ico", "apps/dfx-qrcode-demo/src/assets"],
+        "browser": "apps/dfx-qrcode-demo/src/main.ts",
+        "index": "apps/dfx-qrcode-demo/src/index.html",
+        "outputPath": "dist/apps/dfx-qrcode-demo",
+        "scripts": [],
+        "styles": ["apps/dfx-qrcode-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+        "tsConfig": "apps/dfx-qrcode-demo/tsconfig.app.json"
+      },
+      "outputs": ["{options.outputPath}"]
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
       "configurations": {
-        "production": {
-          "buildTarget": "dfx-qrcode-demo:build:production"
-        },
         "development": {
           "buildTarget": "dfx-qrcode-demo:build:development"
+        },
+        "production": {
+          "buildTarget": "dfx-qrcode-demo:build:production"
         }
       },
+      "continuous": true,
       "defaultConfiguration": "development",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     }
   }
 }

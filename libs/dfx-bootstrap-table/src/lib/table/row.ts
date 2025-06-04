@@ -6,8 +6,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-import { booleanAttribute, ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
 import {
   CdkCellOutlet,
   CdkFooterRow,
@@ -18,6 +16,7 @@ import {
   CdkRow,
   CdkRowDef,
 } from '@angular/cdk/table';
+import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation, booleanAttribute } from '@angular/core';
 
 // We can't reuse `CDK_ROW_TEMPLATE` because it's incompatible with local compilation mode.
 const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;

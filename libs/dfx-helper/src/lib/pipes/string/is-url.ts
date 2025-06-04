@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { s_isUrl, UndefinedOrNullOr } from 'dfts-helper';
+
+import { UndefinedOrNullOr, s_isUrl } from 'dfts-helper';
 
 @Pipe({
   name: 's_isUrl',

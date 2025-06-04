@@ -1,42 +1,42 @@
 {
-  "name": "dfx-helper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "dfx-helper",
   "projectType": "library",
   "sourceRoot": "libs/dfx-helper/src",
   "tags": [],
   "targets": {
     "build": {
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/dfx-helper/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "libs/dfx-helper/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
       "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/dfx-helper/ng-package.json"
       },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/dfx-helper/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/dfx-helper/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"]
     },
     "test": {
-      "options": {
-        "passWithNoTests": true
-      },
       "configurations": {
         "ci": {
           "ci": true,
           "coverage": true
         }
+      },
+      "options": {
+        "passWithNoTests": true
       }
     },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "push": false,
-        "changelogHeader": " "
+        "changelogHeader": " ",
+        "push": false
       }
     }
   }

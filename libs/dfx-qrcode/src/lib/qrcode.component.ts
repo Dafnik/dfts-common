@@ -1,18 +1,29 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  effect,
   ElementRef,
   EventEmitter,
+  Output,
+  Renderer2,
+  ViewChild,
+  booleanAttribute,
+  effect,
   inject,
   input,
   numberAttribute,
-  Output,
-  Renderer2,
   signal,
-  ViewChild,
 } from '@angular/core';
+
+import {
+  generateMatrixOptions,
+  generateOptions,
+  generateQrCodeCanvas$,
+  generateQrCodeImage$,
+  generateQrCodeSVG$,
+  generateWithAccessibleOptions,
+  generateWithImageOptions,
+} from 'dfts-qrcode';
+
 import {
   QRCODE_ALLOW_EMPTY_STRING,
   QRCODE_COLOR_DARK,
@@ -27,21 +38,14 @@ import {
   QRCODE_SIZE,
   QRCODE_VERSION,
 } from './qrcode.config';
-import {
-  generateMatrixOptions,
-  generateOptions,
-  generateQrCodeCanvas$,
-  generateQrCodeImage$,
-  generateQrCodeSVG$,
-  generateWithAccessibleOptions,
-  generateWithImageOptions,
-} from 'dfts-qrcode';
 
 @Component({
   selector: 'qrcode',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  template: `<div #qrcElement [class]="cssClass()"></div>`,
+  template: `
+    <div #qrcElement [class]="cssClass()"></div>
+  `,
 })
 export class QRCodeComponent {
   allowEmptyString = input(inject(QRCODE_ALLOW_EMPTY_STRING), { transform: booleanAttribute });

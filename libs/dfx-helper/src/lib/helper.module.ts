@@ -1,5 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+
 import { getLogMessage } from 'dfts-helper';
+
 import { HelperFeatures } from './features';
 
 @NgModule()

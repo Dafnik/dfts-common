@@ -1,6 +1,8 @@
-import { QRCodeElementType } from './types';
 import { InjectionToken } from '@angular/core';
+
 import { ColorValueHex, QRCodeErrorCorrectionLevel, QRCodeVersion } from 'dfts-qrcode';
+
+import { QRCodeElementType } from './types';
 
 export const QRCODE_ALLOW_EMPTY_STRING = new InjectionToken<boolean>('QRCODE_ALLOW_EMPTY_STRING', {
   factory: () => false,

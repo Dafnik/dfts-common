@@ -1,7 +1,7 @@
 import { st_removeAll } from '../../storage/common';
+import { st_exists } from '../../storage/exists';
 import { st_set } from '../../storage/set';
 import { s_fromStorage } from './from-storage';
-import { st_exists } from '../../storage/exists';
 
 describe('StorageHelper', () => {
   beforeEach(() => {

@@ -1,26 +1,26 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  inject,
   Inject,
   InjectionToken,
   Input,
-  numberAttribute,
   OnDestroy,
   OnInit,
   Optional,
   Output,
   ViewEncapsulation,
+  booleanAttribute,
+  inject,
+  numberAttribute,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
 import { NgbPaginatorIntl } from './paginator-intl.service';
-import { FormsModule } from '@angular/forms';
-import { _IdGenerator } from '@angular/cdk/a11y';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal, viewChild } from '@angular/core';
 
 import { DfxSortModule, DfxTableModule, NgbSort, NgbTableDataSource } from 'dfx-bootstrap-table';
+
 import { Helper } from '../helper';
 
 @Component({
@@ -10,7 +11,7 @@ import { Helper } from '../helper';
   template: `
     <h1>Ordering</h1>
 
-    <table ngb-table [dataSource]="dataSource()" ngb-sort>
+    <table [dataSource]="dataSource()" ngb-table ngb-sort>
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell ngb-sort-header>#</th>
         <td *ngbCellDef="let event" ngb-cell>{{ event.id }}</td>
@@ -24,8 +25,8 @@ import { Helper } from '../helper';
       <ng-container ngbColumnDef="actions">
         <th *ngbHeaderCellDef ngb-header-cell>Actions</th>
         <td *ngbCellDef="let event" ngb-cell>
-          <button type="button" class="btn btn-sm m-1 btn-outline-success">Edit</button>
-          <button type="button" class="btn btn-sm m-1 btn-outline-danger">Delete</button>
+          <button class="btn btn-sm btn-outline-success m-1" type="button">Edit</button>
+          <button class="btn btn-sm btn-outline-danger m-1" type="button">Delete</button>
         </td>
       </ng-container>
 

@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
 // noinspection DuplicatedCode,ES6PreferShortImport
-
+import { isPlatformBrowser } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import { PLATFORM_ID, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { allIcons, xCircleFill, zeroCircle } from './generated-index';
 import { BiComponent } from './icon.component';
+import { DEFAULT_ICON_SIZE } from './icons.config';
+import { IconFeatures } from './icons.feature';
 import {
   provideBi,
   provideIcons,
@@ -14,13 +20,7 @@ import {
   withSize,
   withWidth,
 } from './icons.provider';
-import { allIcons, xCircleFill, zeroCircle } from './generated-index';
-import { IconFeatures } from './icons.feature';
-import { DEFAULT_ICON_SIZE } from './icons.config';
 import { toEscapedName } from './internal/toEscapedName';
-import { provideHttpClient } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
-import { inject, PLATFORM_ID } from '@angular/core';
 
 describe('IconFeatures ', () => {
   it('test defaults', () => {

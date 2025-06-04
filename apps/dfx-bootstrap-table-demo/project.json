@@ -1,67 +1,67 @@
 {
-  "name": "dfx-bootstrap-table-demo",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "dfx-bootstrap-table-demo",
   "projectType": "application",
   "sourceRoot": "apps/dfx-bootstrap-table-demo/src",
   "tags": [],
   "targets": {
     "build": {
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true
+        },
+        "production": {
+          "baseHref": "/bootstrap-table/",
+          "budgets": [
+            {
+              "maximumError": "1mb",
+              "maximumWarning": "500kb",
+              "type": "initial"
+            },
+            {
+              "maximumError": "4kb",
+              "maximumWarning": "2kb",
+              "type": "anyComponentStyle"
+            }
+          ],
+          "outputHashing": "all"
+        }
+      },
+      "defaultConfiguration": "production",
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/dfx-bootstrap-table-demo",
-        "index": "apps/dfx-bootstrap-table-demo/src/index.html",
+        "assets": ["apps/dfx-bootstrap-table-demo/src/favicon.ico", "apps/dfx-bootstrap-table-demo/src/assets"],
         "browser": "apps/dfx-bootstrap-table-demo/src/main.ts",
+        "index": "apps/dfx-bootstrap-table-demo/src/index.html",
+        "inlineStyleLanguage": "scss",
         "outputMode": "server",
+        "outputPath": "dist/apps/dfx-bootstrap-table-demo",
+        "polyfills": ["@angular/localize/init"],
+        "scripts": [],
         "server": "apps/dfx-bootstrap-table-demo/src/main.server.ts",
         "ssr": {
           "entry": "apps/dfx-bootstrap-table-demo/src/server.ts"
         },
-        "polyfills": ["@angular/localize/init"],
-        "tsConfig": "apps/dfx-bootstrap-table-demo/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": ["apps/dfx-bootstrap-table-demo/src/favicon.ico", "apps/dfx-bootstrap-table-demo/src/assets"],
         "styles": ["apps/dfx-bootstrap-table-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
-        "scripts": []
+        "tsConfig": "apps/dfx-bootstrap-table-demo/tsconfig.app.json"
       },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all",
-          "baseHref": "/bootstrap-table/"
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
+      "outputs": ["{options.outputPath}"]
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
-        "production": {
-          "buildTarget": "dfx-bootstrap-table-demo:build:production"
-        },
         "development": {
           "buildTarget": "dfx-bootstrap-table-demo:build:development"
+        },
+        "production": {
+          "buildTarget": "dfx-bootstrap-table-demo:build:production"
         }
       },
+      "continuous": true,
       "defaultConfiguration": "development",
-      "continuous": true
+      "executor": "@angular-devkit/build-angular:dev-server"
     }
   }
 }

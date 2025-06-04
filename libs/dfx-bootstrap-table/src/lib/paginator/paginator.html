@@ -1,9 +1,8 @@
 <div
-  class="d-flex flex-column-reverse flex-lg-row justify-content-center justify-content-lg-end align-items-end align-items-lg-center gap-3 gap-lg-5"
->
+  class="d-flex flex-column-reverse flex-lg-row justify-content-center justify-content-lg-end align-items-end align-items-lg-center gap-lg-5 gap-3">
   @if (!hidePageSize) {
-  <div class="d-inline-flex gap-2 align-items-center">
-    <small class="ws-nowrap" [attr.id]="_pageSizeLabelId"> {{ _intl.itemsPerPageLabel }} </small>
+  <div class="d-inline-flex align-items-center gap-2">
+    <small class="ws-nowrap" [attr.id]="_pageSizeLabelId">{{ _intl.itemsPerPageLabel }}</small>
 
     @if (_displayedPageSizeOptions.length > 1) {
     <select
@@ -12,8 +11,7 @@
       [ngModel]="pageSize"
       [disabled]="disabled"
       [attr.aria-labelledby]="_pageSizeLabelId"
-      (ngModelChange)="_changePageSize($any($event))"
-    >
+      (ngModelChange)="_changePageSize($any($event))">
       @for (pageSizeOption of _displayedPageSizeOptions; track pageSizeOption) {
       <option [ngValue]="pageSizeOption">{{ pageSizeOption }}</option>
       }
@@ -24,46 +22,43 @@
   </div>
   }
 
-  <div class="d-inline-flex align-items-center gap-3 gap-lg-5">
+  <div class="d-inline-flex align-items-center gap-lg-5 gap-3">
     <small aria-live="polite">{{ _intl.getRangeLabel(pageIndex, pageSize, length) }}</small>
 
     <ul [class]="'my-0 pagination' + (size ? ' pagination-' + size : '')">
       @if (showFirstLastButtons) {
       <li class="page-item" [class.disabled]="_previousButtonsDisabled()">
         <button
-          type="button"
           class="page-link"
+          type="button"
           (click)="firstPage()"
           [disabled]="_previousButtonsDisabled()"
           [attr.aria-label]="_intl.firstPageLabel"
-          [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null"
-        >
-          <span aria-hidden="true"> &laquo;&laquo;</span>
+          [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null">
+          <span aria-hidden="true">&laquo;&laquo;</span>
         </button>
       </li>
       }
 
       <li class="page-item" [class.disabled]="_previousButtonsDisabled()">
         <button
-          type="button"
           class="page-link"
+          type="button"
           (click)="previousPage()"
           [disabled]="_previousButtonsDisabled()"
           [attr.aria-label]="_intl.previousPageLabel"
-          [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null"
-        >
+          [attr.tabindex]="_previousButtonsDisabled() ? '-1' : null">
           <span aria-hidden="true">&laquo;</span>
         </button>
       </li>
       <li class="page-item" [class.disabled]="_nextButtonsDisabled()">
         <button
-          type="button"
           class="page-link"
+          type="button"
           (click)="nextPage()"
           [disabled]="_nextButtonsDisabled()"
           [attr.aria-label]="_intl.nextPageLabel"
-          [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null"
-        >
+          [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null">
           <span aria-hidden="true">&raquo;</span>
         </button>
       </li>
@@ -71,13 +66,12 @@
       @if(showFirstLastButtons) {
       <li class="page-item" [class.disabled]="_nextButtonsDisabled()">
         <button
-          type="button"
           class="page-link"
+          type="button"
           (click)="lastPage()"
           [disabled]="_nextButtonsDisabled()"
           [attr.aria-label]="_intl.lastPageLabel"
-          [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null"
-        >
+          [attr.tabindex]="_nextButtonsDisabled() ? '-1' : null">
           <span aria-hidden="true">&raquo;&raquo;</span>
         </button>
       </li>

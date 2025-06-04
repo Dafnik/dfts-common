@@ -1,11 +1,11 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es2022",
     "declaration": true,
     "declarationMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "target": "es2022"
   },
+  "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],
   "references": [

@@ -1,5 +1,5 @@
-import { getNumberOfBitsOfData } from './get-number-of-bits-of-data';
 import { ALPHANUMERIC_MAP, MODE_ALPHANUMERIC, MODE_NUMERIC, MODE_OCTET, MODE_TERMINATOR } from './const';
+import { getNumberOfBitsOfData } from './get-number-of-bits-of-data';
 
 /**
  * Returns the code words (sans ECC bits) for given data and configurations.

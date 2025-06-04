@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { debounceTime } from 'rxjs';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
 import { cl_copy } from 'dfts-helper';
-import { downloadQRCode, QRCodeComponent, QRCodeElementType } from 'dfx-qrcode';
 import { BiComponent } from 'dfx-bootstrap-icons';
+import { QRCodeComponent, QRCodeElementType, downloadQRCode } from 'dfx-qrcode';
 import { ThemePicker } from 'playground-lib';
 
 @Component({

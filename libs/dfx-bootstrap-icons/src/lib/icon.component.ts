@@ -1,19 +1,20 @@
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
-  effect,
   ElementRef,
+  Renderer2,
+  booleanAttribute,
+  effect,
   inject,
   input,
-  Renderer2,
 } from '@angular/core';
 
+import { Observable, Subscription, filter } from 'rxjs';
+
 import { BiName, BiNamesEnum } from './generated-index';
-import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH, ICONS_LOADER } from './icons.config';
+import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICONS_LOADER, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH } from './icons.config';
 import { ColorValueHex } from './types';
-import { filter, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'bi, *[bi]',

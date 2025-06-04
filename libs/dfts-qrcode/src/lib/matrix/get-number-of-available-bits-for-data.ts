@@ -1,5 +1,5 @@
-import { getNumberOfAvailableBitsByVersion } from './get-number-of-available-bits-by-version';
 import { VERSIONS } from './const';
+import { getNumberOfAvailableBitsByVersion } from './get-number-of-available-bits-by-version';
 
 /**
  * Gets the number of bits available for data portions (i.e., excludes ECC

@@ -1,14 +1,17 @@
 import { HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse } from '@angular/common/http';
-import { catchError, Observable, tap, throwError } from 'rxjs';
 import { inject } from '@angular/core';
-import { BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR } from './http-context-token';
+
+import { Observable, catchError, tap, throwError } from 'rxjs';
+
 import { getLogMessage } from 'dfts-helper';
+
 import {
   HELPER_BASE_URL,
   HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS,
   HELPER_LOGGING_INTERCEPTOR_IGNORE_PATHS,
   HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS,
 } from '../config';
+import { BASE_URL_INTERCEPTOR, LOGGING_INTERCEPTOR, POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR } from './http-context-token';
 
 export function shouldIntercept(req: HttpRequest<unknown>, BY_PASS?: HttpContextToken<boolean>, ignorePaths?: string[]): boolean {
   if (BY_PASS && req.context.get(BY_PASS)) {

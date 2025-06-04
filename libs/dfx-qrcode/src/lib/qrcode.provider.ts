@@ -1,5 +1,26 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
+
 import { QRCodeErrorCorrectionLevel } from 'dfts-qrcode';
+
+import {
+  QRCodeImageFeatureKind,
+  QRCodeImageFeatures,
+  QRCodeImageHeightFeature,
+  QRCodeImageSrcFeature,
+  QRCodeImageWidthFeature,
+} from './qrcode-image.feature';
+import {
+  QRCODE_ALLOW_EMPTY_STRING,
+  QRCODE_COLOR_DARK,
+  QRCODE_COLOR_LIGHT,
+  QRCODE_CSS_CLASS,
+  QRCODE_ELEMENT_TYPE,
+  QRCODE_ERROR_CORRECTION_LEVEL,
+  QRCODE_IMAGE_SRC,
+  QRCODE_MARGIN,
+  QRCODE_SIZE,
+  QRCODE_VERSION,
+} from './qrcode.config';
 import {
   QRCodeAllowEmptyStringFeature,
   QRCodeColorDarkFeature,
@@ -14,26 +35,7 @@ import {
   QRCodeSizeFeature,
   QRCodeVersionFeature,
 } from './qrcode.feature';
-import {
-  QRCODE_ALLOW_EMPTY_STRING,
-  QRCODE_COLOR_DARK,
-  QRCODE_COLOR_LIGHT,
-  QRCODE_CSS_CLASS,
-  QRCODE_ELEMENT_TYPE,
-  QRCODE_ERROR_CORRECTION_LEVEL,
-  QRCODE_IMAGE_SRC,
-  QRCODE_MARGIN,
-  QRCODE_SIZE,
-  QRCODE_VERSION,
-} from './qrcode.config';
 import { QRCodeElementType } from './types';
-import {
-  QRCodeImageFeatureKind,
-  QRCodeImageFeatures,
-  QRCodeImageHeightFeature,
-  QRCodeImageSrcFeature,
-  QRCodeImageWidthFeature,
-} from './qrcode-image.feature';
 
 export function provideQRCode(...features: QRCodeFeatures[]): EnvironmentProviders {
   return makeEnvironmentProviders([features.map((it) => it.providers)]);

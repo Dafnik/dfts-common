@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { DfxTableModule, NgbTableDataSource } from 'dfx-bootstrap-table';
+
 import { Helper } from '../helper';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-filtering',
@@ -15,11 +16,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
     <!-- Filtering stuff -->
     <form>
       <div class="input-group">
-        <input class="form-control" type="text" [formControl]="filter" placeholder="Search" />
+        <input class="form-control" [formControl]="filter" type="text" placeholder="Search" />
       </div>
     </form>
 
-    <table ngb-table [dataSource]="dataSource()">
+    <table [dataSource]="dataSource()" ngb-table>
       <ng-container ngbColumnDef="id">
         <th *ngbHeaderCellDef ngb-header-cell>#</th>
         <td *ngbCellDef="let event" ngb-cell>{{ event.id }}</td>
@@ -33,8 +34,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
       <ng-container ngbColumnDef="actions">
         <th *ngbHeaderCellDef ngb-header-cell>Actions</th>
         <td *ngbCellDef="let event" ngb-cell>
-          <button type="button" class="btn btn-sm m-1 btn-outline-success">Edit</button>
-          <button type="button" class="btn btn-sm m-1 btn-outline-danger">Delete</button>
+          <button class="btn btn-sm btn-outline-success m-1" type="button">Edit</button>
+          <button class="btn btn-sm btn-outline-danger m-1" type="button">Delete</button>
         </td>
       </ng-container>
 

@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons';
 import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
+
+import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons';
 
 @Component({
   template: `
-    <div class="d-flex align-items-center justify-content-end gap-2 my-2" (click)="showIcon.set(!showIcon())">
-      <span>This icon gets loaded via cdn </span>
+    <div class="d-flex align-items-center justify-content-end my-2 gap-2" (click)="showIcon.set(!showIcon())">
+      <span>This icon gets loaded via cdn</span>
       @if (showIcon()) {
         <bi name="box" size="16" />
       }

@@ -1,11 +1,13 @@
-import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
-import { appRoutes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { biCacheInterceptor } from 'dfx-bootstrap-icons';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
+
+import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 import { provideDfxHelper, withWindow } from 'dfx-helper';
+
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

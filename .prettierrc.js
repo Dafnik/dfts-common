@@ -11,16 +11,9 @@ module.exports = {
   bracketSameLine: true,
   trailingComma: 'all',
   htmlWhitespaceSensitivity: 'ignore',
-  importOrder: [
-    '^@angular/(.*)$',
-    '^@angular/cdk',
-    '^rxjs',
-    '<THIRD_PARTY_MODULES>',
-    '^@app/(.*)',
-    '^[./]',
-  ],
+  importOrder: ['^@angular/(.*)$', '^@angular/cdk', '^rxjs', '<THIRD_PARTY_MODULES>', '^@app/(.*)', '^[./]'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrderParserPlugins: ['typescript', 'decorators-legacy'],
-  jsonRecursiveSort: true
+  jsonRecursiveSort: true,
 };

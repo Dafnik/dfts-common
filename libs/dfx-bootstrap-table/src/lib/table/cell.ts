@@ -6,8 +6,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-import { Directive, HostBinding, Input } from '@angular/core';
 import {
   CdkCell,
   CdkCellDef,
@@ -18,6 +16,7 @@ import {
   CdkHeaderCellDef,
   CdkTable,
 } from '@angular/cdk/table';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 /**
  * Cell definition for the ngb-table.

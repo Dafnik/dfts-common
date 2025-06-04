@@ -1,42 +1,42 @@
 {
-  "name": "dfx-bootstrap-table",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "dfx-bootstrap-table",
   "projectType": "library",
   "sourceRoot": "libs/dfx-bootstrap-table/src",
   "tags": [],
   "targets": {
     "build": {
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
       "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/dfx-bootstrap-table/ng-package.json"
       },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"]
     },
     "test": {
-      "options": {
-        "passWithNoTests": true
-      },
       "configurations": {
         "ci": {
           "ci": true,
           "coverage": true
         }
+      },
+      "options": {
+        "passWithNoTests": true
       }
     },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "push": false,
-        "changelogHeader": " "
+        "changelogHeader": " ",
+        "push": false
       }
     }
   }

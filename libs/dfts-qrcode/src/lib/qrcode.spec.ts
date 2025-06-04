@@ -1,5 +1,5 @@
-import { generateQrCodeSVGString } from './svg';
 import { generateQrCodeMatrix } from './matrix';
+import { generateQrCodeSVGString } from './svg';
 
 export const s_stripWhitespace = (text: string): string => text.trim().replace(/\s/g, '') ?? '';
 

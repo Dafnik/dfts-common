@@ -1,25 +1,25 @@
+import { generateMatrixOptions } from '../types';
+import { augmentECCs } from './augment-eccs';
 import {
   ALPHANUMERIC_OUT_REGEXP,
   ECC_LEVELS_MAP,
   GF256_GEN_POLY,
+  MODES_MAP,
   MODE_ALPHANUMERIC,
   MODE_NUMERIC,
   MODE_OCTET,
-  MODES_MAP,
   NUMERIC_REGEXP,
   VERSIONS,
 } from './const';
-import { encode } from './encode';
-import { getNumberOfAvailableBitsForData } from './get-number-of-available-bits-for-data';
-import { augmentECCs } from './augment-eccs';
 import { createBaseMatrix } from './create-base-matrix';
-import { fillDataInMatrix } from './fill-data-in-matrix';
-import { maskMatrixData } from './mask-matrix-data';
-import { fillFormatInformationInMatrix } from './fill-format-information-in-matrix';
+import { encode } from './encode';
 import { evaluateMatrix } from './evaluate-matrix';
-import { validateData } from './validate-data';
+import { fillDataInMatrix } from './fill-data-in-matrix';
+import { fillFormatInformationInMatrix } from './fill-format-information-in-matrix';
 import { getMaxDataLength } from './get-max-data-length';
-import { generateMatrixOptions } from '../types';
+import { getNumberOfAvailableBitsForData } from './get-number-of-available-bits-for-data';
+import { maskMatrixData } from './mask-matrix-data';
+import { validateData } from './validate-data';
 
 /**
  * Generates a QR code matrix for the given data and options.

@@ -1,12 +1,12 @@
-import { st_removeAll, st_size, st_hasEntries, st_isEmpty, st_isFull, st_isNotFull, st_fillUp, st_isAvailable } from './common';
-import { st_set } from './set';
+import { b_fromStorage } from '../boolean/from-storage/from-storage';
+import { n_fromStorage } from '../number/from-storage/from-storage';
+import { o_fromStorage } from '../object/from-storage/from-storage';
+import { s_fromStorage } from '../string/from-storage/from-storage';
+import { thr_sleep } from '../thread';
+import { st_fillUp, st_hasEntries, st_isAvailable, st_isEmpty, st_isFull, st_isNotFull, st_removeAll, st_size } from './common';
 import { st_exists } from './exists';
 import { st_remove } from './remove';
-import { thr_sleep } from '../thread';
-import { s_fromStorage } from '../string/from-storage/from-storage';
-import { b_fromStorage } from '../boolean/from-storage/from-storage';
-import { o_fromStorage } from '../object/from-storage/from-storage';
-import { n_fromStorage } from '../number/from-storage/from-storage';
+import { st_set } from './set';
 
 describe('StorageHelper', () => {
   beforeEach(() => {

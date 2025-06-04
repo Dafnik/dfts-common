@@ -1,7 +1,8 @@
-import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { biCacheInterceptor, provideBi, withCDN } from 'dfx-bootstrap-icons';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
+
+import { biCacheInterceptor, provideBi, withCDN } from 'dfx-bootstrap-icons';
 import { provideDfxHelper, withWindow } from 'dfx-helper';
 
 export const appConfig: ApplicationConfig = {

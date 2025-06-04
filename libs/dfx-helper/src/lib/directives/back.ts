@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Directive, HostListener, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { injectWindow } from '../window-provider';
 
 @Directive({

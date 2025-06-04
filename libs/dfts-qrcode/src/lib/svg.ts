@@ -1,5 +1,5 @@
-import { generateOptions, generateWithAccessibleOptions, generateWithImageOptions } from './types';
 import { generateQrCodeMatrix } from './matrix';
+import { generateOptions, generateWithAccessibleOptions, generateWithImageOptions } from './types';
 
 const parser = new DOMParser();
 

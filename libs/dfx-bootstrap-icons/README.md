@@ -58,12 +58,14 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 ### Standalone Components
 
 ```typescript
-import { BiComponent, provideBi, withIcons, exclamationOctagonFill, xCircleFill } from 'dfx-bootstrap-icons';
+import { BiComponent, exclamationOctagonFill, provideBi, withIcons, xCircleFill } from 'dfx-bootstrap-icons';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  template: ` <bi name="exclamation-octagon-fill" /> `,
+  template: `
+    <bi name="exclamation-octagon-fill" />
+  `,
   imports: [BiComponent],
   providers: [provideBi(withIcons({ exclamationOctagonFill, xCircleFill }))],
 })
@@ -73,7 +75,7 @@ export class AppComponent {}
 ### Module
 
 ```typescript
-import { BiModule, withIcons, exclamationOctagonFill } from 'dfx-bootstrap-icons';
+import { BiModule, exclamationOctagonFill, withIcons } from 'dfx-bootstrap-icons';
 
 @NgModule({
   declaration: [AppComponent],
@@ -83,7 +85,9 @@ export class AppModule {}
 
 @Component({
   selector: 'app-root',
-  template: ` <bi name="exclamation-octagon-fill" /> `,
+  template: `
+    <bi name="exclamation-octagon-fill" />
+  `,
 })
 export class AppComponent {}
 ```
@@ -93,14 +97,16 @@ export class AppComponent {}
 ### Standalone Components
 
 ```typescript
-import { provideBi, BiComponent, withIcons, withWidth, withHeight, withColor, exclamationOctagonFill } from 'dfx-bootstrap-icons';
+import { BiComponent, exclamationOctagonFill, provideBi, withColor, withHeight, withIcons, withWidth } from 'dfx-bootstrap-icons';
 
 @Component({
   // ...
   standalone: true,
   imports: [BiComponent],
   providers: [provideBi(withIcons({ exclamationOctagonFill }), withWidth(16), withHeight(16), withColor('currentColor'))],
-  template: ` <bi name="exclamation-octagon-fill" /> `,
+  template: `
+    <bi name="exclamation-octagon-fill" />
+  `,
   // ...
 })
 export class AppComponent {}
@@ -109,7 +115,7 @@ export class AppComponent {}
 ### Module
 
 ```typescript
-import { BiModule, withIcons, withWidth, withHeight, withColor, exclamationOctagonFill } from 'dfx-bootstrap-icons';
+import { BiModule, exclamationOctagonFill, withColor, withHeight, withIcons, withWidth } from 'dfx-bootstrap-icons';
 
 @NgModule({
   declaration: [AppComponent],
@@ -135,7 +141,9 @@ export class AppModule {}
 @Component({
   // ...
   selector: 'app-root',
-  template: ` <bi name="exclamation-octagon-fill" width="16" height="16" color="currentColor" clearDimensions="false" ariaLabel="Icon" /> `,
+  template: `
+    <bi name="exclamation-octagon-fill" width="16" height="16" color="currentColor" clearDimensions="false" ariaLabel="Icon" />
+  `,
   // ...
 })
 export class AppComponent {}
@@ -186,8 +194,9 @@ Don't forget to add the `HttpClient` and `biCacheInterceptor`
 When using CDNs you can use the `biCacheInterceptor` to prevent the duplicate fetching of icons.
 
 ```typescript
-import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+
+import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
   providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))],
@@ -200,7 +209,6 @@ You can bundle all icons into your `assets` folder so they will be included in y
 
 ```typescript
 // main.ts
-
 import { provideBi, withCDN } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
@@ -256,7 +264,7 @@ bootstrapApplication(AppComponent, {
 ### Import all icons (not recommended)
 
 ```typescript
-import { provideBi, withIcons, allIcons } from 'dfx-bootstrap-icons';
+import { allIcons, provideBi, withIcons } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
   providers: [provideBi(withIcons(allIcons))],

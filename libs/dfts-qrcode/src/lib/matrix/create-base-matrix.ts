@@ -1,7 +1,7 @@
+import { augmentBCH } from './augment-bch';
 import { VERSIONS } from './const';
 import { getSizeByVersion } from './get-size-by-version';
 import { needsVersionInfo } from './needs-version-info';
-import { augmentBCH } from './augment-bch';
 
 /**
  * Creates the base matrix for a given version of the QR code. It returns two matrices,

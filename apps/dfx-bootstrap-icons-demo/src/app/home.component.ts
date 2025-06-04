@@ -1,17 +1,19 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { debounceTime } from 'rxjs';
+
 import { BiComponent, BiNameList, toEscapedName } from 'dfx-bootstrap-icons';
-import { LoadIconComponent } from './load-icon.component';
 import { injectWindow } from 'dfx-helper';
+
+import { LoadIconComponent } from './load-icon.component';
 
 @Component({
   template: `
     <div class="d-flex flex-column gap-2">
-      <input type="text" class="form-control" id="search" placeholder="Search for icons..." [formControl]="searchCtrl" />
+      <input class="form-control" id="search" [formControl]="searchCtrl" type="text" placeholder="Search for icons..." />
 
       <div class="d-flex justify-content-end">
         <div class="badge bg-secondary rounded-pill">Showing {{ searchResults().length }} of {{ IconNameList.length }}</div>
@@ -19,12 +21,12 @@ import { injectWindow } from 'dfx-helper';
 
       <app-load-icon />
 
-      <ul class="d-flex flex-wrap justify-content-between gap-2 list-unstyled list m-0">
+      <ul class="d-flex justify-content-between list-unstyled list m-0 flex-wrap gap-2">
         @for (icon of searchResults(); track icon) {
           <li class="mb-4" style="min-width: 110px">
             <div class="d-block text-decoration-none">
               <a href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
-                <div class="px-3 py-5 mb-2 text-center rounded icon-block">
+                <div class="icon-block mb-2 rounded px-3 py-5 text-center">
                   @defer (on viewport, idle) {
                     <bi [name]="icon" />
                   } @placeholder (minimum 500ms) {
@@ -34,10 +36,10 @@ import { injectWindow } from 'dfx-helper';
                   }
                 </div>
               </a>
-              <div class="name text-muted text-decoration-none text-center pt-1">
+              <div class="name text-muted text-decoration-none pt-1 text-center">
                 <strong>{{ icon }}</strong>
               </div>
-              <div class="name text-muted text-decoration-none text-center pt-1">{{ escapedName(icon) }}</div>
+              <div class="name text-muted text-decoration-none pt-1 text-center">{{ escapedName(icon) }}</div>
             </div>
           </li>
         } @empty {
@@ -52,7 +54,7 @@ import { injectWindow } from 'dfx-helper';
     </div>
 
     <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
-      <button type="button" class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()">
+      <button class="btn btn-primary d-flex align-items-center gap-2" (click)="scrollToTop()" type="button">
         Scroll to top
         <bi name="arrow-up-circle-fill" />
       </button>

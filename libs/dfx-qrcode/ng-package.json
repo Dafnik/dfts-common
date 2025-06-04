@@ -1,9 +1,9 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "allowedNonPeerDependencies": ["dfts-qrcode"],
+  "assets": ["./*.md", "./LICENSE"],
   "dest": "../../dist/libs/dfx-qrcode",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "assets": ["./*.md", "./LICENSE"],
-  "allowedNonPeerDependencies": ["dfts-qrcode"]
+  }
 }

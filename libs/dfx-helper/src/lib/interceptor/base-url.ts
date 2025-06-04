@@ -1,6 +1,8 @@
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { loggerOf } from 'dfts-helper';
 
 import { HELPER_BASE_URL, HELPER_BASE_URL_INTERCEPTOR_IGNORE_PATHS } from '../config';

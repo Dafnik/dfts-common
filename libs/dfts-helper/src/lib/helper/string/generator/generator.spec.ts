@@ -1,6 +1,6 @@
-import { s_generate } from './generator';
 import { a_containsDuplicates } from '../../array/contains-duplicates/contains-duplicates';
 import { StringHelper } from '../_string';
+import { s_generate } from './generator';
 
 describe('string generator', () => {
   it('randomness string', () => {

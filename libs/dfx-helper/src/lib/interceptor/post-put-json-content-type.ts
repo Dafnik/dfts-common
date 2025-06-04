@@ -1,5 +1,6 @@
-import { inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
 import { HELPER_POST_PUT_JSON_CONTENT_TYPE_INTERCEPTOR_IGNORE_PATHS } from '../config';

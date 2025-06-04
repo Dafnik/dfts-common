@@ -6,26 +6,27 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import {
-  AfterViewInit,
   ANIMATION_MODULE_TYPE,
-  booleanAttribute,
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  inject,
   Input,
   OnDestroy,
   OnInit,
-  signal,
   ViewEncapsulation,
+  booleanAttribute,
+  inject,
+  signal,
 } from '@angular/core';
-import { merge, Subscription } from 'rxjs';
-import { NGB_SORT_DEFAULT_OPTIONS, NgbSort, NgbSortable, NgbSortDefaultOptions, SortHeaderArrowPosition } from './sort';
+
+import { Subscription, merge } from 'rxjs';
+
+import { NGB_SORT_DEFAULT_OPTIONS, NgbSort, NgbSortDefaultOptions, NgbSortable, SortHeaderArrowPosition } from './sort';
 import { SortDirection } from './sort-direction';
 import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
 

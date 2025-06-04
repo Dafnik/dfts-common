@@ -1,6 +1,6 @@
-import { generateOptions, generateWithImageOptions } from './types';
-import { generateQrCodeMatrix } from './matrix';
 import { generateQrCodeCanvasElement } from './htmlElements';
+import { generateQrCodeMatrix } from './matrix';
+import { generateOptions, generateWithImageOptions } from './types';
 
 export function generateQrCodeCanvas(
   data: string | number,

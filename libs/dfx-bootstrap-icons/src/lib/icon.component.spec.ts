@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { BiNameList, allIcons } from './generated-index';
 import { BiComponent } from './icon.component';
 import { provideBi, withIcons } from './icons.provider';
-import { allIcons, BiNameList } from './generated-index';
 import { toEscapedName } from './internal/toEscapedName';
 
 describe('SVG Icons', () => {

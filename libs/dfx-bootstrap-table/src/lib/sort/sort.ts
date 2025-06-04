@@ -6,9 +6,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import {
-  booleanAttribute,
   Directive,
   EventEmitter,
   Inject,
@@ -19,8 +17,11 @@ import {
   OnInit,
   Optional,
   Output,
+  booleanAttribute,
 } from '@angular/core';
+
 import { Observable, ReplaySubject, Subject } from 'rxjs';
+
 import { SortDirection } from './sort-direction';
 import { getSortDuplicateSortableIdError, getSortHeaderMissingIdError, getSortInvalidDirectionError } from './sort-errors';
 

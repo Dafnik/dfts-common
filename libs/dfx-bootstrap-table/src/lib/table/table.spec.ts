@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DfxTableModule } from './table-module';
+
 import { NgbRow } from './row';
+import { DfxTableModule } from './table-module';
 
 describe('dfx-bootstrap-table', () => {
   let component: NgbRow;

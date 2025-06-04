@@ -18,8 +18,7 @@
   [class.ngb-sort-header-recently-cleared-descending]="_recentlyCleared() === 'desc'"
   [class.ngb-sort-header-animations-disabled]="_animationModule === 'NoopAnimations'"
   [attr.tabindex]="_isDisabled() ? null : 0"
-  [attr.role]="_isDisabled() ? null : 'button'"
->
+  [attr.role]="_isDisabled() ? null : 'button'">
   <!--
     TODO(crisbeto): this div isn't strictly necessary, but we have to keep it due to a large
     number of screenshot diff failures. It should be removed eventually. Note that the difference

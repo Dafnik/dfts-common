@@ -1,5 +1,5 @@
-import { LogType } from './loggerInfo';
 import { getLogMessage } from './log.header';
+import { LogType } from './loggerInfo';
 
 export class Logger {
   public readonly className: string;

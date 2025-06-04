@@ -58,7 +58,9 @@ import { QRCodeComponent } from 'dfx-qrcode';
 @Component({
   standalone: true,
   selector: 'app-root',
-  template: ` <qrcode data="hello" /> `,
+  template: `
+    <qrcode data="hello" />
+  `,
   imports: [QRCodeComponent],
 })
 export class AppComponent {}
@@ -77,7 +79,9 @@ export class AppModule {}
 
 @Component({
   selector: 'app-root',
-  template: ` <qrcode data="hello" /> `,
+  template: `
+    <qrcode data="hello" />
+  `,
 })
 export class AppComponent {}
 ```
@@ -88,8 +92,8 @@ export class AppComponent {}
 
 ```typescript
 import {
-  provideQRCode,
   QRCodeComponent,
+  provideQRCode,
   withAllowEmptyString,
   withColorDark,
   withColorLight,
@@ -122,7 +126,9 @@ import {
       withSize(5),
     ),
   ],
-  template: ` <qrcode data="hello" /> `,
+  template: `
+    <qrcode data="hello" />
+  `,
   // ...
 })
 export class AppComponent {}
@@ -132,8 +138,8 @@ export class AppComponent {}
 
 ```typescript
 import {
-  provideQRCode,
   QRCodeComponent,
+  provideQRCode,
   withAllowEmptyString,
   withColorDark,
   withColorLight,
@@ -192,8 +198,7 @@ export class AppModule {}
       [version]="-1"
       [imageSrc]="'assets/logo.png'"
       [imageWidth]="40"
-      [imageHeight]="40"
-    />
+      [imageHeight]="40" />
   `,
   // ...
 })

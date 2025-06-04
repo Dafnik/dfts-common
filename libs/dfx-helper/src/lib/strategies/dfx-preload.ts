@@ -1,7 +1,8 @@
 /* eslint-disable dot-notation */
 import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
-import { mergeMap, Observable, of, timer } from 'rxjs';
+
+import { Observable, mergeMap, of, timer } from 'rxjs';
 
 @Injectable()
 export class DfxPreloadStrategy implements PreloadingStrategy {

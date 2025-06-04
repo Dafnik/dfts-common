@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { s_truncate, UndefinedOrNullOr } from 'dfts-helper';
+
+import { UndefinedOrNullOr, s_truncate } from 'dfts-helper';
 
 @Pipe({
   name: 's_truncate',

@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { s_upperCaseFirstLetter, UndefinedOrNullOr } from 'dfts-helper';
+
+import { UndefinedOrNullOr, s_upperCaseFirstLetter } from 'dfts-helper';
 
 @Pipe({
   name: 's_upperCaseFirstLetter',

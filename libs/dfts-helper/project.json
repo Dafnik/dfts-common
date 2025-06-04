@@ -1,37 +1,37 @@
 {
-  "name": "dfts-helper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "dfts-helper",
   "projectType": "library",
   "sourceRoot": "libs/dfts-helper/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/dfts-helper",
-        "main": "libs/dfts-helper/src/index.ts",
-        "tsConfig": "libs/dfts-helper/tsconfig.lib.json",
         "assets": ["libs/dfts-helper/*.md", "libs/dfts-helper/LICENSE"],
+        "main": "libs/dfts-helper/src/index.ts",
+        "outputPath": "dist/libs/dfts-helper",
+        "tsConfig": "libs/dfts-helper/tsconfig.lib.json",
         "updateBuildableProjectDepsInPackageJson": true
-      }
+      },
+      "outputs": ["{options.outputPath}"]
     },
     "test": {
-      "options": {
-        "passWithNoTests": true
-      },
       "configurations": {
         "ci": {
           "ci": true,
           "coverage": true
         }
+      },
+      "options": {
+        "passWithNoTests": true
       }
     },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "push": false,
-        "changelogHeader": " "
+        "changelogHeader": " ",
+        "push": false
       }
     }
   }

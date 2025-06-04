@@ -6,9 +6,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import { CdkTextColumn } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+
 import { NgbCell, NgbCellDef, NgbColumnDef, NgbHeaderCell, NgbHeaderCellDef } from './cell';
 
 /**
@@ -24,10 +24,10 @@ import { NgbCell, NgbCellDef, NgbColumnDef, NgbHeaderCell, NgbHeaderCellDef } fr
   selector: 'ngb-text-column',
   template: `
     <ng-container ngbColumnDef>
-      <th ngb-header-cell *ngbHeaderCellDef [style.text-align]="justify">
+      <th *ngbHeaderCellDef [style.text-align]="justify" ngb-header-cell>
         {{ headerText }}
       </th>
-      <td ngb-cell *ngbCellDef="let data" [style.text-align]="justify">
+      <td *ngbCellDef="let data" [style.text-align]="justify" ngb-cell>
         {{ dataAccessor(data, name) }}
       </td>
     </ng-container>

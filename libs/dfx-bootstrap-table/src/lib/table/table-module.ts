@@ -6,12 +6,12 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-import { NgModule } from '@angular/core';
-import { NgbRecycleRows, NgbTable } from './table';
 import { CdkTableModule } from '@angular/cdk/table';
+import { NgModule } from '@angular/core';
+
 import { NgbCell, NgbCellDef, NgbColumnDef, NgbFooterCell, NgbFooterCellDef, NgbHeaderCell, NgbHeaderCellDef } from './cell';
 import { NgbFooterRow, NgbFooterRowDef, NgbHeaderRow, NgbHeaderRowDef, NgbNoDataRow, NgbRow, NgbRowDef } from './row';
+import { NgbRecycleRows, NgbTable } from './table';
 import { NgbTextColumn } from './text-column';
 
 const EXPORTED_DECLARATIONS = [

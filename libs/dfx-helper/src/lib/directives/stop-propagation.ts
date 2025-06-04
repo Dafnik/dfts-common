@@ -1,4 +1,4 @@
-import { booleanAttribute, Directive, HostListener, input } from '@angular/core';
+import { Directive, HostListener, booleanAttribute, input } from '@angular/core';
 
 @Directive({
   selector: '[stopPropagation]',

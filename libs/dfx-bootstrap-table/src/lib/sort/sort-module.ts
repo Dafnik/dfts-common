@@ -6,10 +6,10 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import { NgModule } from '@angular/core';
-import { NgbSortHeader } from './sort-header';
+
 import { NgbSort } from './sort';
+import { NgbSortHeader } from './sort-header';
 
 const EXPORTED_DECLARATIONS = [NgbSort, NgbSortHeader];
 

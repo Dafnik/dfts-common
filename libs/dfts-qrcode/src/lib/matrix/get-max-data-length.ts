@@ -1,6 +1,6 @@
+import { MODE_ALPHANUMERIC, MODE_KANJI, MODE_NUMERIC, MODE_OCTET } from './const';
 import { getNumberOfAvailableBitsForData } from './get-number-of-available-bits-for-data';
 import { getNumberOfBitsOfData } from './get-number-of-bits-of-data';
-import { MODE_ALPHANUMERIC, MODE_KANJI, MODE_NUMERIC, MODE_OCTET } from './const';
 
 /**
  * Returns the maximum length of data possible in a given configuration.

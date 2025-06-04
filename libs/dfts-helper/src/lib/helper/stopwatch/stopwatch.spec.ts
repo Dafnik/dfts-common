@@ -1,5 +1,5 @@
-import { Stopwatch } from './stopwatch';
 import { thr_sleep } from '../thread';
+import { Stopwatch } from './stopwatch';
 
 describe('Stopwatch class', () => {
   it('should correctly report whether the stopwatch has been started', () => {

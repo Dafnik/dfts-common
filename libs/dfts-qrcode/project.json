@@ -1,37 +1,37 @@
 {
-  "name": "dfts-qrcode",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "dfts-qrcode",
   "projectType": "library",
   "sourceRoot": "libs/dfts-qrcode/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/dfts-qrcode",
-        "main": "libs/dfts-qrcode/src/index.ts",
-        "tsConfig": "libs/dfts-qrcode/tsconfig.lib.json",
         "assets": ["libs/dfts-qrcode/*.md", "libs/dfts-qrcode/LICENSE"],
+        "main": "libs/dfts-qrcode/src/index.ts",
+        "outputPath": "dist/libs/dfts-qrcode",
+        "tsConfig": "libs/dfts-qrcode/tsconfig.lib.json",
         "updateBuildableProjectDepsInPackageJson": true
-      }
+      },
+      "outputs": ["{options.outputPath}"]
     },
     "test": {
-      "options": {
-        "passWithNoTests": true
-      },
       "configurations": {
         "ci": {
           "ci": true,
           "coverage": true
         }
+      },
+      "options": {
+        "passWithNoTests": true
       }
     },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "push": false,
-        "changelogHeader": " "
+        "changelogHeader": " ",
+        "push": false
       }
     }
   }

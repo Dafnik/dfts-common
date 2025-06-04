@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // noinspection JSUnusedLocalSymbols
-
-import { TestBed } from '@angular/core/testing';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { createOpenAPIHttpClient, OpenAPIHttpClient } from './client';
+import { TestBed } from '@angular/core/testing';
+
+import { OpenAPIHttpClient, createOpenAPIHttpClient } from './client';
 
 describe('OpenAPIHttpClient type tests', () => {
   let api: OpenAPIHttpClient<paths>;

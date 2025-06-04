@@ -6,10 +6,8 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
+import { _DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY } from '@angular/cdk/collections';
 import {
-  _COALESCED_STYLE_SCHEDULER,
-  _CoalescedStyleScheduler,
   CDK_TABLE,
   CdkTable,
   DataRowOutlet,
@@ -17,9 +15,10 @@ import {
   HeaderRowOutlet,
   NoDataRowOutlet,
   STICKY_POSITIONING_LISTENER,
+  _COALESCED_STYLE_SCHEDULER,
+  _CoalescedStyleScheduler,
 } from '@angular/cdk/table';
-import { booleanAttribute, ChangeDetectionStrategy, Component, Directive, HostBinding, Input, ViewEncapsulation } from '@angular/core';
-import { _DisposeViewRepeaterStrategy, _RecycleViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY } from '@angular/cdk/collections';
+import { ChangeDetectionStrategy, Component, Directive, HostBinding, Input, ViewEncapsulation, booleanAttribute } from '@angular/core';
 
 /**
  * Enables the recycle view repeater strategy, which reduces rendering latency. Not compatible with

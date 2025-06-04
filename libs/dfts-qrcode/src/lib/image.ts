@@ -1,6 +1,6 @@
-import { generateOptions, generateWithAccessibleOptions, generateWithImageOptions } from './types';
 import { generateQrCodeCanvas, generateQrCodeCanvas$ } from './canvas';
 import { generateQrCodeCanvasElement, generateQrCodeImageElement } from './htmlElements';
+import { generateOptions, generateWithAccessibleOptions, generateWithImageOptions } from './types';
 
 export function generateQrCodeImage(
   data: string | number,

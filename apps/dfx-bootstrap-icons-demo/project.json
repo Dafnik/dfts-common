@@ -1,24 +1,39 @@
 {
-  "name": "dfx-bootstrap-icons-demo",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
+  "name": "dfx-bootstrap-icons-demo",
   "prefix": "app",
+  "projectType": "application",
   "sourceRoot": "apps/dfx-bootstrap-icons-demo/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/dfx-bootstrap-icons-demo",
-        "index": "apps/dfx-bootstrap-icons-demo/src/index.html",
-        "browser": "apps/dfx-bootstrap-icons-demo/src/main.ts",
-        "outputMode": "server",
-        "server": "apps/dfx-bootstrap-icons-demo/src/main.server.ts",
-        "ssr": {
-          "entry": "apps/dfx-bootstrap-icons-demo/src/server.ts"
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true
         },
-        "tsConfig": "apps/dfx-bootstrap-icons-demo/tsconfig.app.json",
+        "production": {
+          "baseHref": "/bootstrap-icons/",
+          "budgets": [
+            {
+              "maximumError": "5mb",
+              "maximumWarning": "500kb",
+              "type": "initial"
+            },
+            {
+              "maximumError": "4kb",
+              "maximumWarning": "2kb",
+              "type": "anyComponentStyle"
+            }
+          ],
+          "outputHashing": "all"
+        }
+      },
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
         "assets": [
           "apps/dfx-bootstrap-icons-demo/src/favicon.ico",
           "apps/dfx-bootstrap-icons-demo/src/assets",
@@ -28,47 +43,32 @@
             "output": "./icons/"
           }
         ],
-        "styles": ["apps/dfx-bootstrap-icons-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all",
-          "baseHref": "/bootstrap-icons/"
+        "browser": "apps/dfx-bootstrap-icons-demo/src/main.ts",
+        "index": "apps/dfx-bootstrap-icons-demo/src/index.html",
+        "outputMode": "server",
+        "outputPath": "dist/apps/dfx-bootstrap-icons-demo",
+        "scripts": [],
+        "server": "apps/dfx-bootstrap-icons-demo/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/dfx-bootstrap-icons-demo/src/server.ts"
         },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
+        "styles": ["apps/dfx-bootstrap-icons-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+        "tsConfig": "apps/dfx-bootstrap-icons-demo/tsconfig.app.json"
       },
-      "defaultConfiguration": "production"
+      "outputs": ["{options.outputPath}"]
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
       "configurations": {
-        "production": {
-          "buildTarget": "dfx-bootstrap-icons-demo:build:production"
-        },
         "development": {
           "buildTarget": "dfx-bootstrap-icons-demo:build:development"
+        },
+        "production": {
+          "buildTarget": "dfx-bootstrap-icons-demo:build:production"
         }
       },
+      "continuous": true,
       "defaultConfiguration": "development",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     }
   }
 }

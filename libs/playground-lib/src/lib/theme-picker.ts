@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BiComponent, BiName, provideBi, withCDN, withColor } from 'dfx-bootstrap-icons';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { BiComponent, BiName, provideBi, withCDN, withColor } from 'dfx-bootstrap-icons';
 import { injectWindow } from 'dfx-helper';
 
 interface Theme {
@@ -14,9 +15,9 @@ interface Theme {
   template: `
     <div class="d-flex align-items-center gap-2">
       <label for="theme" style="padding-top: 4px">
-        <bi width="16" height="16" [name]="currentTheme().icon" class="text-white" />
+        <bi class="text-white" [name]="currentTheme().icon" width="16" height="16" />
       </label>
-      <select class="rounded-3 px-2" name="theme" id="theme" (change)="setTheme($any($event.target).value)">
+      <select class="rounded-3 px-2" id="theme" (change)="setTheme($any($event.target).value)" name="theme">
         @for (theme of themes; track theme.id) {
           <option [class.active]="theme.id === currentTheme().id" [value]="theme.id">
             <bi [name]="theme.icon" />

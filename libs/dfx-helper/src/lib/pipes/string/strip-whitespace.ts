@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { s_stripWhitespace, UndefinedOrNullOr } from 'dfts-helper';
+
+import { UndefinedOrNullOr, s_stripWhitespace } from 'dfts-helper';
 
 @Pipe({
   name: 's_stripWhitespace',

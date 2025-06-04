@@ -1,8 +1,10 @@
-import { inject, Injectable, Provider, Signal } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/overlay';
-import { distinctUntilChanged, map, Observable, shareReplay, startWith } from 'rxjs';
-import { HELPER_MOBILE_BREAKPOINT } from '../config';
+import { Injectable, Provider, Signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
+import { Observable, distinctUntilChanged, map, shareReplay, startWith } from 'rxjs';
+
+import { HELPER_MOBILE_BREAKPOINT } from '../config';
 
 @Injectable()
 export class IsMobileService {

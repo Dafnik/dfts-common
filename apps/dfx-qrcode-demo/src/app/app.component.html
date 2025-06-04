@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-md flex-row justify-content-between justify-content-sm-start">
+  <div class="container-md justify-content-between justify-content-sm-start flex-row">
     <a class="navbar-brand" href="/">
-      <img ngSrc="assets/logo.svg" alt="Logo" width="24" height="24" class="d-inline-block align-text-top" />
+      <img class="d-inline-block align-text-top" ngSrc="assets/logo.svg" alt="Logo" width="24" height="24" />
       dfx-qrcode
     </a>
-    <ul class="navbar-nav flex-row me-auto gap-2">
+    <ul class="navbar-nav me-auto flex-row gap-2">
       <li class="nav-item">
         <a class="nav-link" href="https://npmjs.com/dfx-qrcode">NPM</a>
       </li>
@@ -24,7 +24,7 @@
   <div class="row g-4">
     <div class="col-12 col-md-6">
       <h4 class="mb-4">QR-Code Preview</h4>
-      <div class="d-flex flex-column align-items-center mb-5 gap-3 p-3 rounded-3 codebox">
+      <div class="d-flex flex-column align-items-center rounded-3 codebox mb-5 gap-3 p-3">
         <qrcode
           [data]="formValues().data!"
           [allowEmptyString]="formValues().allowEmptyString!"
@@ -41,19 +41,18 @@
           [imageSrc]="formValues().imageEnabled ? formValues().imageSrc : undefined"
           [imageWidth]="formValues().imageEnabled ? formValues().imageWidth : undefined"
           [imageHeight]="formValues().imageEnabled ? formValues().imageHeight : undefined"
-          (qrCodeDataUrl)="setDataURL($event)"
-        />
+          (qrCodeDataUrl)="setDataURL($event)" />
 
         <button class="btn btn-outline-info" (click)="download()">Download</button>
       </div>
 
       <h6>HTML</h6>
 
-      <pre class="codebox p-3 rounded">{{ previewHTML() }}</pre>
+      <pre class="codebox rounded p-3">{{ previewHTML() }}</pre>
 
       <h6>Config</h6>
 
-      <pre class="codebox p-3 rounded">{{ previewConfig() }}</pre>
+      <pre class="codebox rounded p-3">{{ previewConfig() }}</pre>
 
       <h5 style="margin-top: 5vh; margin-bottom: 2vh">Installation</h5>
 
@@ -62,18 +61,18 @@
           <h6>NPM</h6>
           <div class="d-flex align-items-center gap-4">
             <code>npm install dfx-qrcode</code>
-            <button class="btn btn-primary btn-sm d-flex gap-1 align-items-center" (click)="copy('npm install dfx-qrcode')">
+            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" (click)="copy('npm install dfx-qrcode')">
               <bi name="copy" />
               Copy
             </button>
           </div>
         </li>
 
-        <li class="mt-3 codebox rounded-3 p-2">
+        <li class="codebox rounded-3 mt-3 p-2">
           <h6>PNPM</h6>
           <div class="d-flex align-items-center gap-4">
             <code>pnpm install dfx-qrcode</code>
-            <button class="btn btn-primary btn-sm d-flex gap-1 align-items-center" (click)="copy('pnpm install dfx-qrcode')">
+            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" (click)="copy('pnpm install dfx-qrcode')">
               <bi name="copy" />
               Copy
             </button>
@@ -83,24 +82,24 @@
     </div>
     <div class="col-12 col-md-6">
       <h4>Options</h4>
-      <form [formGroup]="form" class="d-flex flex-column gap-5">
+      <form class="d-flex flex-column gap-5" [formGroup]="form">
         <div class="d-flex flex-column gap-2">
           <h6>General</h6>
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="data" placeholder="Data" formControlName="data" />
+              <input class="form-control" id="data" type="text" placeholder="Data" formControlName="data" />
               <label for="data">Data</label>
             </div>
           </div>
 
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="allowEmptyString" formControlName="allowEmptyString" />
+            <input class="form-check-input" id="allowEmptyString" type="checkbox" role="switch" formControlName="allowEmptyString" />
             <label class="form-check-label" for="allowEmptyString">Allow empty strings</label>
           </div>
 
           <div class="d-flex flex-column">
             <label for="errorCorrectionLevel">Error Correction Level</label>
-            <select class="form-select" aria-label="Select element type" id="errorCorrectionLevel" formControlName="errorCorrectionLevel">
+            <select class="form-select" id="errorCorrectionLevel" aria-label="Select element type" formControlName="errorCorrectionLevel">
               <option [value]="'L'">L</option>
               <option [value]="'M'">M</option>
               <option [value]="'Q'">Q</option>
@@ -110,7 +109,7 @@
 
           <div class="d-flex flex-column">
             <label for="elementType">Element Type</label>
-            <select class="form-select" aria-label="Select element type" id="elementType" formControlName="elementType">
+            <select class="form-select" id="elementType" aria-label="Select element type" formControlName="elementType">
               <option [value]="'img'">Image</option>
               <option [value]="'canvas'">Canvas</option>
               <option [value]="'svg'">SVG</option>
@@ -119,101 +118,101 @@
         </div>
 
         <div class="d-flex flex-column gap-2">
-          <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex justify-content-between flex-row">
             <h6>Styling</h6>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="stylingEnabled" formControlName="stylingEnabled" />
-              <label class="form-check-label" for="stylingEnabled"> Enable </label>
+              <input class="form-check-input" id="stylingEnabled" type="checkbox" formControlName="stylingEnabled" />
+              <label class="form-check-label" for="stylingEnabled">Enable</label>
             </div>
           </div>
 
           <div class="input-group">
             <div class="form-floating">
-              <input type="number" class="form-control" id="margin" placeholder="Margin (px)" formControlName="margin" />
+              <input class="form-control" id="margin" type="number" placeholder="Margin (px)" formControlName="margin" />
               <label for="margin">Margin (px)</label>
             </div>
           </div>
 
           <div class="input-group">
             <div class="form-floating">
-              <input type="number" class="form-control" id="size" placeholder="Size (px)" formControlName="size" />
+              <input class="form-control" id="size" type="number" placeholder="Size (px)" formControlName="size" />
               <label for="size">Size (px)</label>
             </div>
           </div>
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="cssClass" placeholder="CSS Class" formControlName="cssClass" />
+              <input class="form-control" id="cssClass" type="text" placeholder="CSS Class" formControlName="cssClass" />
               <label for="cssClass">CSS Class</label>
             </div>
           </div>
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="colorDark" placeholder="Dark QR-Code Color" formControlName="colorDark" />
+              <input class="form-control" id="colorDark" type="text" placeholder="Dark QR-Code Color" formControlName="colorDark" />
               <label for="colorDark">Dark QR-Code Color</label>
             </div>
           </div>
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="colorLight" placeholder="Light QR-Code Color" formControlName="colorLight" />
+              <input class="form-control" id="colorLight" type="text" placeholder="Light QR-Code Color" formControlName="colorLight" />
               <label for="colorLight">Light QR-Code Color</label>
             </div>
           </div>
         </div>
 
         <div class="d-flex flex-column gap-2">
-          <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex justify-content-between flex-row">
             <h6>Image</h6>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="imageEnabled" formControlName="imageEnabled" />
-              <label class="form-check-label" for="imageEnabled"> Enable </label>
+              <input class="form-check-input" id="imageEnabled" type="checkbox" formControlName="imageEnabled" />
+              <label class="form-check-label" for="imageEnabled">Enable</label>
             </div>
           </div>
 
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="imageSrc" placeholder="Image src" formControlName="imageSrc" />
+              <input class="form-control" id="imageSrc" type="text" placeholder="Image src" formControlName="imageSrc" />
               <label for="ariaLabel">Image src</label>
             </div>
           </div>
           <div class="input-group">
             <div class="form-floating">
-              <input type="number" class="form-control" id="imageWidth" placeholder="Image width (px)" formControlName="imageWidth" />
+              <input class="form-control" id="imageWidth" type="number" placeholder="Image width (px)" formControlName="imageWidth" />
               <label for="margin">Image Width (px)</label>
             </div>
           </div>
 
           <div class="input-group">
             <div class="form-floating">
-              <input type="number" class="form-control" id="imageHeight" placeholder="Image Height (px)" formControlName="imageHeight" />
+              <input class="form-control" id="imageHeight" type="number" placeholder="Image Height (px)" formControlName="imageHeight" />
               <label for="imageHeight">Image Height (px)</label>
             </div>
           </div>
         </div>
 
         <div class="d-flex flex-column gap-2">
-          <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex justify-content-between flex-row">
             <h6>Accessibility</h6>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="accessibilityEnabled" formControlName="accessibilityEnabled" />
-              <label class="form-check-label" for="accessibilityEnabled"> Enable </label>
+              <input class="form-check-input" id="accessibilityEnabled" type="checkbox" formControlName="accessibilityEnabled" />
+              <label class="form-check-label" for="accessibilityEnabled">Enable</label>
             </div>
           </div>
 
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="ariaLabel" placeholder="aria-label" formControlName="ariaLabel" />
+              <input class="form-control" id="ariaLabel" type="text" placeholder="aria-label" formControlName="ariaLabel" />
               <label for="ariaLabel">aria-label</label>
             </div>
           </div>
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="title" placeholder="title" formControlName="title" />
+              <input class="form-control" id="title" type="text" placeholder="title" formControlName="title" />
               <label for="title">title</label>
             </div>
           </div>
           <div class="input-group">
             <div class="form-floating">
-              <input type="text" class="form-control" id="alt" placeholder="alt" formControlName="alt" />
+              <input class="form-control" id="alt" type="text" placeholder="alt" formControlName="alt" />
               <label for="alt">alt</label>
             </div>
           </div>
@@ -238,14 +237,25 @@
           <td><code>allowEmptyString</code></td>
           <td><code>boolean</code></td>
           <td><code>false</code></td>
-          <td>Define if empty or <code>undefined</code> strings should be converted to a space (<code>" "</code>) or throw an error.</td>
+          <td>
+            Define if empty or
+            <code>undefined</code>
+            strings should be converted to a space (
+            <code>" "</code>
+            ) or throw an error.
+          </td>
         </tr>
 
         <tr>
           <td><code>elementType</code></td>
           <td><code>'img' | 'canvas' | 'svg'</code></td>
           <td><code>img</code></td>
-          <td>Define if the QR-Code should be rendered as <code>HTMLImageElement</code> or <code>HTMLCanvasElement</code></td>
+          <td>
+            Define if the QR-Code should be rendered as
+            <code>HTMLImageElement</code>
+            or
+            <code>HTMLCanvasElement</code>
+          </td>
         </tr>
         <tr>
           <td><code>errorCorrectionLevel</code></td>
@@ -287,19 +297,31 @@
           <td><code>ariaLabel</code></td>
           <td><code>string | undefined</code></td>
           <td><code>undefined</code></td>
-          <td>String which should be set as <code>aria-label</code> tag</td>
+          <td>
+            String which should be set as
+            <code>aria-label</code>
+            tag
+          </td>
         </tr>
         <tr>
           <td><code>title</code></td>
           <td><code>string | undefined</code></td>
           <td><code>undefined</code></td>
-          <td>String which should be set as <code>title</code> tag</td>
+          <td>
+            String which should be set as
+            <code>title</code>
+            tag
+          </td>
         </tr>
         <tr>
           <td><code>alt</code></td>
           <td><code>string | undefined</code></td>
           <td><code>undefined</code></td>
-          <td>String which should be set as <code>alt</code> tag</td>
+          <td>
+            String which should be set as
+            <code>alt</code>
+            tag
+          </td>
         </tr>
         <tr>
           <td><code>imageSrc</code></td>

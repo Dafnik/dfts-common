@@ -1,47 +1,37 @@
 {
-  "baseBranches": ["main"],
-  "enabledManagers": ["npm", "github-actions"],
-  "semanticCommits": "enabled",
-  "semanticCommitScope": "",
-  "semanticCommitType": "build",
-  "commitBody": "See associated pull request for more information.",
-  "schedule": [
-    "after 11:00pm on the 1 day of the month",
-    "before 4am on the 2 day of the month",
-    "after 11:00pm on the 15 day of the month",
-    "before 4am on the 16 day of the month"
-  ],
-  "timezone": "Europe/Vienna",
-  "labels": ["dependencies"],
   "assignees": ["Dafnik"],
+  "baseBranches": ["main"],
+  "commitBody": "See associated pull request for more information.",
+  "enabledManagers": ["npm", "github-actions"],
+  "extends": ["config:recommended", ":pinVersions", "npm:unpublishSafe", ":preserveSemverRanges", ":rebaseStalePrs"],
   "ignorePaths": ["**/libs/**"],
+  "labels": ["dependencies"],
   "lockFileMaintenance": {
-    "enabled": true,
     "automerge": true,
     "automergeType": "branch",
     "commitMessageAction": "lock file maintenance",
+    "enabled": true,
     "semanticCommitType": "build"
   },
   "packageRules": [
     {
-      "groupName": "nx workspace",
       "enabled": false,
+      "groupName": "nx workspace",
       "matchPackageNames": ["/^@angular//", "/^@nx//", "/^@angular-devkit//", "/nx/"]
     },
     {
-      "matchPackageNames": ["eslint", "@angular-eslint/{/,}**", "@typescript-eslint/{/,}**"],
-      "groupName": "eslint dependencies"
+      "groupName": "eslint dependencies",
+      "matchPackageNames": ["eslint", "@angular-eslint/{/,}**", "@typescript-eslint/{/,}**"]
     },
     {
-      "matchPackageNames": ["bootstrap"],
-      "groupName": "bootstrap dependency"
+      "groupName": "bootstrap dependency",
+      "matchPackageNames": ["bootstrap"]
     },
     {
-      "matchPackageNames": ["typescript", "tslib"],
-      "groupName": "typescript dependencies"
+      "groupName": "typescript dependencies",
+      "matchPackageNames": ["typescript", "tslib"]
     },
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minor-updates",
       "matchPackageNames": [
         "*",
@@ -56,12 +46,22 @@
         "!/^@nx//",
         "!/^@angular-devkit//",
         "!/nx/"
-      ]
+      ],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"]
     },
     {
-      "matchUpdateTypes": ["major"],
-      "groupName": "major-update"
+      "groupName": "major-update",
+      "matchUpdateTypes": ["major"]
     }
   ],
-  "extends": ["config:recommended", ":pinVersions", "npm:unpublishSafe", ":preserveSemverRanges", ":rebaseStalePrs"]
+  "schedule": [
+    "after 11:00pm on the 1 day of the month",
+    "before 4am on the 2 day of the month",
+    "after 11:00pm on the 15 day of the month",
+    "before 4am on the 16 day of the month"
+  ],
+  "semanticCommitScope": "",
+  "semanticCommitType": "build",
+  "semanticCommits": "enabled",
+  "timezone": "Europe/Vienna"
 }

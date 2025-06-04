@@ -10,8 +10,9 @@ It has virtually zero runtime and is fully compatible with Http interceptors.
 The syntax is inspired by openapi-fetch.
 
 ```typescript
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+
 import { createOpenAPIHttpClient } from 'dfx-openapi';
 
 import type { paths } from './my-openapi-3-schema';
@@ -96,8 +97,9 @@ The best part about using `dfx-openapi` over oldschool codegen is no documentati
 `dfx-openapi` encourages using your existing OpenAPI documentation rather than trying to find what function to import, or what parameters that function wants:
 
 ```typescript
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+
 import { createOpenAPIHttpClient } from 'dfx-openapi';
 
 import type { paths } from './my-openapi-3-schema';

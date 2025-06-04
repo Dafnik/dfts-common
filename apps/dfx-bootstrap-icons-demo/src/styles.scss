@@ -1,7 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../../../node_modules/bootstrap/scss/functions';
-@import '../../../node_modules/bootstrap/scss/variables';
-
 body {
   margin: 0 !important;
   padding: 0 !important;
@@ -14,7 +11,7 @@ main {
 }
 
 .navbar {
-  background-color: $cyan-400;
+  background-color: #0d6efd;
   box-shadow:
     0 0.5rem 1rem rgba(0, 0, 0, 0.15),
     inset 0 -1px 0 rgba(255, 255, 255, 0.15);
@@ -31,10 +28,10 @@ main {
 }
 
 .highlight {
-  background-color: var(--bs-secondary-bg);
+  background-color: #e9ecef;
   .code:before {
     content: '$';
-    color: $gray-500;
+    color: #adb5bd;
     margin-right: 15px;
   }
   button {

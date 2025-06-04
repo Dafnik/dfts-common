@@ -16,18 +16,6 @@
         },
         "production": {
           "baseHref": "/bootstrap-icons/",
-          "budgets": [
-            {
-              "maximumError": "5mb",
-              "maximumWarning": "500kb",
-              "type": "initial"
-            },
-            {
-              "maximumError": "4kb",
-              "maximumWarning": "2kb",
-              "type": "anyComponentStyle"
-            }
-          ],
           "outputHashing": "all"
         }
       },

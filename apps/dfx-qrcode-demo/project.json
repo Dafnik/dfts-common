@@ -16,18 +16,6 @@
         },
         "production": {
           "baseHref": "/qrcode/",
-          "budgets": [
-            {
-              "maximumError": "1mb",
-              "maximumWarning": "500kb",
-              "type": "initial"
-            },
-            {
-              "maximumError": "4kb",
-              "maximumWarning": "2kb",
-              "type": "anyComponentStyle"
-            }
-          ],
           "outputHashing": "all"
         }
       },

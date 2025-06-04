@@ -20,10 +20,16 @@ export function provideBi(...features: IconFeatures[]): Provider[] {
   return features.map((it) => it.providers);
 }
 
+/**
+ * @deprecated Use `provideCDNIconsLoader()` or `withIcons()` as a replacement
+ */
 export function provideIcons(icons: IconsType): Provider {
   return { provide: ICONS_PICKED, multi: true, useValue: icons };
 }
 
+/**
+ * @deprecated Use `provideCDNIconsLoader()` or `withIcons()` as a replacement
+ */
 export function provideLocalIconsLoader(): Provider {
   return {
     provide: ICONS_LOADER,
@@ -63,9 +69,10 @@ export function provideCDNIconsLoader(...cdnUrlsOrFactories: (string | URLFactor
           })
           .pipe(
             catchError((error: HttpErrorResponse) => {
-              console.warn(`BiComponent: Failed loading icon "${name}"`, error);
               if (error.status === 404) {
                 console.warn(`BiComponent: Icon "${name}" not found`);
+              } else {
+                console.warn(`BiComponent: Failed loading icon "${name}"`, error);
               }
               return of(undefined);
             }),
@@ -84,6 +91,9 @@ export function withCDN(...cdnUrlsOrFactories: (string | URLFactory)[]): IconCDN
   };
 }
 
+/**
+ * @deprecated Use `withCDN()` as a replacement
+ */
 export function withIcons(icons: IconsType): IconPickFeature {
   return {
     kind: IconFeatureKind.ICON_PICK,

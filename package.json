@@ -6,7 +6,7 @@
     "nx": "nx",
     "start": "nx serve",
     "build": "nx run-many --parallel 10 --target build --all",
-    "test": "nx run-many --parallel 10 --target test --all --",
+    "test": "nx run-many --parallel 10 --target test --all --exclude=playground,dfx-bootstrap-icons-demo,dfx-bootstrap-table-demo,dfx-qrcode-demo --",
     "lint": "nx run-many --parallel 10 --target lint --all --fix",
     "lint:check": "nx run-many --parallel 10 --target lint --all",
     "graph": "nx graph",

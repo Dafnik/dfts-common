@@ -163,12 +163,9 @@ jobs:
           path: ./dist/libs/${{ matrix.lib }}.zip
           retention-days: 1
 
-  build-apps:
-    name: Build ${{ matrix.app }}
+  build-playground:
+    name: Build playground
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: ['dfx-bootstrap-table-demo', 'dfx-bootstrap-icons-demo', 'dfx-qrcode-demo', 'playground']
     steps:
       - uses: actions/checkout@v4
 
@@ -177,76 +174,13 @@ jobs:
         with:
           install-ignore-scripts: true
 
-      - name: build ${{ matrix.app }}
-        run: pnpm exec nx build ${{ matrix.app }}
+      - name: build playground
+        run: pnpm exec nx bundle playground
 
-      - name: zip ${{ matrix.app }}
-        run: |
-          cd ./dist/apps/
-          zip -r "${{ matrix.app }}.zip" ./${{ matrix.app }}
-          cd -
-
-      - uses: actions/upload-artifact@v4
-        name: create ${{ matrix.app }} artifact
-        with:
-          name: ${{ matrix.app }}
-          path: ./dist/apps/${{ matrix.app }}.zip
-          retention-days: 1
-
-  bundle-apps:
-    name: Bundle app artifacts into one
-    needs: [build-apps]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        name: Download table-demo
-        with:
-          name: dfx-bootstrap-table-demo
-
-      - uses: actions/download-artifact@v4
-        name: Download icons-demo
-        with:
-          name: dfx-bootstrap-icons-demo
-
-      - uses: actions/download-artifact@v4
-        name: Download qrcode-demo
-        with:
-          name: dfx-qrcode-demo
-
-      - uses: actions/download-artifact@v4
-        name: Download playground
-        with:
-          name: playground
-
-      - name: unzip all
-        run: |
-          unzip dfx-bootstrap-table-demo.zip
-          unzip dfx-bootstrap-icons-demo.zip
-          unzip dfx-qrcode-demo.zip
-          unzip playground.zip
-
-      - name: move files in place
-        run: |
-          mkdir dist
-          mkdir dist/bootstrap-table
-          mkdir dist/bootstrap-icons
-          mkdir dist/qrcode
-          mv playground/browser/* dist/
-          mv dfx-bootstrap-table-demo/browser/* dist/bootstrap-table/
-          mv dfx-bootstrap-icons-demo/browser/* dist/bootstrap-icons/
-          mv dfx-qrcode-demo/browser/* dist/qrcode/
-
-      - name: dist lookup
-        run: |
-          cd dist
-          ls -la
-          du -hs
-          cd -
-
-      - name: Upload artifact
+      - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/
+          path: ./dist/apps/playground/browser/
           retention-days: 1
 
   deploy-apps:
@@ -256,7 +190,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: bundle-apps
+    needs: build-playground
     permissions:
       actions: read
       pages: write # to deploy to Pages

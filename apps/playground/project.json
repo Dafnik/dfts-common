@@ -6,6 +6,34 @@
   "sourceRoot": "apps/playground/src",
   "tags": [],
   "targets": {
+    "preview": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "playground:bundle"
+      }
+    },
+    "bundle": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/apps/playground/browser"],
+      "options": {
+        "commands": ["nx build playground", "nx copy-demos playground"],
+        "parallel": false
+      }
+    },
+    "copy-demos": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir dist/apps/playground/browser/bootstrap-icons/",
+          "mkdir dist/apps/playground/browser/bootstrap-table/",
+          "mkdir dist/apps/playground/browser/qrcode/",
+          "cp -r dist/apps/dfx-bootstrap-icons-demo/browser/* dist/apps/playground/browser/bootstrap-icons/",
+          "cp -r dist/apps/dfx-bootstrap-table-demo/browser/* dist/apps/playground/browser/bootstrap-table/",
+          "cp -r dist/apps/dfx-qrcode-demo/browser/* dist/apps/playground/browser/qrcode/"
+        ],
+        "cwd": "."
+      }
+    },
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
@@ -23,6 +51,7 @@
         "styles": ["apps/playground/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
         "scripts": []
       },
+      "dependsOn": ["dfx-bootstrap-icons-demo:build", "dfx-bootstrap-table-demo:build", "dfx-qrcode-demo:build"],
       "configurations": {
         "production": {
           "budgets": [
@@ -60,29 +89,6 @@
       },
       "defaultConfiguration": "development",
       "continuous": true
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "playground:build"
-      }
-    },
-    "test": {
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "coverage": true
-        }
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "playground:build"
-      }
     }
   }
 }

@@ -32,7 +32,11 @@
         "ssr": {
           "entry": "apps/playground/src/server.ts"
         },
-        "styles": ["apps/playground/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+        "styles": [
+          "apps/playground/src/styles.scss",
+          "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
+          "node_modules/bootstrap/dist/css/bootstrap-reboot.min.css"
+        ],
         "tsConfig": "apps/playground/tsconfig.app.json"
       },
       "outputs": ["{options.outputPath}"]

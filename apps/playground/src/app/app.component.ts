@@ -4,53 +4,45 @@ import { Component } from '@angular/core';
   standalone: true,
   selector: 'app-root',
   template: `
-    <div class="container-lg d-flex w-100 h-100 flex-column container mx-auto p-3">
-      <main class="px-3 pt-5">
-        <h1 class="f0">playground</h1>
+    <main class="container my-auto">
+      <section class="hero">
+        <h1>playground</h1>
+      </section>
 
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-          <div class="col">
-            <a class="card text-bg-dark rounded-4 text-decoration-none shadow-lg" href="bootstrap-icons">
-              <div class="d-flex flex-column h-100 text-shadow-1 p-5 pb-3 text-white">
-                <h3 class="display-6 lh-1 fw-bold mb-4">
-                  <span class="heading-line heading-line-first">
-                    <span class="heading-line-gradient">dfx-bootstrap-icons</span>
-                  </span>
-                </h3>
-                <p>Angular Bootstrap Icons</p>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a class="card text-bg-dark rounded-4 text-decoration-none shadow-lg" href="bootstrap-table">
-              <div class="d-flex flex-column h-100 text-shadow-1 p-5 pb-3 text-white">
-                <h3 class="display-6 lh-1 fw-bold mb-4">
-                  <span class="heading-line heading-line-second"><span class="heading-line-gradient">dfx-bootstrap-table</span></span>
-                </h3>
-                <p>Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.</p>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a class="card text-bg-dark rounded-4 text-decoration-none shadow-lg" href="qrcode">
-              <div class="d-flex flex-column h-100 text-shadow-1 p-5 pb-3 text-white">
-                <h3 class="display-6 lh-1 fw-bold mb-4">
-                  <span class="heading-line heading-line-third"><span class="heading-line-gradient">dfx-qrcode</span></span>
-                </h3>
-                <p>tiny and simple-to-use Angular QR-Code generator library.</p>
-              </div>
-            </a>
-          </div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 card-grid">
+        <div class="col">
+          <a class="hover-card" href="bootstrap-icons">
+            <div class="card-body">
+              <h3 class="card-title">dfx-bootstrap-icons</h3>
+              <p class="card-text">Angular Bootstrap Icons</p>
+            </div>
+          </a>
         </div>
-      </main>
+        <div class="col">
+          <a class="hover-card" href="bootstrap-table">
+            <div class="card-body">
+              <h3 class="card-title">dfx-bootstrap-table</h3>
+              <p class="card-text">Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.</p>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a class="hover-card" href="qrcode">
+            <div class="card-body">
+              <h3 class="card-title">dfx-qrcode</h3>
+              <p class="card-text">Tiny and simple-to-use Angular QR-Code generator library.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
 
-      <footer class="text-white-50 mt-auto">
-        <p>
-          by
-          <a class="text-white" href="https://dafnik.me">Dafnik</a>
-        </p>
-      </footer>
-    </div>
+    <footer>
+      <p>
+        by
+        <a href="https://dafnik.me" target="_blank" rel="noopener">Dafnik</a>
+      </p>
+    </footer>
   `,
 })
 export class AppComponent {}

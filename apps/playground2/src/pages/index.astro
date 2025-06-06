@@ -1,5 +1,24 @@
 ---
 import "../styles/global.css";
+
+const projects = [
+  {
+    title: 'dfx-bootstrap-icons',
+    text: 'Angular Bootstrap Icons',
+    href: 'bootstrap-icons'
+  },
+  {
+    title: 'dfx-bootstrap-table',
+    text: 'Angular table CDK implementation for Bootstrap with filtering, sorting and pagination.',
+    href: 'bootstrap-table'
+  },
+  {
+    title: 'dfx-qrcode',
+    text: 'Tiny and simple-to-use Angular QR-Code generator library.',
+    href: 'qrcode'
+  },
+];
+
 ---
 <!doctype html>
 <html lang="en">
@@ -18,35 +37,18 @@ import "../styles/global.css";
   </section>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 card-grid">
-    <div class="col">
-      <a class="hover-card" href="bootstrap-icons">
-        <div class="card-body">
-          <h3 class="card-title">dfx-bootstrap-icons</h3>
-          <p class="card-text">Angular Bootstrap Icons</p>
+    {
+      projects.map((p) =>
+        <div class="col">
+          <a class="hover-card" href={p.href}>
+            <div class="card-body">
+              <h3 class="card-title">{p.title}</h3>
+              <p class="card-text">{p.text}</p>
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="hover-card" href="bootstrap-table">
-        <div class="card-body">
-          <h3 class="card-title">dfx-bootstrap-table</h3>
-          <p class="card-text">
-            Angular table CDK implementation for Bootstrap with filtering,
-            sorting and pagination.
-          </p>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="hover-card" href="qrcode">
-        <div class="card-body">
-          <h3 class="card-title">dfx-qrcode</h3>
-          <p class="card-text">
-            Tiny and simple-to-use Angular QR-Code generator library.
-          </p>
-        </div>
-      </a>
-    </div>
+      )
+    }
   </div>
 </main>
 
@@ -80,7 +82,6 @@ import "../styles/global.css";
     text-align: center !important;
     margin: 0;
     width: 100%;
-    height: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -174,6 +175,15 @@ import "../styles/global.css";
     font-size: 0.95rem;
   }
 
+  .hover-card.active {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+    background: #26263a;
+  }
+  .hover-card.active .card-title {
+    background-position: 100% 0;
+  }
+
   /* FOOTER */
   footer {
     text-align: center;
@@ -191,3 +201,36 @@ import "../styles/global.css";
     text-decoration: underline;
   }
 </style>
+
+<script>
+      const cards = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('.hover-card')
+      );
+      let idx = 0;
+      let intervalId = startLoop();
+
+      function startLoop() {
+        return setInterval(() => {
+          cards.forEach((c) => c.classList.remove('active'));
+          cards[idx].classList.add('active');
+          idx = (idx + 1) % cards.length;
+        }, 2000) as unknown as number;
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          // stop the auto‐hover loop
+          clearInterval(intervalId);
+          intervalId = 0;
+          // optionally clear any active state
+          cards.forEach((c) => c.classList.remove('active'));
+        });
+        card.addEventListener('mouseleave', () => {
+          // resume only if it’s not already running
+          if (!intervalId) {
+            intervalId = startLoop();
+          }
+        });
+      });
+    </script>
+

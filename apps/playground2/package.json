@@ -1,0 +1,47 @@
+{
+  "name": "playground2",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "serve": "astro dev --port 4200",
+    "compile": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "astro": "5.9.0",
+    "tailwindcss": "^4.1.8"
+  },
+  "nx": {
+    "targets": {
+      "copy-demos": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "mkdir apps/playground2/dist/bootstrap-icons/",
+            "mkdir apps/playground2/dist/bootstrap-table/",
+            "mkdir apps/playground2/dist/qrcode/",
+            "cp -r dist/apps/dfx-bootstrap-icons-demo/browser/* apps/playground2/dist/bootstrap-icons/",
+            "cp -r dist/apps/dfx-bootstrap-table-demo/browser/* apps/playground2/dist/bootstrap-table/",
+            "cp -r dist/apps/dfx-qrcode-demo/browser/* apps/playground2/dist/qrcode/"
+          ],
+          "cwd": "."
+        }
+      },
+      "compile": {
+        "dependsOn": ["dfx-bootstrap-icons-demo:build", "dfx-bootstrap-table-demo:build", "dfx-qrcode-demo:build"]
+      },
+      "build": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "nx compile playground2",
+            "nx run playground2:copy-demos"
+          ],
+          "parallel": false
+        }
+      }
+    }
+  }
+}

@@ -175,12 +175,12 @@ jobs:
           install-ignore-scripts: true
 
       - name: build playground
-        run: pnpm exec nx bundle playground
+        run: pnpm exec nx build playground2
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/apps/playground/browser/
+          path: ./apps/playground2/dist/
           retention-days: 1
 
   deploy-playground:

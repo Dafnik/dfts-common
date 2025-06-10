@@ -4,42 +4,20 @@ import { Provider, inject } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 
 import { ICON_CACHE_INTERCEPTOR } from './icons-cache.interceptor';
-import { ICONS_LOADER, ICONS_PICKED, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH } from './icons.config';
+import { ICONS_LOADER, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH } from './icons.config';
 import {
   IconCDNFeature,
   IconColorFeature,
   IconFeatureKind,
   IconFeatures,
   IconHeightFeature,
-  IconPickFeature,
   IconSizeFeature,
   IconWidthFeature,
 } from './icons.feature';
-import { toEscapedName } from './internal/toEscapedName';
-import { ColorValueHex, IconsType } from './types';
+import { ColorValueHex } from './types';
 
 export function provideBi(...features: IconFeatures[]): Provider[] {
   return features.map((it) => it.providers);
-}
-
-/**
- * @deprecated Use `provideCDNIconsLoader()` or `withIcons()` as a replacement
- */
-export function provideIcons(icons: IconsType): Provider {
-  return { provide: ICONS_PICKED, multi: true, useValue: icons };
-}
-
-/**
- * @deprecated Use `provideCDNIconsLoader()` or `withIcons()` as a replacement
- */
-export function provideLocalIconsLoader(): Provider {
-  return {
-    provide: ICONS_LOADER,
-    useFactory: () => {
-      const pickedIcons = Object.assign({}, ...(inject(ICONS_PICKED) as unknown as object[])) as IconsType;
-      return (name: string) => pickedIcons[toEscapedName(name)];
-    },
-  };
 }
 
 type URLFactory = () => string;
@@ -90,16 +68,6 @@ export function withCDN(...cdnUrlsOrFactories: (string | URLFactory)[]): IconCDN
   return {
     kind: IconFeatureKind.ICON_CDN,
     providers: [provideCDNIconsLoader(...cdnUrlsOrFactories)],
-  };
-}
-
-/**
- * @deprecated Use `withCDN()` as a replacement
- */
-export function withIcons(icons: IconsType): IconPickFeature {
-  return {
-    kind: IconFeatureKind.ICON_PICK,
-    providers: [provideIcons(icons), provideLocalIconsLoader()],
   };
 }
 

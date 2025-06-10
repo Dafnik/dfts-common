@@ -5,7 +5,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { debounceTime } from 'rxjs';
 
-import { BiComponent, BiNameList, toEscapedName } from 'dfx-bootstrap-icons';
+import { cl_copy } from 'dfts-helper';
+import { BiComponent, BiNameList } from 'dfx-bootstrap-icons';
 import { injectWindow } from 'dfx-helper';
 
 import { LoadIconComponent } from './load-icon.component';
@@ -21,27 +22,25 @@ import { LoadIconComponent } from './load-icon.component';
 
       <app-load-icon />
 
-      <ul class="d-flex justify-content-between list-unstyled list m-0 flex-wrap gap-2">
+      <div class="row row-cols-6 justify-content-between gap-2">
         @for (icon of searchResults(); track icon) {
-          <li class="mb-4" style="min-width: 110px">
-            <div class="d-block text-decoration-none">
-              <a href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
-                <div class="icon-block mb-2 rounded px-3 py-5 text-center">
-                  @defer (on viewport, idle) {
-                    <bi [name]="icon" />
-                  } @placeholder (minimum 500ms) {
-                    <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  }
+          <div class="icon-div mb-2" (click)="copy(icon)" style="min-width: 110px">
+            <div class="icon-block mb-2 rounded px-3 py-5 text-center">
+              @defer (on viewport) {
+                <bi [name]="icon" />
+              } @placeholder (minimum 500ms) {
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
                 </div>
-              </a>
-              <div class="name text-muted text-decoration-none pt-1 text-center">
-                <strong>{{ icon }}</strong>
-              </div>
-              <div class="name text-muted text-decoration-none pt-1 text-center">{{ escapedName(icon) }}</div>
+              }
             </div>
-          </li>
+            <div class="text-muted text-decoration-none d-flex justify-content-center gap-2 pt-1">
+              <strong>{{ icon }}</strong>
+              <a href="https://icons.getbootstrap.com/icons/{{ icon }}/" target="_blank">
+                <bi name="box-arrow-up-right" size="16" />
+              </a>
+            </div>
+          </div>
         } @empty {
           <li class="d-flex w-100 justify-content-center">
             <div class="d-flex align-items-center gap-2">
@@ -50,7 +49,7 @@ import { LoadIconComponent } from './load-icon.component';
             </div>
           </li>
         }
-      </ul>
+      </div>
     </div>
 
     <div class="to-top" [ngClass]="{ 'show-scrollTop': windowScrolled() }">
@@ -61,6 +60,9 @@ import { LoadIconComponent } from './load-icon.component';
     </div>
   `,
   styles: `
+    .icon-div:hover {
+      cursor: copy;
+    }
     .icon-block {
       background-color: var(--bs-tertiary-bg);
       color: var(--bs-body-color);
@@ -110,7 +112,9 @@ export class HomeComponent implements OnInit {
     return searchValue.length > 0 ? BiNameList.filter((name) => name.includes(searchValue)) : BiNameList;
   });
 
-  escapedName = (it: string) => toEscapedName(it);
-
   protected readonly IconNameList = BiNameList;
+
+  copy(name: string) {
+    cl_copy(name);
+  }
 }

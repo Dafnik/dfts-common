@@ -19,8 +19,7 @@ interface Theme {
       </label>
       <select class="rounded-3 px-2" id="theme" (change)="setTheme($any($event.target).value)" name="theme">
         @for (theme of themes; track theme.id) {
-          <option [class.active]="theme.id === currentTheme().id" [value]="theme.id">
-            <bi [name]="theme.icon" />
+          <option [value]="theme.id">
             {{ theme.name }}
           </option>
         }

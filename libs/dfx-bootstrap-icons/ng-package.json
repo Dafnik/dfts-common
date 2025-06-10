@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "assets": ["./*.md", "./LICENSE", { "glob": "**/*.svg", "input": "./assets/icons/", "output": "./icons" }],
+  "assets": ["./*.md", "./LICENSE"],
   "dest": "../../dist/libs/dfx-bootstrap-icons",
   "lib": {
     "entryFile": "src/index.ts"

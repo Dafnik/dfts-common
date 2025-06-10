@@ -12,6 +12,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 - [Installation](#installation)
 - [Version compatibility](#version-compatibility)
 - [Usage](#usage)
+  - [Setup](#usage)
   - [Standalone Components](#standalone-components)
   - [Module](#module)
 - [Configuration](#configuration)
@@ -22,9 +23,6 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
   - [Component parameters](#parameters)
   - [Width, height and size](#width-height-and-size)
   - [CDN](#cdn)
-- [Examples](#examples)
-  - [Provide imported icons application wide](#provide-imported-icons-application-wide)
-  - [Import all icons (not recommended)](#import-all-icons-not-recommended)
 
 ## Features
 
@@ -38,6 +36,7 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 
 | Angular | dfx-bootstrap-icons |
 | ------- | ------------------- |
+| 20.x.x  | 20.x.x              |
 | 20.x.x  | 4.x.x               |
 | 19.x.x  | 3.x.x               |
 | 18.x.x  | 2.x.x               |
@@ -47,166 +46,16 @@ Build upon the excellence of Bootstrap Icons providing you with over 2,000 icons
 
 - npm
   ```bash
-  npm install dfx-bootstrap-icons
+  npm install dfx-bootstrap-icons bootstrap-icons
   ```
 - pnpm
   ```bash
-  pnpm install dfx-bootstrap-icons
+  pnpm install dfx-bootstrap-icons bootstrap-icons
   ```
 
 ## Usage
 
-### Standalone Components
-
-```typescript
-import { BiComponent, exclamationOctagonFill, provideBi, withIcons, xCircleFill } from 'dfx-bootstrap-icons';
-
-@Component({
-  standalone: true,
-  selector: 'app-root',
-  template: `
-    <bi name="exclamation-octagon-fill" />
-  `,
-  imports: [BiComponent],
-  providers: [provideBi(withIcons({ exclamationOctagonFill, xCircleFill }))],
-})
-export class AppComponent {}
-```
-
-### Module
-
-```typescript
-import { BiModule, exclamationOctagonFill, withIcons } from 'dfx-bootstrap-icons';
-
-@NgModule({
-  declaration: [AppComponent],
-  imports: [BiModule.setup(withIcons({ exclamationOctagonFill }))],
-})
-export class AppModule {}
-
-@Component({
-  selector: 'app-root',
-  template: `
-    <bi name="exclamation-octagon-fill" />
-  `,
-})
-export class AppComponent {}
-```
-
-## Configuration
-
-### Standalone Components
-
-```typescript
-import { BiComponent, exclamationOctagonFill, provideBi, withColor, withHeight, withIcons, withWidth } from 'dfx-bootstrap-icons';
-
-@Component({
-  // ...
-  standalone: true,
-  imports: [BiComponent],
-  providers: [provideBi(withIcons({ exclamationOctagonFill }), withWidth(16), withHeight(16), withColor('currentColor'))],
-  template: `
-    <bi name="exclamation-octagon-fill" />
-  `,
-  // ...
-})
-export class AppComponent {}
-```
-
-### Module
-
-```typescript
-import { BiModule, exclamationOctagonFill, withColor, withHeight, withIcons, withWidth } from 'dfx-bootstrap-icons';
-
-@NgModule({
-  declaration: [AppComponent],
-  imports: [BiModule.setup(withIcons({ exclamationOctagonFill }), withWidth(16), withHeight(16), withColor('currentColor'))],
-})
-export class AppModule {}
-```
-
-### Configuration parameters
-
-| **Name**   | **Type**                    | **Description**                                             | **Example**                                                     | **Default value** |
-| ---------- | --------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- | ----------------- |
-| withIcons  | `{ [key: string]: string }` | Icons you want to include in your bundle.                   | `withIcons({ exclamationOctagonFill, xCircleFill })`            |                   |
-| withCDN    | `...string[]`               | Bootstrap Icons CDN URLs.                                   | `withCDN('https://playground.dafnik.me/bootstrap-icons/icons')` |                   |
-| withSize   | `string`                    | Size of the icon. (overrides injected `width` and `height`) | `withSize('24')`                                                | `undefined`       |
-| withWidth  | `string`                    | Width of the icon.                                          | `withWidth('24')`                                               | `16`              |
-| withHeight | `string`                    | Height of the icon.                                         | `withHeight('24')`                                              | `16`              |
-| withColor  | `string`                    | Color of the icon.                                          | `withColor('#0000FF')`                                          | `currentColor`    |
-
-### Component
-
-```typescript
-@Component({
-  // ...
-  selector: 'app-root',
-  template: `
-    <bi name="exclamation-octagon-fill" width="16" height="16" color="currentColor" clearDimensions="false" ariaLabel="Icon" />
-  `,
-  // ...
-})
-export class AppComponent {}
-```
-
-### Parameters
-
-| **Name**        | **Type**                | **Description**                                                | **Default value** | **Required** |
-| --------------- | ----------------------- | -------------------------------------------------------------- | ----------------- | ------------ |
-| name            | `BiName \| BiNamesEnum` | Name of the icon.                                              |                   | X            |
-| size            | `string`                | Size of the icon. (overrides passed `width` and `height`)      |                   |              |
-| width           | `string`                | Width of the icon.                                             |                   |              |
-| height          | `string`                | Height of the icon.                                            |                   |              |
-| color           | `string`                | Color of the icon.                                             |                   |              |
-| clearDimensions | `boolean`               | Clears dimensions (width, height) set via params or injection. | `false`           |              |
-| ariaLabel       | `string`                | aria-label which is set on the icon.                           |                   |              |
-
-### Width, height and size??
-
-`BiComponent` picks the size for the icon in the following order based on which params you inject and pass.
-
-```typescript
-const width = Input_Size ?? Input_Width ?? Injected_Size ?? Injected_Width;
-const height = Input_Size ?? Input_Height ?? Injected_Size ?? Injected_Height;
-```
-
-### CDN
-
-You are not required to include every used icon in your bundle.
-Instead, you have the option to utilize a CDN URL, allowing you to load your icons dynamically at runtime, either exclusively or in addition to bundling them.
-
-When providing multiple URLs, dfx-bootstrap-icons is going to pick a single one randomly at app start.
-
-Configure a pool of CDN URLs:
-
-```typescript
-import { provideBi, withCDN } from 'dfx-bootstrap-icons';
-
-bootstrapApplication(AppComponent, {
-  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
-}).catch((err) => console.error(err));
-```
-
-Don't forget to add the `HttpClient` and `biCacheInterceptor`
-
-#### HttpClient Interceptor
-
-When using CDNs you can use the `biCacheInterceptor` to prevent the duplicate fetching of icons.
-
-```typescript
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-
-import { biCacheInterceptor } from 'dfx-bootstrap-icons';
-
-bootstrapApplication(AppComponent, {
-  providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))],
-}).catch((err) => console.error(err));
-```
-
-#### Using your `assets` folder as the CDN
-
-You can bundle all icons into your `assets` folder so they will be included in your bundle but not get loaded unless you use actually them.
+Bundle all icons into your `assets` folder so they will be included in your bundle but not get loaded unless you actually use them.
 
 ```typescript
 // main.ts
@@ -225,7 +74,7 @@ bootstrapApplication(AppComponent, {
     "assets": [
       {
         "glob": "*",
-        "input": "node_modules/dfx-bootstrap-icons/icons",
+        "input": "node_modules/bootstrap-icons/icons",
         "output": "/assets/bootstrap-icons"
       }
     ]
@@ -233,43 +82,151 @@ bootstrapApplication(AppComponent, {
 }
 ```
 
-## Examples
+#### HttpClient Interceptor
 
-### Provide imported icons application wide
+Use the `biCacheInterceptor` to prevent the duplicate fetching of icons.
 
 ```typescript
-// icons.ts
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
-import {
-  apple,
-  // Import more icons
-} from 'dfx-bootstrap-icons';
-
-export const ICONS = {
-  apple,
-  // Import more icons
-};
-
-// main.ts
-
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideBi, withIcons } from 'dfx-bootstrap-icons';
-import { AppComponent } from './app/app.component';
-import { ICONS } from './app/icons.ts';
+import { biCacheInterceptor } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
-  providers: [provideBi(withIcons(ICONS))],
+  providers: [provideHttpClient(withInterceptors([biCacheInterceptor]))],
 }).catch((err) => console.error(err));
 ```
 
-### Import all icons (not recommended)
+Now you can use the icons via the following ways:
+
+### Standalone Components
 
 ```typescript
-import { allIcons, provideBi, withIcons } from 'dfx-bootstrap-icons';
+import { BiComponent } from 'dfx-bootstrap-icons';
+
+@Component({
+  standalone: true,
+  selector: 'app-root',
+  template: `
+    <bi name="exclamation-octagon-fill" />
+  `,
+  imports: [BiComponent],
+})
+export class AppComponent {}
+```
+
+### Module
+
+```typescript
+import { BiModule } from 'dfx-bootstrap-icons';
+
+@NgModule({
+  declaration: [AppComponent],
+  imports: [BiModule],
+})
+export class AppModule {}
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <bi name="exclamation-octagon-fill" />
+  `,
+})
+export class AppComponent {}
+```
+
+## Configuration
+
+### Standalone Components
+
+```typescript
+import { BiComponent, provideBi, withColor, withHeight, withWidth } from 'dfx-bootstrap-icons';
+
+@Component({
+  // ...
+  standalone: true,
+  imports: [BiComponent],
+  providers: [provideBi(withWidth(16), withHeight(16), withColor('currentColor'))],
+  template: `
+    <bi name="exclamation-octagon-fill" />
+  `,
+  // ...
+})
+export class AppComponent {}
+```
+
+### Module
+
+```typescript
+import { BiModule, withColor, withHeight, withWidth } from 'dfx-bootstrap-icons';
+
+@NgModule({
+  declaration: [AppComponent],
+  imports: [BiModule.setup(withWidth(16), withHeight(16), withColor('currentColor'))],
+})
+export class AppModule {}
+```
+
+### Configuration parameters
+
+| **Name**   | **Type**                      | **Description**                                             | **Example**                                                     | **Default value** |
+| ---------- | ----------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- | ----------------- | --- |
+| withCDN    | `...string[] \| () => string` | Bootstrap Icons CDN URLs.                                   | `withCDN('https://playground.dafnik.me/bootstrap-icons/icons')` |                   |     |
+| withSize   | `string`                      | Size of the icon. (overrides injected `width` and `height`) | `withSize('24')`                                                | `undefined`       |
+| withWidth  | `string`                      | Width of the icon.                                          | `withWidth('24')`                                               | `16`              |
+| withHeight | `string`                      | Height of the icon.                                         | `withHeight('24')`                                              | `16`              |
+| withColor  | `string`                      | Color of the icon.                                          | `withColor('#0000FF')`                                          | `currentColor`    |
+
+### Component
+
+```typescript
+@Component({
+  // ...
+  selector: 'app-root',
+  template: `
+    <bi name="exclamation-octagon-fill" width="16" height="16" color="currentColor" clearDimensions="false" ariaLabel="Icon" />
+  `,
+  // ...
+})
+export class AppComponent {}
+```
+
+### Parameters
+
+| **Name**        | **Type**  | **Description**                                                | **Default value** | **Required** |
+| --------------- | --------- | -------------------------------------------------------------- | ----------------- | ------------ |
+| name            | `BiName`  | Name of the icon.                                              |                   | X            |
+| size            | `string`  | Size of the icon. (overrides passed `width` and `height`)      |                   |              |
+| width           | `string`  | Width of the icon.                                             |                   |              |
+| height          | `string`  | Height of the icon.                                            |                   |              |
+| color           | `string`  | Color of the icon.                                             |                   |              |
+| clearDimensions | `boolean` | Clears dimensions (width, height) set via params or injection. | `false`           |              |
+| ariaLabel       | `string`  | aria-label which is set on the icon.                           |                   |              |
+
+### Width, height and size??
+
+`BiComponent` picks the size for the icon in the following order based on which params you inject and pass.
+
+```typescript
+const width = Input_Size ?? Input_Width ?? Injected_Size ?? Injected_Width;
+const height = Input_Size ?? Input_Height ?? Injected_Size ?? Injected_Height;
+```
+
+### CDN
+
+CDN URLs allows you to load your icons dynamically at runtime.
+
+When providing multiple URLs, dfx-bootstrap-icons is going to pick a single one randomly at app start.
+
+Configure a pool of CDN URLs:
+
+```typescript
+import { provideBi, withCDN } from 'dfx-bootstrap-icons';
 
 bootstrapApplication(AppComponent, {
-  providers: [provideBi(withIcons(allIcons))],
+  providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'))],
 }).catch((err) => console.error(err));
 ```
+
+Don't forget to add the `HttpClient` and `biCacheInterceptor`
 
 By [Dafnik](https://dafnik.me)

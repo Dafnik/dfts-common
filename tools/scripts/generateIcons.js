@@ -1,27 +1,15 @@
 const fs = require('fs-extra');
 
 const urlBase = 'https://icons.getbootstrap.com/icons/';
-const allIconsVariable = 'allIcons';
-const libFolder = 'libs/dfx-bootstrap-icons/src/lib';
 
 // source original bootstrap icons
 const iconsSrcFolder = './node_modules/bootstrap-icons/icons';
 // generated folder
-const generatedDestFolder = `${libFolder}/generated`;
-// type output folder
-const iconsDestFolder = `${generatedDestFolder}/icons`;
-const iconsAssetsDestFolder = 'libs/dfx-bootstrap-icons/assets/icons';
-// template for icons
-const iconTemplate = fs.readFileSync('tools/tmpl/icon.ts.tmpl', 'utf-8');
+const generatedDestFolder = 'libs/dfx-bootstrap-icons/src/lib/generated';
 
-const indexFile = `${iconsDestFolder}/index.ts`;
-const allFile = `${iconsDestFolder}/all.ts`;
 const versionFile = `${generatedDestFolder}/icons.version.ts`;
 const listFile = `${generatedDestFolder}/icon-names.list.ts`;
-const enumFile = `${generatedDestFolder}/icon-names.enum.ts`;
 const typeFile = `${generatedDestFolder}/icon-names.type.ts`;
-
-let exportAllString = `\nexport const allIcons = {\n`;
 
 let exportAllIconsList = `import {BiName} from './icon-names.type'\n\n`;
 exportAllIconsList += `/** List with all icons. */`;
@@ -29,13 +17,8 @@ exportAllIconsList += `\nexport const BiNameList: BiName[] = [\n`;
 
 let exportTypeString = `/** Type for icon names. */`;
 exportTypeString += `\nexport type BiName =\n`;
-let exportEnumString = `/** Enum with all icons. */`;
-exportEnumString += `\nexport enum BiNamesEnum {\n`;
 
-fs.emptyDirSync(iconsAssetsDestFolder);
-fs.copySync(iconsSrcFolder, iconsAssetsDestFolder);
-
-fs.emptyDirSync(iconsDestFolder);
+fs.emptyDirSync(generatedDestFolder);
 fs.readdirSync(iconsSrcFolder).forEach((filename) => {
   if (filename.includes('.svg')) {
     const iconName = filename.replace('.svg', '').trim();
@@ -45,35 +28,17 @@ fs.readdirSync(iconsSrcFolder).forEach((filename) => {
     exportTypeString += `/** {@link ${urlBase}${iconName}} */\n`;
     exportTypeString += `'${iconName}' | \n`;
 
-    const fileContent = fs.readFileSync(`${iconsSrcFolder}/${filename}`, 'utf-8');
     const exportName = escapedName(iconName);
 
-    exportEnumString += `/** {@link ${urlBase}${iconName}} */\n`;
-    exportEnumString += `${exportName} = '${iconName}',\n`;
-
-    let iconOutput = iconTemplate
-      .replace(/__ICON_NAME__/g, iconName)
-      .replace(/__EXPORT_NAME__/g, exportName)
-      .replace(/__PAYLOAD__/, fileContent.replace(/<(\w+)([^>]*)\/>/g, '<$1$2></$1>'));
-    fs.writeFileSync(`${iconsDestFolder}/${iconName}.ts`, iconOutput, 'utf-8');
-
-    fs.appendFileSync(indexFile, `export { ${exportName} } from './${iconName}';\n`);
-    fs.appendFileSync(allFile, `import { ${exportName} } from './${iconName}';\n`);
-    exportAllString += `  ${exportName},\n`;
     console.log(`icon ${exportName} | ${iconName} generated.`);
   }
 });
-exportAllString += `};\n`;
 exportAllIconsList += `];\n`;
-exportEnumString += `};\n`;
 
 // Remove last Pipe character ("|") from Type Output
 exportTypeString = exportTypeString.slice(0, -3);
 exportTypeString += `;\n`;
 
-fs.appendFileSync(allFile, exportAllString);
-fs.appendFileSync(indexFile, `\nexport { ${allIconsVariable} } from './all';\n`);
-fs.writeFileSync(enumFile, exportEnumString);
 fs.writeFileSync(listFile, exportAllIconsList);
 fs.writeFileSync(typeFile, exportTypeString);
 

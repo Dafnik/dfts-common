@@ -10,9 +10,9 @@ import {
   input,
 } from '@angular/core';
 
-import { Observable, Subscription, filter } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 
-import { BiName, BiNamesEnum } from './generated-index';
+import { BiName } from './generated-index';
 import { DEFAULT_COLOR, DEFAULT_ICON_SIZE, ICONS_LOADER, ICON_COLOR, ICON_HEIGHT, ICON_SIZE, ICON_WIDTH } from './icons.config';
 import { ColorValueHex } from './types';
 
@@ -32,7 +32,7 @@ export class BiComponent {
   injectedHeight = inject(ICON_HEIGHT);
   injectedSize = inject(ICON_SIZE);
 
-  name = input.required<BiName | BiNamesEnum>();
+  name = input.required<BiName>();
 
   width = input<string>();
   height = input<string>();
@@ -43,15 +43,15 @@ export class BiComponent {
 
   ariaLabel = input<string>();
 
-  #elementRef = inject(ElementRef);
-  #renderer = inject(Renderer2);
-  #iconSubscription?: Subscription;
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private iconSubscription?: Subscription;
 
   iconLoader = inject(ICONS_LOADER);
 
   constructor() {
     inject(DestroyRef).onDestroy(() => {
-      this.#iconSubscription?.unsubscribe();
+      this.iconSubscription?.unsubscribe();
     });
 
     effect(() => {
@@ -63,39 +63,17 @@ export class BiComponent {
 
       const name = this.name();
 
-      const icon = this.#getIcon(name);
+      const icon = this.iconLoader(name);
 
-      if (!icon) {
-        return;
-      }
+      this.iconSubscription?.unsubscribe();
 
-      if (typeof icon === 'string') {
-        this.#renderIcon(icon, width, height, size, color, ariaLabel);
-        return;
-      }
-
-      this.#iconSubscription?.unsubscribe();
-
-      this.#iconSubscription = icon
+      this.iconSubscription = icon
         .pipe(filter((iconString): iconString is string => !!iconString))
-        .subscribe((iconString) => this.#renderIcon(iconString, width, height, size, color, ariaLabel));
+        .subscribe((iconString) => this.renderIcon(iconString, width, height, size, color, ariaLabel));
     });
   }
 
-  #getIcon(name: string): Observable<string | undefined> | string | undefined {
-    const icon = this.iconLoader(name);
-
-    if (icon === undefined) {
-      if (name) {
-        console.warn(`BiComponent: Icon ${name} not found`);
-      }
-      return undefined;
-    }
-
-    return icon;
-  }
-
-  #renderIcon(icon: string, width?: string, height?: string, size?: string, color?: string, ariaLabel?: string): void {
+  private renderIcon(icon: string, width?: string, height?: string, size?: string, color?: string, ariaLabel?: string): void {
     if (!this.clearDimensions()) {
       icon = setSize(icon, 'width', size ?? width ?? this.injectedSize ?? this.injectedWidth);
       icon = setSize(icon, 'height', size ?? height ?? this.injectedSize ?? this.injectedHeight);
@@ -105,12 +83,12 @@ export class BiComponent {
       icon = setFillColor(icon, color);
     }
 
-    this.#renderer.setAttribute(this.#elementRef.nativeElement, 'aria-label', ariaLabel ?? 'Icon');
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'aria-label', ariaLabel ?? 'Icon');
     if (ariaLabel) {
-      this.#renderer.setAttribute(this.#elementRef.nativeElement, 'role', 'img');
+      this.renderer.setAttribute(this.elementRef.nativeElement, 'role', 'img');
     }
 
-    this.#renderer.setProperty(this.#elementRef.nativeElement, 'innerHTML', icon);
+    this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', icon);
   }
 }
 

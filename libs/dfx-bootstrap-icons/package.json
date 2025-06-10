@@ -47,6 +47,7 @@
   "peerDependencies": {
     "@angular/common": "20",
     "@angular/core": "20",
+    "bootstrap-icons": "1",
     "rxjs": "7"
   }
 }

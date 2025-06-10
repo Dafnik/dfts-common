@@ -43,7 +43,6 @@ Thumbs.db
 .nx/cache
 .nx/workspace-data
 /libs/dfts-qrcode/spec/image.png
-/libs/dfx-bootstrap-icons/assets/
 /libs/dfx-bootstrap-icons/src/lib/generated/
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md

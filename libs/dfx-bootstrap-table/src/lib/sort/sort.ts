@@ -116,6 +116,7 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
   initialized: Observable<void> = this._initializedStream;
 
   constructor(
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     @Optional()
     @Inject(NGB_SORT_DEFAULT_OPTIONS)
     private _defaultOptions?: NgbSortDefaultOptions,

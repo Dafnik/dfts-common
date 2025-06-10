@@ -42,7 +42,7 @@
     "directory": "libs/dfx-openapi"
   },
   "peerDependencies": {
-    "@angular/common": "19",
+    "@angular/common": "20",
     "rxjs": "7",
     "openapi-typescript-helpers": ">=0.0.15"
   }

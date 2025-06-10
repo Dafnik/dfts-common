@@ -3,7 +3,8 @@
     "compilationMode": "partial"
   },
   "compilerOptions": {
-    "declarationMap": false
+    "declarationMap": false,
+    "moduleResolution": "bundler"
   },
   "extends": "./tsconfig.lib.json"
 }

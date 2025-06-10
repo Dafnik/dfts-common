@@ -15,8 +15,6 @@ import {
   HeaderRowOutlet,
   NoDataRowOutlet,
   STICKY_POSITIONING_LISTENER,
-  _COALESCED_STYLE_SCHEDULER,
-  _CoalescedStyleScheduler,
 } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component, Directive, HostBinding, Input, ViewEncapsulation, booleanAttribute } from '@angular/core';
 
@@ -72,7 +70,6 @@ export class NgbRecycleRows {}
   providers: [
     { provide: CdkTable, useExisting: NgbTable },
     { provide: CDK_TABLE, useExisting: NgbTable },
-    { provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler },
     { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
     // Prevent nested tables from seeing this table's StickyPositioningListener.
     { provide: STICKY_POSITIONING_LISTENER, useValue: null },

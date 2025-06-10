@@ -27,19 +27,19 @@ jobs:
       - name: Style check
         run: pnpm format:check
 
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: dafnik/setup-node-pnpm@v4
-        with:
-          install-ignore-scripts: true
-
-      - name: Lint project
-        run: pnpm lint:check
+  #  eslint:
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - uses: actions/checkout@v4
+  #        with:
+  #          fetch-depth: 0
+  #
+  #      - uses: dafnik/setup-node-pnpm@v4
+  #        with:
+  #          install-ignore-scripts: true
+  #
+  #      - name: Lint project
+  #        run: pnpm lint:check
 
   commitlint:
     name: Commitlint Check

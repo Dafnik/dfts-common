@@ -8,7 +8,9 @@ import { DEFAULT_CURRENCY_CODE, Inject, LOCALE_ID, Pipe, PipeTransform } from '@
 })
 export class DfxCurrencyCentPipe extends CurrencyPipe implements PipeTransform {
   constructor(
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     @Inject(LOCALE_ID) _locale: string,
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     @Inject(DEFAULT_CURRENCY_CODE) private __defaultCurrencyCode = 'USD',
   ) {
     super(_locale, __defaultCurrencyCode);

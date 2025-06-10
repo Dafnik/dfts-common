@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
 
-import { BiComponent, provideBi, withCDN, withIcons } from 'dfx-bootstrap-icons';
+import { BiComponent, provideBi, withCDN } from 'dfx-bootstrap-icons';
 
 @Component({
   template: `

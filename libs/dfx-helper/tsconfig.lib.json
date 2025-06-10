@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "moduleResolution": "bundler",
     "outDir": "../../dist/out-tsc",
     "types": []
   },

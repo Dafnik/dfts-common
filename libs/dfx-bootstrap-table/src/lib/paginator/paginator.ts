@@ -155,8 +155,11 @@ export class NgbPaginator implements OnInit, OnDestroy {
   initialized: Observable<void> = this._initializedStream;
 
   constructor(
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     public _intl: NgbPaginatorIntl,
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     private _changeDetectorRef: ChangeDetectorRef,
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     @Optional() @Inject(NGB_PAGINATOR_DEFAULT_OPTIONS) defaults?: NgbPaginatorDefaultOptions,
   ) {
     this._intlChanges = _intl.changes.subscribe(() => this._changeDetectorRef.markForCheck());

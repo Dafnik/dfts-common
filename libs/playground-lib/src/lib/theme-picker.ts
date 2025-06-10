@@ -1,5 +1,5 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DOCUMENT, PLATFORM_ID, inject, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { BiComponent, BiName, provideBi, withCDN, withColor } from 'dfx-bootstrap-icons';

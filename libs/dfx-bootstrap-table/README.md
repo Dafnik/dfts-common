@@ -69,10 +69,6 @@ npm install @angular/cdk
   ```shell
   npm install bootstrap@latest
   ```
-- For sorting
-  ```shell
-  npm install @angular/animations@latest
-  ```
 - If you are going to use the filtering code
   ```shell
   npm install @angular/forms@latest

@@ -45,8 +45,8 @@
     "directory": "libs/dfx-boostrap-icons"
   },
   "peerDependencies": {
-    "@angular/common": "19",
-    "@angular/core": "19",
+    "@angular/common": "20",
+    "@angular/core": "20",
     "rxjs": "7"
   }
 }

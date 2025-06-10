@@ -2,5 +2,9 @@
   "angularCompilerOptions": {
     "compilationMode": "partial"
   },
+  "compilerOptions": {
+    "declarationMap": false,
+    "moduleResolution": "bundler"
+  },
   "extends": "./tsconfig.lib.json"
 }

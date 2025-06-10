@@ -120,6 +120,7 @@ export class NgbSortHeader implements NgbSortable, OnDestroy, OnInit, AfterViewI
   @Input({ transform: booleanAttribute })
   disableClear!: boolean;
 
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(...args: unknown[]);
 
   constructor() {

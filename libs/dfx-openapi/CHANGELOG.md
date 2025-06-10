@@ -1,4 +1,18 @@
  
+# [1.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.1.2...dfx-openapi-1.0.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **dfx-openapi:** typo ([d31fad1](https://github.com/Dafnik/dfts-common/commit/d31fad145ed5d02f2212cb23d0954350a86cb82a))
+
+
+### Features
+
+* angular v20 ([3f30202](https://github.com/Dafnik/dfts-common/commit/3f302022d92a77ca080bdcc0404ba06cceed4cc8))
+
+
+
 ## [0.1.2](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-0.1.1...dfx-openapi-0.1.2) (2025-04-25)
 
 

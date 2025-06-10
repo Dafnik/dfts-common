@@ -16,6 +16,7 @@ We only fix vulnerability in the code distributed through our main source code r
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 2.x.x   | :white_check_mark: |
 | 1.x.x   | :white_check_mark: |
 | < 1.0   | :x:                |
 
@@ -30,33 +31,43 @@ We only fix vulnerability in the code distributed through our main source code r
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 20.x.x  | :white_check_mark: |
+| 10.x.x  | :white_check_mark: |
 | 9.x.x   | :white_check_mark: |
-| 8.x.x   | :white_check_mark: |
-| < 8.0   | :x:                |
+| < 9.0   | :x:                |
 
 ### dfx-qrcode
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 20.x.x  | :white_check_mark: |
+| 5.x.x   | :white_check_mark: |
 | 4.x.x   | :white_check_mark: |
-| 3.x.x   | :white_check_mark: |
-| < 3.0   | :x:                |
+| < 4.0   | :x:                |
 
 ### dfx-bootstrap-table
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 20.x.x  | :white_check_mark: |
+| 6.x.x   | :white_check_mark: |
 | 5.x.x   | :white_check_mark: |
-| 4.x.x   | :white_check_mark: |
-| 3.x.x   | :x:                |
-| 2.x.x   | :x:                |
-| < 2.0   | :x:                |
+| < 5.0   | :x:                |
 
 ### dfx-bootstrap-icons
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 4.x.x   | :white_check_mark: |
 | 3.x.x   | :white_check_mark: |
 | 2.x.x   | :white_check_mark: |
-| 1.x.x   | :x:                |
-| < 1.0   | :x:                |
+| < 2.0   | :x:                |
+
+### dfx-openapi
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 20.x.x  | :white_check_mark: |
+| 1.x.x   | :white_check_mark: |
+| 0.1.x   | :white_check_mark: |
+| < 0.1.0 | :x:                |

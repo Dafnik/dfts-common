@@ -1,4 +1,21 @@
  
+# [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.2.0...dfts-helper-2.0.0) (2025-06-10)
+
+
+### Features
+
+* remove unused or not correctly working APIs ([daf3441](https://github.com/Dafnik/dfts-common/commit/daf34412923439bc2154f9fcc89348091d9ba3f2))
+
+
+### BREAKING CHANGES
+
+* Delay, MeasureTime, Once and Throttle decorator removed
+a_hasEntries and a_isEmpty removed
+d_format, d_formatWithHours..., d_timLeft and d_timespan removed
+undefined and null wrapper removed
+
+
+
 # [1.2.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.1.1...dfts-helper-1.2.0) (2024-12-13)
 
 

@@ -1,4 +1,22 @@
  
+# [10.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-9.0.1...dfx-helper-10.0.0) (2025-06-10)
+
+
+### Features
+
+* angular v20 ([3f30202](https://github.com/Dafnik/dfts-common/commit/3f302022d92a77ca080bdcc0404ba06cceed4cc8))
+* remove unused or not correctly working APIs ([daf3441](https://github.com/Dafnik/dfts-common/commit/daf34412923439bc2154f9fcc89348091d9ba3f2))
+
+
+### BREAKING CHANGES
+
+* Delay, MeasureTime, Once and Throttle decorator removed
+a_hasEntries and a_isEmpty removed
+d_format, d_formatWithHours..., d_timLeft and d_timespan removed
+undefined and null wrapper removed
+
+
+
 ## [9.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-helper-9.0.0...dfx-helper-9.0.1) (2025-02-04)
 
 

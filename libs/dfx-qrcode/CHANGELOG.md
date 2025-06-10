@@ -1,4 +1,8 @@
  
+# [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-5.0.0...dfx-qrcode-20.0.0) (2025-06-10)
+
+
+
 # [5.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-4.0.0...dfx-qrcode-5.0.0) (2025-06-10)
 
 

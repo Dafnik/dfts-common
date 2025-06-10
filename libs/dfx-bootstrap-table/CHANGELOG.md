@@ -1,4 +1,8 @@
  
+# [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-6.0.0...dfx-bootstrap-table-20.0.0) (2025-06-10)
+
+
+
 # [6.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-5.0.0...dfx-bootstrap-table-6.0.0) (2025-06-10)
 
 

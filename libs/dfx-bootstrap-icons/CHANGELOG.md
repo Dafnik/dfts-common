@@ -1,4 +1,13 @@
  
+# [4.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-3.0.1...dfx-bootstrap-icons-4.0.0) (2025-06-10)
+
+
+### Features
+
+* angular v20 ([3f30202](https://github.com/Dafnik/dfts-common/commit/3f302022d92a77ca080bdcc0404ba06cceed4cc8))
+
+
+
 ## [3.0.1](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-3.0.0...dfx-bootstrap-icons-3.0.1) (2025-02-04)
 
 

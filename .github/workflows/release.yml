@@ -98,7 +98,7 @@ jobs:
           cat RELEASE_CHANGELOG.md
 
       - name: create ${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }} release
-        uses: softprops/action-gh-release@v2.3.0
+        uses: softprops/action-gh-release@v2.2.2
         with:
           body_path: ./RELEASE_CHANGELOG.md
           files: ./releases/${{ inputs.lib }}-v${{ steps.get-version.outputs.VERSION }}.zip

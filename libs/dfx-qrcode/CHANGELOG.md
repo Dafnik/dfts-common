@@ -1,4 +1,18 @@
  
+# [5.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-4.0.0...dfx-qrcode-5.0.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **dfx-qrcode:** advertise only CSR capabilities ([c1d63e6](https://github.com/Dafnik/dfts-common/commit/c1d63e654e2d91de14c62a8c6006f34ca4a94f7a))
+
+
+### Features
+
+* angular v20 ([3f30202](https://github.com/Dafnik/dfts-common/commit/3f302022d92a77ca080bdcc0404ba06cceed4cc8))
+
+
+
 # [4.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-qrcode-3.0.1...dfx-qrcode-4.0.0) (2024-12-09)
 
 

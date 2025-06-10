@@ -1,4 +1,8 @@
  
+# [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-19.0.0...dfx-helper-20.0.0) (2025-06-10)
+
+
+
 # [10.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-9.0.1...dfx-helper-10.0.0) (2025-06-10)
 
 

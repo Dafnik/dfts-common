@@ -1,7 +1,6 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
 
 import { biCacheInterceptor } from 'dfx-bootstrap-icons';
@@ -14,7 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-    provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([biCacheInterceptor])),
     provideDfxHelper(withWindow()),
   ],

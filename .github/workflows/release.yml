@@ -69,7 +69,7 @@ jobs:
       - name: setup Node.js
         uses: actions/setup-node@v4
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: ${{ inputs.lib }}
           path: ./dist
@@ -113,7 +113,7 @@ jobs:
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v4
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: ${{ inputs.lib }}
           path: ./dist

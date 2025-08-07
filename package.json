@@ -70,7 +70,7 @@
     "jest": "30.0.5",
     "jest-canvas-mock": "2.5.2",
     "jest-environment-jsdom": "30.0.5",
-    "jest-preset-angular": "14.6.0",
+    "jest-preset-angular": "15.0.0",
     "jest-util": "30.0.5",
     "jsonc-eslint-parser": "^2.1.0",
     "ng-packagr": "20.0.1",

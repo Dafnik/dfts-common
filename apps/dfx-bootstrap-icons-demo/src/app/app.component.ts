@@ -47,7 +47,7 @@ import { ThemePicker } from 'playground-lib';
           <strong>v{{ bootstrapIconsVersion }}</strong>
         </a>
         <header class="d-flex flex-column-reverse flex-lg-row align-items-center justify-content-between">
-          <div class="col-12 col-lg-7">
+          <div class="col-lg-7 col-12">
             <h1 class="lh-base f0 text-lg-start text-center">dfx-bootstrap-icons</h1>
             <span class="lh-base fs-4">
               Straightforward, state-of-the-art Angular icon library.
@@ -76,7 +76,7 @@ import { ThemePicker } from 'playground-lib';
               <div class="d-inline-flex mt-3 gap-2"></div>
             </div>
           </div>
-          <div class="col-12 col-lg-4 d-flex justify-content-center">
+          <div class="col-lg-4 d-flex justify-content-center col-12">
             <img ngSrc="assets/header.png" priority alt="" width="360" height="270" />
           </div>
         </header>

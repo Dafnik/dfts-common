@@ -27,7 +27,7 @@
         "index": "apps/dfx-qrcode-demo/src/index.html",
         "outputPath": "dist/apps/dfx-qrcode-demo",
         "scripts": [],
-        "styles": ["apps/dfx-qrcode-demo/src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+        "styles": ["apps/dfx-qrcode-demo/src/styles.css"],
         "tsConfig": "apps/dfx-qrcode-demo/tsconfig.app.json"
       },
       "outputs": ["{options.outputPath}"]

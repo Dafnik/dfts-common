@@ -13,15 +13,8 @@ import { ThemePicker } from 'playground-lib';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [
-    `
-      .codebox {
-        background-color: var(--bs-secondary-bg);
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, QRCodeComponent, ReactiveFormsModule, ThemePicker, BiComponent],
+  imports: [QRCodeComponent, ReactiveFormsModule, ThemePicker, BiComponent],
 })
 export class AppComponent {
   form = inject(FormBuilder).nonNullable.group({
@@ -29,7 +22,6 @@ export class AppComponent {
     allowEmptyString: [true, [Validators.required]],
     elementType: ['img' as QRCodeElementType, [Validators.required]],
     errorCorrectionLevel: ['M' as const, [Validators.required]],
-    stylingEnabled: [true, [Validators.required]],
     cssClass: ['qrcode', [Validators.required]],
     colorDark: ['#000000' as const, [Validators.required]],
     colorLight: ['#FFFFFF' as const, [Validators.required]],
@@ -52,16 +44,12 @@ export class AppComponent {
     return `<qrcode [data]="'${form.data}'"
         [allowEmptyString]="${form.allowEmptyString}"
         [elementType]="'${form.elementType}'"
-        [errorCorrectionLevel]="'${form.errorCorrectionLevel}'"${
-          form.stylingEnabled
-            ? `
+        [errorCorrectionLevel]="'${form.errorCorrectionLevel}'"
         [cssClass]="'${form.cssClass}'"
         [colorDark]="'${form.colorDark}'"
         [colorLight]="'${form.colorLight}'"
         [margin]="${form.margin}"
-        [size]="${form.size}"`
-            : ''
-        }${
+        [size]="${form.size}"${
           form.accessibilityEnabled
             ? `
         [ariaLabel]="'${form.ariaLabel}'"
@@ -83,16 +71,12 @@ export class AppComponent {
     return `provideQRCode(
       withAllowEmptyString(${form.allowEmptyString}),
       withElementType('${form.elementType}'),
-      withErrorCorrectionLevel('${form.errorCorrectionLevel}'),${
-        form.stylingEnabled
-          ? `
+      withErrorCorrectionLevel('${form.errorCorrectionLevel}'),
       withCssClass('${form.cssClass}'),
       withColorDark('${form.colorDark}'),
       withColorLight('${form.colorLight}'),
       withMargin(${form.margin}),
-      withSize(${form.size}),`
-          : ''
-      }${
+      withSize(${form.size}),${
         form.imageEnabled
           ? `
       withImage(
@@ -126,22 +110,6 @@ export class AppComponent {
         this.form.controls.imageSrc.disable();
         this.form.controls.imageWidth.disable();
         this.form.controls.imageHeight.disable();
-      }
-    });
-
-    this.form.controls.stylingEnabled.valueChanges.pipe(takeUntilDestroyed()).subscribe((it) => {
-      if (it) {
-        this.form.controls.cssClass.enable();
-        this.form.controls.colorDark.enable();
-        this.form.controls.colorLight.enable();
-        this.form.controls.margin.enable();
-        this.form.controls.size.enable();
-      } else {
-        this.form.controls.cssClass.disable();
-        this.form.controls.colorDark.disable();
-        this.form.controls.colorLight.disable();
-        this.form.controls.margin.disable();
-        this.form.controls.size.disable();
       }
     });
   }

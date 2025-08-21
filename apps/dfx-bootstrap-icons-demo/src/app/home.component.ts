@@ -42,7 +42,7 @@ import { LoadIconComponent } from './load-icon.component';
             </div>
           </div>
         } @empty {
-          <li class="d-flex w-100 justify-content-center">
+          <li class="d-flex justify-content-center w-100">
             <div class="d-flex align-items-center gap-2">
               <bi name="exclamation-octagon-fill" height="24" width="24" ariaLabel="Test" />
               <span>Nothing found.</span>

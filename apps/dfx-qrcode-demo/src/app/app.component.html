@@ -1,347 +1,540 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-md justify-content-between justify-content-sm-start flex-row">
-    <a class="navbar-brand" href="/">
-      <img class="d-inline-block align-text-top" ngSrc="assets/logo.svg" alt="Logo" width="24" height="24" />
-      dfx-qrcode
-    </a>
-    <ul class="navbar-nav me-auto flex-row gap-2">
-      <li class="nav-item">
-        <a class="nav-link" href="https://npmjs.com/dfx-qrcode">NPM</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://github.com/Dafnik/dfts-common">GitHub</a>
-      </li>
-    </ul>
-    <div>
-      <li class="nav-item d-flex align-items-center">
-        <theme-picker />
-      </li>
+<!-- Navbar -->
+<div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 pb-6 text-white">
+  <nav class="shadow-md">
+    <div class="mx-auto flex max-w-6xl flex-row items-center justify-between p-4 sm:justify-start">
+      <a class="flex items-center gap-2 font-semibold" href="/">
+        <img class="inline-block align-middle" src="assets/logo.svg" alt="Logo" width="24" height="24" />
+        dfx-qrcode
+      </a>
+
+      <ul class="ml-auto flex flex-row gap-4">
+        <li>
+          <a class="hover:text-primary-300 transition-colors" href="https://npmjs.com/dfx-qrcode">NPM</a>
+        </li>
+        <li>
+          <a class="hover:text-primary-300 transition-colors" href="https://github.com/Dafnik/dfts-common">GitHub</a>
+        </li>
+      </ul>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="container-md mt-3">
-  <div class="row g-4">
-    <div class="col-12 col-md-6">
-      <h4 class="mb-4">QR-Code Preview</h4>
-      <div class="d-flex flex-column align-items-center rounded-3 codebox mb-5 gap-3 p-3">
-        <qrcode
-          [data]="formValues().data!"
-          [allowEmptyString]="formValues().allowEmptyString!"
-          [elementType]="formValues().elementType!"
-          [errorCorrectionLevel]="formValues().errorCorrectionLevel!"
-          [ariaLabel]="formValues().accessibilityEnabled ? formValues().ariaLabel : undefined"
-          [title]="formValues().accessibilityEnabled ? formValues().title : undefined"
-          [alt]="formValues().accessibilityEnabled ? formValues().alt : undefined"
-          [cssClass]="formValues().cssClass!"
-          [colorDark]="$any(formValues().colorDark!)"
-          [colorLight]="$any(formValues().colorLight!)"
-          [margin]="formValues().margin!"
-          [size]="formValues().size!"
-          [imageSrc]="formValues().imageEnabled ? formValues().imageSrc : undefined"
-          [imageWidth]="formValues().imageEnabled ? formValues().imageWidth : undefined"
-          [imageHeight]="formValues().imageEnabled ? formValues().imageHeight : undefined"
-          (qrCodeDataUrl)="setDataURL($event)" />
+  <!-- Main Container -->
+  <div class="mx-4 mt-6 min-h-screen max-w-6xl xl:mx-auto">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <!-- Left Column -->
+      <div>
+        <h4 class="mb-4 text-lg font-semibold">QR-Code Preview</h4>
 
-        <button class="btn btn-outline-info" (click)="download()">Download</button>
+        <div class="mb-6 flex flex-col items-center gap-3 rounded-lg border border-gray-700 bg-gray-800 p-4 shadow-md">
+          <qrcode
+            [data]="formValues().data!"
+            [allowEmptyString]="formValues().allowEmptyString!"
+            [elementType]="formValues().elementType!"
+            [errorCorrectionLevel]="formValues().errorCorrectionLevel!"
+            [ariaLabel]="formValues().accessibilityEnabled ? formValues().ariaLabel : undefined"
+            [title]="formValues().accessibilityEnabled ? formValues().title : undefined"
+            [alt]="formValues().accessibilityEnabled ? formValues().alt : undefined"
+            [cssClass]="formValues().cssClass!"
+            [colorDark]="$any(formValues().colorDark!)"
+            [colorLight]="$any(formValues().colorLight!)"
+            [margin]="formValues().margin!"
+            [size]="formValues().size!"
+            [imageSrc]="formValues().imageEnabled ? formValues().imageSrc : undefined"
+            [imageWidth]="formValues().imageEnabled ? formValues().imageWidth : undefined"
+            [imageHeight]="formValues().imageEnabled ? formValues().imageHeight : undefined"
+            (qrCodeDataUrl)="setDataURL($event)"></qrcode>
+
+          <button class="border-info-400 text-info-400 hover:bg-info-900/30 rounded border px-4 py-2 transition" (click)="download()">
+            Download
+          </button>
+        </div>
+
+        <h6 class="font-semibold">HTML</h6>
+        <pre class="overflow-x-auto rounded border border-gray-700 bg-gray-900 p-3 text-sm text-gray-200">{{ previewHTML() }}</pre>
+
+        <h6 class="mt-4 font-semibold">Config</h6>
+        <pre class="overflow-x-auto rounded border border-gray-700 bg-gray-900 p-3 text-sm text-gray-200">{{ previewConfig() }}</pre>
+
+        <h5 class="mt-10 mb-4 text-lg font-semibold">Installation</h5>
+
+        <ol class="space-y-4">
+          <li class="rounded-lg border border-gray-700 bg-gray-800 p-3">
+            <h6 class="font-semibold">NPM</h6>
+            <div class="flex items-center justify-between gap-4">
+              <code class="text-primary-300 text-sm">npm install dfx-qrcode</code>
+              <button
+                class="bg-primary-600 hover:bg-primary-700 active:bg-primary-800 flex transform items-center gap-1 rounded px-2 py-1 text-sm text-white transition active:scale-95"
+                (click)="copy('npm install dfx-qrcode')">
+                <bi name="copy"></bi>
+                Copy
+              </button>
+            </div>
+          </li>
+
+          <li class="rounded-lg border border-gray-700 bg-gray-800 p-3">
+            <h6 class="font-semibold">PNPM</h6>
+            <div class="flex items-center justify-between gap-4">
+              <code class="text-primary-300 text-sm">pnpm install dfx-qrcode</code>
+              <button
+                class="bg-primary-600 hover:bg-primary-700 active:bg-primary-800 flex transform items-center gap-1 rounded px-2 py-1 text-sm text-white transition active:scale-95"
+                (click)="copy('pnpm install dfx-qrcode')">
+                <bi name="copy"></bi>
+                Copy
+              </button>
+            </div>
+          </li>
+        </ol>
       </div>
 
-      <h6>HTML</h6>
+      <!-- Right Column -->
+      <div>
+        <div class="flex flex-col gap-6" [formGroup]="form">
+          <!-- General -->
+          <div class="flex flex-col gap-4">
+            <h6 class="font-semibold text-gray-100">General</h6>
 
-      <pre class="codebox rounded p-3">{{ previewHTML() }}</pre>
+            <!-- Data -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="data">Data</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="data"
+                type="text"
+                formControlName="data"
+                placeholder="Data" />
+            </div>
 
-      <h6>Config</h6>
+            <!-- Allow Empty Strings -->
+            <label class="flex items-center gap-2 text-sm text-gray-300">
+              <input
+                class="text-primary-600 focus:ring-primary-500 h-4 w-4 rounded border-gray-600 bg-gray-900"
+                id="allowEmptyString"
+                type="checkbox"
+                formControlName="allowEmptyString" />
+              Allow empty strings
+            </label>
 
-      <pre class="codebox rounded p-3">{{ previewConfig() }}</pre>
+            <!-- Error Correction Level -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="errorCorrectionLevel">Error Correction Level</label>
+              <select
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 shadow-sm focus:ring-1"
+                id="errorCorrectionLevel"
+                formControlName="errorCorrectionLevel">
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="Q">Q</option>
+                <option value="H">H</option>
+              </select>
+            </div>
 
-      <h5 style="margin-top: 5vh; margin-bottom: 2vh">Installation</h5>
-
-      <ol>
-        <li class="codebox rounded-3 p-2">
-          <h6>NPM</h6>
-          <div class="d-flex align-items-center gap-4">
-            <code>npm install dfx-qrcode</code>
-            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" (click)="copy('npm install dfx-qrcode')">
-              <bi name="copy" />
-              Copy
-            </button>
+            <!-- Element Type -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="elementType">Element Type</label>
+              <select
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 shadow-sm focus:ring-1"
+                id="elementType"
+                formControlName="elementType">
+                <option value="img">Image</option>
+                <option value="canvas">Canvas</option>
+                <option value="svg">SVG</option>
+              </select>
+            </div>
           </div>
-        </li>
 
-        <li class="codebox rounded-3 mt-3 p-2">
-          <h6>PNPM</h6>
-          <div class="d-flex align-items-center gap-4">
-            <code>pnpm install dfx-qrcode</code>
-            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" (click)="copy('pnpm install dfx-qrcode')">
-              <bi name="copy" />
-              Copy
-            </button>
+          <!-- Styling -->
+          <div class="flex flex-col gap-4">
+            <h6 class="font-semibold text-gray-100">Styling</h6>
+
+            <!-- Margin -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="margin">Margin (px)</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 shadow-sm focus:ring-1"
+                id="margin"
+                type="number"
+                formControlName="margin" />
+            </div>
+
+            <!-- Size -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="size">Size (px)</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 shadow-sm focus:ring-1"
+                id="size"
+                type="number"
+                formControlName="size" />
+            </div>
+
+            <!-- CSS Class -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="cssClass">CSS Class</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="cssClass"
+                type="text"
+                formControlName="cssClass"
+                placeholder="qrcode" />
+            </div>
+
+            <!-- Dark Color -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="colorDark">Dark QR-Code Color</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="colorDark"
+                type="text"
+                formControlName="colorDark"
+                placeholder="#000000" />
+            </div>
+
+            <!-- Light Color -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="colorLight">Light QR-Code Color</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="colorLight"
+                type="text"
+                formControlName="colorLight"
+                placeholder="#FFFFFF" />
+            </div>
           </div>
-        </li>
-      </ol>
+
+          <!-- Image -->
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <h6 class="font-semibold text-gray-100">Image</h6>
+              <label class="flex items-center gap-2 text-sm text-gray-300">
+                <input
+                  class="text-primary-600 focus:ring-primary-500 h-4 w-4 rounded border-gray-600 bg-gray-900"
+                  id="imageEnabled"
+                  type="checkbox"
+                  formControlName="imageEnabled" />
+                Enable
+              </label>
+            </div>
+
+            <!-- Image Src -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="imageSrc">Image src</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="imageSrc"
+                type="text"
+                formControlName="imageSrc"
+                placeholder="/qrcode/assets/angular-logo.png" />
+            </div>
+
+            <!-- Image Width -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="imageWidth">Image Width (px)</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 shadow-sm focus:ring-1"
+                id="imageWidth"
+                type="number"
+                formControlName="imageWidth" />
+            </div>
+
+            <!-- Image Height -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="imageHeight">Image Height (px)</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 shadow-sm focus:ring-1"
+                id="imageHeight"
+                type="number"
+                formControlName="imageHeight" />
+            </div>
+          </div>
+
+          <!-- Accessibility -->
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <h6 class="font-semibold text-gray-100">Accessibility</h6>
+              <label class="flex items-center gap-2 text-sm text-gray-300">
+                <input
+                  class="text-primary-600 focus:ring-primary-500 h-4 w-4 rounded border-gray-600 bg-gray-900"
+                  id="accessibilityEnabled"
+                  type="checkbox"
+                  formControlName="accessibilityEnabled" />
+                Enable
+              </label>
+            </div>
+
+            <!-- aria-label -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="ariaLabel">aria-label</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="ariaLabel"
+                type="text"
+                formControlName="ariaLabel"
+                placeholder="QR-Code Image" />
+            </div>
+
+            <!-- title -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="title">title</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="title"
+                type="text"
+                formControlName="title"
+                placeholder="QR-Code Image" />
+            </div>
+
+            <!-- alt -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300" for="alt">alt</label>
+              <input
+                class="focus:border-primary-500 focus:ring-primary-500 mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 shadow-sm focus:ring-1"
+                id="alt"
+                type="text"
+                formControlName="alt"
+                placeholder="QR-Code Image" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-12 col-md-6">
-      <h4>Options</h4>
-      <form class="d-flex flex-column gap-5" [formGroup]="form">
-        <div class="d-flex flex-column gap-2">
-          <h6>General</h6>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="data" type="text" placeholder="Data" formControlName="data" />
-              <label for="data">Data</label>
-            </div>
-          </div>
 
-          <div class="form-check form-switch">
-            <input class="form-check-input" id="allowEmptyString" type="checkbox" role="switch" formControlName="allowEmptyString" />
-            <label class="form-check-label" for="allowEmptyString">Allow empty strings</label>
-          </div>
+    <!-- Inputs Table -->
+    <h5 class="mt-6 mb-4 text-lg font-semibold">Inputs</h5>
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-700 bg-gray-900 text-sm text-gray-200">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="border-b border-gray-700 px-4 py-2 text-left font-semibold text-gray-100">Name</th>
+            <th class="border-b border-gray-700 px-4 py-2 text-left font-semibold text-gray-100">Type</th>
+            <th class="border-b border-gray-700 px-4 py-2 text-left font-semibold text-gray-100">Default value</th>
+            <th class="border-b border-gray-700 px-4 py-2 text-left font-semibold text-gray-100">Description</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-700">
+          <!-- Keep your existing rows, just styled dark -->
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>allowEmptyString</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-400">
+              <code>boolean</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-400">
+              <code>false</code>
+            </td>
+            <td class="px-4 py-2">
+              Define if empty or
+              <code>undefined</code>
+              strings should be converted to a space (
+              <code>" "</code>
+              ) or throw an error.
+            </td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>allowEmptyString</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>boolean</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>false</code>
+            </td>
+            <td class="px-4 py-2">
+              Define if empty or
+              <code>undefined</code>
+              strings should be converted to a space (
+              <code>" "</code>
+              ) or throw an error.
+            </td>
+          </tr>
 
-          <div class="d-flex flex-column">
-            <label for="errorCorrectionLevel">Error Correction Level</label>
-            <select class="form-select" id="errorCorrectionLevel" aria-label="Select element type" formControlName="errorCorrectionLevel">
-              <option [value]="'L'">L</option>
-              <option [value]="'M'">M</option>
-              <option [value]="'Q'">Q</option>
-              <option [value]="'H'">H</option>
-            </select>
-          </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>elementType</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>'img' | 'canvas' | 'svg'</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>img</code>
+            </td>
+            <td class="px-4 py-2">
+              Define if the QR-Code should be rendered as
+              <code>HTMLImageElement</code>
+              or
+              <code>HTMLCanvasElement</code>
+            </td>
+          </tr>
 
-          <div class="d-flex flex-column">
-            <label for="elementType">Element Type</label>
-            <select class="form-select" id="elementType" aria-label="Select element type" formControlName="elementType">
-              <option [value]="'img'">Image</option>
-              <option [value]="'canvas'">Canvas</option>
-              <option [value]="'svg'">SVG</option>
-            </select>
-          </div>
-        </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>errorCorrectionLevel</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>'L' | 'M' | 'Q' | 'H'</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>M</code>
+            </td>
+            <td class="px-4 py-2">Define the error correction level</td>
+          </tr>
 
-        <div class="d-flex flex-column gap-2">
-          <div class="d-flex justify-content-between flex-row">
-            <h6>Styling</h6>
-            <div class="form-check">
-              <input class="form-check-input" id="stylingEnabled" type="checkbox" formControlName="stylingEnabled" />
-              <label class="form-check-label" for="stylingEnabled">Enable</label>
-            </div>
-          </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>cssClass</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>string</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>qrcode</code>
+            </td>
+            <td class="px-4 py-2">Define a css class for the wrapper element of the QR-Code</td>
+          </tr>
 
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="margin" type="number" placeholder="Margin (px)" formControlName="margin" />
-              <label for="margin">Margin (px)</label>
-            </div>
-          </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>colorDark</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>Hex color</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>#000000</code>
+            </td>
+            <td class="px-4 py-2">Define the color of the dark elements</td>
+          </tr>
 
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="size" type="number" placeholder="Size (px)" formControlName="size" />
-              <label for="size">Size (px)</label>
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="cssClass" type="text" placeholder="CSS Class" formControlName="cssClass" />
-              <label for="cssClass">CSS Class</label>
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="colorDark" type="text" placeholder="Dark QR-Code Color" formControlName="colorDark" />
-              <label for="colorDark">Dark QR-Code Color</label>
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="colorLight" type="text" placeholder="Light QR-Code Color" formControlName="colorLight" />
-              <label for="colorLight">Light QR-Code Color</label>
-            </div>
-          </div>
-        </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>colorLight</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>Hex color</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>#FFFFFF</code>
+            </td>
+            <td class="px-4 py-2">Define the color of the light elements</td>
+          </tr>
 
-        <div class="d-flex flex-column gap-2">
-          <div class="d-flex justify-content-between flex-row">
-            <h6>Image</h6>
-            <div class="form-check">
-              <input class="form-check-input" id="imageEnabled" type="checkbox" formControlName="imageEnabled" />
-              <label class="form-check-label" for="imageEnabled">Enable</label>
-            </div>
-          </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>margin</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>number</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>4</code>
+            </td>
+            <td class="px-4 py-2">Define the margin around the QR-Code in px</td>
+          </tr>
 
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="imageSrc" type="text" placeholder="Image src" formControlName="imageSrc" />
-              <label for="ariaLabel">Image src</label>
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="imageWidth" type="number" placeholder="Image width (px)" formControlName="imageWidth" />
-              <label for="margin">Image Width (px)</label>
-            </div>
-          </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>size</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>number</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>4</code>
+            </td>
+            <td class="px-4 py-2">Define the size of the modules of the QR-Code in px</td>
+          </tr>
 
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="imageHeight" type="number" placeholder="Image Height (px)" formControlName="imageHeight" />
-              <label for="imageHeight">Image Height (px)</label>
-            </div>
-          </div>
-        </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>ariaLabel</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>string | undefined</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>undefined</code>
+            </td>
+            <td class="px-4 py-2">
+              String which should be set as
+              <code>aria-label</code>
+              tag
+            </td>
+          </tr>
 
-        <div class="d-flex flex-column gap-2">
-          <div class="d-flex justify-content-between flex-row">
-            <h6>Accessibility</h6>
-            <div class="form-check">
-              <input class="form-check-input" id="accessibilityEnabled" type="checkbox" formControlName="accessibilityEnabled" />
-              <label class="form-check-label" for="accessibilityEnabled">Enable</label>
-            </div>
-          </div>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>title</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>string | undefined</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>undefined</code>
+            </td>
+            <td class="px-4 py-2">
+              String which should be set as
+              <code>title</code>
+              tag
+            </td>
+          </tr>
 
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="ariaLabel" type="text" placeholder="aria-label" formControlName="ariaLabel" />
-              <label for="ariaLabel">aria-label</label>
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="title" type="text" placeholder="title" formControlName="title" />
-              <label for="title">title</label>
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="form-floating">
-              <input class="form-control" id="alt" type="text" placeholder="alt" formControlName="alt" />
-              <label for="alt">alt</label>
-            </div>
-          </div>
-        </div>
-      </form>
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>alt</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>string | undefined</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>undefined</code>
+            </td>
+            <td class="px-4 py-2">
+              String which should be set as
+              <code>alt</code>
+              tag
+            </td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>imageSrc</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>string | undefined</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>undefined</code>
+            </td>
+            <td class="px-4 py-2">Path to image displayed in the QR-Code center</td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>imageHeight</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>number | undefined</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>undefined</code>
+            </td>
+            <td class="px-4 py-2">Height of center image in px</td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>imageWidth</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>number | undefined</code>
+            </td>
+            <td class="px-4 py-2 font-mono text-xs text-gray-300">
+              <code>undefined</code>
+            </td>
+            <td class="px-4 py-2">Width of center image in px</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-
-  <h5 class="mt-4">Inputs</h5>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Default value</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>allowEmptyString</code></td>
-          <td><code>boolean</code></td>
-          <td><code>false</code></td>
-          <td>
-            Define if empty or
-            <code>undefined</code>
-            strings should be converted to a space (
-            <code>" "</code>
-            ) or throw an error.
-          </td>
-        </tr>
-
-        <tr>
-          <td><code>elementType</code></td>
-          <td><code>'img' | 'canvas' | 'svg'</code></td>
-          <td><code>img</code></td>
-          <td>
-            Define if the QR-Code should be rendered as
-            <code>HTMLImageElement</code>
-            or
-            <code>HTMLCanvasElement</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>errorCorrectionLevel</code></td>
-          <td><code>'L' | 'M' | 'Q' | 'H'</code></td>
-          <td><code>M</code></td>
-          <td>Define the error correction level</td>
-        </tr>
-        <tr>
-          <td><code>cssClass</code></td>
-          <td><code>string</code></td>
-          <td><code>qrcode</code></td>
-          <td>Define a css class for the wrapper element of the QR-Code</td>
-        </tr>
-        <tr>
-          <td><code>colorDark</code></td>
-          <td><code>Hex color</code></td>
-          <td><code>#000000</code></td>
-          <td>Define the color of the dark elements</td>
-        </tr>
-        <tr>
-          <td><code>colorLight</code></td>
-          <td><code>Hex color</code></td>
-          <td><code>#FFFFFF</code></td>
-          <td>Defined the color of the light elements</td>
-        </tr>
-        <tr>
-          <td><code>margin</code></td>
-          <td><code>number</code></td>
-          <td><code>4</code></td>
-          <td>Define the margin around the QR-Code in px</td>
-        </tr>
-        <tr>
-          <td><code>size</code></td>
-          <td><code>number</code></td>
-          <td><code>4</code></td>
-          <td>Define the size of the modules of the QR-Code in px</td>
-        </tr>
-        <tr>
-          <td><code>ariaLabel</code></td>
-          <td><code>string | undefined</code></td>
-          <td><code>undefined</code></td>
-          <td>
-            String which should be set as
-            <code>aria-label</code>
-            tag
-          </td>
-        </tr>
-        <tr>
-          <td><code>title</code></td>
-          <td><code>string | undefined</code></td>
-          <td><code>undefined</code></td>
-          <td>
-            String which should be set as
-            <code>title</code>
-            tag
-          </td>
-        </tr>
-        <tr>
-          <td><code>alt</code></td>
-          <td><code>string | undefined</code></td>
-          <td><code>undefined</code></td>
-          <td>
-            String which should be set as
-            <code>alt</code>
-            tag
-          </td>
-        </tr>
-        <tr>
-          <td><code>imageSrc</code></td>
-          <td><code>string | undefined</code></td>
-          <td><code>undefined</code></td>
-          <td>Path to image displayed in the QR-Code center</td>
-        </tr>
-        <tr>
-          <td><code>imageHeight</code></td>
-          <td><code>number | undefined</code></td>
-          <td><code>undefined</code></td>
-          <td>Height of center image in px</td>
-        </tr>
-        <tr>
-          <td><code>imageWidth</code></td>
-          <td><code>number | undefined</code></td>
-          <td><code>undefined</code></td>
-          <td>Width of center image in px</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>

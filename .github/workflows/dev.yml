@@ -16,7 +16,7 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -30,7 +30,7 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -47,7 +47,7 @@ jobs:
     steps:
       # Needed to get the commitlint config
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -64,7 +64,7 @@ jobs:
       # Expose matched filters as job 'packages' output variable
       libs: ${{ steps.filter.outputs.changes }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: dorny/paths-filter@v3
         id: filter
@@ -116,7 +116,7 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v4
@@ -140,7 +140,7 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v4
@@ -167,7 +167,7 @@ jobs:
     name: Build playground
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v4
@@ -178,7 +178,7 @@ jobs:
         run: pnpm exec nx build playground2
 
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./apps/playground2/dist/
           retention-days: 1

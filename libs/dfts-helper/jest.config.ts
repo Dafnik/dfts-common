@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfts-helper',
   coverageDirectory: '../../coverage/libs/dfts-helper',

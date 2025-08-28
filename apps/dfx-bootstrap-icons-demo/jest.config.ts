@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfx-bootstrap-icons-demo',
   preset: '../../jest.preset.js',

@@ -271,7 +271,7 @@ for (let i = 0; i < 45; i++) {
 // (cf. Table 20 in JIS X 0510:2004 p. 42)
 export const MASK_FUNCTIONS: ((i: number, j: number) => boolean)[] = [
   (i: number, j: number): boolean => (i + j) % 2 === 0,
-  (i: number, _: number): boolean => i % 2 === 0,
+  (i: number): boolean => i % 2 === 0,
   (i: number, j: number): boolean => j % 3 === 0,
   (i: number, j: number): boolean => (i + j) % 3 === 0,
   (i: number, j: number): boolean => (((i / 2) | 0) + ((j / 3) | 0)) % 2 === 0,

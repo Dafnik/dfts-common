@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
 // noinspection DuplicatedCode,ES6PreferShortImport
 import { isPlatformBrowser } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';

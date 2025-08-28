@@ -1,7 +1,0 @@
-.angular
-package.json
-pnpm-lock.yaml
-dist/
-node_modules/
-
-**README.md

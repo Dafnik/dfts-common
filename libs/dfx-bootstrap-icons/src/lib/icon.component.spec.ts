@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion,@typescript-eslint/ban-ts-comment */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BiNameList } from './generated-index';

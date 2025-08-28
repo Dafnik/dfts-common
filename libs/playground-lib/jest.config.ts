@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'playground-lib',
   preset: '../../jest.preset.js',

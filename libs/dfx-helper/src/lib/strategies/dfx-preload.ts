@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation */
 import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 

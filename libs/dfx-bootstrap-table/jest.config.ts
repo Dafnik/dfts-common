@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfx-bootstrap-table',
   coverageDirectory: '../../coverage/libs/dfx-bootstrap-table',

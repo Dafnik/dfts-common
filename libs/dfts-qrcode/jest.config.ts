@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfts-qrcode',
   coverageDirectory: '../../coverage/libs/dfts-qrcode',

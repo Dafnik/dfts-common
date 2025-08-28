@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,13 +7,12 @@ import { debounceTime } from 'rxjs';
 import { cl_copy } from 'dfts-helper';
 import { BiComponent } from 'dfx-bootstrap-icons';
 import { QRCodeComponent, QRCodeElementType, downloadQRCode } from 'dfx-qrcode';
-import { ThemePicker } from 'playground-lib';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [QRCodeComponent, ReactiveFormsModule, ThemePicker, BiComponent],
+  imports: [QRCodeComponent, ReactiveFormsModule, BiComponent],
 })
 export class AppComponent {
   form = inject(FormBuilder).nonNullable.group({

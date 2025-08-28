@@ -109,14 +109,12 @@ export class NgbSort implements OnChanges, OnDestroy, OnInit {
   disabled = false;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
-  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('ngbSortChange') readonly sortChange: EventEmitter<Sort> = new EventEmitter<Sort>();
 
   /** Emits when the paginator is initialized. */
   initialized: Observable<void> = this._initializedStream;
 
   constructor(
-    // eslint-disable-next-line @angular-eslint/prefer-inject
     @Optional()
     @Inject(NGB_SORT_DEFAULT_OPTIONS)
     private _defaultOptions?: NgbSortDefaultOptions,

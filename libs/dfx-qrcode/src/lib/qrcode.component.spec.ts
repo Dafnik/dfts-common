@@ -1,11 +1,9 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { QRCodeComponent } from './qrcode.component';
 import { provideQRCode, withAllowEmptyString } from './qrcode.provider';
 
 describe('dfx-qrcode', () => {
-  let de: DebugElement;
   let component: QRCodeComponent;
   let fixture: ComponentFixture<QRCodeComponent>;
 
@@ -19,8 +17,6 @@ describe('dfx-qrcode', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QRCodeComponent);
     component = fixture.componentInstance;
-
-    de = fixture.debugElement;
 
     fixture.detectChanges();
   });

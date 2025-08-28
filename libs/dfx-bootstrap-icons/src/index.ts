@@ -1,6 +1,5 @@
 export * from './lib/generated-index';
 
-export * from './lib/internal/toEscapedName';
 export * from './lib/types';
 
 export * from './lib/icon.component';

@@ -36,7 +36,6 @@ interface Theme {
   imports: [ReactiveFormsModule, BiComponent],
   providers: [provideBi(withCDN('https://playground.dafnik.me/bootstrap-icons/icons'), withColor('#0000FF'))],
 })
-// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ThemePicker {
   themes: Theme[] = [
     { id: 'auto', name: 'Auto', icon: 'circle-half' },

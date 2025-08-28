@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfx-bootstrap-icons',
   coverageDirectory: '../../coverage/libs/dfx-bootstrap-icons',

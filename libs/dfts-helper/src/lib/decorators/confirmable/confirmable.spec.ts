@@ -20,7 +20,7 @@ describe('Confirmable', () => {
 
 class TestClass {
   @Confirmable('Are you sure?')
-  static testMethode(value: any): any {
+  static testMethode(value: unknown): unknown {
     return value;
   }
 }

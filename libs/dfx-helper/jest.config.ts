@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfx-helper',
   coverageDirectory: '../../coverage/libs/dfx-helper',

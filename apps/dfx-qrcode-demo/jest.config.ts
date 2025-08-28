@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'dfx-qrcode-demo',
   preset: '../../jest.preset.js',

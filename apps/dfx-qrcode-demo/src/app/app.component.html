@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 pb-6 text-white">
-  <nav class="shadow-md">
+  <nav class="fixed top-0 right-0 left-0 z-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-md">
     <div class="mx-auto flex max-w-6xl flex-row items-center justify-between p-4 sm:justify-start">
       <a class="flex items-center gap-2 font-semibold" href="/">
         <img class="inline-block align-middle" src="assets/logo.svg" alt="Logo" width="24" height="24" />
@@ -44,7 +44,9 @@
             [imageHeight]="formValues().imageEnabled ? formValues().imageHeight : undefined"
             (qrCodeDataUrl)="setDataURL($event)"></qrcode>
 
-          <button class="border-info-400 text-info-400 hover:bg-info-900/30 rounded border px-4 py-2 transition" (click)="download()">
+          <button
+            class="border-info-400 text-info-400 hover:bg-info-900/30 rounded border px-4 py-2 transition active:scale-95"
+            (click)="download()">
             Download
           </button>
         </div>

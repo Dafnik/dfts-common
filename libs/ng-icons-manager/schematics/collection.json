@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json.schemastore.org/schematic",
+  "schematics": {
+    "setup": {
+      "description": "Configure ng-icons-manager",
+      "factory": "./setup/index#setup",
+      "schema": "./setup/schema.json"
+    }
+  }
+}

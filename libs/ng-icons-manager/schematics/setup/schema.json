@@ -1,0 +1,23 @@
+{
+  "$id": "setup",
+  "$schema": "http://json-schema.org/schema",
+  "properties": {
+    "angularJsonPath": {
+      "default": "angular.json",
+      "description": "Path to angular.json",
+      "type": "string"
+    },
+    "appConfigPath": {
+      "default": "src/app/app.config.ts",
+      "description": "Path to app.config.ts",
+      "type": "string"
+    },
+    "verbose": {
+      "default": false,
+      "description": "Enable verbose logging",
+      "type": "boolean"
+    }
+  },
+  "title": "Setup ng-icons-manager",
+  "type": "object"
+}

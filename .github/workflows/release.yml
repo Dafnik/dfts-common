@@ -67,7 +67,7 @@ jobs:
           fetch-depth: 0
 
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
 
       - uses: actions/download-artifact@v5
         with:

@@ -1,0 +1,13 @@
+name: release dfx-bootstrap-table
+
+on:
+  push:
+    tags:
+      - 'ng-icons-manager'
+
+jobs:
+  dfx-bootstrap-table:
+    uses: dafnik/dfts-common/.github/workflows/release.yml@main
+    with:
+      lib: ng-icons-manager
+    secrets: inherit

@@ -3,7 +3,7 @@ name: release dfx-bootstrap-table
 on:
   push:
     tags:
-      - 'ng-icons-manager'
+      - 'ng-icons-manager*'
 
 jobs:
   dfx-bootstrap-table:

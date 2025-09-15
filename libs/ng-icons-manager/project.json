@@ -19,6 +19,13 @@
         "tsConfig": "libs/ng-icons-manager/tsconfig.lib.json"
       },
       "outputs": ["{options.outputPath}"]
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "changelogHeader": " ",
+        "push": false
+      }
     }
   }
 }

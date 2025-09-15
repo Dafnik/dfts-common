@@ -31,6 +31,8 @@
     "@tailwindcss/postcss": "4.1.13",
     "bootstrap": "5.3.8",
     "fastify": "5.6.0",
+    "chokidar": "^4.0.3",
+    "glob": "^11.0.3",
     "openapi-typescript-helpers": "0.0.15",
     "rxjs": "7.8.2",
     "tailwindcss": "4.1.13",

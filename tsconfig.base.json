@@ -28,6 +28,7 @@
       "dfx-helper": ["libs/dfx-helper/src/index.ts"],
       "dfx-openapi": ["libs/dfx-openapi/src/index.ts"],
       "dfx-qrcode": ["libs/dfx-qrcode/src/index.ts"],
+      "ng-icons-manager": ["libs/ng-icons-manager/src/index.ts"],
       "playground-lib": ["libs/playground-lib/src/index.ts"]
     },
     "rootDir": ".",

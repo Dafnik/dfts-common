@@ -77,6 +77,11 @@
         "passWithNoTests": true
       }
     },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
     "build": {
       "cache": true,
       "dependsOn": ["^build"],

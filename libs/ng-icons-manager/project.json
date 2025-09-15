@@ -1,0 +1,24 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "ng-icons-manager",
+  "projectType": "library",
+  "sourceRoot": "libs/ng-icons-manager/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "assets": [
+          "libs/ng-icons-manager/*.md",
+          "libs/ng-icons-manager/LICENSE",
+          "libs/ng-icons-manager/bin/*",
+          "libs/ng-icons-manager/schematics/**"
+        ],
+        "main": "libs/ng-icons-manager/src/index.ts",
+        "outputPath": "dist/libs/ng-icons-manager",
+        "tsConfig": "libs/ng-icons-manager/tsconfig.lib.json"
+      },
+      "outputs": ["{options.outputPath}"]
+    }
+  }
+}

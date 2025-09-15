@@ -1,7 +1,6 @@
 {
   "name": "ng-icons-manager",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
   "bin": {
     "ng-icons-manager": "./bin/cli.js"

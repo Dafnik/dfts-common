@@ -1,4 +1,4 @@
-name: release dfx-bootstrap-table
+name: release ng-icons-manager
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'ng-icons-manager*'
 
 jobs:
-  dfx-bootstrap-table:
+  ng-icons-manager:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: ng-icons-manager

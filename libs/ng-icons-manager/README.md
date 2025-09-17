@@ -1,11 +1,11 @@
 # ng-icons-manager
 
-**ng-icons-manager** is a CLI utility for Angular projects that automatically scans your templates for used icons from  
-[`@ng-icons`](https://ng-icons.github.io/) packages and copies only those into your `src/assets/icons` folder.  
+**ng-icons-manager** is a CLI utility for Angular projects that automatically scans your templates for used icons
+from [`@ng-icons`](https://ng-icons.github.io/ng-icons) packages and copies only those into your project folder.  
 This ensures **bundle-size friendliness**, **incremental updates**, and an easy developer experience.
 
-[![npm version](https://img.shields.io/npm/v/ng-icons-manager?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)  
-[![npm downloads per week](https://img.shields.io/npm/dw/ng-icons-manager?logo=npm&color=%237469B6)](https://npmjs.org/package/ng-icons-manager)  
+[![npm version](https://img.shields.io/npm/v/ng-icons-manager?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
+[![npm downloads per week](https://img.shields.io/npm/dw/ng-icons-manager?logo=npm&color=%237469B6)](https://npmjs.org/package/ng-icons-manager)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/ng-icons-manager?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
 
 - [Features](#features)

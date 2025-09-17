@@ -20,6 +20,17 @@
       },
       "outputs": ["{options.outputPath}"]
     },
+    "test": {
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "coverage": true
+        }
+      },
+      "options": {
+        "passWithNoTests": true
+      }
+    },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {

@@ -1,6 +1,43 @@
 {
   "name": "ng-icons-manager",
   "version": "1.0.0",
+  "description": "CLI utility for Angular projects that automatically scans your templates for used icons from @ng-icons packages and copies only those into your project folder.",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://github.com/Dafnik/dfts-common/tree/main/libs/ng-icons-manager",
+  "sideEffects": true,
+  "keywords": [
+    "ng",
+    "ngx",
+    "angular2",
+    "angular",
+    "typescript",
+    "icons",
+    "ng-icons"
+  ],
+  "author": {
+    "name": "Dafnik",
+    "email": "contact@dafnik.me",
+    "url": "https://dafnik.me"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/Dafnik"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/Dafnik"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Dafnik/dfts-common/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Dafnik/dfts-common.git",
+    "directory": "libs/ng-icons-manager"
+  },
   "type": "module",
   "bin": {
     "ng-icons-manager": "./bin/cli.js"
@@ -12,7 +49,7 @@
     "@angular-devkit/schematics": "20"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
+    "tslib": "^2",
     "chokidar": "4.0.3",
     "glob": "11.0.3"
   }

@@ -3,7 +3,7 @@ import { glob } from 'glob';
 import { createRequire } from 'module';
 import { join } from 'path';
 
-const require = createRequire(import.meta.url);
+const cjsRequire = createRequire(import.meta.url);
 
 const iconMap: Record<string, string> = {
   akar: '@ng-icons/akar-icons',
@@ -122,7 +122,7 @@ async function writeIconsBulk(icons: Set<string>, verbose: boolean, ignoreMissin
 
     try {
       // Resolve the module by package name from the project root node_modules
-      const resolved = require.resolve(pkg, { paths: [process.cwd()] });
+      const resolved = cjsRequire.resolve(pkg, { paths: [process.cwd()] });
       const mod = await import(resolved);
       const svg = mod[icon];
       if (!svg) {

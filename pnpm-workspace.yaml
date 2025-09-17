@@ -1,8 +1,12 @@
 packages:
   - apps/playground2
+
 ignoredBuiltDependencies:
   - lmdb
+  - sharp
+
 onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
   - esbuild
   - nx
 patchedDependencies:

@@ -11,8 +11,7 @@
         "assets": ["libs/dfts-helper/*.md", "libs/dfts-helper/LICENSE"],
         "main": "libs/dfts-helper/src/index.ts",
         "outputPath": "dist/libs/dfts-helper",
-        "tsConfig": "libs/dfts-helper/tsconfig.lib.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/dfts-helper/tsconfig.lib.json"
       },
       "outputs": ["{options.outputPath}"]
     },

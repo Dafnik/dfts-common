@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // noinspection JSUnusedLocalSymbols
 import { provideHttpClient } from '@angular/common/http';
-import { Injector, computed } from '@angular/core';
+import { Injector, computed, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { OpenAPIResource, createOpenAPIResource } from './resource-client';
@@ -42,17 +42,19 @@ describe('OpenAPIResource type tests', () => {
     let numberOfItems = response.value()?.numberOfItems;
     let numberOfPages = response.value()?.numberOfPages;
 
+    const page = signal(1);
+
     response = api.get(
       computed(() => '/v1/team'),
-      () => ({
+      computed(() => ({
         params: {
           query: {
-            page: 1,
+            page: page(),
             size: 1,
             sort: ['name', 'desc'],
           },
         },
-      }),
+      })),
     );
 
     response.hasValue();

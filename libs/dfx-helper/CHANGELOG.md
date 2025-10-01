@@ -1,4 +1,13 @@
  
+# [20.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-20.0.0...dfx-helper-20.1.0) (2025-10-01)
+
+
+### Features
+
+* add NgIf ([29cc9f8](https://github.com/Dafnik/dfts-common/commit/29cc9f82728402ee884a6f5e32668abc4b7a2c78))
+
+
+
 # [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-helper-19.0.0...dfx-helper-20.0.0) (2025-06-10)
 
 

@@ -1,4 +1,13 @@
  
+# [20.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-20.0.0...dfx-bootstrap-table-20.1.0) (2025-10-01)
+
+
+### Bug Fixes
+
+* **dfx-boostrap-table:** no data row breaking change ([84d676b](https://github.com/Dafnik/dfts-common/commit/84d676bd50c8cb63a71e2a23516a04d65404d05b))
+
+
+
 # [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-table-6.0.0...dfx-bootstrap-table-20.0.0) (2025-06-10)
 
 

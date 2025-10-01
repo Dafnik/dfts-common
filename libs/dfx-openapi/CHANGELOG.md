@@ -1,4 +1,13 @@
  
+# [20.1.0](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-20.0.0...dfx-openapi-20.1.0) (2025-10-01)
+
+
+### Features
+
+* **dfx-openapi:** add experimental resource api ([cf5534d](https://github.com/Dafnik/dfts-common/commit/cf5534d39bf00961db8a965b75794c7fe001a091))
+
+
+
 # [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-openapi-19.0.0...dfx-openapi-20.0.0) (2025-06-10)
 
 

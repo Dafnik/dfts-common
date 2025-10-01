@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "configurations": {
-        "development": {
-          "tsConfig": "libs/playground-lib/tsconfig.lib.json"
-        },
+        "development": {},
         "production": {
           "tsConfig": "libs/playground-lib/tsconfig.lib.prod.json"
         }
@@ -17,7 +15,8 @@
       "defaultConfiguration": "production",
       "executor": "@nx/angular:ng-packagr-lite",
       "options": {
-        "project": "libs/playground-lib/ng-package.json"
+        "project": "libs/playground-lib/ng-package.json",
+        "tsConfig": "libs/playground-lib/tsconfig.lib.json"
       },
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"]
     },

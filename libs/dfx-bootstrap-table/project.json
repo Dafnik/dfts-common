@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "configurations": {
-        "development": {
-          "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.json"
-        },
+        "development": {},
         "production": {
           "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.prod.json"
         }
@@ -17,7 +15,8 @@
       "defaultConfiguration": "production",
       "executor": "@nx/angular:ng-packagr-lite",
       "options": {
-        "project": "libs/dfx-bootstrap-table/ng-package.json"
+        "project": "libs/dfx-bootstrap-table/ng-package.json",
+        "tsConfig": "libs/dfx-bootstrap-table/tsconfig.lib.json"
       },
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"]
     },

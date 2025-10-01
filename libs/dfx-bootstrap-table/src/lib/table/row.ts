@@ -125,5 +125,5 @@ export class NgbRow extends CdkRow {}
   standalone: true,
 })
 export class NgbNoDataRow extends CdkNoDataRow {
-  override _contentClassName = 'ngb-no-data-row';
+  override _cellSelector = 'td, ngb-cell, [ngb-cell], .ngb-cell';
 }

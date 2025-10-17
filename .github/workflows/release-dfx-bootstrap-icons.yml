@@ -5,9 +5,12 @@ on:
     tags:
       - 'dfx-bootstrap-icons*'
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   dfx-bootstrap-icons:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-bootstrap-icons
-    secrets: inherit

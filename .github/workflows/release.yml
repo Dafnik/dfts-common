@@ -6,9 +6,6 @@ on:
       lib:
         required: true
         type: string
-    secrets:
-      NPM_PUBLISH_TOKEN:
-        required: true
 
 jobs:
   test:
@@ -136,5 +133,4 @@ jobs:
       - name: publish to npm registry
         run: |
           cd dist/${{ inputs.lib }}/
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_PUBLISH_TOKEN }}
           npm publish

@@ -5,9 +5,12 @@ on:
     tags:
       - 'dfx-qrcode*'
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   dfx-qrcode:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-qrcode
-    secrets: inherit

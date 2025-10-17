@@ -5,9 +5,12 @@ on:
     tags:
       - 'ng-icons-manager*'
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   ng-icons-manager:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: ng-icons-manager
-    secrets: inherit

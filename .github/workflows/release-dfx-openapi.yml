@@ -5,9 +5,12 @@ on:
     tags:
       - 'dfx-openapi*'
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
-  dfx-qrcode:
+  dfx-openapi:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfx-openapi
-    secrets: inherit

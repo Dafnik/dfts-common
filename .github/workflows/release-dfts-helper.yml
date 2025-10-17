@@ -5,9 +5,12 @@ on:
     tags:
       - 'dfts-helper*'
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   dfts-helper:
     uses: dafnik/dfts-common/.github/workflows/release.yml@main
     with:
       lib: dfts-helper
-    secrets: inherit

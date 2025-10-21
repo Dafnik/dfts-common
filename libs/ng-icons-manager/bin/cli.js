@@ -17,31 +17,31 @@ async function main() {
     console.log(`🏠 ng-icons-manager cwd: "${cwd}"`);
   }
 
-  if (watchMode) {
-    console.log('👀 ng-icons-manager watching...');
-    await run();
+  await run();
 
-    chokidar
-      .watch('.', {
-        ignored: (path, stats) => {
-          if (path.includes('node_modules') || path.includes('.angular') || path.includes('dist')) return true;
-
-          if (stats?.isFile()) return !/\.(html|ts)$/.test(path);
-
-          return false;
-        },
-        cwd: process.cwd(),
-        ignoreInitial: true,
-      })
-      .on('all', async (_, path) => {
-        if (verbose) {
-          console.log(`👀 Changes in ${path}`);
-        }
-        await run();
-      });
-  } else {
-    await run();
+  if (!watchMode) {
+    return;
   }
+  console.log('👀 ng-icons-manager watching...');
+
+  chokidar
+    .watch('.', {
+      ignored: (path, stats) => {
+        if (path.includes('node_modules') || path.includes('.angular') || path.includes('dist')) return true;
+
+        if (stats?.isFile()) return !/\.(html|ts)$/.test(path);
+
+        return false;
+      },
+      cwd: process.cwd(),
+      ignoreInitial: true,
+    })
+    .on('all', async (_, path) => {
+      if (verbose) {
+        console.log(`👀 Changes in ${path}`);
+      }
+      await run();
+    });
 }
 
 main().catch((err) => {

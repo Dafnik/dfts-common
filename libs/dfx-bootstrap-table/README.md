@@ -29,7 +29,7 @@ For more information on the interface and a detailed look at how the table is im
 ### Version compatibility
 
 | Angular    | dfx-bootstrap-table | Bootstrap |
-|------------|---------------------| --------- |
+| ---------- | ------------------- | --------- |
 | \>= 20.2.5 | 20.1.x              | 5.x.x     |
 | 20.x.x     | 20.x.x              | 5.x.x     |
 | 20.x.x     | 6.x.x               | 5.x.x     |

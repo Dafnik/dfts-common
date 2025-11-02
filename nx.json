@@ -47,7 +47,9 @@
       "workspaceChangelog": false
     },
     "projectsRelationship": "independent",
-    "releaseTagPattern": "{projectName}-{version}",
+    "releaseTag": {
+      "pattern": "{projectName}-{version}"
+    },
     "version": {
       "currentVersionResolver": "git-tag",
       "preserveLocalDependencyProtocols": false,

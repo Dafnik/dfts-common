@@ -1,9 +1,15 @@
 {
   "assignees": ["Dafnik"],
-  "baseBranches": ["main"],
+  "baseBranchPatterns": ["main"],
   "commitBody": "See associated pull request for more information.",
   "enabledManagers": ["npm", "github-actions"],
-  "extends": ["config:recommended", ":pinVersions", "npm:unpublishSafe", ":preserveSemverRanges", ":rebaseStalePrs"],
+  "extends": [
+    "config:recommended",
+    ":pinVersions",
+    "security:minimumReleaseAgeNpm",
+    ":preserveSemverRanges",
+    ":rebaseStalePrs"
+  ],
   "ignorePaths": ["**/libs/**"],
   "labels": ["dependencies"],
   "lockFileMaintenance": {
@@ -17,11 +23,20 @@
     {
       "enabled": false,
       "groupName": "nx workspace",
-      "matchPackageNames": ["/^@angular//", "/^@nx//", "/^@angular-devkit//", "/nx/"]
+      "matchPackageNames": [
+        "/^@angular//",
+        "/^@nx//",
+        "/^@angular-devkit//",
+        "/nx/"
+      ]
     },
     {
       "groupName": "eslint dependencies",
-      "matchPackageNames": ["eslint", "@angular-eslint/{/,}**", "@typescript-eslint/{/,}**"]
+      "matchPackageNames": [
+        "eslint",
+        "@angular-eslint/{/,}**",
+        "@typescript-eslint/{/,}**"
+      ]
     },
     {
       "groupName": "bootstrap dependency",

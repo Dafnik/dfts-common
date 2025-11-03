@@ -105,6 +105,11 @@ jobs:
               - '{package,nx,migrations,tsconfig.base}.json'
               - 'pnpm-lock.yaml'
               - '.github/**'
+            ng-icons-manager:
+              - 'libs/ng-icons-manager/**'
+              - '{package,nx,migrations,tsconfig.base}.json'
+              - 'pnpm-lock.yaml'
+              - '.github/**'
 
   test:
     name: Test ${{ matrix.lib }}

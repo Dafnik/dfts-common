@@ -1,4 +1,13 @@
  
+## [1.0.8](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.7...ng-icons-manager-1.0.8) (2025-11-30)
+
+
+### Bug Fixes
+
+* peer dependencies ([bfcff3a](https://github.com/Dafnik/dfts-common/commit/bfcff3a641bf622693b5bfbdd28174c011637a4f))
+
+
+
 ## [1.0.7](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.6...ng-icons-manager-1.0.7) (2025-11-30)
 
 

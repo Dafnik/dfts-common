@@ -51,6 +51,10 @@
   "dependencies": {
     "tslib": "^2",
     "chokidar": "4.0.3",
-    "glob": "11.0.3"
+    "glob": "11.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

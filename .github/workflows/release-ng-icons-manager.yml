@@ -111,13 +111,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v4
-
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - uses: actions/download-artifact@v5
         with:
@@ -140,6 +140,8 @@ jobs:
           cd -
 
       - name: publish to npm registry
+        env:
+          NPM_CONFIG_PROVENANCE: true
         run: |
           cd dist/ng-icons-manager/
-          npm publish --provenance
+          npm publish

@@ -1,4 +1,13 @@
  
+## [1.0.7](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.6...ng-icons-manager-1.0.7) (2025-11-30)
+
+
+### Bug Fixes
+
+* remove schematics ([8c47b9b](https://github.com/Dafnik/dfts-common/commit/8c47b9b74f9b6f53cc43ded159454952d9ecac77))
+
+
+
 ## [1.0.6](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.5...ng-icons-manager-1.0.6) (2025-11-30)
 
 

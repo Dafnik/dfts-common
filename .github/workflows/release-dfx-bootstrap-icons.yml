@@ -10,7 +10,131 @@ permissions:
   contents: read
 
 jobs:
-  dfx-bootstrap-icons:
-    uses: dafnik/dfts-common/.github/workflows/release.yml@main
-    with:
-      lib: dfx-bootstrap-icons
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup node and pnpm
+        uses: dafnik/setup-node-pnpm@v4
+        with:
+          install: true
+
+      - name: test dfx-bootstrap-icons
+        run: pnpm exec nx test dfx-bootstrap-icons --configuration=ci --coverageReporters=cobertura
+
+      - name: setup coverage report
+        uses: ./.github/actions/setup-coverage-report
+        with:
+          path: coverage/libs/dfx-bootstrap-icons/cobertura-coverage.xml
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup node and pnpm
+        uses: dafnik/setup-node-pnpm@v4
+        with:
+          install: true
+
+      - name: build dfx-bootstrap-icons
+        run: pnpm exec nx build dfx-bootstrap-icons
+
+      - name: zip dfx-bootstrap-icons
+        run: |
+          cd ./dist/libs/
+          zip -r "dfx-bootstrap-icons.zip" ./dfx-bootstrap-icons
+          cd -
+
+      - uses: actions/upload-artifact@v4
+        name: create dfx-bootstrap-icons artifact
+        with:
+          name: dfx-bootstrap-icons
+          path: ./dist/libs/dfx-bootstrap-icons.zip
+          retention-days: 1
+
+  release-github:
+    name: Release zip to github releases
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: setup node and pnpm
+        uses: dafnik/setup-node-pnpm@v4
+        with:
+          install: true
+
+      - uses: actions/download-artifact@v5
+        with:
+          name: dfx-bootstrap-icons
+          path: ./dist
+
+      - name: get dfx-bootstrap-icons version
+        id: get-version
+        shell: bash
+        run: echo "VERSION=$(node -p "require('./libs/dfx-bootstrap-icons/package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: set to versioned zip dfx-bootstrap-icons-v${{ steps.get-version.outputs.VERSION }}.zip
+        shell: bash
+        run: |
+          mkdir releases
+          cp "./dist/dfx-bootstrap-icons.zip" "./releases/dfx-bootstrap-icons-v${{ steps.get-version.outputs.VERSION }}.zip"
+
+      - name: releases lookup
+        run: |
+          cd releases
+          ls -la
+          du -hs
+          cd -
+
+      - name: get only latest changelog
+        run: |
+          ./tools/scripts/extractLatestVersionChangelog.sh ./libs/dfx-bootstrap-icons/CHANGELOG.md
+          cat RELEASE_CHANGELOG.md
+
+      - name: create dfx-bootstrap-icons-v${{ steps.get-version.outputs.VERSION }} release
+        uses: softprops/action-gh-release@v2.4.1
+        with:
+          body_path: ./RELEASE_CHANGELOG.md
+          files: ./releases/dfx-bootstrap-icons-v${{ steps.get-version.outputs.VERSION }}.zip
+
+  release-npm:
+    name: Release to npm registry
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup node and pnpm
+        uses: dafnik/setup-node-pnpm@v4
+
+      - uses: actions/download-artifact@v5
+        with:
+          name: dfx-bootstrap-icons
+          path: ./dist
+
+      - name: unzip
+        shell: bash
+        run: |
+          cd dist
+          unzip dfx-bootstrap-icons.zip
+          cd -
+
+      - name: dist lookup
+        shell: bash
+        run: |
+          cd dist/dfx-bootstrap-icons
+          ls -la
+          du -hs
+          cd -
+
+      - name: publish to npm registry
+        run: |
+          cd dist/dfx-bootstrap-icons/
+          npm publish

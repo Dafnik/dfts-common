@@ -1,4 +1,8 @@
  
+## [1.0.2](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.1...ng-icons-manager-1.0.2) (2025-11-30)
+
+
+
 ## [1.0.1](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.0...ng-icons-manager-1.0.1) (2025-11-30)
 
 

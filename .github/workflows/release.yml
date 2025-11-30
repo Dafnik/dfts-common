@@ -6,6 +6,8 @@ on:
       lib:
         required: true
         type: string
+    permissions:
+      inherit: true
 
 jobs:
   test:

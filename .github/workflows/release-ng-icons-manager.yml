@@ -114,6 +114,11 @@ jobs:
       - name: setup node and pnpm
         uses: dafnik/setup-node-pnpm@v4
 
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
       - uses: actions/download-artifact@v5
         with:
           name: ng-icons-manager
@@ -137,4 +142,4 @@ jobs:
       - name: publish to npm registry
         run: |
           cd dist/ng-icons-manager/
-          npm publish
+          npm publish --provenance

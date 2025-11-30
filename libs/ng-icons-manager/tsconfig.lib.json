@@ -6,5 +6,5 @@
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts", "schematics/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

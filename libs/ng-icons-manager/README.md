@@ -17,7 +17,6 @@ This ensures **bundle-size friendliness**, **incremental updates**, and an easy 
   - [Ignore missing icons](#ignore-missing-icons)
 - [How it works](#how-it-works)
 - [Supported packages](#supported-packages)
-- [Schematic Setup](#schematic-setup)
 
 ---
 
@@ -42,14 +41,6 @@ Using pnpm:
 
 ```bash
 pnpm add -D ng-icons-manager
-```
-
-### Schematic Setup
-
-To automatically configure your Angular project with everything `ng-icons-manager` needs, use the included schematic:
-
-```bash
-ng g ng-icons-manager:setup
 ```
 
 ---

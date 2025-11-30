@@ -42,12 +42,8 @@
   "bin": {
     "ng-icons-manager": "./bin/cli.js"
   },
-  "schematics": "./schematics/collection.json",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
-  "peerDependencies": {
-    "@angular-devkit/schematics": "20"
-  },
   "dependencies": {
     "tslib": "^2",
     "chokidar": "4.0.3",

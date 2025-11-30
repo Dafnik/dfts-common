@@ -45,9 +45,11 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2",
-    "chokidar": "4.0.3",
-    "glob": "11.1.0"
+    "tslib": "^2"
+  },
+  "peerDependencies": {
+    "chokidar": "4",
+    "glob": "11"
   },
   "publishConfig": {
     "access": "public",

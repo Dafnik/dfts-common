@@ -6,8 +6,10 @@ on:
       lib:
         required: true
         type: string
-    permissions:
-      inherit: true
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
   test:

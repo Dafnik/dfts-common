@@ -48,8 +48,8 @@
     "tslib": "^2"
   },
   "peerDependencies": {
-    "chokidar": "4",
-    "glob": "11"
+    "chokidar": "5",
+    "glob": "13"
   },
   "publishConfig": {
     "access": "public",

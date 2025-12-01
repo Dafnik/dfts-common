@@ -99,7 +99,7 @@ jobs:
           cat RELEASE_CHANGELOG.md
 
       - name: create dfx-openapi-v${{ steps.get-version.outputs.VERSION }} release
-        uses: softprops/action-gh-release@v2.4.1
+        uses: softprops/action-gh-release@v2.5.0
         with:
           body_path: ./RELEASE_CHANGELOG.md
           files: ./releases/dfx-openapi-v${{ steps.get-version.outputs.VERSION }}.zip

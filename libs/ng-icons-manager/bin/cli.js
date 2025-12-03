@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import chokidar from 'chokidar';
+const chokidar = require('chokidar');
 
-import { scanAndCopy } from '../src/index.js';
+const { scanAndCopy } = require('../src/index');
 
 const watchMode = process.argv.includes('--watch');
 const verbose = process.argv.includes('--verbose');

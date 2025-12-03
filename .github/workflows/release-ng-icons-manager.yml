@@ -110,6 +110,9 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - uses: actions/download-artifact@v5
         with:
           name: ng-icons-manager

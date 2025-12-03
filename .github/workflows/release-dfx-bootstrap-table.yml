@@ -65,11 +65,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v4
-        with:
-          install: true
-
       - uses: actions/download-artifact@v5
         with:
           name: dfx-bootstrap-table
@@ -111,8 +106,9 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v4
+      - uses: actions/setup-node@v6
+        with:
+          registry-url: 'https://registry.npmjs.org'
 
       - uses: actions/download-artifact@v5
         with:
@@ -135,6 +131,8 @@ jobs:
           cd -
 
       - name: publish to npm registry
+        env:
+          NPM_CONFIG_PROVENANCE: true
         run: |
           cd dist/dfx-bootstrap-table/
           npm publish

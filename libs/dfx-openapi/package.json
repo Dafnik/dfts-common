@@ -45,5 +45,9 @@
     "@angular/common": "20",
     "rxjs": "7",
     "openapi-typescript-helpers": ">=0.0.15"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

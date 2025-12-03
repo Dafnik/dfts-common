@@ -40,5 +40,9 @@
     "type": "git",
     "url": "git@github.com:Dafnik/dfts-common.git",
     "directory": "libs/dfts-qrcode"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

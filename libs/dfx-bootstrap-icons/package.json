@@ -49,5 +49,9 @@
     "@angular/core": "20",
     "bootstrap-icons": "1",
     "rxjs": "7"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

@@ -1,4 +1,13 @@
  
+## [1.0.10](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.9...ng-icons-manager-1.0.10) (2025-12-03)
+
+
+### Bug Fixes
+
+* remove typo module package json entry ([1882941](https://github.com/Dafnik/dfts-common/commit/1882941494cf2fcea4ae5346643d37515724a12a))
+
+
+
 ## [1.0.9](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.8...ng-icons-manager-1.0.9) (2025-11-30)
 
 

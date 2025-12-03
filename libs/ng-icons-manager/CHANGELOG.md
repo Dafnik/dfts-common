@@ -1,4 +1,13 @@
  
+## [1.0.11](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.10...ng-icons-manager-1.0.11) (2025-12-03)
+
+
+### Features
+
+* change ng-icons-manager to NodeNext ([7a4b965](https://github.com/Dafnik/dfts-common/commit/7a4b965fb23143d06949db6dea774e0e8fb13633))
+
+
+
 ## [1.0.10](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.9...ng-icons-manager-1.0.10) (2025-12-03)
 
 

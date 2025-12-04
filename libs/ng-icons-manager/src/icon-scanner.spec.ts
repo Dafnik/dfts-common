@@ -346,6 +346,30 @@ describe('IconScanner', () => {
       });
     });
 
+    it('should extract icons from JSDoc and html comments', async () => {
+      fs.setFile(
+        'src/app/component.ts',
+        `
+        @Component({
+          template: \`
+            <!-- i(heroFeather) -->
+            <span>Test</span>
+          \`
+        })
+        export class MyComponent {
+          /**
+          * i(bootstrapCircle)
+          */
+          test(): {}
+        }
+      `,
+      );
+
+      const result = await scanner.scanAndCopy(config);
+
+      expect(result.usedIcons).toEqual(new Set(['bootstrapCircle', 'heroFeather']));
+    });
+
     describe('HTML comment extraction', () => {
       it('should extract icons from HTML comments', async () => {
         fs.setFile(

@@ -1,4 +1,13 @@
  
+# [1.1.0](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.14...ng-icons-manager-1.1.0) (2025-12-04)
+
+
+### Features
+
+* **ng-icons-manager:** add html and ts comment support ([992aff4](https://github.com/Dafnik/dfts-common/commit/992aff492d54ed4ab55842b1ba4b61223895a476))
+
+
+
 ## [1.0.14](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.13...ng-icons-manager-1.0.14) (2025-12-03)
 
 

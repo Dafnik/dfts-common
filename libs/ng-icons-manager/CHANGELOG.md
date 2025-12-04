@@ -1,4 +1,13 @@
  
+## [1.1.1](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.0...ng-icons-manager-1.1.1) (2025-12-04)
+
+
+### Bug Fixes
+
+* **ng-icons-manager:** not extracting html comments in ts files ([adba9b3](https://github.com/Dafnik/dfts-common/commit/adba9b3f0be0ea4d3e33c4a2380233d94c3d3787))
+
+
+
 # [1.1.0](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.0.14...ng-icons-manager-1.1.0) (2025-12-04)
 
 

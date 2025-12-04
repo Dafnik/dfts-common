@@ -6,10 +6,13 @@ export class IconScanner {
     private moduleResolver: ModuleResolver,
     private logger: Logger,
     public cachedIcons: Set<string> | undefined = undefined,
-    private config: IconScannerConfig,
   ) {}
 
-  async scanAndCopy(): Promise<ScanResult> {
+  private config!: IconScannerConfig;
+
+  async scanAndCopy(config: IconScannerConfig): Promise<ScanResult> {
+    this.config = config;
+
     const scanResult = this.scanFiles();
 
     if (this.config.verbose) {
@@ -52,6 +55,13 @@ export class IconScanner {
     for (const file of files) {
       try {
         const content = this.fs.readFile(file);
+        const isHtmlFile = file.endsWith('.html');
+
+        // Extract icons from comments
+        const commentedIcons = this.extractIconsFromComments(content, isHtmlFile);
+        commentedIcons.forEach((icon) => usedIcons.add(icon));
+
+        // Extract icons from regular content
         let match: RegExpExecArray | null;
         const regex = new RegExp(this.config.iconRegex);
 
@@ -64,6 +74,46 @@ export class IconScanner {
     }
 
     return { usedIcons, errors };
+  }
+
+  private extractIconsFromComments(content: string, isHtmlFile: boolean): Set<string> {
+    const icons = new Set<string>();
+
+    if (isHtmlFile) {
+      // Extract HTML comments: <!-- i(...) -->
+      const htmlCommentRegex = /<!--\s*([\s\S]*?)\s*-->/g;
+      let match: RegExpExecArray | null;
+
+      while ((match = htmlCommentRegex.exec(content)) !== null) {
+        this.extractIconsFromCommentContent(match[1], icons);
+      }
+    } else {
+      // Extract TypeScript/JavaScript comments: /** i(...) */ or /* i(...) */
+      const tsCommentRegex = /\/\*\*?([\s\S]*?)\*\//g;
+      let match: RegExpExecArray | null;
+
+      while ((match = tsCommentRegex.exec(content)) !== null) {
+        this.extractIconsFromCommentContent(match[1], icons);
+      }
+    }
+
+    return icons;
+  }
+
+  private extractIconsFromCommentContent(content: string, icons: Set<string>): void {
+    // Match i(icon1, icon2, ...) patterns
+    const iconCallRegex = /i\(([^)]+)\)/g;
+    let match: RegExpExecArray | null;
+
+    while ((match = iconCallRegex.exec(content)) !== null) {
+      // Split by comma and trim whitespace
+      const iconNames = match[1]
+        .split(',')
+        .map((name) => name.trim())
+        .filter(Boolean);
+
+      iconNames.forEach((icon) => icons.add(icon));
+    }
   }
 
   private setupOutputDirectory(isFirstWatchRun: boolean): void {

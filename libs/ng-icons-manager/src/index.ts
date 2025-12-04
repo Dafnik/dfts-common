@@ -43,19 +43,19 @@ const iconMap: Record<string, string> = {
 
 const cachedIcons: Set<string> = new Set();
 
-export async function scanAndCopy(verbose: boolean, watchMode: boolean, ignoreMissingIcons: boolean) {
-  const scanner = new IconScanner(new RealFileSystemAdapter(), new RealModuleResolver(), new ConsoleLogger(), cachedIcons, {
-    srcGlob: 'src/**/*.{html,ts}',
-    outDir: join(process.cwd(), 'src/assets/icons'),
-    iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
-    iconMap,
-    verbose,
-    watchMode,
-    ignoreMissingIcons,
-  });
+const scanner = new IconScanner(new RealFileSystemAdapter(), new RealModuleResolver(), new ConsoleLogger(), cachedIcons);
 
+export async function scanAndCopy(verbose: boolean, watchMode: boolean, ignoreMissingIcons: boolean) {
   try {
-    const result = await scanner.scanAndCopy();
+    const result = await scanner.scanAndCopy({
+      srcGlob: 'src/**/*.{html,ts}',
+      outDir: join(process.cwd(), 'src/assets/icons'),
+      iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
+      iconMap,
+      verbose,
+      watchMode,
+      ignoreMissingIcons,
+    });
 
     if (result.errors.length > 0 && !watchMode && !ignoreMissingIcons) {
       process.exit(1);

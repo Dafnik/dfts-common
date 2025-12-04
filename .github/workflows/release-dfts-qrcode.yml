@@ -7,7 +7,7 @@ on:
 
 permissions:
   id-token: write # Required for OIDC
-  contents: read
+  contents: write # Required for GitHub release action
 
 jobs:
   test:
@@ -109,6 +109,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           registry-url: 'https://registry.npmjs.org'
+          node-version: '24'
 
       - uses: actions/download-artifact@v5
         with:

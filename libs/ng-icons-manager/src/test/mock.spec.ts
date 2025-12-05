@@ -1,5 +1,11 @@
 import type { FileSystemAdapter, Logger, ModuleResolver } from '../types';
 
+describe('mock.spec.ts', () => {
+  it('placeholder', async () => {
+    expect(true).toBeTruthy();
+  });
+});
+
 export class MockFileSystemAdapter implements FileSystemAdapter {
   private files = new Map<string, string>();
   private directories = new Set<string>();

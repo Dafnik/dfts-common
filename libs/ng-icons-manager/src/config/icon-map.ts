@@ -1,12 +1,4 @@
-// main.ts
-import { join } from 'path';
-
-import { ConsoleLogger } from './adapters/console-logger';
-import { RealFileSystemAdapter } from './adapters/fs-adapter';
-import { RealModuleResolver } from './adapters/module-resolver';
-import { IconScanner } from './icon-scanner';
-
-const iconMap: Record<string, string> = {
+export const ICON_MAP: Record<string, string> = {
   akar: '@ng-icons/akar-icons',
   bootstrap: '@ng-icons/bootstrap-icons',
   box: '@ng-icons/boxicons/regular',
@@ -40,30 +32,3 @@ const iconMap: Record<string, string> = {
   typ: '@ng-icons/typicons',
   aspects: '@ng-icons/ux-aspects',
 };
-
-const cachedIcons: Set<string> = new Set();
-
-const scanner = new IconScanner(new RealFileSystemAdapter(), new RealModuleResolver(), new ConsoleLogger(), cachedIcons);
-
-export async function scanAndCopy(verbose: boolean, watchMode: boolean, ignoreMissingIcons: boolean) {
-  try {
-    const result = await scanner.scanAndCopy({
-      srcGlob: 'src/**/*.{html,ts}',
-      outDir: join(process.cwd(), 'src/assets/icons'),
-      iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
-      iconMap,
-      verbose,
-      watchMode,
-      ignoreMissingIcons,
-    });
-
-    if (result.errors.length > 0 && !watchMode && !ignoreMissingIcons) {
-      process.exit(1);
-    }
-
-    return result;
-  } catch (error) {
-    console.error('Fatal error:', error);
-    process.exit(1);
-  }
-}

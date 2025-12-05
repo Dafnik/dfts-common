@@ -1,4 +1,13 @@
  
+## [1.1.3](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.2...ng-icons-manager-1.1.3) (2025-12-05)
+
+
+### Bug Fixes
+
+* add lucine ([7735325](https://github.com/Dafnik/dfts-common/commit/773532520cff8b2a1e0fde3ce51bcbb7dc6ca3db))
+
+
+
 ## [1.1.2](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.1...ng-icons-manager-1.1.2) (2025-12-05)
 
 

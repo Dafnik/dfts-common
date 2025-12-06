@@ -13,10 +13,10 @@ jobs:
       GH_TOKEN: ${{ github.token }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v4
+        uses: dafnik/setup-node-pnpm@v5
         with:
           install-ignore-scripts: true
 

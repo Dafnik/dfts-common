@@ -1,4 +1,3 @@
-export * from './lib/decorators';
 export * from './lib/entities';
 export * from './lib/helper';
 export * from './lib/logger';

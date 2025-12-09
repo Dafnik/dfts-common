@@ -1,4 +1,14 @@
  
+# [21.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-20.0.0...dfx-bootstrap-icons-21.0.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* **dfx-bootstrap-icons:** cache ([ee0bc4e](https://github.com/Dafnik/dfts-common/commit/ee0bc4e2c143ee58228babb600f75c894116514a))
+* disable dependency check for the unused bootstrap-icons library ([3cf3533](https://github.com/Dafnik/dfts-common/commit/3cf353314de6bf09f7bfeb6a7c12052f9929dfc9))
+
+
+
 # [20.0.0](https://github.com/Dafnik/dfts-common/compare/dfx-bootstrap-icons-19.0.0...dfx-bootstrap-icons-20.0.0) (2025-06-10)
 
 

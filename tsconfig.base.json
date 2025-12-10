@@ -23,13 +23,7 @@
     "paths": {
       "dfts-helper": ["libs/dfts-helper/src/index.ts"],
       "dfts-qrcode": ["libs/dfts-qrcode/src/index.ts"],
-      "dfx-bootstrap-icons": ["libs/dfx-bootstrap-icons/src/index.ts"],
-      "dfx-bootstrap-table": ["libs/dfx-bootstrap-table/src/index.ts"],
-      "dfx-helper": ["libs/dfx-helper/src/index.ts"],
-      "dfx-openapi": ["libs/dfx-openapi/src/index.ts"],
-      "dfx-qrcode": ["libs/dfx-qrcode/src/index.ts"],
-      "ng-icons-manager": ["libs/ng-icons-manager/src/index.ts"],
-      "playground-lib": ["libs/playground-lib/src/index.ts"]
+      "ng-icons-manager": ["libs/ng-icons-manager/src/index.ts"]
     },
     "rootDir": ".",
     "skipDefaultLibCheck": true,

@@ -79,6 +79,6 @@ export default [
       },
     })),
   {
-    ignores: ['.angular', 'package.json', 'pnpm-lock.yaml', 'dist/', 'node_modules/', '**README.md'],
+    ignores: ['package.json', 'pnpm-lock.yaml', 'dist/', 'node_modules/', '**README.md'],
   },
 ];

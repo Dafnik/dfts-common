@@ -1,8 +1,0 @@
-{
-  "angularCompilerOptions": {},
-  "compilerOptions": {
-    "declarationMap": false,
-    "moduleResolution": "bundler"
-  },
-  "extends": "./tsconfig.lib.json"
-}

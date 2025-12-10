@@ -1,20 +1,5 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "generators": {
-    "@nx/angular:application": {
-      "e2eTestRunner": "cypress",
-      "linter": "eslint",
-      "style": "scss",
-      "unitTestRunner": "jest"
-    },
-    "@nx/angular:component": {
-      "style": "scss"
-    },
-    "@nx/angular:library": {
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    }
-  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -65,11 +50,6 @@
     }
   },
   "targetDefaults": {
-    "@nx/angular:ng-packagr-lite": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
     "@nx/eslint:lint": {
       "cache": true,
       "inputs": ["default", "{workspaceRoot}/eslint.config.mjs"]

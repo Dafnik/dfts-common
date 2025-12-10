@@ -1,4 +1,14 @@
  
+# [2.1.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-2.0.0...dfts-helper-2.1.0) (2025-12-10)
+
+
+### Features
+
+* add rollup ([01bedfc](https://github.com/Dafnik/dfts-common/commit/01bedfc4a65cc56ae53a47346a49c74ef3cf7f36))
+* remove typescript decorators ([225888d](https://github.com/Dafnik/dfts-common/commit/225888d35c82896472066cab6c6955aafe4fdcf1))
+
+
+
 # [2.0.0](https://github.com/Dafnik/dfts-common/compare/dfts-helper-1.2.0...dfts-helper-2.0.0) (2025-06-10)
 
 

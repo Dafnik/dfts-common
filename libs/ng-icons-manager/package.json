@@ -39,10 +39,8 @@
     "directory": "libs/ng-icons-manager"
   },
   "bin": {
-    "ng-icons-manager": "./bin/cli.js"
+    "ng-icons-manager": "./cli.cjs.js"
   },
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2"
   },
@@ -53,5 +51,16 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "main": "./index.cjs.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.cjs.js"
+      }
+    }
   }
 }

@@ -1,11 +1,7 @@
 #!/usr/bin/env node
 
-const chokidar = require('chokidar');
-
-const { ConsoleLogger } = require('../src/adapters/console-logger');
-const { RealFileSystemAdapter } = require('../src/adapters/fs-adapter');
-const { RealModuleResolver } = require('../src/adapters/module-resolver');
-const { ScannerFacade } = require('../src/core/scanner.facade');
+import chokidar from 'chokidar';
+import { ConsoleLogger, RealFileSystemAdapter, RealModuleResolver, ScannerFacade } from '../src';
 
 // CLI flags
 const verbose = process.argv.includes('--verbose');

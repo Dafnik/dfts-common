@@ -2,13 +2,15 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "ng-icons-manager",
   "projectType": "library",
-  "sourceRoot": "libs/ng-icons-manager/src",
+  "sourceRoot": "libs/ng-icons-manager",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "options": {
-        "assets": ["libs/ng-icons-manager/*.md", "libs/ng-icons-manager/LICENSE", "libs/ng-icons-manager/bin/*"],
+        "additionalEntryPoints": ["libs/ng-icons-manager/bin/cli.js"],
+        "assets": ["libs/ng-icons-manager/README.md", "libs/ng-icons-manager/CHANGELOG.md", "libs/ng-icons-manager/LICENSE"],
+        "format": ["cjs"],
         "main": "libs/ng-icons-manager/src/index.ts",
         "outputPath": "dist/libs/ng-icons-manager",
         "tsConfig": "libs/ng-icons-manager/tsconfig.lib.json"

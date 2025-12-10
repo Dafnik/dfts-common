@@ -16,11 +16,11 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: dafnik/setup-node-pnpm@v4
+      - uses: dafnik/setup-node-pnpm@v5
         with:
           install-ignore-scripts: true
 
@@ -30,11 +30,11 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: dafnik/setup-node-pnpm@v4
+      - uses: dafnik/setup-node-pnpm@v5
         with:
           install-ignore-scripts: true
 
@@ -47,7 +47,7 @@ jobs:
     steps:
       # Needed to get the commitlint config
       - name: Checkout Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -64,7 +64,7 @@ jobs:
       # Expose matched filters as job 'packages' output variable
       libs: ${{ steps.filter.outputs.changes }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: dorny/paths-filter@v3
         id: filter
@@ -96,10 +96,10 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v4
+        uses: dafnik/setup-node-pnpm@v5
         with:
           install-ignore-scripts: true
 
@@ -120,10 +120,10 @@ jobs:
       matrix:
         lib: ${{ fromJSON(needs.changes.outputs.libs) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v4
+        uses: dafnik/setup-node-pnpm@v5
         with:
           install-ignore-scripts: true
 
@@ -136,7 +136,7 @@ jobs:
           zip -r "${{ matrix.lib }}.zip" ./${{ matrix.lib }}
           cd -
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         name: create ${{ matrix.lib }} artifact
         with:
           name: ${{ matrix.lib }}

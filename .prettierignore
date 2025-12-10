@@ -4,12 +4,8 @@
 /dist
 /coverage
 /.nx/cache
-.angular
 package.json
 pnpm-lock.yaml
 **/CHANGELOG.md
 
 /.nx/workspace-data
-
-/libs/dfx-bootstrap-icons/assets/
-/libs/dfx-bootstrap-icons/src/lib/generated/

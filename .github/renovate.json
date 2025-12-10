@@ -17,15 +17,11 @@
     {
       "enabled": false,
       "groupName": "nx workspace",
-      "matchPackageNames": ["/^@angular//", "/^@nx//", "/^@angular-devkit//", "/nx/"]
+      "matchPackageNames": ["/^@nx//", "/nx/"]
     },
     {
       "groupName": "eslint dependencies",
-      "matchPackageNames": ["eslint", "@angular-eslint/{/,}**", "@typescript-eslint/{/,}**"]
-    },
-    {
-      "groupName": "bootstrap dependency",
-      "matchPackageNames": ["bootstrap"]
+      "matchPackageNames": ["eslint", "@typescript-eslint/{/,}**"]
     },
     {
       "groupName": "typescript dependencies",
@@ -33,20 +29,7 @@
     },
     {
       "groupName": "minor-updates",
-      "matchPackageNames": [
-        "*",
-        "!typescript",
-        "!tslib",
-        "!eslint",
-        "!nx",
-        "!bootstrap",
-        "!/@angular-eslint//",
-        "!/@typescript-eslint//",
-        "!/^@angular//",
-        "!/^@nx//",
-        "!/^@angular-devkit//",
-        "!/nx/"
-      ],
+      "matchPackageNames": ["*", "!typescript", "!tslib", "!eslint", "!nx", "!/@typescript-eslint//", "!/^@nx//", "!/nx/"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"]
     },
     {

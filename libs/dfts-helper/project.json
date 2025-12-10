@@ -2,17 +2,17 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "dfts-helper",
   "projectType": "library",
-  "sourceRoot": "libs/dfts-helper/src",
+  "sourceRoot": "libs/dfts-helper",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "options": {
-        "assets": ["libs/dfts-helper/*.md", "libs/dfts-helper/LICENSE"],
+        "assets": ["libs/dfts-helper/README.md", "libs/dfts-helper/CHANGELOG.md", "libs/dfts-helper/LICENSE"],
+        "format": ["esm", "cjs"],
         "main": "libs/dfts-helper/src/index.ts",
         "outputPath": "dist/libs/dfts-helper",
-        "tsConfig": "libs/dfts-helper/tsconfig.lib.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/dfts-helper/tsconfig.lib.json"
       },
       "outputs": ["{options.outputPath}"]
     },

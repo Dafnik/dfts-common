@@ -39,6 +39,14 @@
         "targetName": "test"
       },
       "plugin": "@nx/jest/plugin"
+    },
+    {
+      "options": {
+        "buildDepsTargetName": "build-deps",
+        "buildTargetName": "build",
+        "watchDepsTargetName": "watch-deps"
+      },
+      "plugin": "@nx/rollup/plugin"
     }
   ],
   "release": {

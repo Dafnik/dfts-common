@@ -4,7 +4,6 @@
   "description": "Typescript Library with tons of utility tools helping in all projects",
   "private": false,
   "license": "MIT",
-  "type": "module",
   "homepage": "https://github.com/Dafnik/dfts-common",
   "keywords": [
     "typescript",
@@ -34,5 +33,21 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./index.d.ts",
+        "default": "./index.esm.js"
+      },
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.cjs.js"
+      }
+    }
   }
 }

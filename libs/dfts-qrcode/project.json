@@ -2,17 +2,17 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "dfts-qrcode",
   "projectType": "library",
-  "sourceRoot": "libs/dfts-qrcode/src",
+  "sourceRoot": "libs/dfts-qrcode",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "options": {
-        "assets": ["libs/dfts-qrcode/*.md", "libs/dfts-qrcode/LICENSE"],
+        "assets": ["libs/dfts-qrcode/README.md", "libs/dfts-qrcode/CHANGELOG.md", "libs/dfts-qrcode/LICENSE"],
+        "format": ["esm", "cjs"],
         "main": "libs/dfts-qrcode/src/index.ts",
         "outputPath": "dist/libs/dfts-qrcode",
-        "tsConfig": "libs/dfts-qrcode/tsconfig.lib.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/dfts-qrcode/tsconfig.lib.json"
       },
       "outputs": ["{options.outputPath}"]
     },

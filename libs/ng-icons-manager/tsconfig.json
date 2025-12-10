@@ -1,15 +1,5 @@
 {
-  "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "strict": true
-  },
+  "compilerOptions": {},
   "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],

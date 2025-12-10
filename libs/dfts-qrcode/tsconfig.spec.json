@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "declaration": false,
+    "declarationMap": false,
+    "inlineSources": false,
     "outDir": "../../dist/out-tsc",
     "types": ["jest", "node"]
   },

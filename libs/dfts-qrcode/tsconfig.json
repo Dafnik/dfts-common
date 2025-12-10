@@ -1,14 +1,5 @@
 {
-  "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "module": "ES2020",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "strict": true,
-    "target": "ES2020"
-  },
+  "compilerOptions": {},
   "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],

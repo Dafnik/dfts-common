@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node10",
+    "declaration": false,
+    "declarationMap": false,
+    "inlineSources": false,
     "outDir": "../../dist/out-tsc",
     "types": ["jest", "node"]
   },

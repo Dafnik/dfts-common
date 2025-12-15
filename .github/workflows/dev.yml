@@ -136,7 +136,7 @@ jobs:
           zip -r "${{ matrix.lib }}.zip" ./${{ matrix.lib }}
           cd -
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         name: create ${{ matrix.lib }} artifact
         with:
           name: ${{ matrix.lib }}

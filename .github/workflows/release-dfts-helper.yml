@@ -49,7 +49,7 @@ jobs:
           zip -r "dfts-helper.zip" ./dfts-helper
           cd -
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         name: create dfts-helper artifact
         with:
           name: dfts-helper
@@ -65,7 +65,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: dfts-helper
           path: ./dist
@@ -111,7 +111,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           node-version: '24'
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: dfts-helper
           path: ./dist

@@ -1,4 +1,13 @@
  
+## [1.1.4](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.3...ng-icons-manager-1.1.4) (2025-12-22)
+
+
+### Features
+
+* migrate ng-icons-manager to rollup ([791039b](https://github.com/Dafnik/dfts-common/commit/791039b8a8661d59143e8d7268a798804c1e8824))
+
+
+
 ## [1.1.3](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.2...ng-icons-manager-1.1.3) (2025-12-05)
 
 

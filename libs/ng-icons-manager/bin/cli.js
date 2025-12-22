@@ -15,10 +15,10 @@ async function run() {
   const result = await scanner.scanAndCopy({
     verbose,
     watchMode,
-    ignoreMissingIcons,
   });
 
-  if (result.errors.length && !watchMode && !ignoreMissingIcons) {
+  const hasErrorsInSingleRunWithoutIgnoringErrors = result.errors.length > 0 && !watchMode && !ignoreMissingIcons;
+  if (hasErrorsInSingleRunWithoutIgnoringErrors) {
     process.exit(1);
   }
 }

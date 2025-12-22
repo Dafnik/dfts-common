@@ -27,7 +27,6 @@ describe('ScannerFacade', () => {
         },
         verbose: false,
         watchMode: false,
-        ignoreMissingIcons: false,
       };
 
       // preload test modules for hero and fa packages
@@ -66,7 +65,6 @@ describe('ScannerFacade', () => {
 
     it('should handle missing packages gracefully', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="unknownIcon"></ng-icon>');
-      config.ignoreMissingIcons = true;
 
       const result = await scanner.scanAndCopy(config);
 
@@ -77,7 +75,6 @@ describe('ScannerFacade', () => {
 
     it('should handle missing packages when not ignoring', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="unknownIcon"></ng-icon>');
-      config.ignoreMissingIcons = false;
 
       const result = await scanner.scanAndCopy(config);
 
@@ -88,7 +85,6 @@ describe('ScannerFacade', () => {
 
     it('should handle missing icons in packages', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="heroMissing"></ng-icon>');
-      config.ignoreMissingIcons = true;
 
       const result = await scanner.scanAndCopy(config);
 
@@ -121,7 +117,6 @@ describe('ScannerFacade', () => {
         },
         verbose: false,
         watchMode: true, // default for watch-mode tests
-        ignoreMissingIcons: false,
       };
 
       // preload mock icon modules

@@ -6,7 +6,6 @@ import { IconScanner } from './icon-scanner';
 interface ScannerRunOptions {
   verbose?: boolean;
   watchMode?: boolean;
-  ignoreMissingIcons?: boolean;
 }
 
 export class ScannerFacade {
@@ -86,6 +85,7 @@ export class ScannerFacade {
           this.logger.log(`✔ Wrote ${icon}.svg`);
         }
       } catch (err) {
+        this.logger.log(`Failed to load ${icon} from ${pkg}: ${err}`);
         errors.push(`Failed to load ${icon} from ${pkg}: ${err}`);
       }
     }

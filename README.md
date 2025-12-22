@@ -41,5 +41,4 @@ This ensures **bundle-size friendliness**, **incremental updates**, and an easy 
 
 [![npm version](https://img.shields.io/npm/v/ng-icons-manager?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
 [![npm downloads per week](https://img.shields.io/npm/dw/ng-icons-manager?logo=npm&color=%237469B6)](https://npmjs.org/package/ng-icons-manager)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/ng-icons-manager?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
 [![npm license](https://img.shields.io/npm/l/ng-icons-manager?color=%237469B6&cacheSeconds=86400)](https://github.com/Dafnik/dfts-common)

@@ -6,7 +6,6 @@ This ensures **bundle-size friendliness**, **incremental updates**, and an easy 
 
 [![npm version](https://img.shields.io/npm/v/ng-icons-manager?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
 [![npm downloads per week](https://img.shields.io/npm/dw/ng-icons-manager?logo=npm&color=%237469B6)](https://npmjs.org/package/ng-icons-manager)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/ng-icons-manager?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
 
 - [Features](#features)
 - [Installation](#installation)
@@ -15,6 +14,8 @@ This ensures **bundle-size friendliness**, **incremental updates**, and an easy 
   - [Watch mode](#watch-mode)
   - [Verbose mode](#verbose-mode)
   - [Ignore missing icons](#ignore-missing-icons)
+  - [Dynamic keys](#dynamic-keys)
+- [Supported icon sets](#supported-icon-sets)
 - [How it works](#how-it-works)
 - [Supported packages](#supported-packages)
 

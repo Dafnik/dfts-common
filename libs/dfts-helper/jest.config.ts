@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'dfts-helper',
   coverageDirectory: '../../coverage/libs/dfts-helper',
   coverageReporters: ['cobertura', 'html'],

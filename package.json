@@ -13,7 +13,7 @@
     "format:check": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --check .",
     "format": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --write ."
   },
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.28.0",
   "private": true,
   "dependencies": {
     "chokidar": "5.0.0",
@@ -33,7 +33,7 @@
     "@nx/rollup": "22.3.3",
     "@nx/workspace": "22.3.3",
     "@types/jest": "30.0.0",
-    "@types/node": "24.10.4",
+    "@types/node": "24.10.8",
     "@typescript-eslint/utils": "8.51.0",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
@@ -50,10 +50,10 @@
     "prettier-plugin-organize-attributes": "1.0.0",
     "prettier-plugin-sort-json": "4.1.1",
     "prettier-plugin-tailwindcss": "0.7.2",
-    "rollup": "4.54.0",
+    "rollup": "4.55.1",
     "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.51.0"
+    "typescript-eslint": "8.53.0"
   }
 }

@@ -20,7 +20,7 @@ export interface Logger {
 }
 
 export interface IconScannerConfig {
-  srcGlob: string;
+  srcDirs: string[];
   outDir: string;
   iconMap: Record<string, string>;
 }

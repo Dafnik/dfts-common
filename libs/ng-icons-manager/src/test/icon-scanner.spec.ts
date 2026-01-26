@@ -740,4 +740,47 @@ describe('ScannerFacade', () => {
       });
     });
   });
+  describe('multiple source directories', () => {
+    let fs: MockFileSystemAdapter;
+    let moduleResolver: MockModuleResolver;
+    let logger: MockLogger;
+    let scanner: ScannerFacade;
+    let config: IconScannerConfig;
+    let runOptions: IconScannerRunOptions;
+
+    beforeEach(() => {
+      fs = new MockFileSystemAdapter();
+      moduleResolver = new MockModuleResolver();
+      logger = new MockLogger();
+      scanner = new ScannerFacade(fs, moduleResolver, logger);
+
+      config = {
+        ...DEFAULT_TEST_CONFIG,
+        srcDirs: ['libs/feature-a', 'libs/feature-b'],
+      };
+
+      runOptions = {
+        ...DEFAULT_RUN_OPTIONS,
+      };
+
+      // preload mock icon modules
+      moduleResolver.setModule('@ng-icons/heroicons', {
+        heroHome: '<svg>home icon</svg>',
+        heroUser: '<svg>user icon</svg>',
+      });
+    });
+
+    it('should scan icons from all configured directories', async () => {
+      fs.setFile('libs/feature-a/cmp.html', '<ng-icon name="heroHome"></ng-icon>');
+      fs.setFile('libs/feature-b/cmp.html', '<ng-icon name="heroUser"></ng-icon>');
+      // file outside should be ignored
+      fs.setFile('libs/ignored/cmp.html', '<ng-icon name="heroIgnored"></ng-icon>');
+
+      const result = await scanner.scanAndCopy(runOptions, config);
+
+      expect(result.usedIcons.has('heroHome')).toBe(true);
+      expect(result.usedIcons.has('heroUser')).toBe(true);
+      expect(result.usedIcons.has('heroIgnored')).toBe(false);
+    });
+  });
 });

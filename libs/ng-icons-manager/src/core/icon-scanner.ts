@@ -1,3 +1,6 @@
+import { join } from 'path';
+
+import { GLOB_PATTERN } from '../config';
 import { FileSystemAdapter, ScanResult } from '../types';
 
 export class IconScanner {
@@ -7,20 +10,24 @@ export class IconScanner {
 
   constructor(private fs: FileSystemAdapter) {}
 
-  scanFiles(srcGlob: string): ScanResult {
-    const files = this.fs.glob(srcGlob);
+  scanFiles(srcDirs: string[]): ScanResult {
     const usedIcons = new Set<string>();
     const errors: string[] = [];
 
-    for (const file of files) {
-      try {
-        const content = this.fs.readFile(file);
+    for (const dir of srcDirs) {
+      const pattern = join(dir, GLOB_PATTERN);
+      const files = this.fs.glob(pattern);
 
-        this.extractIconsFromContent(content).forEach((icon) => usedIcons.add(icon));
+      for (const file of files) {
+        try {
+          const content = this.fs.readFile(file);
 
-        this.extractIconsFromComments(content).forEach((icon) => usedIcons.add(icon));
-      } catch (err) {
-        errors.push(`Failed to read file ${file}: ${err}`);
+          this.extractIconsFromContent(content).forEach((icon) => usedIcons.add(icon));
+
+          this.extractIconsFromComments(content).forEach((icon) => usedIcons.add(icon));
+        } catch (err) {
+          errors.push(`Failed to read file ${file}: ${err}`);
+        }
       }
     }
 

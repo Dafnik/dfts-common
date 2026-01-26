@@ -67,7 +67,15 @@ export class MockFileSystemAdapter implements FileSystemAdapter {
 
   glob(pattern: string): string[] {
     // Simple mock implementation
-    return Array.from(this.files.keys()).filter((path) => path.endsWith('.html') || path.endsWith('.ts'));
+    // If pattern starts with "src/", we treat it as filtering by directory
+    const prefix = pattern.includes('**') ? pattern.split('**')[0] : '';
+
+    return Array.from(this.files.keys()).filter((path) => {
+      const isMatch = path.endsWith('.html') || path.endsWith('.ts');
+      if (!isMatch) return false;
+      if (prefix && !path.startsWith(prefix)) return false;
+      return true;
+    });
   }
 
   exists(path: string): boolean {

@@ -22,7 +22,7 @@ export class ScannerFacade {
   async scanAndCopy(options: IconScannerRunOptions, _config?: IconScannerConfig): Promise<ScanResult> {
     const config = { ...DEFAULT_CONFIG, ..._config };
 
-    const result = this.scanner.scanFiles(config.srcGlob);
+    const result = this.scanner.scanFiles(config.srcDirs);
 
     if (options.verbose) {
       this.logger.log(`Found ${result.usedIcons.size} icons: ${[...result.usedIcons].join(', ')}`);

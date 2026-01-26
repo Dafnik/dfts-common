@@ -25,14 +25,14 @@ async function run() {
 
 async function main() {
   if (verbose) {
-    logger.log(`🏠 ng-icons-manager cwd: "${process.cwd()}"`);
+    logger.log(`ng-icons-manager cwd: "${process.cwd()}"`);
   }
 
   await run();
 
   if (!watchMode) return;
 
-  logger.log('👀 ng-icons-manager watching...');
+  logger.log('ng-icons-manager watching...');
   chokidar
     .watch('.', {
       cwd: process.cwd(),
@@ -45,7 +45,7 @@ async function main() {
     })
     .on('all', async (_, changedPath) => {
       if (verbose) {
-        logger.log(`👀 Changes detected in ${changedPath}`);
+        logger.log(`Changes detected in ${changedPath}`);
       }
       await run();
     });

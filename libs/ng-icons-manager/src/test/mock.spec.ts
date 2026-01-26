@@ -10,6 +10,31 @@ export class MockFileSystemAdapter implements FileSystemAdapter {
   private files = new Map<string, string>();
   private directories = new Set<string>();
 
+  readDirectory(path: string): string[] {
+    const prefix = path.endsWith('/') ? path : path + '/';
+    const items = new Set<string>();
+
+    // Add files in this directory
+    for (const filePath of this.files.keys()) {
+      if (filePath.startsWith(prefix)) {
+        const relative = filePath.slice(prefix.length);
+        const firstPart = relative.split('/')[0];
+        items.add(firstPart);
+      }
+    }
+
+    // Add subdirectories
+    for (const dirPath of this.directories) {
+      if (dirPath.startsWith(prefix)) {
+        const relative = dirPath.slice(prefix.length);
+        const firstPart = relative.split('/')[0];
+        items.add(firstPart);
+      }
+    }
+
+    return Array.from(items);
+  }
+
   readFile(path: string): string {
     const content = this.files.get(path);
     if (content === undefined) {

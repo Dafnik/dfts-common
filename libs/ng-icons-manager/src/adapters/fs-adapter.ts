@@ -1,9 +1,13 @@
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, readdirSync } from 'fs';
 import { glob } from 'glob';
 
 import type { FileSystemAdapter } from '../types';
 
 export class RealFileSystemAdapter implements FileSystemAdapter {
+  readDirectory(path: string): string[] {
+    return readdirSync(path);
+  }
+
   readFile(path: string): string {
     return readFileSync(path, 'utf-8');
   }

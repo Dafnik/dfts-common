@@ -1,6 +1,21 @@
-import { DEFAULT_CONFIG } from '../config/defaults';
-import { ScannerFacade } from '../core/scanner.facade';
+import { DEFAULT_CONFIG } from '../config';
+import { ScannerFacade } from '../core';
 import { MockFileSystemAdapter, MockLogger, MockModuleResolver } from './mock.spec';
+import { IconScannerConfig, IconScannerRunOptions } from '../types';
+
+const DEFAULT_TEST_CONFIG = {
+  ...DEFAULT_CONFIG,
+  outDir: 'src/assets/icons',
+  iconMap: {
+    hero: '@ng-icons/heroicons',
+    fa: '@ng-icons/font-awesome',
+  },
+};
+
+const DEFAULT_RUN_OPTIONS: IconScannerRunOptions = {
+  verbose: false,
+  watchMode: false,
+};
 
 describe('ScannerFacade', () => {
   describe('basic functionality', () => {
@@ -8,7 +23,8 @@ describe('ScannerFacade', () => {
     let moduleResolver: MockModuleResolver;
     let logger: MockLogger;
     let scanner: ScannerFacade;
-    let config: any;
+    let config: IconScannerConfig;
+    let runOptions: IconScannerRunOptions;
 
     beforeEach(() => {
       fs = new MockFileSystemAdapter();
@@ -17,16 +33,11 @@ describe('ScannerFacade', () => {
       scanner = new ScannerFacade(fs, moduleResolver, logger);
 
       config = {
-        ...DEFAULT_CONFIG,
-        srcGlob: 'src/**/*.{html,ts}',
-        outDir: 'src/assets/icons',
-        iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
-        iconMap: {
-          hero: '@ng-icons/heroicons',
-          fa: '@ng-icons/font-awesome',
-        },
-        verbose: false,
-        watchMode: false,
+        ...DEFAULT_TEST_CONFIG,
+      };
+
+      runOptions = {
+        ...DEFAULT_RUN_OPTIONS,
       };
 
       // preload test modules for hero and fa packages
@@ -48,7 +59,7 @@ describe('ScannerFacade', () => {
     `,
       );
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser']));
       expect(result.errors).toEqual([]);
@@ -57,7 +68,7 @@ describe('ScannerFacade', () => {
     it('should write icon files to output directory', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
 
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
       expect(fs.getFile('src/assets/icons/heroHome.svg')).toBe('<svg>home icon</svg>');
@@ -66,7 +77,7 @@ describe('ScannerFacade', () => {
     it('should handle missing packages gracefully', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="unknownIcon"></ng-icon>');
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       expect(result.errors).toHaveLength(1);
       expect(result.errors[0]).toContain('Package not found for icon: unknownIcon');
@@ -76,7 +87,7 @@ describe('ScannerFacade', () => {
     it('should handle missing packages when not ignoring', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="unknownIcon"></ng-icon>');
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       expect(result.errors).toHaveLength(1);
       expect(result.errors[0]).toContain('Package not found for icon: unknownIcon');
@@ -86,7 +97,7 @@ describe('ScannerFacade', () => {
     it('should handle missing icons in packages', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="heroMissing"></ng-icon>');
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       expect(result.errors).toHaveLength(1);
       expect(result.errors[0]).toContain('Icon "heroMissing" missing in package');
@@ -98,7 +109,8 @@ describe('ScannerFacade', () => {
     let moduleResolver: MockModuleResolver;
     let logger: MockLogger;
     let scanner: ScannerFacade;
-    let config: any;
+    let config: IconScannerConfig;
+    let runOptions: IconScannerRunOptions;
 
     beforeEach(() => {
       fs = new MockFileSystemAdapter();
@@ -107,15 +119,11 @@ describe('ScannerFacade', () => {
       scanner = new ScannerFacade(fs, moduleResolver, logger);
 
       config = {
-        ...DEFAULT_CONFIG,
-        srcGlob: 'src/**/*.{html,ts}',
-        outDir: 'src/assets/icons',
-        iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
-        iconMap: {
-          hero: '@ng-icons/heroicons',
-          fa: '@ng-icons/font-awesome',
-        },
-        verbose: false,
+        ...DEFAULT_TEST_CONFIG,
+      };
+
+      runOptions = {
+        ...DEFAULT_RUN_OPTIONS,
         watchMode: true, // default for watch-mode tests
       };
 
@@ -126,10 +134,13 @@ describe('ScannerFacade', () => {
       });
     });
 
-    it('should cache icons on first run', async () => {
+    it('should build cache from filesystem on first run', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
+      fs.setFile('src/assets/icons/heroHome.svg', '<svg>home icon</svg>');
+      expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
 
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
+
       expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
 
       // Clear filesystem but preserve internal cache
@@ -142,7 +153,31 @@ describe('ScannerFacade', () => {
       `,
       );
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
+
+      // The cache remembers heroHome; only heroUser should be newly written
+      expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser']));
+      expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(false);
+      expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(true);
+    });
+
+    it('should cache icons on first run', async () => {
+      fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
+
+      await scanner.scanAndCopy(runOptions, config);
+      expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
+
+      // Clear filesystem but preserve internal cache
+      fs.clear();
+      fs.setFile(
+        'src/app/component.html',
+        `
+        <ng-icon name="heroHome"></ng-icon>
+        <ng-icon name="heroUser"></ng-icon>
+      `,
+      );
+
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       // The cache remembers heroHome; only heroUser should be newly written
       expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser']));
@@ -153,7 +188,7 @@ describe('ScannerFacade', () => {
     it('should add new icons incrementally', async () => {
       // First run with one icon
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       // Second run with an additional icon
       fs.setFile(
@@ -164,7 +199,7 @@ describe('ScannerFacade', () => {
       `,
       );
 
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
       expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(true);
@@ -179,11 +214,11 @@ describe('ScannerFacade', () => {
         <ng-icon name="heroUser"></ng-icon>
       `,
       );
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       // Second run with only one icon
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
       expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(false);
@@ -195,7 +230,8 @@ describe('ScannerFacade', () => {
     let moduleResolver: MockModuleResolver;
     let logger: MockLogger;
     let scanner: ScannerFacade;
-    let config: any;
+    let config: IconScannerConfig;
+    let runOptions: IconScannerRunOptions;
 
     beforeEach(() => {
       fs = new MockFileSystemAdapter();
@@ -204,16 +240,12 @@ describe('ScannerFacade', () => {
       scanner = new ScannerFacade(fs, moduleResolver, logger);
 
       config = {
-        ...DEFAULT_CONFIG,
-        srcGlob: 'src/**/*.{html,ts}',
-        outDir: 'src/assets/icons',
-        iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
-        iconMap: {
-          hero: '@ng-icons/heroicons',
-          fa: '@ng-icons/font-awesome',
-        },
+        ...DEFAULT_TEST_CONFIG,
+      };
+
+      runOptions = {
+        ...DEFAULT_RUN_OPTIONS,
         verbose: true,
-        watchMode: false,
       };
 
       // preload packages
@@ -226,31 +258,32 @@ describe('ScannerFacade', () => {
     it('should log used icons when verbose', async () => {
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
 
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       const logs = logger.getLogs();
-      // ✅ Matches the actual log message format from ScannerFacade
-      expect(logs.some((log) => log.includes('📦 Found 1 icons: heroHome'))).toBe(true);
-      expect(logs.some((log) => log.includes('✔ Wrote heroHome.svg'))).toBe(true);
+      // Matches the actual log message format from ScannerFacade
+      console.log(logs);
+      expect(logs.some((log) => log.includes('Found 1 icons: heroHome'))).toBe(true);
+      expect(logs.some((log) => log.includes('Wrote heroHome.svg'))).toBe(true);
     });
 
     it('should log icon removal events in watch mode', async () => {
-      config.watchMode = true;
+      runOptions.watchMode = true;
 
       // First run — heroHome
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       logger.clear();
 
       // Second run — heroUser replaces heroHome
       fs.setFile('src/app/component.html', '<ng-icon name="heroUser"></ng-icon>');
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       const logs = logger.getLogs();
-      expect(logs.some((log) => log.includes('📦 Found 1 icons: heroUser'))).toBe(true);
-      expect(logs.some((log) => log.includes('🗑 Removed heroHome.svg'))).toBe(true);
-      expect(logs.some((log) => log.includes('✔ Wrote heroUser.svg'))).toBe(true);
+      expect(logs.some((log) => log.includes('Found 1 icons: heroUser'))).toBe(true);
+      expect(logs.some((log) => log.includes('Removed heroHome.svg'))).toBe(true);
+      expect(logs.some((log) => log.includes('Wrote heroUser.svg'))).toBe(true);
     });
   });
 
@@ -259,7 +292,8 @@ describe('ScannerFacade', () => {
     let moduleResolver: MockModuleResolver;
     let logger: MockLogger;
     let scanner: ScannerFacade;
-    let config: any;
+    let config: IconScannerConfig;
+    let runOptions: IconScannerRunOptions;
 
     beforeEach(() => {
       fs = new MockFileSystemAdapter();
@@ -268,16 +302,11 @@ describe('ScannerFacade', () => {
       scanner = new ScannerFacade(fs, moduleResolver, logger);
 
       config = {
-        ...DEFAULT_CONFIG,
-        srcGlob: 'src/**/*.{html,ts}',
-        outDir: 'src/assets/icons',
-        iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
-        iconMap: {
-          hero: '@ng-icons/heroicons',
-          fa: '@ng-icons/font-awesome',
-        },
-        verbose: false,
-        watchMode: false,
+        ...DEFAULT_TEST_CONFIG,
+      };
+
+      runOptions = {
+        ...DEFAULT_RUN_OPTIONS,
       };
 
       // preload mock modules
@@ -290,7 +319,7 @@ describe('ScannerFacade', () => {
     it('should handle empty files', async () => {
       fs.setFile('src/app/component.html', '');
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       expect(result.usedIcons.size).toBe(0);
       expect(result.errors).toEqual([]);
@@ -299,7 +328,7 @@ describe('ScannerFacade', () => {
     it('should handle files with no icons', async () => {
       fs.setFile('src/app/component.html', '<div>No icons here</div>');
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       expect(result.usedIcons.size).toBe(0);
       expect(result.errors).toEqual([]);
@@ -322,7 +351,7 @@ describe('ScannerFacade', () => {
     `,
       );
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
 
       // deduplicated into a single icon
       expect(result.usedIcons).toEqual(new Set(['heroHome']));
@@ -333,15 +362,15 @@ describe('ScannerFacade', () => {
       // Ensure you add `resetCache()` method in ScannerFacade:
       // resetCache(): void { this.cache.clear(); }
 
-      config.watchMode = true;
+      runOptions.watchMode = true;
       fs.setFile('src/app/component.html', '<ng-icon name="heroHome"></ng-icon>');
 
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
       scanner.resetCache();
 
       // After reset, behaves like first run
       fs.setFile('src/app/component.html', '<ng-icon name="heroUser"></ng-icon>');
-      await scanner.scanAndCopy(config);
+      await scanner.scanAndCopy(runOptions, config);
 
       expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(true);
     });
@@ -352,7 +381,8 @@ describe('ScannerFacade', () => {
     let moduleResolver: MockModuleResolver;
     let logger: MockLogger;
     let scanner: ScannerFacade;
-    let config: any;
+    let config: IconScannerConfig;
+    let runOptions: IconScannerRunOptions;
 
     beforeEach(() => {
       fs = new MockFileSystemAdapter();
@@ -361,17 +391,16 @@ describe('ScannerFacade', () => {
       scanner = new ScannerFacade(fs, moduleResolver, logger);
 
       config = {
-        ...DEFAULT_CONFIG,
-        srcGlob: 'src/**/*.{html,ts}',
-        outDir: 'src/assets/icons',
-        iconRegex: /<ng-icon[^>]*name=["']([^"']+)["']/g,
+        ...DEFAULT_TEST_CONFIG,
         iconMap: {
           hero: '@ng-icons/heroicons',
           bootstrap: '@ng-icons/bootstrap-icons',
           fa: '@ng-icons/font-awesome',
         },
-        verbose: false,
-        watchMode: false,
+      };
+
+      runOptions = {
+        ...DEFAULT_RUN_OPTIONS,
       };
 
       // Mock modules
@@ -404,7 +433,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
 
         expect(result.usedIcons).toEqual(new Set(['bootstrapCircle', 'heroFeather']));
       });
@@ -418,7 +447,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
 
         expect(result.usedIcons).toEqual(new Set(['bootstrapXCircleFill']));
       });
@@ -435,7 +464,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
 
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser', 'heroSettings']));
       });
@@ -450,7 +479,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
 
         expect(result.usedIcons).toEqual(new Set(['bootstrapCircle', 'heroFeather']));
       });
@@ -468,7 +497,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
 
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser']));
       });
@@ -493,7 +522,7 @@ describe('ScannerFacade', () => {
     `,
       );
 
-      const result = await scanner.scanAndCopy(config);
+      const result = await scanner.scanAndCopy(runOptions, config);
       expect(result.usedIcons).toEqual(new Set(['bootstrapCircle', 'heroFeather']));
     });
 
@@ -507,7 +536,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['bootstrapCircle', 'heroFeather']));
       });
 
@@ -523,7 +552,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser', 'heroSettings']));
       });
 
@@ -539,14 +568,14 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser', 'faHeart']));
       });
 
       it('should extract single icon from HTML comment', async () => {
         fs.setFile('src/app/component.html', '<!-- i(heroHome) -->');
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['heroHome']));
       });
     });
@@ -571,7 +600,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['bootstrapCircle', 'heroFeather', 'heroHome']));
       });
 
@@ -594,7 +623,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser']));
       });
 
@@ -602,7 +631,7 @@ describe('ScannerFacade', () => {
         fs.setFile('src/app/component.ts', '/* i(heroHome) */');
         fs.setFile('src/app/component.html', '<!-- i(heroUser) -->');
 
-        await scanner.scanAndCopy(config);
+        await scanner.scanAndCopy(runOptions, config);
 
         expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
         expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(true);
@@ -613,14 +642,14 @@ describe('ScannerFacade', () => {
       it('should ignore empty i() calls', async () => {
         fs.setFile('src/app/component.html', '<!-- i() -->');
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons.size).toBe(0);
       });
 
       it('should handle comments with no i() calls', async () => {
         fs.setFile('src/app/component.html', '<!-- This is just a comment -->');
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons.size).toBe(0);
       });
 
@@ -633,7 +662,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons.size).toBe(0);
       });
 
@@ -655,7 +684,7 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser', 'heroSettings']));
       });
 
@@ -675,36 +704,36 @@ describe('ScannerFacade', () => {
       `,
         );
 
-        const result = await scanner.scanAndCopy(config);
+        const result = await scanner.scanAndCopy(runOptions, config);
         expect(result.usedIcons).toEqual(new Set(['heroHome', 'heroUser', 'heroSettings']));
       });
     });
 
     describe('watch mode with comments', () => {
       beforeEach(() => {
-        config.watchMode = true;
+        runOptions.watchMode = true;
       });
 
       it('should detect comment-based icons in watch mode', async () => {
         fs.setFile('src/app/component.html', '<!-- i(heroHome) -->');
 
-        await scanner.scanAndCopy(config);
+        await scanner.scanAndCopy(runOptions, config);
         expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
 
         fs.clear();
         fs.setFile('src/app/component.html', '<!-- i(heroHome, heroUser) -->');
 
-        await scanner.scanAndCopy(config);
+        await scanner.scanAndCopy(runOptions, config);
         expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(true);
       });
 
       it('should handle removal of comment-based icons', async () => {
         fs.setFile('src/app/component.html', '<!-- i(heroHome, heroUser) -->');
 
-        await scanner.scanAndCopy(config);
+        await scanner.scanAndCopy(runOptions, config);
 
         fs.setFile('src/app/component.html', '<!-- i(heroHome) -->');
-        await scanner.scanAndCopy(config);
+        await scanner.scanAndCopy(runOptions, config);
 
         expect(fs.hasFile('src/assets/icons/heroHome.svg')).toBe(true);
         expect(fs.hasFile('src/assets/icons/heroUser.svg')).toBe(false);

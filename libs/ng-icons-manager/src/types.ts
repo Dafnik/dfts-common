@@ -7,6 +7,7 @@ export interface FileSystemAdapter {
   createDirectory(path: string): void;
   glob(pattern: string): string[];
   exists(path: string): boolean;
+  readDirectory(path: string): string[];
 }
 
 export interface ModuleResolver {
@@ -21,11 +22,12 @@ export interface Logger {
 export interface IconScannerConfig {
   srcGlob: string;
   outDir: string;
-  iconRegex: RegExp;
   iconMap: Record<string, string>;
-  verbose: boolean;
-  watchMode: boolean;
-  ignoreMissingIcons: boolean;
+}
+
+export interface IconScannerRunOptions {
+  verbose?: boolean;
+  watchMode?: boolean;
 }
 
 export interface ScanResult {

@@ -24,7 +24,7 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "9.39.4",
-    "@jscutlery/semver": "5.7.1",
+    "@jscutlery/semver": "6.0.0",
     "@nx/devkit": "22.6.3",
     "@nx/eslint": "22.6.3",
     "@nx/eslint-plugin": "22.6.3",

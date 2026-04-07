@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         id: filter
         with:
           filters: |
@@ -136,7 +136,7 @@ jobs:
           zip -r "${{ matrix.lib }}.zip" ./${{ matrix.lib }}
           cd -
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         name: create ${{ matrix.lib }} artifact
         with:
           name: ${{ matrix.lib }}

@@ -94,7 +94,7 @@ jobs:
           cat RELEASE_CHANGELOG.md
 
       - name: create ng-icons-manager-v${{ steps.get-version.outputs.VERSION }} release
-        uses: softprops/action-gh-release@v2.6.1
+        uses: softprops/action-gh-release@v2.6.2
         with:
           body_path: ./RELEASE_CHANGELOG.md
           files: ./releases/ng-icons-manager-v${{ steps.get-version.outputs.VERSION }}.zip

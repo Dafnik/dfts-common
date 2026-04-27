@@ -1,6 +1,8 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import nxEslintPlugin from '@nx/eslint-plugin';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import jsonc from 'eslint-plugin-jsonc';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -67,17 +69,19 @@ export default [
         ...config.rules,
       },
     })),
-  ...compat
-    .config({
-      extends: ['plugin:jsonc/recommended-with-jsonc', 'prettier'],
-    })
-    .map((config) => ({
-      ...config,
-      files: ['**/*.json'],
-      rules: {
-        ...config.rules,
-      },
-    })),
+  ...jsonc.configs['flat/recommended-with-jsonc'].map((config) => ({
+    ...config,
+    files: ['**/*.json'],
+    rules: {
+      ...config.rules,
+    },
+  })),
+  {
+    files: ['**/*.json'],
+    rules: {
+      ...eslintConfigPrettier.rules,
+    },
+  },
   {
     ignores: ['package.json', 'pnpm-lock.yaml', 'dist/', 'node_modules/', '**README.md'],
   },

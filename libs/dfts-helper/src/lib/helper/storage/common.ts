@@ -87,15 +87,13 @@ export function st_fillUp(): void {
       localStorage.setItem('fill_up_test_1', new Array(i * 100000).join('a'));
     }
   } catch {
-    let j = 1;
     try {
-      for (j = 1; j <= 100; j++) {
+      for (let j = 1; j <= 100; j++) {
         localStorage.setItem('fill_up_test_2', new Array(j * 1000).join('a'));
       }
     } catch {
-      let k = 1;
       try {
-        for (k = 1; k <= 1000; k++) {
+        for (let k = 1; k <= 1000; k++) {
           localStorage.setItem('fill_up_test_3', new Array(k).join('a'));
         }
         // eslint-disable-next-line no-empty

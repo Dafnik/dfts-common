@@ -9,7 +9,7 @@ on:
 
 permissions:
   id-token: write # Required for OIDC
-  contents: read
+  contents: write # Required for GitHub release action
 
 jobs:
   test:
@@ -67,11 +67,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v5
-        with:
-          install: true
-
       - uses: actions/download-artifact@v8
         with:
           name: ${{ inputs.lib }}
@@ -113,8 +108,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: setup node and pnpm
-        uses: dafnik/setup-node-pnpm@v5
+      - uses: actions/setup-node@v6
+        with:
+          registry-url: 'https://registry.npmjs.org'
+          node-version: '24'
 
       - uses: actions/download-artifact@v8
         with:
@@ -137,6 +134,8 @@ jobs:
           cd -
 
       - name: publish to npm registry
+        env:
+          NPM_CONFIG_PROVENANCE: true
         run: |
           cd dist/${{ inputs.lib }}/
           npm publish

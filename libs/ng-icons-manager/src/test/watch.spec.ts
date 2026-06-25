@@ -71,7 +71,7 @@ describe('serial job watcher', () => {
 
 describe('watch coordinator', () => {
   const root = join('/', 'workspace');
-  const configPath = join(root, 'ng-icons-manager.config.mjs');
+  const configPath = join(root, 'ng-icons-manager.config.mts');
   const source = join(root, 'src');
   const sourceFile = join(source, 'app.html');
   let fs: FakeFileSystem;

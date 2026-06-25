@@ -12,12 +12,19 @@ describe('CLI argument parsing', () => {
   });
 
   it('parses setup options', () => {
-    expect(parseCliOptions(['setup', '--preset', 'angular', '--config', 'tools/icons.config.mjs', '--force'])).toEqual({
+    expect(parseCliOptions(['setup', '--preset', 'angular', '--config', 'tools/icons.config.mts', '--force'])).toEqual({
       command: 'setup',
-      configPath: 'tools/icons.config.mjs',
+      configPath: 'tools/icons.config.mts',
       preset: 'angular',
       listPresets: false,
       force: true,
+    });
+  });
+
+  it('accepts explicit mjs configs for compatibility', () => {
+    expect(parseCliOptions(['--config', 'tools/icons.config.mjs'])).toMatchObject({
+      command: 'run',
+      configPath: 'tools/icons.config.mjs',
     });
   });
 
@@ -42,7 +49,7 @@ describe('CLI argument parsing', () => {
     [['unknown'], 'Unknown command'],
     [['--config'], "Option '--config <value>' argument missing"],
     [['--config', 'a.mjs', '--config', 'b.mjs'], 'only be supplied once'],
-    [['--config', 'a.js'], '.mjs'],
+    [['--config', 'a.js'], '.mts or .mjs'],
     [['--watch', '--ignore-missing'], 'cannot be used'],
     [['--job'], "Option '--job <value>' argument missing"],
     [['--preset', 'angular'], 'can only be used with setup'],

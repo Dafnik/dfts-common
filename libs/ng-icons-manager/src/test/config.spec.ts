@@ -8,7 +8,8 @@ import { FakeConfigImporter, FakeFileSystem } from './fakes';
 
 describe('configuration', () => {
   const root = join('/', 'workspace');
-  const configPath = join(root, 'ng-icons-manager.config.mjs');
+  const configPath = join(root, 'ng-icons-manager.config.mts');
+  const fallbackConfigPath = join(root, 'ng-icons-manager.config.mjs');
   let fs: FakeFileSystem;
   let importer: FakeConfigImporter;
   let validator: ConfigValidator;
@@ -24,6 +25,28 @@ describe('configuration', () => {
     validator = new ConfigValidator();
     paths = new OutputPathPolicy(fs);
     loader = new ConfigLoader(fs, importer, validator, paths);
+  });
+
+  it('prefers mts for default runs and falls back to mjs', () => {
+    expect(loader.defaultSetupPath(root)).toBe(configPath);
+    expect(loader.defaultRunPath(root)).toBe(configPath);
+
+    fs.files.delete(configPath);
+    fs.writeFile(fallbackConfigPath, 'config');
+
+    expect(loader.defaultRunPath(root)).toBe(fallbackConfigPath);
+    expect(loader.defaultSetupPath(root)).toBe(configPath);
+  });
+
+  it('accepts mts and mjs config files and rejects other extensions', async () => {
+    importer.value = moduleWith({
+      jobs: { app: { inputDirs: ['apps/app/src'], outputDir: 'apps/app/public/icons' } },
+    });
+    fs.writeFile(fallbackConfigPath, 'config');
+
+    await expect(loader.load(configPath)).resolves.toMatchObject({ configPath });
+    await expect(loader.load(fallbackConfigPath)).resolves.toMatchObject({ configPath: fallbackConfigPath });
+    await expect(loader.load(join(root, 'ng-icons-manager.config.js'))).rejects.toThrow('.mts or .mjs');
   });
 
   it('applies built-in glob defaults and resolves paths', async () => {

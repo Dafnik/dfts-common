@@ -33,7 +33,7 @@ export function runCli(cwd: string, args: string[] = []): Promise<CliResult> {
 export async function createConfigFile(cwd: string, config: unknown): Promise<void> {
   await linkBuiltPackage(cwd);
   const content = `import { defineConfig } from 'ng-icons-manager';\n\nexport default defineConfig(${JSON.stringify(config, null, 2)});\n`;
-  await writeFile(join(cwd, 'ng-icons-manager.config.mjs'), content);
+  await writeFile(join(cwd, 'ng-icons-manager.config.mts'), content);
 }
 
 export function linkBuiltNgIconsManager(cwd: string): Promise<void> {

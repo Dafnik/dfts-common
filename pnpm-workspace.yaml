@@ -1,6 +1,10 @@
 packages:
   - apps/playground2
 
+allowBuilds:
+  nx: true
+  unrs-resolver: false
+
 ignoredBuiltDependencies:
   - lmdb
   - sharp

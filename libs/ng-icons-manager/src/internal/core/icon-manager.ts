@@ -31,7 +31,7 @@ export class IconManager {
     if (inputIssues.length > 0) return result(job.name, 0, inputIssues);
 
     const outputDirs = Object.values(this.config.jobs).map(({ outputDir }) => outputDir);
-    const scan = this.scanner.scan(job, outputDirs);
+    const scan = await this.scanner.scan(job, outputDirs);
     const resolution = await this.resolver.resolve(scan.icons, job.packagePreferences);
     const issues: JobIssue[] = [...scan.issues, ...resolution.issues];
 

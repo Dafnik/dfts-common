@@ -77,7 +77,7 @@ export class FakeFileSystem implements FileSystem {
     for (const directory of this.directories) if (directory.startsWith(prefix)) this.directories.delete(directory);
   }
 
-  glob(patterns: string[], options: GlobOptions): string[] {
+  async glob(patterns: string[], options: GlobOptions): Promise<string[]> {
     this.globCalls.push({ patterns, options });
     const error = this.globErrors.get(options.cwd);
     if (error) throw error;

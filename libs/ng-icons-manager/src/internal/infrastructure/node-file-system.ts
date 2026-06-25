@@ -1,6 +1,6 @@
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
-
-import { glob } from 'glob';
+import { glob } from 'node:fs/promises';
+import { resolve } from 'node:path';
 
 import type { DirectoryEntry, FileSystem, GlobOptions } from '../core/ports';
 
@@ -41,14 +41,15 @@ export class NodeFileSystem implements FileSystem {
     rmSync(path, { recursive: true, force: true });
   }
 
-  glob(patterns: string[], options: GlobOptions): string[] {
-    return glob.sync(patterns, {
-      absolute: true,
+  async glob(patterns: string[], options: GlobOptions): Promise<string[]> {
+    const files: string[] = [];
+    for await (const file of glob(patterns, {
       cwd: options.cwd,
-      dot: false,
-      follow: false,
-      ignore: options.ignore,
-      nodir: true,
-    });
+      exclude: options.ignore,
+    })) {
+      if (this.isDirectory(resolve(options.cwd, file))) continue;
+      files.push(resolve(options.cwd, file));
+    }
+    return files;
   }
 }

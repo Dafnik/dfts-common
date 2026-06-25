@@ -64,7 +64,7 @@ describe('CLI integration', () => {
     expect(setup.code).toBe(0);
     expect(setup.stdout).toContain('Selected preset: angular');
     expect(setup.stdout).toContain('/icons/${name}.svg');
-    expect(readFileSync(join(tempDir, 'ng-icons-manager.config.mjs'), 'utf8')).toContain("outputDir: 'public/icons'");
+    expect(readFileSync(join(tempDir, 'ng-icons-manager.config.mts'), 'utf8')).toContain("outputDir: 'public/icons'");
     expect(rerun.code).toBe(1);
     expect(rerun.stderr).toContain('already exists');
     expect(run.code).toBe(0);
@@ -81,6 +81,92 @@ describe('CLI integration', () => {
     expect(result.stdout).toContain('Selected preset: angular-assets');
     expect(result.stdout).toContain('/assets/icons/${name}.svg');
     expect(readFileSync(join(tempDir, 'tools/icons.config.mjs'), 'utf8')).toContain("outputDir: 'src/assets/icons'");
+  });
+
+  it('loads a fallback mjs config when the default mts config is missing', async () => {
+    await createBootstrapPackage(tempDir);
+    await linkBuiltNgIconsManager(tempDir);
+    await createSourceFile(tempDir, 'src/app.html', '<ng-icon name="bootstrapAlarm" />');
+    writeFileSync(
+      join(tempDir, 'ng-icons-manager.config.mjs'),
+      `import { defineConfig } from 'ng-icons-manager';
+
+export default defineConfig({
+  jobs: {
+    app: {
+      inputDirs: ['src'],
+      outputDir: 'public/icons',
+    },
+  },
+});
+`,
+    );
+
+    const result = await runCli(tempDir);
+
+    expect(result.code).toBe(0);
+    expect(readFileSync(join(tempDir, 'public/icons/bootstrapAlarm.svg'), 'utf8')).toBe('<svg>alarm</svg>');
+  });
+
+  it('prefers the default mts config when mts and mjs configs both exist', async () => {
+    await createBootstrapPackage(tempDir);
+    await linkBuiltNgIconsManager(tempDir);
+    await createSourceFile(tempDir, 'src/app.html', '<ng-icon name="bootstrapAlarm" />');
+    writeFileSync(
+      join(tempDir, 'ng-icons-manager.config.mts'),
+      `import { defineConfig } from 'ng-icons-manager';
+
+type JobName = 'app';
+const appJob: JobName = 'app';
+
+export default defineConfig({
+  jobs: {
+    [appJob]: {
+      inputDirs: ['src'],
+      outputDir: 'public/mts-icons',
+    },
+  },
+});
+`,
+    );
+    writeFileSync(
+      join(tempDir, 'ng-icons-manager.config.mjs'),
+      `export default { jobs: { app: { inputDirs: ['src'], outputDir: 'public/mjs-icons' } } };
+`,
+    );
+
+    const result = await runCli(tempDir);
+
+    expect(result.code).toBe(0);
+    expect(readFileSync(join(tempDir, 'public/mts-icons/bootstrapAlarm.svg'), 'utf8')).toBe('<svg>alarm</svg>');
+    expect(existsSync(join(tempDir, 'public/mjs-icons'))).toBe(false);
+  });
+
+  it('loads an explicit custom mts config with erasable TypeScript syntax', async () => {
+    await createBootstrapPackage(tempDir);
+    await linkBuiltNgIconsManager(tempDir);
+    await createSourceFile(tempDir, 'src/app.html', '<ng-icon name="bootstrapAlarm" />');
+    writeFileSync(
+      join(tempDir, 'icons.config.mts'),
+      `import { defineConfig, type NgIconsManagerConfig } from 'ng-icons-manager';
+
+const config: NgIconsManagerConfig = {
+  jobs: {
+    app: {
+      inputDirs: ['src'],
+      outputDir: 'public/icons',
+    },
+  },
+};
+
+export default defineConfig(config);
+`,
+    );
+
+    const result = await runCli(tempDir, ['--config', 'icons.config.mts']);
+
+    expect(result.code).toBe(0);
+    expect(readFileSync(join(tempDir, 'public/icons/bootstrapAlarm.svg'), 'utf8')).toBe('<svg>alarm</svg>');
   });
 
   it('loads defineConfig through ESM and runs a selected named job', async () => {
@@ -163,7 +249,7 @@ describe('CLI integration', () => {
 
   it('strictly validates arguments and configuration', async () => {
     expect((await runCli(tempDir, ['--unknown'])).stderr).toContain("Unknown option '--unknown'");
-    expect((await runCli(tempDir, ['--config', 'config.js'])).stderr).toContain('.mjs');
+    expect((await runCli(tempDir, ['--config', 'config.js'])).stderr).toContain('.mts or .mjs');
   });
 
   it('supports ESM import from the built package', async () => {
@@ -193,7 +279,7 @@ describe('CLI integration', () => {
       const output = join(tempDir, 'public/icons/bootstrapAlarm.svg');
       expect(existsSync(output)).toBe(true);
 
-      writeFileSync(join(tempDir, 'ng-icons-manager.config.mjs'), 'export default { jobs: {} };\n');
+      writeFileSync(join(tempDir, 'ng-icons-manager.config.mts'), 'export default { jobs: {} };\n');
       const code = await waitForExit(child);
 
       expect(code).toBe(1);

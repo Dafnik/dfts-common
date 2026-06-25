@@ -1,4 +1,4 @@
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 
 import { ConfigLoader } from '../config/config-loader';
 import type { ResolvedJobConfig, ResolvedManagerConfig } from '../config/models';
@@ -23,13 +23,14 @@ export class CliApplication {
   async run(args: string[], cwd: string, signal: AbortSignal): Promise<number> {
     try {
       const options = parseCliOptions(args);
-      const configPath = options.configPath ? resolve(cwd, options.configPath) : join(cwd, 'ng-icons-manager.config.mjs');
       if (options.command === 'setup') {
+        const configPath = options.configPath ? resolve(cwd, options.configPath) : this.configs.defaultSetupPath(cwd);
         if (options.listPresets) this.setup.listPresets();
         else await this.setup.run(configPath, options.preset, options.force);
         return 0;
       }
 
+      const configPath = options.configPath ? resolve(cwd, options.configPath) : this.configs.defaultRunPath(cwd);
       const config = await this.configs.load(configPath);
       this.jobs(config, options.jobs);
 

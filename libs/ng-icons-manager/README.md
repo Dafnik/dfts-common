@@ -80,7 +80,7 @@ Using pnpm:
 pnpm add -D ng-icons-manager @ng-icons/bootstrap-icons
 ```
 
-Node.js 20.19 or newer is required. Install the `@ng-icons` packages used by your project alongside the CLI. Icon packs are resolved dynamically and are intentionally not peer dependencies of `ng-icons-manager`.
+Node.js 22.18 or newer is required. Install the `@ng-icons` packages used by your project alongside the CLI. Icon packs are resolved dynamically and are intentionally not peer dependencies of `ng-icons-manager`.
 
 Update your `start` and `build` scripts:
 
@@ -101,9 +101,9 @@ The start script runs `ng-icons-manager` in watch mode while Angular serves your
 
 ## Configuration
 
-A configuration file is required. Create `ng-icons-manager.config.mjs` in the directory where the CLI runs:
+A configuration file is required. Create `ng-icons-manager.config.mts` in the directory where the CLI runs:
 
-```javascript
+```typescript
 import { defineConfig } from 'ng-icons-manager';
 
 export default defineConfig({
@@ -130,6 +130,8 @@ export default defineConfig({
 
 All paths are relative to the configuration directory. Inputs and outputs must remain inside that directory and must not traverse symbolic links. Every input directory must exist.
 
+The CLI looks for `ng-icons-manager.config.mts` first and falls back to `ng-icons-manager.config.mjs` for existing JavaScript configs. TypeScript configs use Node's native type stripping, so keep them to erasable TypeScript syntax, use `import type` for type-only imports, and avoid runtime features that depend on `tsconfig.json`, such as path aliases.
+
 ### Configuration reference
 
 | Property                             | Required | Default              | Description                                                      |
@@ -147,7 +149,9 @@ Unknown configuration properties are errors. Output directories may be nested un
 
 ### Output ownership warning
 
-Each output directory is fully owned by `ng-icons-manager`. After a scan resolves successfully, the CLI recursively deletes that directory and recreates it. Do not store unrelated files there.
+Each output directory is fully owned by `ng-icons-manager`. After a scan resolves successfully, the CLI recursively deletes that directory and recreates it.
+
+**Do not store unrelated files, more likely you want to add output directories to your `.gitignore`.**
 
 Before deletion, the CLI rejects filesystem roots, the configuration root, inputs, ancestors of inputs, paths outside the configuration root, symbolic-link traversal, and overlapping job outputs. Icon resolution completes before deletion, so a normal resolution failure preserves the existing output.
 
@@ -186,7 +190,7 @@ ng-icons-manager setup --force
 Use `--preset` for non-interactive environments and `--config` to write the config somewhere else:
 
 ```bash
-ng-icons-manager setup --preset nx-monorepo --config tools/ng-icons-manager.config.mjs
+ng-icons-manager setup --preset nx-monorepo --config tools/ng-icons-manager.config.mts
 ```
 
 After setup, read the printed asset mapping and `provideNgIconLoader` guidance. Modern `public/icons` presets should load from `/icons/${name}.svg`; the `angular-assets` preset should load from `/assets/icons/${name}.svg`.
@@ -206,27 +210,27 @@ ng-icons-manager --job app --job admin
 Use a configuration at another location:
 
 ```bash
-ng-icons-manager --config tools/ng-icons-manager.config.mjs
+ng-icons-manager --config tools/ng-icons-manager.config.mts
 ```
 
 Available options:
 
-| Option                | Description                                                                 |
-| --------------------- | --------------------------------------------------------------------------- |
-| `--config <path.mjs>` | Use an explicit `.mjs` configuration. May be supplied once.                 |
-| `--job <name>`        | Run a named job. Repeatable. All jobs run when omitted.                     |
-| `--watch`             | Watch configured inputs and reload the configuration when it changes.       |
-| `--verbose`           | Log config loading and successful job output.                               |
-| `--ignore-missing`    | Omit unresolved icons in a one-time run. Cannot be combined with `--watch`. |
+| Option                    | Description                                                                 |
+| ------------------------- | --------------------------------------------------------------------------- |
+| `--config <path.mts/mjs>` | Use an explicit `.mts` or `.mjs` configuration. May be supplied once.       |
+| `--job <name>`            | Run a named job. Repeatable. All jobs run when omitted.                     |
+| `--watch`                 | Watch configured inputs and reload the configuration when it changes.       |
+| `--verbose`               | Log config loading and successful job output.                               |
+| `--ignore-missing`        | Omit unresolved icons in a one-time run. Cannot be combined with `--watch`. |
 
 Setup options:
 
-| Option                | Description                                           |
-| --------------------- | ----------------------------------------------------- |
-| `--preset <name>`     | Write a config from a named preset without prompting. |
-| `--list-presets`      | Print available setup presets.                        |
-| `--config <path.mjs>` | Write the setup config to a custom `.mjs` path.       |
-| `--force`             | Overwrite an existing config file.                    |
+| Option                    | Description                                               |
+| ------------------------- | --------------------------------------------------------- |
+| `--preset <name>`         | Write a config from a named preset without prompting.     |
+| `--list-presets`          | Print available setup presets.                            |
+| `--config <path.mts/mjs>` | Write the setup config to a custom `.mts` or `.mjs` path. |
+| `--force`                 | Overwrite an existing config file.                        |
 
 Arguments and job names are validated strictly. A one-time multi-job run finishes every selected job and exits with code 1 if any job fails. Successful jobs still update independently.
 
@@ -311,6 +315,9 @@ export const themeOptions = [
 
 // or
 /* i(bootstrapLaptop) */
+
+// or
+// i(bootstrapClock)
 ```
 
 In Angular templates:

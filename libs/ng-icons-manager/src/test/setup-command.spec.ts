@@ -16,7 +16,8 @@ class FakePresetSelector implements PresetSelector {
 
 describe('setup command', () => {
   const root = join('/', 'workspace');
-  const configPath = join(root, 'ng-icons-manager.config.mjs');
+  const configPath = join(root, 'ng-icons-manager.config.mts');
+  const mjsConfigPath = join(root, 'ng-icons-manager.config.mjs');
   let fs: FakeFileSystem;
   let logger: FakeLogger;
   let selector: FakePresetSelector;
@@ -100,6 +101,13 @@ provideNgIconLoader((name) => {
 }, withCaching())`,
       ]),
     );
+  });
+
+  it('honors an explicit mjs config path', async () => {
+    await setup.run(mjsConfigPath, 'angular', false);
+
+    expect(fs.readFile(mjsConfigPath)).toContain("outputDir: 'public/icons'");
+    expect(logger.infos).toContain(`Created ${mjsConfigPath}`);
   });
 
   it('selects a preset when none is supplied', async () => {

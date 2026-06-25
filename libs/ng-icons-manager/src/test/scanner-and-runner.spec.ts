@@ -109,7 +109,7 @@ describe('icon manager output semantics', () => {
     job = resolvedJob(source, output);
     config = {
       configDir: root,
-      configPath: join(root, 'ng-icons-manager.config.mjs'),
+      configPath: join(root, 'ng-icons-manager.config.mts'),
       jobs: { app: job },
     };
   });

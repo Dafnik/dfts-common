@@ -1,6 +1,8 @@
 import { extname } from 'node:path';
 import { parseArgs } from 'node:util';
 
+const CONFIG_EXTENSIONS = new Set(['.mts', '.mjs']);
+
 export type CliOptions = RunCliOptions | SetupCliOptions;
 
 export interface RunCliOptions {
@@ -41,7 +43,7 @@ export function parseCliOptions(args: string[]): CliOptions {
   once(tokens, 'config');
   once(tokens, 'preset');
   const config = stringValue(values, 'config');
-  if (config && extname(config) !== '.mjs') throw new Error('--config requires a .mjs file');
+  if (config && !CONFIG_EXTENSIONS.has(extname(config))) throw new Error('--config requires a .mts or .mjs file');
 
   if (positionals.length === 0) return runOptions(values);
   if (positionals.length === 1 && positionals[0] === 'setup') return setupOptions(values);

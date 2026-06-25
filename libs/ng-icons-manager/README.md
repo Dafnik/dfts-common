@@ -8,8 +8,9 @@ No more double importing.
 No more missing icons at runtime.
 No more unused icons sitting around in your project.
 
-[![npm version](https://img.shields.io/npm/v/ng-icons-manager?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/ng-icons-manager)
-[![npm downloads per week](https://img.shields.io/npm/dw/ng-icons-manager?logo=npm&color=%237469B6)](https://npmjs.org/package/ng-icons-manager)
+[![npm version](https://npmx.dev/api/registry/badge/version/ng-icons-manager?color=7469B6&style=shieldsio)](https://npmx.dev/package/ng-icons-manager)
+[![npm bundle size](https://npmx.dev/api/registry/badge/size/ng-icons-manager?color=7469B6&style=shieldsio)](https://npmx.dev/package/ng-icons-manager)
+[![npm download per month](https://npmx.dev/api/registry/badge/downloads-month/ng-icons-manager?color=7469B6&style=shieldsio)](https://npmx.dev/package/ng-icons-manager)
 
 - [Why use ng-icons-manager?](#why-use-ng-icons-manager)
 - [Features](#features)

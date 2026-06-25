@@ -3,9 +3,9 @@
 `dfts-qrcode` is a tiny and simple-to-use Javascript / TypeScript QR-Code generator library.
 Fully type-safe and ES modules compatible.
 
-[![npm version](https://img.shields.io/npm/v/dfts-qrcode?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
-[![npm downloads per week](https://img.shields.io/npm/dw/dfts-qrcode?logo=npm&color=%237469B6)](https://npmjs.org/package/dfts-qrcode)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-qrcode?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-qrcode)
+[![npm version](https://npmx.dev/api/registry/badge/version/dfts-qrcode?color=7469B6&style=shieldsio)](https://npmx.dev/package/dfts-qrcode)
+[![npm bundle size](https://npmx.dev/api/registry/badge/size/dfts-qrcode?color=7469B6&style=shieldsio)](https://npmx.dev/package/dfts-qrcode)
+[![npm download per month](https://npmx.dev/api/registry/badge/downloads-month/dfts-qrcode?color=7469B6&style=shieldsio)](https://npmx.dev/package/dfts-qrcode)
 
 - [Installation](#installation)
 - [Usage](#usage)

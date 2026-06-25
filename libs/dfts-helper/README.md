@@ -2,6 +2,6 @@
 
 TypeScript Library with tons of utility tools helping in all projects.
 
-[![npm version](https://img.shields.io/npm/v/dfts-helper?label=version&color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-helper)
-[![npm downloads per week](https://img.shields.io/npm/dw/dfts-helper?logo=npm&color=%237469B6)](https://npmjs.org/package/dfts-helper)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/dfts-helper?color=%237469B6&cacheSeconds=86400)](https://npmjs.org/package/dfts-helper)
+[![npm version](https://npmx.dev/api/registry/badge/version/dfts-helper?color=7469B6&style=shieldsio)](https://npmx.dev/package/dfts-helper)
+[![npm bundle size](https://npmx.dev/api/registry/badge/size/dfts-helper?color=7469B6&style=shieldsio)](https://npmx.dev/package/dfts-helper)
+[![npm download per month](https://npmx.dev/api/registry/badge/downloads-month/dfts-helper?color=7469B6&style=shieldsio)](https://npmx.dev/package/dfts-helper)

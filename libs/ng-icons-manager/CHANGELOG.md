@@ -1,4 +1,24 @@
  
+## [2.0.0](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.4...ng-icons-manager-2.0.0) (2026-06-25)
+
+
+### Features
+
+* add .mts config support ([29d7236](https://github.com/Dafnik/dfts-common/commit/29d72360186e3b9599eee238fe07a027ce1ce344))
+* ng icons manager v2 ([a7d7a99](https://github.com/Dafnik/dfts-common/commit/a7d7a99b23975073a08fe265914d5355764dc990))
+* ng icons manager v2 ([3b069ee](https://github.com/Dafnik/dfts-common/commit/3b069eeb5d27486d0f0688f3cea8630b3e8383bd))
+* **ng-icons-manager:** config ([5ebe943](https://github.com/Dafnik/dfts-common/commit/5ebe9430995f826028b1d160eb9b4b3d6c3f9bd9))
+* **ng-icons-manager:** integration tests ([4a045b4](https://github.com/Dafnik/dfts-common/commit/4a045b401d03b738f14324914310cd4e141a35d2))
+* setup presets ([5e1506a](https://github.com/Dafnik/dfts-common/commit/5e1506ac30c1bdc14a76dad3f0360c20a8e6f958))
+* setup presets ([f8b5163](https://github.com/Dafnik/dfts-common/commit/f8b51635afaa559a213c6cfaf6a69e78171eff62))
+* setup presets select ([76fa15b](https://github.com/Dafnik/dfts-common/commit/76fa15b831614bfae873fecdafc16694d45d2db7))
+* source icon cache from file system ([1ff9b98](https://github.com/Dafnik/dfts-common/commit/1ff9b9894e8ee684000b36d5d3d9c7dad7365514))
+
+
+### Bug Fixes
+
+* ts comment parsing ([901e477](https://github.com/Dafnik/dfts-common/commit/901e4772dba3f425d49d162d476c04774e7d880a))
+
 ## [1.1.4](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.3...ng-icons-manager-1.1.4) (2025-12-22)
 
 

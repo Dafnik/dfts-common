@@ -29,6 +29,14 @@ describe('CLI argument parsing', () => {
     });
   });
 
+  it('parses setup without a preset for interactive selection', () => {
+    expect(parseCliOptions(['setup'])).toEqual({
+      command: 'setup',
+      listPresets: false,
+      force: false,
+    });
+  });
+
   it.each([
     [['--unknown'], "Unknown option '--unknown'"],
     [['unknown'], 'Unknown command'],
@@ -40,7 +48,6 @@ describe('CLI argument parsing', () => {
     [['--preset', 'angular'], 'can only be used with setup'],
     [['--list-presets'], 'can only be used with setup'],
     [['--force'], 'can only be used with setup'],
-    [['setup'], 'requires --preset'],
     [['setup', '--preset', 'angular', '--list-presets'], 'cannot be used'],
     [['setup', '--preset', 'angular', '--preset', 'nx-angular'], 'only be supplied once'],
     [['setup', '--job', 'app', '--preset', 'angular'], 'cannot be used with setup'],

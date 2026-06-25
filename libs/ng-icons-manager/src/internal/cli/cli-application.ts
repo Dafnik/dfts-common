@@ -26,10 +26,7 @@ export class CliApplication {
       const configPath = options.configPath ? resolve(cwd, options.configPath) : join(cwd, 'ng-icons-manager.config.mjs');
       if (options.command === 'setup') {
         if (options.listPresets) this.setup.listPresets();
-        else {
-          if (!options.preset) throw new Error('setup requires --preset <name> or --list-presets');
-          this.setup.run(configPath, options.preset, options.force);
-        }
+        else await this.setup.run(configPath, options.preset, options.force);
         return 0;
       }
 

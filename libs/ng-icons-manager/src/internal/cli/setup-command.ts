@@ -1,4 +1,5 @@
 import { dirname } from 'node:path';
+import { emitKeypressEvents } from 'node:readline';
 
 import type { FileSystem, Logger } from '../core/ports';
 
@@ -6,9 +7,17 @@ export const SETUP_PRESET_NAMES = ['angular', 'angular-monorepo', 'nx-monorepo',
 
 export type SetupPresetName = (typeof SETUP_PRESET_NAMES)[number];
 
-interface SetupPreset {
+export interface SetupPresetMetadata {
   name: SetupPresetName;
   description: string;
+}
+
+export interface PresetSelector {
+  select(presets: readonly SetupPresetMetadata[]): Promise<SetupPresetName>;
+}
+
+interface SetupPreset extends SetupPresetMetadata {
+  name: SetupPresetName;
   inputDirs: string[];
   outputDir: string;
   loaderPath: string;
@@ -80,17 +89,19 @@ export class SetupCommand {
   constructor(
     private readonly fs: FileSystem,
     private readonly logger: Logger,
+    private readonly selector?: PresetSelector,
   ) {}
 
   listPresets(): void {
     this.logger.info('Available ng-icons-manager setup presets:');
-    for (const preset of SETUP_PRESET_NAMES.map((name) => PRESETS[name])) {
+    for (const preset of setupPresetMetadata()) {
       this.logger.info(`- ${preset.name}: ${preset.description}`);
     }
   }
 
-  run(configPath: string, presetName: string, force: boolean): void {
-    const preset = this.preset(presetName);
+  async run(configPath: string, presetName: string | undefined, force: boolean): Promise<void> {
+    const selectedPreset = presetName ?? (await this.selectPreset());
+    const preset = this.preset(selectedPreset);
     if (this.fs.exists(configPath) && !force) {
       throw new Error(`Config file already exists: ${configPath}. Use --force to overwrite it.`);
     }
@@ -98,6 +109,11 @@ export class SetupCommand {
     this.fs.createDirectory(dirname(configPath));
     this.fs.writeFile(configPath, configContent(preset));
     this.report(configPath, preset);
+  }
+
+  private async selectPreset(): Promise<SetupPresetName> {
+    if (!this.selector) throw new Error('setup requires --preset <name> or an interactive terminal');
+    return this.selector.select(setupPresetMetadata());
   }
 
   private preset(name: string): SetupPreset {
@@ -127,6 +143,79 @@ provideNgIconLoader((name) => {
   }
 }
 
+export class KeyboardPresetSelector implements PresetSelector {
+  constructor(
+    private readonly input: KeyboardInput,
+    private readonly output: KeyboardOutput,
+  ) {}
+
+  select(presets: readonly SetupPresetMetadata[]): Promise<SetupPresetName> {
+    if (!this.input.isTTY || !this.output.isTTY || !this.input.setRawMode) {
+      throw new Error('setup requires --preset <name> or an interactive terminal');
+    }
+    const setRawMode = this.input.setRawMode.bind(this.input);
+
+    return new Promise((resolve, reject) => {
+      let index = 0;
+      const previousRawMode = this.input.isRaw === true;
+      const cleanup = () => {
+        this.input.off('keypress', onKeypress);
+        this.input.pause();
+        setRawMode(previousRawMode);
+        this.output.write(`\x1b[${presets.length + 1}B\n`);
+      };
+      const finish = (preset: SetupPresetName) => {
+        cleanup();
+        resolve(preset);
+      };
+      const cancel = () => {
+        cleanup();
+        reject(new Error('Setup cancelled'));
+      };
+      const render = () => {
+        this.output.write('\x1b[2K\x1b[0GSelect a setup preset with arrow keys, then press Enter:\n');
+        presets.forEach((preset, presetIndex) => {
+          this.output.write(`${presetIndex === index ? '>' : ' '} ${preset.name} - ${preset.description}\n`);
+        });
+        this.output.write(`\x1b[${presets.length + 1}A`);
+      };
+      const onKeypress = (_input: string, key: KeypressKey = {}) => {
+        if (key.ctrl && key.name === 'c') {
+          cancel();
+          return;
+        }
+        if (key.name === 'escape' || key.name === 'q') {
+          cancel();
+          return;
+        }
+        if (key.name === 'up' || key.name === 'k') {
+          index = (index + presets.length - 1) % presets.length;
+          render();
+          return;
+        }
+        if (key.name === 'down' || key.name === 'j') {
+          index = (index + 1) % presets.length;
+          render();
+          return;
+        }
+        if (key.name === 'return' || key.name === 'enter') {
+          finish(presets[index].name);
+        }
+      };
+
+      emitKeypressEvents(this.input as NodeJS.ReadableStream);
+      setRawMode(true);
+      this.input.resume();
+      this.input.on('keypress', onKeypress);
+      render();
+    });
+  }
+}
+
+export function setupPresetMetadata(): SetupPresetMetadata[] {
+  return SETUP_PRESET_NAMES.map((name) => ({ name, description: PRESETS[name].description }));
+}
+
 function configContent(preset: SetupPreset): string {
   return `import { defineConfig } from 'ng-icons-manager';
 
@@ -143,4 +232,24 @@ export default defineConfig({
 
 function arrayLiteral(values: string[]): string {
   return `[${values.map((value) => `'${value}'`).join(', ')}]`;
+}
+
+interface KeyboardInput {
+  isTTY?: boolean;
+  isRaw?: boolean;
+  setRawMode?: (mode: boolean) => void;
+  resume(): void;
+  pause(): void;
+  on(event: 'keypress', listener: (input: string, key?: KeypressKey) => void): void;
+  off(event: 'keypress', listener: (input: string, key?: KeypressKey) => void): void;
+}
+
+interface KeyboardOutput {
+  isTTY?: boolean;
+  write(content: string): void;
+}
+
+interface KeypressKey {
+  name?: string;
+  ctrl?: boolean;
 }

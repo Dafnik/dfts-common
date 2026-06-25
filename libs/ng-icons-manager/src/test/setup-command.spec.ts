@@ -1,20 +1,33 @@
 import { join } from 'node:path';
 
-import { SetupCommand } from '../internal/cli/setup-command';
+import { SetupCommand, type PresetSelector, type SetupPresetMetadata, type SetupPresetName } from '../internal/cli/setup-command';
 import { FakeFileSystem, FakeLogger } from './fakes';
+
+class FakePresetSelector implements PresetSelector {
+  calls: readonly SetupPresetMetadata[][] = [];
+  selection: SetupPresetName | Error = 'angular';
+
+  async select(presets: readonly SetupPresetMetadata[]): Promise<SetupPresetName> {
+    this.calls.push(presets);
+    if (this.selection instanceof Error) throw this.selection;
+    return this.selection;
+  }
+}
 
 describe('setup command', () => {
   const root = join('/', 'workspace');
   const configPath = join(root, 'ng-icons-manager.config.mjs');
   let fs: FakeFileSystem;
   let logger: FakeLogger;
+  let selector: FakePresetSelector;
   let setup: SetupCommand;
 
   beforeEach(() => {
     fs = new FakeFileSystem();
     fs.directory(root);
     logger = new FakeLogger();
-    setup = new SetupCommand(fs, logger);
+    selector = new FakePresetSelector();
+    setup = new SetupCommand(fs, logger, selector);
   });
 
   it('lists available presets', () => {
@@ -30,8 +43,8 @@ describe('setup command', () => {
     ]);
   });
 
-  it('writes an angular config and loader guidance', () => {
-    setup.run(configPath, 'angular', false);
+  it('writes an angular config and loader guidance', async () => {
+    await setup.run(configPath, 'angular', false);
 
     expect(fs.readFile(configPath)).toBe(`import { defineConfig } from 'ng-icons-manager';
 
@@ -66,10 +79,11 @@ provideNgIconLoader((name) => {
 }, withCaching())`,
       ]),
     );
+    expect(selector.calls).toEqual([]);
   });
 
-  it('writes the legacy assets preset and guidance', () => {
-    setup.run(configPath, 'angular-assets', false);
+  it('writes the legacy assets preset and guidance', async () => {
+    await setup.run(configPath, 'angular-assets', false);
 
     expect(fs.readFile(configPath)).toContain("outputDir: 'src/assets/icons'");
     expect(logger.infos).toEqual(
@@ -88,19 +102,49 @@ provideNgIconLoader((name) => {
     );
   });
 
-  it('refuses to overwrite existing config unless forced', () => {
+  it('selects a preset when none is supplied', async () => {
+    selector.selection = 'nx-angular';
+
+    await setup.run(configPath, undefined, false);
+
+    expect(selector.calls).toHaveLength(1);
+    expect(selector.calls[0].map(({ name }) => name)).toEqual([
+      'angular',
+      'angular-monorepo',
+      'nx-monorepo',
+      'nx-angular',
+      'angular-assets',
+    ]);
+    expect(fs.readFile(configPath)).toContain("outputDir: 'public/icons'");
+    expect(logger.infos).toEqual(expect.arrayContaining(['Selected preset: nx-angular']));
+  });
+
+  it('surfaces selector cancellation', async () => {
+    selector.selection = new Error('Setup cancelled');
+
+    await expect(setup.run(configPath, undefined, false)).rejects.toThrow('Setup cancelled');
+    expect(fs.exists(configPath)).toBe(false);
+  });
+
+  it('fails without a preset or selector', async () => {
+    setup = new SetupCommand(fs, logger);
+
+    await expect(setup.run(configPath, undefined, false)).rejects.toThrow('setup requires --preset <name> or an interactive terminal');
+  });
+
+  it('refuses to overwrite existing config unless forced', async () => {
     fs.writeFile(configPath, 'existing');
 
-    expect(() => setup.run(configPath, 'angular', false)).toThrow('already exists');
+    await expect(setup.run(configPath, 'angular', false)).rejects.toThrow('already exists');
     expect(fs.readFile(configPath)).toBe('existing');
 
-    setup.run(configPath, 'angular', true);
+    await setup.run(configPath, 'angular', true);
 
     expect(fs.readFile(configPath)).toContain("outputDir: 'public/icons'");
   });
 
-  it('rejects unknown presets with the available names', () => {
-    expect(() => setup.run(configPath, 'unknown', false)).toThrow(
+  it('rejects unknown presets with the available names', async () => {
+    await expect(setup.run(configPath, 'unknown', false)).rejects.toThrow(
       'Available presets: angular, angular-monorepo, nx-monorepo, nx-angular, angular-assets',
     );
   });

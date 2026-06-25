@@ -74,7 +74,6 @@ function setupOptions(values: ParsedValues): SetupCliOptions {
   if (booleanValue(values, 'verbose')) throw new Error('--verbose cannot be used with setup');
   if (booleanValue(values, 'ignore-missing')) throw new Error('--ignore-missing cannot be used with setup');
   if (preset && listPresets) throw new Error('--preset cannot be used with --list-presets');
-  if (!preset && !listPresets) throw new Error('setup requires --preset <name> or --list-presets');
 
   return {
     command: 'setup',

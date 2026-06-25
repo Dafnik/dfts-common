@@ -45,6 +45,13 @@ describe('CLI integration', () => {
     expect(result.stdout).toContain('angular-assets:');
   });
 
+  it('requires an interactive terminal or preset for bare setup', async () => {
+    const result = await runCli(tempDir, ['setup']);
+
+    expect(result.code).toBe(1);
+    expect(result.stderr).toContain('setup requires --preset <name> or an interactive terminal');
+  });
+
   it('creates an angular setup config that can be loaded by a normal run', async () => {
     await createBootstrapPackage(tempDir);
     await linkBuiltNgIconsManager(tempDir);

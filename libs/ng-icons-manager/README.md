@@ -156,8 +156,10 @@ Before deletion, the CLI rejects filesystem roots, the configuration root, input
 Create a starter configuration:
 
 ```bash
-ng-icons-manager setup --preset angular
+ng-icons-manager setup
 ```
+
+Use the arrow keys to select a preset, then press Enter.
 
 List available setup presets:
 
@@ -178,10 +180,10 @@ Available setup presets:
 Setup refuses to overwrite an existing config unless you pass `--force`:
 
 ```bash
-ng-icons-manager setup --preset angular --force
+ng-icons-manager setup --force
 ```
 
-Use `--config` to write the config somewhere else:
+Use `--preset` for non-interactive environments and `--config` to write the config somewhere else:
 
 ```bash
 ng-icons-manager setup --preset nx-monorepo --config tools/ng-icons-manager.config.mjs
@@ -219,12 +221,12 @@ Available options:
 
 Setup options:
 
-| Option                | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| `--preset <name>`     | Write a config from a named preset.             |
-| `--list-presets`      | Print available setup presets.                  |
-| `--config <path.mjs>` | Write the setup config to a custom `.mjs` path. |
-| `--force`             | Overwrite an existing config file.              |
+| Option                | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| `--preset <name>`     | Write a config from a named preset without prompting. |
+| `--list-presets`      | Print available setup presets.                        |
+| `--config <path.mjs>` | Write the setup config to a custom `.mjs` path.       |
+| `--force`             | Overwrite an existing config file.                    |
 
 Arguments and job names are validated strictly. A one-time multi-job run finishes every selected job and exits with code 1 if any job fails. Successful jobs still update independently.
 

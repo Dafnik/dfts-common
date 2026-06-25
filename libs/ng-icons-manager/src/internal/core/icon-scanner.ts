@@ -16,8 +16,8 @@ export class IconScanner {
     private readonly parser: IconParser,
   ) {}
 
-  scan(job: ResolvedJobConfig, outputDirs: string[]): ScanResult {
-    const { files, issues } = this.files(job, outputDirs);
+  async scan(job: ResolvedJobConfig, outputDirs: string[]): Promise<ScanResult> {
+    const { files, issues } = await this.files(job, outputDirs);
     const icons = new Set<string>();
 
     for (const file of files) {
@@ -31,7 +31,7 @@ export class IconScanner {
     return { icons, issues };
   }
 
-  private files(job: ResolvedJobConfig, outputDirs: string[]): { files: Set<string>; issues: ReadIssue[] } {
+  private async files(job: ResolvedJobConfig, outputDirs: string[]): Promise<{ files: Set<string>; issues: ReadIssue[] }> {
     const files = new Set<string>();
     const issues: ReadIssue[] = [];
     for (const inputDir of job.inputDirs) {
@@ -40,7 +40,9 @@ export class IconScanner {
         .filter((path) => path.length > 0 && path !== '..' && !path.startsWith(`..${sep}`))
         .map((path) => `${path.split(sep).join('/')}/**`);
       try {
-        this.fs.glob(job.include, { cwd: inputDir, ignore: [...job.exclude, ...ignoredOutputs] }).forEach((file) => files.add(file));
+        (await this.fs.glob(job.include, { cwd: inputDir, ignore: [...job.exclude, ...ignoredOutputs] })).forEach((file) =>
+          files.add(file),
+        );
       } catch (error) {
         issues.push({ kind: 'read', path: inputDir, message: `Failed to scan ${inputDir}: ${errorMessage(error)}` });
       }

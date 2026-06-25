@@ -51,12 +51,12 @@ describe('icon scanner', () => {
     job = resolvedJob(source, output);
   });
 
-  it('passes job globs and every nested output exclusion to the filesystem port', () => {
+  it('passes job globs and every nested output exclusion to the filesystem port', async () => {
     const app = join(source, 'app.html');
     fs.writeFile(app, '<ng-icon name="bootstrapAlarm" />');
     fs.globResults.set(source, [app]);
 
-    const result = new IconScanner(fs, new IconParser()).scan(job, [output, join(root, 'other/icons')]);
+    const result = await new IconScanner(fs, new IconParser()).scan(job, [output, join(root, 'other/icons')]);
 
     expect([...result.icons]).toEqual(['bootstrapAlarm']);
     expect(fs.globCalls).toEqual([
@@ -67,22 +67,22 @@ describe('icon scanner', () => {
     ]);
   });
 
-  it('skips symbolic links and returns typed read issues', () => {
+  it('skips symbolic links and returns typed read issues', async () => {
     const linked = join(source, 'linked.html');
     const missing = join(source, 'missing.html');
     fs.symlinks.add(linked);
     fs.globResults.set(source, [linked, missing]);
 
-    const result = new IconScanner(fs, new IconParser()).scan(job, []);
+    const result = await new IconScanner(fs, new IconParser()).scan(job, []);
 
     expect(result.icons.size).toBe(0);
     expect(result.issues).toEqual([expect.objectContaining({ kind: 'read', path: missing })]);
   });
 
-  it('returns a typed read issue when globbing an input fails', () => {
+  it('returns a typed read issue when globbing an input fails', async () => {
     fs.globErrors.set(source, new Error('permission denied'));
 
-    const result = new IconScanner(fs, new IconParser()).scan(job, []);
+    const result = await new IconScanner(fs, new IconParser()).scan(job, []);
 
     expect(result.issues).toEqual([
       expect.objectContaining({ kind: 'read', path: source, message: expect.stringContaining('permission denied') }),

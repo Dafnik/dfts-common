@@ -18,7 +18,7 @@ export interface FileSystem {
   readDirectory(path: string): DirectoryEntry[];
   createDirectory(path: string): void;
   remove(path: string): void;
-  glob(patterns: string[], options: GlobOptions): string[];
+  glob(patterns: string[], options: GlobOptions): Promise<string[]>;
 }
 
 export interface ModuleLoader {

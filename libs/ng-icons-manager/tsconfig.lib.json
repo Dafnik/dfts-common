@@ -5,7 +5,7 @@
     "rootDir": "./src",
     "types": ["node"]
   },
-  "exclude": ["jest.config.ts", "src/test/**", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exclude": ["vitest.config.ts", "src/test/**", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "extends": "./tsconfig.json",
   "include": ["src/**/*.ts"]
 }

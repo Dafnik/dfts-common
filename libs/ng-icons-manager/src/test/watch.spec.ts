@@ -1,4 +1,5 @@
 import { join } from 'node:path';
+import { vi } from 'vitest';
 
 import { CliReporter } from '../internal/cli/cli-reporter';
 import { SerialJobWatcher } from '../internal/cli/serial-job-watcher';
@@ -15,26 +16,26 @@ import { IconScanner } from '../internal/core/icon-scanner';
 import { FakeConfigImporter, FakeFileSystem, FakeLogger, FakeModuleLoader, FakeWatcherFactory } from './fakes';
 
 describe('serial job watcher', () => {
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('debounces events and serializes updates', async () => {
     const watchers = new FakeWatcherFactory();
     const first = deferred();
     const second = deferred();
-    const run = jest.fn().mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise);
-    const fail = jest.fn();
+    const run = vi.fn().mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise);
+    const fail = vi.fn();
     const watcher = new SerialJobWatcher(watchers, job('/workspace/src', '/workspace/icons'), () => false, run, fail);
     await watcher.start();
 
     watchers.handles[0].emit();
     watchers.handles[0].emit();
-    jest.advanceTimersByTime(50);
+    vi.advanceTimersByTime(50);
     await flushPromises();
     expect(run).toHaveBeenCalledTimes(1);
 
     watchers.handles[0].emit();
-    jest.advanceTimersByTime(50);
+    vi.advanceTimersByTime(50);
     await flushPromises();
     expect(run).toHaveBeenCalledTimes(1);
 
@@ -49,7 +50,7 @@ describe('serial job watcher', () => {
 
   it('reports a rejected update without poisoning cleanup', async () => {
     const watchers = new FakeWatcherFactory();
-    const fail = jest.fn();
+    const fail = vi.fn();
     const watcher = new SerialJobWatcher(
       watchers,
       job('/workspace/src', '/workspace/icons'),
@@ -60,7 +61,7 @@ describe('serial job watcher', () => {
     await watcher.start();
 
     watchers.handles[0].emit();
-    jest.advanceTimersByTime(50);
+    vi.advanceTimersByTime(50);
     await flushPromises();
 
     expect(fail).toHaveBeenCalledWith(expect.objectContaining({ message: 'update failed' }));
@@ -82,7 +83,7 @@ describe('watch coordinator', () => {
   let managers: ManagerFactory;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     fs = new FakeFileSystem();
     fs.directory(source);
     fs.writeFile(configPath, 'config');
@@ -99,7 +100,7 @@ describe('watch coordinator', () => {
       new IconManager(config, paths, new IconScanner(fs, new IconParser()), new IconResolver(modules), new IconOutput(fs, paths));
   });
 
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('reconciles a valid config reload and preserves the obsolete output', async () => {
     importer.value = configModule('public/old-icons');
@@ -112,7 +113,7 @@ describe('watch coordinator', () => {
 
     importer.value = configModule('public/new-icons');
     watchers.handles[0].emit();
-    await jest.advanceTimersByTimeAsync(50);
+    await vi.advanceTimersByTimeAsync(50);
     await flushPromises();
 
     expect(fs.readFile(oldIcon)).toBe('<svg>alarm</svg>');
@@ -133,7 +134,7 @@ describe('watch coordinator', () => {
 
     importer.value = { default: { jobs: {} } };
     watchers.handles[0].emit();
-    await jest.advanceTimersByTimeAsync(50);
+    await vi.advanceTimersByTimeAsync(50);
     await flushPromises();
 
     await expect(completion).resolves.toBe(1);

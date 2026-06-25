@@ -21,7 +21,6 @@
     "test": {
       "configurations": {
         "ci": {
-          "ci": true,
           "coverage": true
         }
       },

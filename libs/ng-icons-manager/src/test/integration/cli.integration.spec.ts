@@ -1,6 +1,7 @@
 import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { existsSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { vi } from 'vitest';
 
 import {
   createBootstrapPackage,
@@ -15,7 +16,7 @@ import {
   runCli,
 } from './test-utils';
 
-jest.setTimeout(60000);
+vi.setConfig({ testTimeout: 60000 });
 
 describe('CLI integration', () => {
   let tempDir: string;

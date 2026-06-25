@@ -1,6 +1,6 @@
 {
   "name": "ng-icons-manager",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "CLI utility for Angular projects that automatically scans your templates for used icons from @ng-icons packages and copies only those into your project folder.",
   "engines": {
     "node": ">=22.18.0"

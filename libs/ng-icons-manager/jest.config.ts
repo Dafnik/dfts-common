@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'ng-icons-manager',
   coverageDirectory: '../../coverage/libs/ng-icons-manager',
   coverageReporters: ['cobertura', 'html'],

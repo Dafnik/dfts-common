@@ -2,10 +2,14 @@
   "name": "ng-icons-manager",
   "version": "1.1.4",
   "description": "CLI utility for Angular projects that automatically scans your templates for used icons from @ng-icons packages and copies only those into your project folder.",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "private": false,
   "license": "MIT",
   "homepage": "https://github.com/Dafnik/dfts-common/tree/main/libs/ng-icons-manager",
-  "sideEffects": true,
+  "sideEffects": false,
+  "type": "module",
   "keywords": [
     "ng",
     "ngx",
@@ -39,28 +43,25 @@
     "directory": "libs/ng-icons-manager"
   },
   "bin": {
-    "ng-icons-manager": "./cli.cjs.js"
+    "ng-icons-manager": "./cli.esm.js"
   },
   "dependencies": {
-    "tslib": "^2"
-  },
-  "peerDependencies": {
     "chokidar": "5",
-    "glob": "13"
+    "glob": "13.0.6",
+    "tslib": "^2"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
-  "main": "./index.cjs.js",
-  "types": "./index.d.ts",
+  "main": "./index.esm.js",
+  "module": "./index.esm.js",
+  "types": "./src/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./index.cjs.js"
-      }
+      "types": "./src/index.d.ts",
+      "import": "./index.esm.js"
     }
   }
 }

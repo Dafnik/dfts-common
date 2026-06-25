@@ -1,62 +1,76 @@
-import { exec } from 'child_process';
-import { mkdtemp, rm, writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { tmpdir } from 'os';
+import { execFile } from 'node:child_process';
+import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
 
 export interface CliResult {
   code: number;
   stdout: string;
   stderr: string;
-  error?: Error;
 }
 
-export async function createTempDir(): Promise<string> {
+export const workspaceRoot = join(__dirname, '../../../../../');
+export const distRoot = join(workspaceRoot, 'dist/libs/ng-icons-manager');
+export const cliPath = join(distRoot, 'cli.esm.js');
+
+export function createTempDir(): Promise<string> {
   return mkdtemp(join(tmpdir(), 'ng-icons-manager-test-'));
 }
 
-export async function removeTempDir(dir: string): Promise<void> {
-  await rm(dir, { recursive: true, force: true });
+export function removeTempDir(dir: string): Promise<void> {
+  return rm(dir, { recursive: true, force: true });
 }
 
 export async function ensureBuild(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    exec('npx nx run ng-icons-manager:build', { cwd: join(__dirname, '../../../../') }, (error, stdout, stderr) => {
-      if (error) {
-        console.error(stderr);
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
+  const result = await execute('pnpm', ['exec', 'nx', 'run', 'ng-icons-manager:build', '--skip-nx-cache'], workspaceRoot);
+  if (result.code !== 0) throw new Error(`Build failed:\n${result.stderr}\n${result.stdout}`);
 }
 
-export async function runCli(cwd: string, args: string[] = []): Promise<CliResult> {
-  const workspaceRoot = join(process.cwd(), '../../');
-  const cliPath = join(workspaceRoot, 'dist/libs/ng-icons-manager/cli.cjs.js');
-
-  const command = `node ${cliPath} ${args.join(' ')}`;
-
-  return new Promise((resolve) => {
-    exec(command, { cwd }, (error, stdout, stderr) => {
-      resolve({
-        code: error ? error.code || 1 : 0,
-        stdout,
-        stderr,
-        error: error || undefined,
-      });
-    });
-  });
+export function runCli(cwd: string, args: string[] = []): Promise<CliResult> {
+  return execute(process.execPath, [cliPath, ...args], cwd);
 }
 
-export async function createConfigFile(cwd: string, config: any): Promise<void> {
-  const content = `export default ${JSON.stringify(config, null, 2)};`;
+export async function createConfigFile(cwd: string, config: unknown): Promise<void> {
+  await linkBuiltPackage(cwd);
+  const content = `import { defineConfig } from 'ng-icons-manager';\n\nexport default defineConfig(${JSON.stringify(config, null, 2)});\n`;
   await writeFile(join(cwd, 'ng-icons-manager.config.mjs'), content);
 }
 
 export async function createSourceFile(cwd: string, path: string, content: string): Promise<void> {
   const fullPath = join(cwd, path);
-  const dir = fullPath.substring(0, fullPath.lastIndexOf('/'));
-  await mkdir(dir, { recursive: true });
+  await mkdir(dirname(fullPath), { recursive: true });
   await writeFile(fullPath, content);
+}
+
+export async function createBootstrapPackage(cwd: string): Promise<void> {
+  await createSourceFile(
+    cwd,
+    'node_modules/@ng-icons/bootstrap-icons/package.json',
+    JSON.stringify({
+      name: '@ng-icons/bootstrap-icons',
+      type: 'module',
+      exports: { '.': './index.mjs' },
+    }),
+  );
+  await createSourceFile(
+    cwd,
+    'node_modules/@ng-icons/bootstrap-icons/index.mjs',
+    `export const bootstrapAlarm = '<svg>alarm</svg>';\nexport const bootstrapBell = '<svg>bell</svg>';`,
+  );
+}
+
+export function execute(command: string, args: string[], cwd: string): Promise<CliResult> {
+  return new Promise((resolve) => {
+    execFile(command, args, { cwd }, (error, stdout, stderr) => {
+      resolve({ code: typeof error?.code === 'number' ? error.code : error ? 1 : 0, stdout, stderr });
+    });
+  });
+}
+
+async function linkBuiltPackage(cwd: string): Promise<void> {
+  const nodeModules = join(cwd, 'node_modules');
+  await mkdir(nodeModules, { recursive: true });
+  await symlink(distRoot, join(nodeModules, 'ng-icons-manager'), 'dir').catch((error: NodeJS.ErrnoException) => {
+    if (error.code !== 'EEXIST') throw error;
+  });
 }

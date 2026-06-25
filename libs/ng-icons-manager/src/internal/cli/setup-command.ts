@@ -3,7 +3,7 @@ import { emitKeypressEvents } from 'node:readline';
 
 import type { FileSystem, Logger } from '../core/ports';
 
-export const SETUP_PRESET_NAMES = ['angular', 'angular-monorepo', 'nx-monorepo', 'nx-angular', 'angular-assets'] as const;
+export const SETUP_PRESET_NAMES = ['angular', 'angular-monorepo', 'analog', 'nx-monorepo', 'nx-angular', 'angular-assets'] as const;
 
 export type SetupPresetName = (typeof SETUP_PRESET_NAMES)[number];
 
@@ -34,7 +34,7 @@ const PRESETS: Record<SetupPresetName, SetupPreset> = {
     outputDir: 'public/icons',
     loaderPath: PUBLIC_LOADER_PATH,
     guidance: [
-      'Asset mapping: no extra mapping is usually needed when Angular serves public/ at the application root.',
+      'Asset mapping: no extra mapping is usually needed as Angular serves public/ at the application root out of the box.',
       'If your workspace customizes assets, verify the Angular project build options still include the public folder.',
     ],
   },
@@ -50,10 +50,21 @@ const PRESETS: Record<SetupPresetName, SetupPreset> = {
       'Angular workspace paths in angular.json are relative to the workspace root.',
     ],
   },
+  analog: {
+    name: 'analog',
+    description: 'single Analog app using the public folder',
+    inputDirs: ['src/app'],
+    outputDir: 'public/icons',
+    loaderPath: PUBLIC_LOADER_PATH,
+    guidance: [
+      'Asset mapping: no extra mapping is usually needed as Analog serves public/ at the application root out of the box.',
+      'If your workspace customizes assets, verify the Analog project build options still include the public folder.',
+    ],
+  },
   'nx-monorepo': {
     name: 'nx-monorepo',
     description: 'Nx Angular monorepo with apps/app and libs/shared-ui',
-    inputDirs: ['apps/app/src', 'libs/shared-ui/src'],
+    inputDirs: ['apps/app/src/app', 'libs/shared-ui/src/lib'],
     outputDir: 'apps/app/public/icons',
     loaderPath: PUBLIC_LOADER_PATH,
     guidance: [

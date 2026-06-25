@@ -38,6 +38,7 @@ describe('setup command', () => {
       'Available ng-icons-manager setup presets:',
       expect.stringContaining('angular:'),
       expect.stringContaining('angular-monorepo:'),
+      expect.stringContaining('analog:'),
       expect.stringContaining('nx-monorepo:'),
       expect.stringContaining('nx-angular:'),
       expect.stringContaining('angular-assets:'),
@@ -66,7 +67,7 @@ export default defineConfig({
         'Warning: ng-icons-manager fully owns the output directory and replaces its contents during a full run.',
         '',
         'Preset-specific setup:',
-        '- Asset mapping: no extra mapping is usually needed when Angular serves public/ at the application root.',
+        '- Asset mapping: no extra mapping is usually needed as Angular serves public/ at the application root out of the box.',
         '- If your workspace customizes assets, verify the Angular project build options still include the public folder.',
         '',
         'Loader example:',
@@ -103,6 +104,12 @@ provideNgIconLoader((name) => {
     );
   });
 
+  it('writes focused Nx monorepo input directories', async () => {
+    await setup.run(configPath, 'nx-monorepo', false);
+
+    expect(fs.readFile(configPath)).toContain("inputDirs: ['apps/app/src/app', 'libs/shared-ui/src/lib']");
+  });
+
   it('honors an explicit mjs config path', async () => {
     await setup.run(mjsConfigPath, 'angular', false);
 
@@ -119,6 +126,7 @@ provideNgIconLoader((name) => {
     expect(selector.calls[0].map(({ name }) => name)).toEqual([
       'angular',
       'angular-monorepo',
+      'analog',
       'nx-monorepo',
       'nx-angular',
       'angular-assets',
@@ -153,7 +161,7 @@ provideNgIconLoader((name) => {
 
   it('rejects unknown presets with the available names', async () => {
     await expect(setup.run(configPath, 'unknown', false)).rejects.toThrow(
-      'Available presets: angular, angular-monorepo, nx-monorepo, nx-angular, angular-assets',
+      'Available presets: angular, angular-monorepo, analog, nx-monorepo, nx-angular, angular-assets',
     );
   });
 });

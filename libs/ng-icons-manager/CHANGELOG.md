@@ -1,4 +1,12 @@
  
+## [2.0.1](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-2.0.0...ng-icons-manager-2.0.1) (2026-06-25)
+
+
+### Features
+
+* add analog preset ([6bbe47d](https://github.com/Dafnik/dfts-common/commit/6bbe47d8425d236e71de657437103adc7f4d450f))
+* update default input dir to src/app ([3cfdd66](https://github.com/Dafnik/dfts-common/commit/3cfdd66600e05be14b4e3034fd49189eee01482d))
+
 ## [2.0.0](https://github.com/Dafnik/dfts-common/compare/ng-icons-manager-1.1.4...ng-icons-manager-2.0.0) (2026-06-25)
 
 

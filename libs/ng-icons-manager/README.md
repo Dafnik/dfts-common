@@ -113,11 +113,11 @@ export default defineConfig({
   },
   jobs: {
     app: {
-      inputDirs: ['apps/app/src', 'libs/shared-ui/src'],
+      inputDirs: ['apps/app/src/app', 'libs/shared-ui/src/lib'],
       outputDir: 'apps/app/public/icons',
     },
     admin: {
-      inputDirs: ['apps/admin/src', 'libs/shared-ui/src'],
+      inputDirs: ['apps/admin/src/app', 'libs/shared-ui/src/lib'],
       outputDir: 'apps/admin/public/icons',
       exclude: [],
       packagePreferences: {

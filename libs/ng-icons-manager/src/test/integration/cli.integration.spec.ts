@@ -55,7 +55,7 @@ describe('CLI integration', () => {
   it('creates an angular setup config that can be loaded by a normal run', async () => {
     await createBootstrapPackage(tempDir);
     await linkBuiltNgIconsManager(tempDir);
-    await createSourceFile(tempDir, 'src/app.html', '<ng-icon name="bootstrapAlarm" />');
+    await createSourceFile(tempDir, 'src/app/app.html', '<ng-icon name="bootstrapAlarm" />');
 
     const setup = await runCli(tempDir, ['setup', '--preset', 'angular']);
     const rerun = await runCli(tempDir, ['setup', '--preset', 'angular']);

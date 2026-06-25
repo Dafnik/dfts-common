@@ -30,7 +30,7 @@ const PRESETS: Record<SetupPresetName, SetupPreset> = {
   angular: {
     name: 'angular',
     description: 'single Angular app using the public folder',
-    inputDirs: ['src'],
+    inputDirs: ['src/app'],
     outputDir: 'public/icons',
     loaderPath: PUBLIC_LOADER_PATH,
     guidance: [
@@ -41,7 +41,7 @@ const PRESETS: Record<SetupPresetName, SetupPreset> = {
   'angular-monorepo': {
     name: 'angular-monorepo',
     description: 'Angular CLI workspace with projects/app',
-    inputDirs: ['projects/app/src'],
+    inputDirs: ['projects/app/src/app'],
     outputDir: 'projects/app/public/icons',
     loaderPath: PUBLIC_LOADER_PATH,
     guidance: [
@@ -64,7 +64,7 @@ const PRESETS: Record<SetupPresetName, SetupPreset> = {
   'nx-angular': {
     name: 'nx-angular',
     description: 'single Angular app in an Nx workspace',
-    inputDirs: ['src'],
+    inputDirs: ['src/app'],
     outputDir: 'public/icons',
     loaderPath: PUBLIC_LOADER_PATH,
     guidance: [
@@ -75,7 +75,7 @@ const PRESETS: Record<SetupPresetName, SetupPreset> = {
   'angular-assets': {
     name: 'angular-assets',
     description: 'Angular app using the legacy src/assets/icons path',
-    inputDirs: ['src'],
+    inputDirs: ['src/app'],
     outputDir: 'src/assets/icons',
     loaderPath: '/assets/icons/${name}.svg',
     guidance: [

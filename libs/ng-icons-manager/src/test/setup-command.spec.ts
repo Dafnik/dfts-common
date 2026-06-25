@@ -4,10 +4,10 @@ import { SetupCommand, type PresetSelector, type SetupPresetMetadata, type Setup
 import { FakeFileSystem, FakeLogger } from './fakes';
 
 class FakePresetSelector implements PresetSelector {
-  calls: readonly SetupPresetMetadata[][] = [];
+  calls: SetupPresetMetadata[][] = [];
   selection: SetupPresetName | Error = 'angular';
 
-  async select(presets: readonly SetupPresetMetadata[]): Promise<SetupPresetName> {
+  async select(presets: SetupPresetMetadata[]): Promise<SetupPresetName> {
     this.calls.push(presets);
     if (this.selection instanceof Error) throw this.selection;
     return this.selection;
@@ -52,7 +52,7 @@ describe('setup command', () => {
 export default defineConfig({
   jobs: {
     app: {
-      inputDirs: ['src'],
+      inputDirs: ['src/app'],
       outputDir: 'public/icons',
     },
   },

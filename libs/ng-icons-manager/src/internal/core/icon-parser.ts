@@ -11,9 +11,9 @@ export class IconParser {
   }
 
   private commentHints(content: string): string[] {
-    const comments = [...content.matchAll(/<!--\s*([\s\S]*?)\s*-->|\/\*\*?([\s\S]*?)\*\//g)];
+    const comments = [...content.matchAll(/<!--\s*([\s\S]*?)\s*-->|\/\*\*?([\s\S]*?)\*\/|\/\/([^\r\n]*)/g)];
     return comments.flatMap((comment) => {
-      const block = comment[1] ?? comment[2] ?? '';
+      const block = comment[1] ?? comment[2] ?? comment[3] ?? '';
       return [...block.matchAll(/i\(([^)]+)\)/g)].flatMap((match) =>
         match[1]
           .split(',')

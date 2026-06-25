@@ -2,7 +2,7 @@
 
 **ng-icons-manager** is a CLI utility for Angular projects that automatically detects which [`@ng-icons`](https://github.com/ng-icons/ng-icons) icons you use and keeps your local icon assets in sync.
 
-Instead of manually importing every icon or worrying about unused icons bloating your app, `ng-icons-manager` scans your Angular templates and TypeScript files, finds the icons you actually reference, and copies only those SVGs into your project’s `src/assets/icons` folder.
+Instead of manually importing every icon or worrying about unused icons bloating your app, `ng-icons-manager` scans configured Angular templates and TypeScript files, finds the icons you actually reference, and writes only those SVGs to each job's configured output directory.
 
 No more double importing.
 No more missing icons at runtime.
@@ -14,15 +14,11 @@ No more unused icons sitting around in your project.
 - [Why use ng-icons-manager?](#why-use-ng-icons-manager)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-  - [CLI](#cli)
-  - [Watch mode](#watch-mode)
-  - [Verbose mode](#verbose-mode)
-  - [Ignore missing icons](#ignore-missing-icons)
-  - [Dynamic keys](#dynamic-keys)
-- [Supported icon sets](#supported-icon-sets)
-- [How it works](#how-it-works)
-- [Supported packages](#supported-packages)
+- [Configuration](#configuration)
+- [CLI](#cli)
+- [Angular icon loading](#angular-icon-loading)
+- [Dynamic icon names](#dynamic-icon-names)
+- [Supported packages and variants](#supported-packages-and-variants)
 
 > `ng-icons-manager` is not an official `@ng-icons` package. It is an independent utility built to work with `@ng-icons` packages.
 
@@ -49,10 +45,10 @@ You write your Angular templates naturally:
 
 Then `ng-icons-manager` finds those icons and copies the matching SVG files into your assets folder automatically.
 
-Your app loads icons from:
+With the recommended `public/icons` output, your app loads icons from:
 
 ```text
-/assets/icons/{icon-name}.svg
+/icons/{icon-name}.svg
 ```
 
 This means your project only includes the icons you actually use.
@@ -61,8 +57,9 @@ This means your project only includes the icons you actually use.
 
 ## Features
 
-- Scans Angular projects for used icons in `src/**/*.html` and `src/**/*.ts`
-- Copies only the used icons into `src/assets/icons`
+- Runs independent named jobs with configurable inputs, output, include globs, and exclude globs
+- Supports all package entrypoints and variants in `@ng-icons` 33.3.0
+- Copies only the used icons into each job's output directory
 - Supports watch mode for automatic updates during development
 - Removes unused icons as your code changes
 - Supports explicit icon hints for dynamic icon names
@@ -74,14 +71,16 @@ This means your project only includes the icons you actually use.
 Using npm:
 
 ```bash
-npm install --save-dev ng-icons-manager
+npm install --save-dev ng-icons-manager @ng-icons/bootstrap-icons
 ```
 
 Using pnpm:
 
 ```bash
-pnpm add -D ng-icons-manager
+pnpm add -D ng-icons-manager @ng-icons/bootstrap-icons
 ```
+
+Node.js 20.19 or newer is required. Install the `@ng-icons` packages used by your project alongside the CLI. Icon packs are resolved dynamically and are intentionally not peer dependencies of `ng-icons-manager`.
 
 Update your `start` and `build` scripts:
 
@@ -100,14 +99,154 @@ The start script runs `ng-icons-manager` in watch mode while Angular serves your
 
 ---
 
-## Configure Angular icon loading
+## Configuration
 
-Configure `ng-icon` in your Angular app config to load SVG files from the `assets/icons` folder:
+A configuration file is required. Create `ng-icons-manager.config.mjs` in the directory where the CLI runs:
+
+```javascript
+import { defineConfig } from 'ng-icons-manager';
+
+export default defineConfig({
+  defaults: {
+    include: ['**/*.{html,ts}'],
+    exclude: ['**/*.spec.ts'],
+  },
+  jobs: {
+    app: {
+      inputDirs: ['apps/app/src', 'libs/shared-ui/src'],
+      outputDir: 'apps/app/public/icons',
+    },
+    admin: {
+      inputDirs: ['apps/admin/src', 'libs/shared-ui/src'],
+      outputDir: 'apps/admin/public/icons',
+      exclude: [],
+      packagePreferences: {
+        mat: '@ng-icons/material-symbols',
+      },
+    },
+  },
+});
+```
+
+All paths are relative to the configuration directory. Inputs and outputs must remain inside that directory and must not traverse symbolic links. Every input directory must exist.
+
+### Configuration reference
+
+| Property                             | Required | Default              | Description                                                      |
+| ------------------------------------ | -------- | -------------------- | ---------------------------------------------------------------- |
+| `jobs`                               | Yes      | —                    | Non-empty object of named scan jobs.                             |
+| `defaults.include`                   | No       | `['**/*.{html,ts}']` | Global include globs applied below each input directory.         |
+| `defaults.exclude`                   | No       | `[]`                 | Global exclude globs applied below each input directory.         |
+| `jobs.<name>.inputDirs`              | Yes      | —                    | Non-empty list of source directories. Shared inputs are allowed. |
+| `jobs.<name>.outputDir`              | Yes      | —                    | Manager-owned output directory.                                  |
+| `jobs.<name>.include`                | No       | Global/default value | Replaces, rather than appends to, the global include list.       |
+| `jobs.<name>.exclude`                | No       | Global/default value | Replaces, rather than appends to, the global exclude list.       |
+| `jobs.<name>.packagePreferences.mat` | No       | —                    | Resolves a conflicting Material Icons/Material Symbols export.   |
+
+Unknown configuration properties are errors. Output directories may be nested under inputs, but every configured output is automatically excluded from all scans. Output directories may not overlap one another.
+
+### Output ownership warning
+
+Each output directory is fully owned by `ng-icons-manager`. After a scan resolves successfully, the CLI recursively deletes that directory and recreates it. Do not store unrelated files there.
+
+Before deletion, the CLI rejects filesystem roots, the configuration root, inputs, ancestors of inputs, paths outside the configuration root, symbolic-link traversal, and overlapping job outputs. Icon resolution completes before deletion, so a normal resolution failure preserves the existing output.
+
+## CLI
+
+Create a starter configuration:
+
+```bash
+ng-icons-manager setup
+```
+
+Use the arrow keys to select a preset, then press Enter.
+
+List available setup presets:
+
+```bash
+ng-icons-manager setup --list-presets
+```
+
+Available setup presets:
+
+| Preset             | Use case                                     | Output directory            | Loader path                 |
+| ------------------ | -------------------------------------------- | --------------------------- | --------------------------- |
+| `angular`          | Single Angular app with `public`             | `public/icons`              | `/icons/${name}.svg`        |
+| `angular-monorepo` | Angular CLI workspace with `projects/app`    | `projects/app/public/icons` | `/icons/${name}.svg`        |
+| `nx-monorepo`      | Nx Angular monorepo with app and shared libs | `apps/app/public/icons`     | `/icons/${name}.svg`        |
+| `nx-angular`       | Single Angular app in an Nx workspace        | `public/icons`              | `/icons/${name}.svg`        |
+| `angular-assets`   | Angular app using legacy `src/assets/icons`  | `src/assets/icons`          | `/assets/icons/${name}.svg` |
+
+Setup refuses to overwrite an existing config unless you pass `--force`:
+
+```bash
+ng-icons-manager setup --force
+```
+
+Use `--preset` for non-interactive environments and `--config` to write the config somewhere else:
+
+```bash
+ng-icons-manager setup --preset nx-monorepo --config tools/ng-icons-manager.config.mjs
+```
+
+After setup, read the printed asset mapping and `provideNgIconLoader` guidance. Modern `public/icons` presets should load from `/icons/${name}.svg`; the `angular-assets` preset should load from `/assets/icons/${name}.svg`.
+
+Run every configured job once:
+
+```bash
+ng-icons-manager
+```
+
+Run selected jobs by repeating `--job`:
+
+```bash
+ng-icons-manager --job app --job admin
+```
+
+Use a configuration at another location:
+
+```bash
+ng-icons-manager --config tools/ng-icons-manager.config.mjs
+```
+
+Available options:
+
+| Option                | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------------- |
+| `--config <path.mjs>` | Use an explicit `.mjs` configuration. May be supplied once.                 |
+| `--job <name>`        | Run a named job. Repeatable. All jobs run when omitted.                     |
+| `--watch`             | Watch configured inputs and reload the configuration when it changes.       |
+| `--verbose`           | Log config loading and successful job output.                               |
+| `--ignore-missing`    | Omit unresolved icons in a one-time run. Cannot be combined with `--watch`. |
+
+Setup options:
+
+| Option                | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| `--preset <name>`     | Write a config from a named preset without prompting. |
+| `--list-presets`      | Print available setup presets.                        |
+| `--config <path.mjs>` | Write the setup config to a custom `.mjs` path.       |
+| `--force`             | Overwrite an existing config file.                    |
+
+Arguments and job names are validated strictly. A one-time multi-job run finishes every selected job and exits with code 1 if any job fails. Successful jobs still update independently.
+
+### Watch mode
+
+```bash
+ng-icons-manager --watch
+```
+
+Watch mode performs a complete initial regeneration and then updates outputs incrementally. It watches configured inputs and the config file, ignores hidden paths, does not follow symbolic links, and serializes changes per job.
+
+If a source scan contains a missing or ambiguous icon, that job's existing output remains unchanged while other jobs continue. An invalid reloaded configuration terminates the process with a nonzero exit code. Removing a job or changing its output directory does not delete the obsolete output directory.
+
+## Angular icon loading
+
+For an output such as `public/icons`, configure `@ng-icons/core` to request `/icons/{name}.svg`:
 
 ```typescript
-import { ApplicationConfig, inject } from '@angular/core';
 import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
-
+import { ApplicationConfig, inject } from '@angular/core';
 import { provideNgIconLoader, withCaching } from '@ng-icons/core';
 
 export const appConfig: ApplicationConfig = {
@@ -115,83 +254,23 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideNgIconLoader((name) => {
       const http = inject(HttpClient);
-      return http.get(`/assets/icons/${name}.svg`, { responseType: 'text' });
+      return http.get(`/icons/${name}.svg`, { responseType: 'text' });
     }, withCaching()),
   ],
 };
 ```
 
-Make sure Angular copies your assets folder during builds:
+Use exact `@ng-icons` export names in templates:
 
-```json
-{
-  "options": {
-    "assets": [
-      {
-        "glob": "**/*",
-        "input": "src/assets",
-        "output": "/assets"
-      }
-    ]
-  }
-}
+```html
+<ng-icon name="bootstrapAlarm" />
+<ng-icon name="heroAcademicCapSolid" />
+<ng-icon name="heroAcademicCapMini" />
 ```
 
----
+Variants are resolved from their real secondary entrypoints. Output remains flat, for example `heroAcademicCapSolid.svg`.
 
-## Usage
-
-### CLI
-
-Run once to scan your project and copy the detected icons:
-
-```bash
-npx ng-icons-manager
-```
-
-This is useful before a production build or whenever you want to manually refresh the icon assets.
-
----
-
-### Watch mode
-
-Automatically update icons when you change code:
-
-```bash
-npx ng-icons-manager --watch
-```
-
-Watch mode is recommended during development. When you add a new icon to a template, the matching SVG is copied into `src/assets/icons`. When you remove an icon from your code, unused icon files are cleaned up.
-
----
-
-### Verbose mode
-
-See detailed logs of found, added, and removed icons:
-
-```bash
-npx ng-icons-manager --verbose
-```
-
-This is useful for debugging or for checking which icons the CLI detected.
-
----
-
-### Ignore missing icons
-
-Don’t fail when an icon can’t be resolved:
-
-```bash
-npx ng-icons-manager --ignore-missing
-```
-
-This option is only available in non-watch mode.
-
-It can be useful in setups where some icon names are generated dynamically or are not available at scan time.
-
----
-
-### Dynamic keys
+## Dynamic icon names
 
 Some icons are not written directly inside a static `<ng-icon name="...">` attribute.
 
@@ -245,80 +324,54 @@ In Angular templates:
 <ng-icon [name]="name()" />
 ```
 
-The `i(...)` comment acts as an explicit hint. Any icon listed inside it will be copied into your assets folder.
+The `i(...)` comment acts as an explicit hint. Any icon listed inside it will be copied into the job's output directory.
 
 ---
 
-## How it works
+## Supported packages and variants
 
-`ng-icons-manager` scans your Angular source files and looks for icon references.
+| Package                          | Entrypoints/variants                                             |
+| -------------------------------- | ---------------------------------------------------------------- |
+| `@ng-icons/akar-icons`           | root                                                             |
+| `@ng-icons/bootstrap-icons`      | root                                                             |
+| `@ng-icons/boxicons`             | `regular`, `solid`, `logos`                                      |
+| `@ng-icons/circum-icons`         | root                                                             |
+| `@ng-icons/coolicons`            | root                                                             |
+| `@ng-icons/cryptocurrency-icons` | root, `colored`                                                  |
+| `@ng-icons/css.gg`               | root                                                             |
+| `@ng-icons/devicon`              | `plain`, `original`, `line`                                      |
+| `@ng-icons/dripicons`            | root                                                             |
+| `@ng-icons/feather-icons`        | root                                                             |
+| `@ng-icons/flag-icons`           | root, `square`                                                   |
+| `@ng-icons/fluent-ui`            | root, `filled`                                                   |
+| `@ng-icons/font-awesome`         | `regular`, `solid`, `brands`                                     |
+| `@ng-icons/game-icons`           | root                                                             |
+| `@ng-icons/heroicons`            | `outline`, `solid`, `mini`, `micro`                              |
+| `@ng-icons/huge-icons`           | root                                                             |
+| `@ng-icons/iconoir`              | `regular`, `solid`                                               |
+| `@ng-icons/iconsax`              | `bold`, `bulk`, `outline`                                        |
+| `@ng-icons/ionicons`             | root                                                             |
+| `@ng-icons/jam-icons`            | root                                                             |
+| `@ng-icons/lets-icons`           | `light`, `fill`, `duotone`, `duotone-line`, `regular`            |
+| `@ng-icons/lobe-icons`           | root, `color`                                                    |
+| `@ng-icons/lucide`               | root                                                             |
+| `@ng-icons/material-file-icons`  | `colored`, `uncolored`                                           |
+| `@ng-icons/material-icons`       | `baseline`, `outline`, `round`, `sharp`                          |
+| `@ng-icons/material-symbols`     | `outline`, `round`, `sharp`                                      |
+| `@ng-icons/mono-icons`           | root                                                             |
+| `@ng-icons/mynaui`               | `outline`, `solid`                                               |
+| `@ng-icons/octicons`             | root, `large`                                                    |
+| `@ng-icons/phosphor-icons`       | `bold`, `duotone`, `fill`, `light`, `regular`, `thin`            |
+| `@ng-icons/radix-icons`          | root                                                             |
+| `@ng-icons/remixicon`            | root                                                             |
+| `@ng-icons/simple-icons`         | root                                                             |
+| `@ng-icons/solar-icons`          | `bold`, `duotone`, `outline`, `bold-duotone`, `broken`, `linear` |
+| `@ng-icons/svgl`                 | root                                                             |
+| `@ng-icons/tabler-icons`         | root, `fill`                                                     |
+| `@ng-icons/tdesign-icons`        | root                                                             |
+| `@ng-icons/typicons`             | root                                                             |
+| `@ng-icons/ux-aspects`           | root                                                             |
 
-It detects icons used in places like:
-
-```html
-<ng-icon name="bootstrapSunFill" />
-```
-
-and explicit icon hints like:
-
-```typescript
-/* i(bootstrapSunFill) */
-```
-
-After collecting the used icon names, it resolves them from supported `@ng-icons` packages and copies the corresponding SVG files into:
-
-```text
-src/assets/icons
-```
-
-When running in watch mode, it continues watching your files and keeps that folder synchronized as your code changes.
-
----
-
-## Supported icon sets
-
-- `@ng-icons/akar-icons`
-- `@ng-icons/bootstrap-icons`
-- `@ng-icons/circum-icons`
-- `@ng-icons/cryptocurrency-icons`
-- `@ng-icons/css.gg`
-- `@ng-icons/dripicons`
-- `@ng-icons/feather-icons`
-- `@ng-icons/game-icons`
-- `@ng-icons/huge-icons`
-- `@ng-icons/iconoir`
-- `@ng-icons/ionicons`
-- `@ng-icons/jam-icons`
-- `@ng-icons/lucide`
-- `@ng-icons/material-icons/baseline`
-- `@ng-icons/mono-icons`
-- `@ng-icons/octicons`
-- `@ng-icons/radix-icons`
-- `@ng-icons/remixicon`
-- `@ng-icons/simple-icons`
-- `@ng-icons/svgl`
-- `@ng-icons/tdesign-icons`
-- `@ng-icons/typicons`
-- `@ng-icons/ux-aspects`
-
----
-
-## Supported packages
-
-`ng-icons-manager` supports icons from the listed `@ng-icons` packages above.
-
-Make sure the icon package you want to use is installed in your project. For example:
-
-```bash
-npm install @ng-icons/bootstrap-icons
-```
-
-or:
-
-```bash
-pnpm add @ng-icons/bootstrap-icons
-```
-
----
+If multiple registered entrypoints export the same name and SVG content, the export is treated as equivalent. Different SVG content is an ambiguity error. Material Icons and Material Symbols share the `mat` prefix; set `packagePreferences.mat` only when both packages provide conflicting versions of a requested icon.
 
 By [Dafnik](https://dafnik.me)

@@ -58,8 +58,15 @@ export default [
     })),
   ...compat
     .config({
-      env: {
-        jest: true,
+      globals: {
+        afterAll: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        beforeEach: 'readonly',
+        describe: 'readonly',
+        expect: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
       },
     })
     .map((config) => ({

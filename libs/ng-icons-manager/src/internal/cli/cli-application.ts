@@ -5,8 +5,9 @@ import type { ResolvedJobConfig, ResolvedManagerConfig } from '../config/models'
 import type { IconManager, JobRunResult } from '../core/icon-manager';
 import { errorMessage } from '../core/issues';
 import type { Logger } from '../core/ports';
-import { parseCliOptions, type CliOptions } from './cli-options';
+import { parseCliOptions, type RunCliOptions } from './cli-options';
 import { CliReporter } from './cli-reporter';
+import { SetupCommand } from './setup-command';
 import { WatchCoordinator, type ManagerFactory } from './watch-coordinator';
 
 export class CliApplication {
@@ -14,6 +15,7 @@ export class CliApplication {
     private readonly configs: ConfigLoader,
     private readonly managers: ManagerFactory,
     private readonly watch: WatchCoordinator,
+    private readonly setup: SetupCommand,
     private readonly logger: Logger,
     private readonly reporter: CliReporter,
   ) {}
@@ -22,6 +24,15 @@ export class CliApplication {
     try {
       const options = parseCliOptions(args);
       const configPath = options.configPath ? resolve(cwd, options.configPath) : join(cwd, 'ng-icons-manager.config.mjs');
+      if (options.command === 'setup') {
+        if (options.listPresets) this.setup.listPresets();
+        else {
+          if (!options.preset) throw new Error('setup requires --preset <name> or --list-presets');
+          this.setup.run(configPath, options.preset, options.force);
+        }
+        return 0;
+      }
+
       const config = await this.configs.load(configPath);
       this.jobs(config, options.jobs);
 
@@ -34,13 +45,13 @@ export class CliApplication {
     }
   }
 
-  private async once(config: ResolvedManagerConfig, options: CliOptions): Promise<number> {
+  private async once(config: ResolvedManagerConfig, options: RunCliOptions): Promise<number> {
     const manager = this.managers(config);
     const results = await Promise.all(this.jobs(config, options.jobs).map((job) => this.runJob(manager, job, options)));
     return results.every(({ success }) => success) ? 0 : 1;
   }
 
-  private async runJob(manager: IconManager, job: ResolvedJobConfig, options: CliOptions): Promise<JobRunResult> {
+  private async runJob(manager: IconManager, job: ResolvedJobConfig, options: RunCliOptions): Promise<JobRunResult> {
     const result = await manager.run(job, { fullReplace: true, ignoreMissing: options.ignoreMissing });
     this.reporter.report(result, options.ignoreMissing, options.verbose);
     return result;

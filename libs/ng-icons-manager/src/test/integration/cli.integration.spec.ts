@@ -1,5 +1,5 @@
 import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
-import { existsSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { vi } from 'vitest';
 
@@ -12,6 +12,7 @@ import {
   distRoot,
   ensureBuild,
   execute,
+  linkBuiltNgIconsManager,
   removeTempDir,
   runCli,
 } from './test-utils';
@@ -31,6 +32,48 @@ describe('CLI integration', () => {
     const result = await runCli(tempDir);
     expect(result.code).toBe(1);
     expect(result.stderr).toContain('Config file not found');
+  });
+
+  it('lists setup presets', async () => {
+    const result = await runCli(tempDir, ['setup', '--list-presets']);
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toContain('angular:');
+    expect(result.stdout).toContain('angular-monorepo:');
+    expect(result.stdout).toContain('nx-monorepo:');
+    expect(result.stdout).toContain('nx-angular:');
+    expect(result.stdout).toContain('angular-assets:');
+  });
+
+  it('creates an angular setup config that can be loaded by a normal run', async () => {
+    await createBootstrapPackage(tempDir);
+    await linkBuiltNgIconsManager(tempDir);
+    await createSourceFile(tempDir, 'src/app.html', '<ng-icon name="bootstrapAlarm" />');
+
+    const setup = await runCli(tempDir, ['setup', '--preset', 'angular']);
+    const rerun = await runCli(tempDir, ['setup', '--preset', 'angular']);
+    const run = await runCli(tempDir);
+
+    expect(setup.code).toBe(0);
+    expect(setup.stdout).toContain('Selected preset: angular');
+    expect(setup.stdout).toContain('/icons/${name}.svg');
+    expect(readFileSync(join(tempDir, 'ng-icons-manager.config.mjs'), 'utf8')).toContain("outputDir: 'public/icons'");
+    expect(rerun.code).toBe(1);
+    expect(rerun.stderr).toContain('already exists');
+    expect(run.code).toBe(0);
+    expect(readFileSync(join(tempDir, 'public/icons/bootstrapAlarm.svg'), 'utf8')).toBe('<svg>alarm</svg>');
+  });
+
+  it('supports setup force and custom config paths', async () => {
+    mkdirSync(join(tempDir, 'tools'), { recursive: true });
+    writeFileSync(join(tempDir, 'tools/icons.config.mjs'), 'existing');
+
+    const result = await runCli(tempDir, ['setup', '--preset', 'angular-assets', '--config', 'tools/icons.config.mjs', '--force']);
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toContain('Selected preset: angular-assets');
+    expect(result.stdout).toContain('/assets/icons/${name}.svg');
+    expect(readFileSync(join(tempDir, 'tools/icons.config.mjs'), 'utf8')).toContain("outputDir: 'src/assets/icons'");
   });
 
   it('loads defineConfig through ESM and runs a selected named job', async () => {

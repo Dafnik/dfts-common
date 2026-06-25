@@ -153,6 +153,42 @@ Before deletion, the CLI rejects filesystem roots, the configuration root, input
 
 ## CLI
 
+Create a starter configuration:
+
+```bash
+ng-icons-manager setup --preset angular
+```
+
+List available setup presets:
+
+```bash
+ng-icons-manager setup --list-presets
+```
+
+Available setup presets:
+
+| Preset             | Use case                                      | Output directory            | Loader path                      |
+| ------------------ | --------------------------------------------- | --------------------------- | -------------------------------- |
+| `angular`          | Single Angular app with `public`              | `public/icons`              | `/icons/${name}.svg`             |
+| `angular-monorepo` | Angular CLI workspace with `projects/app`     | `projects/app/public/icons` | `/icons/${name}.svg`             |
+| `nx-monorepo`      | Nx Angular monorepo with app and shared libs  | `apps/app/public/icons`     | `/icons/${name}.svg`             |
+| `nx-angular`       | Single Angular app in an Nx workspace         | `public/icons`              | `/icons/${name}.svg`             |
+| `angular-assets`   | Angular app using legacy `src/assets/icons`   | `src/assets/icons`          | `/assets/icons/${name}.svg`      |
+
+Setup refuses to overwrite an existing config unless you pass `--force`:
+
+```bash
+ng-icons-manager setup --preset angular --force
+```
+
+Use `--config` to write the config somewhere else:
+
+```bash
+ng-icons-manager setup --preset nx-monorepo --config tools/ng-icons-manager.config.mjs
+```
+
+After setup, read the printed asset mapping and `provideNgIconLoader` guidance. Modern `public/icons` presets should load from `/icons/${name}.svg`; the `angular-assets` preset should load from `/assets/icons/${name}.svg`.
+
 Run every configured job once:
 
 ```bash
@@ -180,6 +216,15 @@ Available options:
 | `--watch`             | Watch configured inputs and reload the configuration when it changes.       |
 | `--verbose`           | Log config loading and successful job output.                               |
 | `--ignore-missing`    | Omit unresolved icons in a one-time run. Cannot be combined with `--watch`. |
+
+Setup options:
+
+| Option           | Description                                             |
+| ---------------- | ------------------------------------------------------- |
+| `--preset <name>` | Write a config from a named preset.                    |
+| `--list-presets` | Print available setup presets.                          |
+| `--config <path.mjs>` | Write the setup config to a custom `.mjs` path.    |
+| `--force`        | Overwrite an existing config file.                      |
 
 Arguments and job names are validated strictly. A one-time multi-job run finishes every selected job and exits with code 1 if any job fails. Successful jobs still update independently.
 

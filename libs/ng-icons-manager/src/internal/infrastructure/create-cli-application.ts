@@ -15,6 +15,7 @@ import { ConsoleLogger } from './console-logger';
 import { NativeConfigImporter } from './native-config-importer';
 import { NodeFileSystem } from './node-file-system';
 import { NodeModuleLoader } from './node-module-loader';
+import { SetupCommand } from '../cli/setup-command';
 
 export function createCliApplication(): CliApplication {
   const fs = new NodeFileSystem();
@@ -24,7 +25,8 @@ export function createCliApplication(): CliApplication {
   const managers: ManagerFactory = (config) => createManager(config, fs, paths);
   const reporter = new CliReporter(logger);
   const watch = new WatchCoordinator(new ChokidarWatcherFactory(), configs, managers, logger, reporter);
-  return new CliApplication(configs, managers, watch, logger, reporter);
+  const setup = new SetupCommand(fs, logger);
+  return new CliApplication(configs, managers, watch, setup, logger, reporter);
 }
 
 function createManager(config: ResolvedManagerConfig, fs: NodeFileSystem, paths: OutputPathPolicy): IconManager {

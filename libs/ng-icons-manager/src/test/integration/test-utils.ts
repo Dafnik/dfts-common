@@ -36,6 +36,10 @@ export async function createConfigFile(cwd: string, config: unknown): Promise<vo
   await writeFile(join(cwd, 'ng-icons-manager.config.mjs'), content);
 }
 
+export function linkBuiltNgIconsManager(cwd: string): Promise<void> {
+  return linkBuiltPackage(cwd);
+}
+
 export async function createSourceFile(cwd: string, path: string, content: string): Promise<void> {
   const fullPath = join(cwd, path);
   await mkdir(dirname(fullPath), { recursive: true });

@@ -114,10 +114,16 @@ export class SetupCommand {
     this.logger.info('');
     this.logger.info('Preset-specific setup:');
     for (const line of preset.guidance) this.logger.info(`- ${line}`);
-    this.logger.info(`- provideNgIconLoader path: ${preset.loaderPath}`);
     this.logger.info('');
     this.logger.info('Loader example:');
-    this.logger.info(`provideNgIconLoader((name) => http.get(\`${preset.loaderPath}\`, { responseType: 'text' }))`);
+    this.logger.info(`import { inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { provideNgIconLoader, withCaching } from '@ng-icons/core';
+
+provideNgIconLoader((name) => {
+  const http = inject(HttpClient);
+  return http.get(\`${preset.loaderPath}\`, { responseType: 'text' });
+}, withCaching())`);
   }
 }
 

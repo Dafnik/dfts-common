@@ -49,8 +49,21 @@ export default defineConfig({
         `Created ${configPath}`,
         'Selected preset: angular',
         'Output directory: public/icons',
-        '- provideNgIconLoader path: /icons/${name}.svg',
-        "provideNgIconLoader((name) => http.get(`/icons/${name}.svg`, { responseType: 'text' }))",
+        'Warning: ng-icons-manager fully owns the output directory and replaces its contents during a full run.',
+        '',
+        'Preset-specific setup:',
+        '- Asset mapping: no extra mapping is usually needed when Angular serves public/ at the application root.',
+        '- If your workspace customizes assets, verify the Angular project build options still include the public folder.',
+        '',
+        'Loader example:',
+        `import { inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { provideNgIconLoader, withCaching } from '@ng-icons/core';
+
+provideNgIconLoader((name) => {
+  const http = inject(HttpClient);
+  return http.get(\`/icons/\${name}.svg\`, { responseType: 'text' });
+}, withCaching())`,
       ]),
     );
   });
@@ -62,8 +75,15 @@ export default defineConfig({
     expect(logger.infos).toEqual(
       expect.arrayContaining([
         'Selected preset: angular-assets',
-        '- provideNgIconLoader path: /assets/icons/${name}.svg',
-        "provideNgIconLoader((name) => http.get(`/assets/icons/${name}.svg`, { responseType: 'text' }))",
+        'Loader example:',
+        `import { inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { provideNgIconLoader, withCaching } from '@ng-icons/core';
+
+provideNgIconLoader((name) => {
+  const http = inject(HttpClient);
+  return http.get(\`/assets/icons/\${name}.svg\`, { responseType: 'text' });
+}, withCaching())`,
       ]),
     );
   });
@@ -80,6 +100,8 @@ export default defineConfig({
   });
 
   it('rejects unknown presets with the available names', () => {
-    expect(() => setup.run(configPath, 'unknown', false)).toThrow('Available presets: angular, angular-monorepo, nx-monorepo, nx-angular, angular-assets');
+    expect(() => setup.run(configPath, 'unknown', false)).toThrow(
+      'Available presets: angular, angular-monorepo, nx-monorepo, nx-angular, angular-assets',
+    );
   });
 });

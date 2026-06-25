@@ -142,6 +142,25 @@ describe('watch coordinator', () => {
     expect(watchers.handles.every(({ closed }) => closed)).toBe(true);
   });
 
+  it('does not register a job watcher after shutdown starts during watcher readiness', async () => {
+    importer.value = configModule('public/icons');
+    const initial = await configs.load(configPath);
+    const jobReady = deferred();
+    watchers.readyPromises.push(Promise.resolve(), jobReady.promise);
+    const abort = new AbortController();
+    const completion = coordinator().run(initial, [], false, abort.signal);
+    await flushPromises();
+
+    abort.abort();
+    jobReady.resolve();
+    await flushPromises();
+
+    await expect(completion).resolves.toBe(0);
+    expect(watchers.handles).toHaveLength(2);
+    expect(watchers.handles.every(({ closed }) => closed)).toBe(true);
+    expect(logger.infos).not.toContain('Watching 1 ng-icons-manager job(s)');
+  });
+
   function coordinator(): WatchCoordinator {
     return new WatchCoordinator(watchers, configs, managers, logger, new CliReporter(logger));
   }

@@ -136,9 +136,10 @@ export class FakeLogger implements Logger {
 
 export class FakeWatcherFactory implements WatcherFactory {
   readonly handles: FakeWatchHandle[] = [];
+  readonly readyPromises: Array<Promise<void>> = [];
 
   watch(paths: string | string[], options?: WatchOptions): WatchHandle {
-    const handle = new FakeWatchHandle(paths, options);
+    const handle = new FakeWatchHandle(paths, options, this.readyPromises.shift());
     this.handles.push(handle);
     return handle;
   }
@@ -152,6 +153,7 @@ export class FakeWatchHandle implements WatchHandle {
   constructor(
     readonly paths: string | string[],
     readonly options?: WatchOptions,
+    private readonly readyPromise = Promise.resolve(),
   ) {}
 
   onEvent(listener: () => void): void {
@@ -163,7 +165,7 @@ export class FakeWatchHandle implements WatchHandle {
   }
 
   ready(): Promise<void> {
-    return Promise.resolve();
+    return this.readyPromise;
   }
 
   async close(): Promise<void> {

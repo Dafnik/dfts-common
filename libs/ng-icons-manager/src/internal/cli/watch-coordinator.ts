@@ -63,6 +63,10 @@ export class WatchCoordinator {
         (error) => void this.finish(1, `[${job.name}] Watch error: ${errorMessage(error)}`),
       );
       await watcher.start();
+      if (this.finished) {
+        await watcher.close();
+        return;
+      }
       this.jobWatchers.set(job.name, watcher);
     }
     this.logger.info(`Watching ${this.jobWatchers.size} ng-icons-manager job(s)`);

@@ -16,9 +16,16 @@ export class ChokidarWatcherFactory implements WatcherFactory {
 
 class ChokidarWatchHandle implements WatchHandle {
   private readonly readyPromise: Promise<void>;
+  private readonly errorListeners: Array<(error: unknown) => void> = [];
 
   constructor(private readonly watcher: FSWatcher) {
-    this.readyPromise = new Promise((resolve) => watcher.once('ready', resolve));
+    this.readyPromise = new Promise((resolve, reject) => {
+      watcher.once('ready', resolve);
+      watcher.on('error', (error) => {
+        reject(error);
+        for (const listener of this.errorListeners) listener(error);
+      });
+    });
   }
 
   onEvent(listener: () => void): void {
@@ -26,7 +33,7 @@ class ChokidarWatchHandle implements WatchHandle {
   }
 
   onError(listener: (error: unknown) => void): void {
-    this.watcher.on('error', listener);
+    this.errorListeners.push(listener);
   }
 
   ready(): Promise<void> {

@@ -13,7 +13,7 @@
     "format:check": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --check .",
     "format": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --write ."
   },
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@11.9.0",
   "private": true,
   "dependencies": {
     "chokidar": "5.0.0",
@@ -23,7 +23,7 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "10.0.1",
-    "@jscutlery/semver": "6.0.1",
+    "@jscutlery/semver": "6.1.2",
     "@nx/devkit": "22.7.5",
     "@nx/eslint": "22.7.5",
     "@nx/eslint-plugin": "22.7.5",
@@ -37,19 +37,19 @@
     "eslint": "10.6.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsonc": "3.1.2",
-    "fs-extra": "11.3.4",
+    "eslint-plugin-jsonc": "3.2.0",
+    "fs-extra": "11.3.5",
     "jsdom": "^29.1.1",
     "jsonc-eslint-parser": "3.1.0",
     "nx": "22.7.5",
-    "prettier": "3.8.2",
+    "prettier": "3.9.1",
     "prettier-plugin-organize-attributes": "1.0.0",
     "prettier-plugin-sort-json": "4.2.0",
-    "prettier-plugin-tailwindcss": "0.7.2",
-    "rollup": "4.60.1",
+    "prettier-plugin-tailwindcss": "0.8.0",
+    "rollup": "4.62.2",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.58.1",
+    "typescript-eslint": "8.62.0",
     "vitest": "^4.1.9"
   }
 }

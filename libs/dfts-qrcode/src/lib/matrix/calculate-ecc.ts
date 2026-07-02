@@ -22,7 +22,7 @@ export function calculateECC(poly: number[], genPoly: number[]): number[] {
     modulus.push(0);
   }
 
-  for (let i = 0; i < polyLength; ) {
+  for (let i = 0; i < polyLength;) {
     const quotient = GF256_INVENTORY_MAP[modulus[i++]];
     if (quotient >= 0) {
       for (let j = 0; j < genPolyLength; j++) {

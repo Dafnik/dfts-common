@@ -33,7 +33,7 @@ export function evaluateMatrix(matrix: number[][]): number {
 
     // evaluate the current row
     groups = [0]; // the first empty group of white
-    for (let j = 0; j < matrixLength; ) {
+    for (let j = 0; j < matrixLength;) {
       let k = 0;
       for (; j < matrixLength && row[j]; k++) {
         j++;
@@ -48,7 +48,7 @@ export function evaluateMatrix(matrix: number[][]): number {
 
     // evaluate the current column
     groups = [0];
-    for (let j = 0; j < matrixLength; ) {
+    for (let j = 0; j < matrixLength;) {
       let k = 0;
       for (; j < matrixLength && matrix[j][i]; k++) {
         j++;

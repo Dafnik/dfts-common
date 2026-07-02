@@ -21,11 +21,11 @@ export function getLogMessage(logType: LogType, className: string, methodeName: 
   }
 
   className = className.slice(0, maxClassNameLength);
-  for (; className.length < maxClassNameLength; ) {
+  for (; className.length < maxClassNameLength;) {
     className += ' ';
   }
   methodeName = methodeName.slice(0, maxMethodeNameLength);
-  for (; methodeName.length < maxMethodeNameLength; ) {
+  for (; methodeName.length < maxMethodeNameLength;) {
     methodeName += ' ';
   }
 

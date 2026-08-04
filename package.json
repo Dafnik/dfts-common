@@ -23,7 +23,7 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "10.0.1",
-    "@jscutlery/semver": "6.2.0",
+    "@jscutlery/semver": "7.1.0",
     "@nx/devkit": "22.7.5",
     "@nx/eslint": "22.7.5",
     "@nx/eslint-plugin": "22.7.5",
@@ -39,7 +39,7 @@
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsonc": "3.3.0",
     "fs-extra": "11.4.0",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.0",
     "jsonc-eslint-parser": "3.1.0",
     "nx": "22.7.5",
     "prettier": "3.9.6",
@@ -48,7 +48,7 @@
     "prettier-plugin-tailwindcss": "0.8.1",
     "rollup": "4.62.3",
     "ts-node": "10.9.2",
-    "typescript": "5.9.3",
+    "typescript": "7.0.2",
     "typescript-eslint": "8.65.0",
     "vitest": "^4.1.9"
   }

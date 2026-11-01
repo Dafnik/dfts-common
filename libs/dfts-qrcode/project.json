@@ -5,17 +5,6 @@
   "sourceRoot": "libs/dfts-qrcode",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/rollup:rollup",
-      "options": {
-        "assets": ["libs/dfts-qrcode/README.md", "libs/dfts-qrcode/CHANGELOG.md", "libs/dfts-qrcode/LICENSE"],
-        "format": ["esm", "cjs"],
-        "main": "libs/dfts-qrcode/src/index.ts",
-        "outputPath": "dist/libs/dfts-qrcode",
-        "tsConfig": "libs/dfts-qrcode/tsconfig.lib.json"
-      },
-      "outputs": ["{options.outputPath}"]
-    },
     "test": {
       "configurations": {
         "ci": {

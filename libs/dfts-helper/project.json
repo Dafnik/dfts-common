@@ -5,17 +5,6 @@
   "sourceRoot": "libs/dfts-helper",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/rollup:rollup",
-      "options": {
-        "assets": ["libs/dfts-helper/README.md", "libs/dfts-helper/CHANGELOG.md", "libs/dfts-helper/LICENSE"],
-        "format": ["esm", "cjs"],
-        "main": "libs/dfts-helper/src/index.ts",
-        "outputPath": "dist/libs/dfts-helper",
-        "tsConfig": "libs/dfts-helper/tsconfig.lib.json"
-      },
-      "outputs": ["{options.outputPath}"]
-    },
     "test": {
       "configurations": {
         "ci": {

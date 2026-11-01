@@ -13,5 +13,3 @@ onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
   - nx
-patchedDependencies:
-  '@nx/devkit': patches/@nx__devkit.patch

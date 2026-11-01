@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
     "importHelpers": true,
     "lib": ["ES2022", "dom"],
     "module": "esnext",
@@ -18,6 +19,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedSideEffectImports": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "paths": {

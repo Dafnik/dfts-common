@@ -108,10 +108,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           registry-url: 'https://registry.npmjs.org'
-          node-version: '24'
+          node-version: '26'
 
       - uses: actions/download-artifact@v8
         with:
